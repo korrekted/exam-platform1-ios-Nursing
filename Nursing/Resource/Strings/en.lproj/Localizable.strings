@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  Nursing
+
+  Created by Andrey Chernyshev on 16.01.2021.
+  
+*/
+
+// MARK: ImagePicker
+"ImagePicker.TakePhoto" = "Take photo";
+"ImagePicker.CameraRoll" = "Camera roll";
+"ImagePicker.PhotoLibrary" = "Photo library";
