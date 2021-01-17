@@ -27,7 +27,7 @@ extension CoursesViewController {
     }
 }
 
-// MARK: Make
+// MARK: Private
 private extension CoursesViewController {
     func goToCourse() {
         let vc = NursingNavigationController(rootViewController: CourseViewController.make())
