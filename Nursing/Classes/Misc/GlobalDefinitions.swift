@@ -6,11 +6,11 @@
 //
 
 final class GlobalDefinitions {
-    static let domainUrl = ""
-    static let apiKey = ""
+    static let domainUrl = "https://exams.korrekted.com"
+    static let apiKey = "6LbJ2meaKoYXjqUT"
     
-    static let sdkDomainUrl = ""
-    static let sdkApiKey = ""
+    static let sdkDomainUrl = "https://analytics.korrekted.com"
+    static let sdkApiKey = "aQLwZhaOVVV9gyJM"
     
     static let applicationTag = "NURSING"
     

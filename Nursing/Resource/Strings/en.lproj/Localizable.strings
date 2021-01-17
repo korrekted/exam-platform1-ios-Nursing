@@ -10,3 +10,7 @@
 "ImagePicker.TakePhoto" = "Take photo";
 "ImagePicker.CameraRoll" = "Camera roll";
 "ImagePicker.PhotoLibrary" = "Photo library";
+
+// MARK: Course
+"Course.Tab.Stats" = "Stats";
+"Course.Tab.Study" = "Study";

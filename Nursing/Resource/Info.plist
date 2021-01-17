@@ -22,9 +22,9 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>SF-Pro-Rounded-Bold.ttf</string>
-		<string>SF-Pro-Rounded-Regular.ttf</string>
-		<string>SF-Pro-Rounded-Semibold.ttf</string>
+		<string>SF-Pro-Rounded-Bold.otf</string>
+		<string>SF-Pro-Rounded-Regular.otf</string>
+		<string>SF-Pro-Rounded-Semibold.otf</string>
 	</array>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>

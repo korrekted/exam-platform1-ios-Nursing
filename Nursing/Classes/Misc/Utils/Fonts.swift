@@ -11,15 +11,15 @@ struct Fonts {
     // MARK: SFProRounded
     struct SFProRounded {
         static func bold(size: CGFloat) -> UIFont {
-            UIFont(name: "SF-Pro-Rounded-Bold", size: size)!
+            UIFont(name: "SFProRounded-Bold", size: size)!
         }
         
         static func regular(size: CGFloat) -> UIFont {
-            UIFont(name: "SF-Pro-Rounded-Regular", size: size)!
+            UIFont(name: "SFProRounded-Regular", size: size)!
         }
         
         static func semiBold(size: CGFloat) -> UIFont {
-            UIFont(name: "SF-Pro-Rounded-Semibold", size: size)!
+            UIFont(name: "SFProRounded-Semibold", size: size)!
         }
     }
 }
