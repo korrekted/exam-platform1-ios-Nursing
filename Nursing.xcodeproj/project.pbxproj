@@ -17,6 +17,7 @@
 		962AEA7125B4F8090032E7C3 /* SF-Pro-Rounded-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 962AEA6E25B4F8090032E7C3 /* SF-Pro-Rounded-Bold.otf */; };
 		962AEA7225B4F8090032E7C3 /* SF-Pro-Rounded-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 962AEA6F25B4F8090032E7C3 /* SF-Pro-Rounded-Regular.otf */; };
 		962AEA7325B4F8090032E7C3 /* SF-Pro-Rounded-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 962AEA7025B4F8090032E7C3 /* SF-Pro-Rounded-Semibold.otf */; };
+		962AEA9D25B62C3F0032E7C3 /* PaygateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962AEA9C25B62C3F0032E7C3 /* PaygateViewController.swift */; };
 		96D38AE125B3017A00EADC9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D38AE025B3017A00EADC9A /* AppDelegate.swift */; };
 		96D38AEA25B3017D00EADC9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96D38AE925B3017D00EADC9A /* Assets.xcassets */; };
 		96D38AED25B3017D00EADC9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96D38AEB25B3017D00EADC9A /* LaunchScreen.storyboard */; };
@@ -79,6 +80,7 @@
 		962AEA6E25B4F8090032E7C3 /* SF-Pro-Rounded-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Bold.otf"; sourceTree = "<group>"; };
 		962AEA6F25B4F8090032E7C3 /* SF-Pro-Rounded-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Regular.otf"; sourceTree = "<group>"; };
 		962AEA7025B4F8090032E7C3 /* SF-Pro-Rounded-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Semibold.otf"; sourceTree = "<group>"; };
+		962AEA9C25B62C3F0032E7C3 /* PaygateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaygateViewController.swift; sourceTree = "<group>"; };
 		96D38ADD25B3017A00EADC9A /* Nursing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nursing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96D38AE025B3017A00EADC9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96D38AE925B3017D00EADC9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -197,6 +199,14 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
+		962AEA9B25B62C300032E7C3 /* Paygate */ = {
+			isa = PBXGroup;
+			children = (
+				962AEA9C25B62C3F0032E7C3 /* PaygateViewController.swift */,
+			);
+			path = Paygate;
+			sourceTree = "<group>";
+		};
 		96D38AD425B3017A00EADC9A = {
 			isa = PBXGroup;
 			children = (
@@ -290,6 +300,7 @@
 		96D38B3325B3082700EADC9A /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				962AEA9B25B62C300032E7C3 /* Paygate */,
 				96D38BC925B47BB200EADC9A /* Stats */,
 				96D38BBE25B47B2400EADC9A /* Study */,
 				96D38B8B25B4700600EADC9A /* Course */,
@@ -647,6 +658,7 @@
 				96D38BA325B4727900EADC9A /* CoursesViewModel.swift in Sources */,
 				96D38B8D25B4714100EADC9A /* SplashViewController.swift in Sources */,
 				962AEA5425B498FC0032E7C3 /* CoursesManagerMediator.swift in Sources */,
+				962AEA9D25B62C3F0032E7C3 /* PaygateViewController.swift in Sources */,
 				96D38BB825B476F000EADC9A /* TabItemView.swift in Sources */,
 				96D38B4325B308B500EADC9A /* RxActivityIndicator.swift in Sources */,
 				962AEA5B25B4C4580032E7C3 /* Session.swift in Sources */,
