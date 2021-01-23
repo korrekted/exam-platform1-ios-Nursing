@@ -8,8 +8,21 @@
 import UIKit
 
 final class OnboardingView: UIView {
-    lazy var label = makeLabel()
-    lazy var button = makeButton()
+    enum Step: Int {
+        case slide1, slide2
+    }
+    
+    var step = Step.slide1 {
+        didSet {
+            scroll()
+        }
+    }
+    
+    lazy var scrollView = makeScrollView()
+    
+    private lazy var contentViews: [UIView] = {
+        []
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,6 +40,31 @@ final class OnboardingView: UIView {
 private extension OnboardingView {
     func initialize() {
         backgroundColor = UIColor(integralRed: 242, green: 245, blue: 252)
+        
+        contentViews
+            .enumerated()
+            .forEach { index, view in
+                scrollView.addSubview(view)
+                
+                view.frame.origin = CGPoint(x: UIScreen.main.bounds.width * CGFloat(index), y: 0)
+                view.frame.size = CGSize(width: UIScreen.main.bounds.width,
+                                         height: UIScreen.main.bounds.height)
+            }
+        
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width * CGFloat(contentViews.count),
+                                        height: UIScreen.main.bounds.height)
+    }
+    
+    func scroll() {
+        let index = step.rawValue
+        
+        guard contentViews.indices.contains(index) else {
+            return
+        }
+        
+        let frame = contentViews[index].frame
+        
+        scrollView.scrollRectToVisible(frame, animated: true)
     }
 }
 
@@ -34,34 +72,24 @@ private extension OnboardingView {
 private extension OnboardingView {
     func makeConstraints() {
         NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: centerYAnchor)
-        ])
-        
-        NSLayoutConstraint.activate([
-            button.leadingAnchor.constraint(equalTo: leadingAnchor),
-            button.trailingAnchor.constraint(equalTo: trailingAnchor),
-            button.heightAnchor.constraint(equalToConstant: 48.scale),
-            button.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 16.scale)
+            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            scrollView.topAnchor.constraint(equalTo: topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }
 
 // MARK: Lazy initialization
 private extension OnboardingView {
-    func makeLabel() -> UILabel {
-        let view = UILabel()
-        view.textColor = UIColor.black
-        view.text = "OnboardingView"
-        view.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(view)
-        return view
-    }
-    
-    func makeButton() -> UIButton {
-        let view = UIButton()
-        view.setTitle("Next", for: .normal)
-        view.setTitleColor(UIColor.black, for: .normal)
+    func makeScrollView() -> UIScrollView {
+        let view = UIScrollView()
+        view.backgroundColor = UIColor.clear
+        view.isScrollEnabled = false
+        view.isPagingEnabled = true
+        view.showsVerticalScrollIndicator = false
+        view.showsHorizontalScrollIndicator = false
+        view.contentInsetAdjustmentBehavior = .never
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

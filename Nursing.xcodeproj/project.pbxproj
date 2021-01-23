@@ -207,6 +207,13 @@
 			path = Paygate;
 			sourceTree = "<group>";
 		};
+		96C63D9A25BCB470007B7EB7 /* Atoms */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Atoms;
+			sourceTree = "<group>";
+		};
 		96D38AD425B3017A00EADC9A = {
 			isa = PBXGroup;
 			children = (
@@ -437,6 +444,7 @@
 		96D38BA825B472C800EADC9A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				96C63D9A25BCB470007B7EB7 /* Atoms */,
 			);
 			path = Views;
 			sourceTree = "<group>";

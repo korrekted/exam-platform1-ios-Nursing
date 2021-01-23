@@ -26,13 +26,7 @@ final class OnboardingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mainView
-            .button.rx.tap
-            .subscribe(onNext: { [weak self] in
-                self?.markAsViewed()
-                self?.goToCourses()
-            })
-            .disposed(by: disposeBag)
+        
     }
 }
 
@@ -47,7 +41,9 @@ extension OnboardingViewController {
 // MARK: API
 extension OnboardingViewController {
     static func wasViewed() -> Bool {
-        UserDefaults.standard.bool(forKey: OnboardingViewController.Constants.wasViewedKey)
+        // TODO: Fake
+        false
+//        UserDefaults.standard.bool(forKey: OnboardingViewController.Constants.wasViewedKey)
     }
 }
 
