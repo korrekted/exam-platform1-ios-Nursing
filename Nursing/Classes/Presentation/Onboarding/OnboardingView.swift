@@ -9,8 +9,10 @@ import UIKit
 
 final class OnboardingView: UIView {
     enum Step: Int {
-        case slide1, slide2
+        case slide1, slide2, slide3
     }
+    
+    var didFinish: (() -> Void)?
     
     var step = Step.slide1 {
         didSet {
@@ -20,8 +22,12 @@ final class OnboardingView: UIView {
     
     lazy var scrollView = makeScrollView()
     
-    private lazy var contentViews: [UIView] = {
-        []
+    private lazy var contentViews: [OSlideView] = {
+        [
+            OSlide1View(step: .slide1),
+            OSlide2View(step: .slide2),
+            OSlide3View(step: .slide3)
+        ]
     }()
     
     override init(frame: CGRect) {
@@ -36,6 +42,21 @@ final class OnboardingView: UIView {
     }
 }
 
+// MARK: OSlideViewDelegate
+extension OnboardingView: OSlideViewDelegate {
+    func slideViewDidNext(from step: Step) {
+        let nextRawValue = step.rawValue + 1
+        
+        guard let nextStep = Step(rawValue: nextRawValue) else {
+            didFinish?()
+            
+            return
+        }
+        
+        self.step = nextStep
+    }
+}
+
 // MARK: Private
 private extension OnboardingView {
     func initialize() {
@@ -43,8 +64,10 @@ private extension OnboardingView {
         
         contentViews
             .enumerated()
-            .forEach { index, view in
+            .forEach { [weak self] index, view in
                 scrollView.addSubview(view)
+                
+                view.delegate = self
                 
                 view.frame.origin = CGPoint(x: UIScreen.main.bounds.width * CGFloat(index), y: 0)
                 view.frame.size = CGSize(width: UIScreen.main.bounds.width,

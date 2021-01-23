@@ -26,7 +26,10 @@ final class OnboardingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        mainView.didFinish = { [weak self] in
+            self?.markAsViewed()
+            self?.goToCourses()
+        }
     }
 }
 
