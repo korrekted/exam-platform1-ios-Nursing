@@ -8,7 +8,8 @@
 import UIKit
 
 final class SplashView: UIView {
-    lazy var label = makeLabel()
+    lazy var titleLabel = makeTitleLabel()
+    lazy var imageView = makeImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,18 +34,52 @@ private extension SplashView {
 private extension SplashView {
     func makeConstraints() {
         NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: centerYAnchor)
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8.scale),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8.scale),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 183.scale : 60.scale)
+        ])
+        
+        NSLayoutConstraint.activate([
+            imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            imageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            imageView.heightAnchor.constraint(equalToConstant: 366.scale)
         ])
     }
 }
 
 // MARK: Lazy initialization
 private extension SplashView {
-    func makeLabel() -> UILabel {
+    func makeTitleLabel() -> UILabel {
+        let attrs1 = TextAttributes()
+            .textColor(UIColor(integralRed: 95, green: 70, blue: 245))
+            .font(Fonts.SFProRounded.bold(size: 40.scale))
+            .lineHeight(48.scale)
+            .textAlignment(.center)
+        
+        let attrs2 = TextAttributes()
+            .textColor(UIColor(integralRed: 196, green: 41, blue: 80))
+            .font(Fonts.SFProRounded.bold(size: 45.scale))
+            .lineHeight(53.scale)
+            .textAlignment(.center)
+        
+        let string = NSMutableAttributedString()
+        string.append("Splash.Title.Part1".localized.attributed(with: attrs1))
+        string.append("Splash.Title.Part2".localized.attributed(with: attrs2))
+        string.append("Splash.Title.Part3".localized.attributed(with: attrs1))
+        
         let view = UILabel()
-        view.textColor = UIColor.black
-        view.text = "Splash"
+        view.numberOfLines = 0
+        view.attributedText = string
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
+    func makeImageView() -> UIImageView {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFit
+        view.image = UIImage(named: "Splash.Image")
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

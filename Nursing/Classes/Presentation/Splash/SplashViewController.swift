@@ -35,13 +35,13 @@ final class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        generateStep
-            .delay(RxTimeInterval.seconds(1))
-            .flatMap { [weak self] in
-                self?.viewModel.step ?? .empty()
-            }
-            .drive(onNext: step(_:))
-            .disposed(by: disposeBag)
+//        generateStep
+//            .delay(RxTimeInterval.seconds(1))
+//            .flatMap { [weak self] in
+//                self?.viewModel.step ?? .empty()
+//            }
+//            .drive(onNext: step(_:))
+//            .disposed(by: disposeBag)
     }
 }
 
