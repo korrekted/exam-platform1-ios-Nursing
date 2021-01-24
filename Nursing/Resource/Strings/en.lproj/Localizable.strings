@@ -45,7 +45,7 @@
 "Onboarding.Slide6.Cell4" = "Licensed nurse";
 "Onboarding.Slide6.Cell5" = "Expert";
 "Onboarding.Slide7.Title" = "HOW MUCH TIME CAN YOU SPEND ON A TEST?";
-"Onboarding.Slide7.Min" = "%i min";
+"Onboarding.Slide7.Min" = "min";
 "Onboarding.Slide8.Title" = "HOW MANY TESTS WOULD YOU WANT TO TAKE DAILY?";
 "Onboarding.Slide9.Title" = "WHERE DO YOU NEED TO IMPROVE THE MOST?";
 "Onboarding.Slide9.Tag1" = "Adult-\nGerontology\nCare";
