@@ -1,5 +1,5 @@
 //
-//  OSlide3View.swift
+//  OSlide5View.swift
 //  Nursing
 //
 //  Created by Andrey Chernyshev on 24.01.2021.
@@ -7,16 +7,15 @@
 
 import UIKit
 
-final class OSlide3View: OSlideView {
+final class OSlide5View: OSlideView {
     lazy var titleLabel = makeTitleLabel()
-    lazy var pickerView = makePickerView()
+    lazy var datePickerView = makeDatePickerView()
     lazy var button = makeButton()
     
     override init(step: OnboardingView.Step) {
         super.init(step: step)
         
         makeConstraints()
-        initialize()
     }
     
     required init?(coder: NSCoder) {
@@ -24,49 +23,8 @@ final class OSlide3View: OSlideView {
     }
 }
 
-// MARK: UIPickerViewDataSource
-extension OSlide3View: UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        55
-    }
-}
-
-// MARK: UIPickerViewDelegate
-extension OSlide3View: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        var label = view as? UILabel
-        
-        if label == nil {
-            label = UILabel()
-            label?.backgroundColor = UIColor.clear
-        }
-        
-        let attrs = TextAttributes()
-            .textColor(UIColor(integralRed: 95, green: 70, blue: 245))
-            .font(Fonts.SFProRounded.bold(size: 27.scale))
-            .lineHeight(32.scale)
-        
-        label?.attributedText = String(row + 16).attributed(with: attrs)
-        
-        label?.sizeToFit()
-        
-        return label!
-    }
-}
-
-// MARK: Private
-private extension OSlide3View {
-    func initialize() {
-        pickerView.reloadAllComponents()
-    }
-}
-
 // MARK: Make constraints
-private extension OSlide3View {
+private extension OSlide5View {
     func makeConstraints() {
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 17.scale),
@@ -75,9 +33,9 @@ private extension OSlide3View {
         ])
         
         NSLayoutConstraint.activate([
-            pickerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 140.scale),
-            pickerView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            pickerView.widthAnchor.constraint(equalToConstant: 50.scale)
+            datePickerView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            datePickerView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            datePickerView.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
         
         NSLayoutConstraint.activate([
@@ -90,7 +48,7 @@ private extension OSlide3View {
 }
 
 // MARK: Lazy initialization
-private extension OSlide3View {
+private extension OSlide5View {
     func makeTitleLabel() -> UILabel {
         let attrs = TextAttributes()
             .textColor(UIColor.black)
@@ -100,17 +58,21 @@ private extension OSlide3View {
         
         let view = UILabel()
         view.numberOfLines = 0
-        view.attributedText = "Onboarding.Slide3.Title".localized.attributed(with: attrs)
+        view.attributedText = "Onboarding.Slide5.Title".localized.attributed(with: attrs)
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view
     }
     
-    func makePickerView() -> UIPickerView {
-        let view = UIPickerView()
+    func makeDatePickerView() -> PIDatePicker {
+        let view = PIDatePicker()
         view.backgroundColor = UIColor.clear
-        view.dataSource = self
-        view.delegate = self
+        view.maximumDate = Calendar.current.date(byAdding: .year, value: 10, to: Date()) ?? Date()
+        view.minimumDate = Calendar.current.date(byAdding: .year, value: -10, to: Date()) ?? Date()
+        view.setDate(Date(), animated: true)
+        view.locale = Locale.current
+        view.textColor = UIColor(integralRed: 95, green: 70, blue: 245)
+        view.font = Fonts.SFProRounded.bold(size: 27.scale)
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

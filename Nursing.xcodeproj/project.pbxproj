@@ -23,6 +23,10 @@
 		96C63DA325BCD045007B7EB7 /* OSlide2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C63DA225BCD045007B7EB7 /* OSlide2View.swift */; };
 		96C63DA625BCD193007B7EB7 /* OSlide2GenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C63DA525BCD193007B7EB7 /* OSlide2GenderView.swift */; };
 		96C63DA925BCDA3D007B7EB7 /* OSlide3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C63DA825BCDA3D007B7EB7 /* OSlide3View.swift */; };
+		96C63DAD25BCE199007B7EB7 /* OSlide4Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C63DAC25BCE199007B7EB7 /* OSlide4Cell.swift */; };
+		96C63DB025BD7594007B7EB7 /* OSlide4View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C63DAF25BD7594007B7EB7 /* OSlide4View.swift */; };
+		96C63DB325BD7A2D007B7EB7 /* OSlide5View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C63DB225BD7A2D007B7EB7 /* OSlide5View.swift */; };
+		96C63DF725BD89CD007B7EB7 /* ODatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C63DF625BD89CD007B7EB7 /* ODatePicker.swift */; };
 		96D38AE125B3017A00EADC9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D38AE025B3017A00EADC9A /* AppDelegate.swift */; };
 		96D38AEA25B3017D00EADC9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96D38AE925B3017D00EADC9A /* Assets.xcassets */; };
 		96D38AED25B3017D00EADC9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96D38AEB25B3017D00EADC9A /* LaunchScreen.storyboard */; };
@@ -91,6 +95,10 @@
 		96C63DA225BCD045007B7EB7 /* OSlide2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlide2View.swift; sourceTree = "<group>"; };
 		96C63DA525BCD193007B7EB7 /* OSlide2GenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlide2GenderView.swift; sourceTree = "<group>"; };
 		96C63DA825BCDA3D007B7EB7 /* OSlide3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlide3View.swift; sourceTree = "<group>"; };
+		96C63DAC25BCE199007B7EB7 /* OSlide4Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlide4Cell.swift; sourceTree = "<group>"; };
+		96C63DAF25BD7594007B7EB7 /* OSlide4View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlide4View.swift; sourceTree = "<group>"; };
+		96C63DB225BD7A2D007B7EB7 /* OSlide5View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlide5View.swift; sourceTree = "<group>"; };
+		96C63DF625BD89CD007B7EB7 /* ODatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ODatePicker.swift; sourceTree = "<group>"; };
 		96D38ADD25B3017A00EADC9A /* Nursing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nursing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96D38AE025B3017A00EADC9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96D38AE925B3017D00EADC9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -221,6 +229,8 @@
 			isa = PBXGroup;
 			children = (
 				96C63DA525BCD193007B7EB7 /* OSlide2GenderView.swift */,
+				96C63DAC25BCE199007B7EB7 /* OSlide4Cell.swift */,
+				96C63DF625BD89CD007B7EB7 /* ODatePicker.swift */,
 			);
 			path = Atoms;
 			sourceTree = "<group>";
@@ -460,6 +470,8 @@
 				96C63D9F25BCC981007B7EB7 /* OSlide1View.swift */,
 				96C63DA225BCD045007B7EB7 /* OSlide2View.swift */,
 				96C63DA825BCDA3D007B7EB7 /* OSlide3View.swift */,
+				96C63DAF25BD7594007B7EB7 /* OSlide4View.swift */,
+				96C63DB225BD7A2D007B7EB7 /* OSlide5View.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -681,6 +693,7 @@
 				96D38B7925B30B0E00EADC9A /* UIDeviceExtension.swift in Sources */,
 				96D38BA325B4727900EADC9A /* CoursesViewModel.swift in Sources */,
 				96D38B8D25B4714100EADC9A /* SplashViewController.swift in Sources */,
+				96C63DB325BD7A2D007B7EB7 /* OSlide5View.swift in Sources */,
 				962AEA5425B498FC0032E7C3 /* CoursesManagerMediator.swift in Sources */,
 				962AEA9D25B62C3F0032E7C3 /* PaygateViewController.swift in Sources */,
 				96D38BB825B476F000EADC9A /* TabItemView.swift in Sources */,
@@ -706,6 +719,7 @@
 				96D38BAB25B4769C00EADC9A /* CourseViewController.swift in Sources */,
 				96D38BB125B476B700EADC9A /* CourseView.swift in Sources */,
 				96D38B9125B4716A00EADC9A /* SplashViewModel.swift in Sources */,
+				96C63DB025BD7594007B7EB7 /* OSlide4View.swift in Sources */,
 				96C63DA625BCD193007B7EB7 /* OSlide2GenderView.swift in Sources */,
 				962AEA5025B497DD0032E7C3 /* CoursesManagerCore.swift in Sources */,
 				96D38BCE25B47BCE00EADC9A /* StatsViewModel.swift in Sources */,
@@ -722,9 +736,11 @@
 				96D38B3725B3085200EADC9A /* Toast.swift in Sources */,
 				962AEA6425B4C4B60032E7C3 /* SessionManagerCore.swift in Sources */,
 				96D38B3125B307F100EADC9A /* GlobalDefinitions.swift in Sources */,
+				96C63DF725BD89CD007B7EB7 /* ODatePicker.swift in Sources */,
 				96D38B5125B3096E00EADC9A /* GradientView.swift in Sources */,
 				96D38BDC25B4928600EADC9A /* GetCourcesResponseMapper.swift in Sources */,
 				96D38BA025B4726800EADC9A /* CoursesViewController.swift in Sources */,
+				96C63DAD25BCE199007B7EB7 /* OSlide4Cell.swift in Sources */,
 				96D38BCB25B47BBF00EADC9A /* StatsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,7 +9,7 @@ import UIKit
 
 final class OnboardingView: UIView {
     enum Step: Int {
-        case slide1, slide2, slide3
+        case slide1, slide2, slide3, slide4, slide5
     }
     
     var didFinish: (() -> Void)?
@@ -26,7 +26,9 @@ final class OnboardingView: UIView {
         [
             OSlide1View(step: .slide1),
             OSlide2View(step: .slide2),
-            OSlide3View(step: .slide3)
+            OSlide3View(step: .slide3),
+            OSlide4View(step: .slide4),
+            OSlide5View(step: .slide5)
         ]
     }()
     
