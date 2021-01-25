@@ -23,6 +23,20 @@ final class StudyViewController: UIViewController {
 // MARK: Make
 extension StudyViewController {
     static func make() -> StudyViewController {
-        StudyViewController()
+        let vc = StudyViewController()
+        vc.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Study.Settings"),
+                                                               style: .plain,
+                                                               target: self,
+                                                               action: #selector(settingsTapped))
+        vc.navigationItem.title = "asdsd"
+        return vc
+    }
+}
+
+// MARK: Private
+private extension StudyViewController {
+    @objc
+    func settingsTapped() {
+        
     }
 }

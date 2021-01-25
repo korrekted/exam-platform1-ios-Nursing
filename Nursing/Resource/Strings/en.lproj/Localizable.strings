@@ -77,3 +77,6 @@
 // MARK: Courses
 "Courses.Title" = "Which exam are you studying for?";
 "Courses.Button" = "Select";
+
+// MARK: Study
+"Study.Title" = "Study";

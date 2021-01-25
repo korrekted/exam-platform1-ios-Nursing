@@ -8,7 +8,7 @@
 import UIKit
 
 final class StudyView: UIView {
-    lazy var label = makeLabel()
+    lazy var titleLabel = makeTitleLabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,18 +33,23 @@ private extension StudyView {
 private extension StudyView {
     func makeConstraints() {
         NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: centerYAnchor)
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 59.scale),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale)
         ])
     }
 }
 
 // MARK: Lazy initialization
 private extension StudyView {
-    func makeLabel() -> UILabel {
+    func makeTitleLabel() -> UILabel {
+        let attrs = TextAttributes()
+            .textColor(UIColor.black)
+            .font(Fonts.SFProRounded.bold(size: 34.scale))
+            .lineHeight(40.scale)
+            .letterSpacing(0.37.scale)
+        
         let view = UILabel()
-        view.text = "StudyView"
-        view.textColor = UIColor.black
+        view.attributedText = "Study.Title".localized.attributed(with: attrs)
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view
