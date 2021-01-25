@@ -17,6 +17,7 @@ final class GlobalDefinitions {
     static let amplitudeApiKey = "" //prod
 //    static let amplitudeApiKey = "" //dev
     
-    static let termsOfServiceUrl = ""
-    static let privacyPolicyUrl = ""
+    static let termsOfServiceUrl = "bit.ly/exam-nursing-terms"
+    static let privacyPolicyUrl = "bit.ly/exam-nursing-policy"
+    static let contactUsUrl = "bit.ly/exam-nursing-contact"
 }

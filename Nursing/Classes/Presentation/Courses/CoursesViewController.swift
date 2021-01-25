@@ -56,7 +56,6 @@ extension CoursesViewController {
 // MARK: Private
 private extension CoursesViewController {
     func goToCourse() {
-        let vc = NursingNavigationController(rootViewController: CourseViewController.make())
-        UIApplication.shared.keyWindow?.rootViewController = vc
+        UIApplication.shared.keyWindow?.rootViewController = CourseViewController.make()
     }
 }

@@ -10,8 +10,8 @@ import UIKit
 final class CourseViewCoordinator {
     weak var parentVC: CourseViewController?
     
-    lazy var studyVC = StudyViewController.make()
-    lazy var statsVC = StatsViewController.make()
+    lazy var studyVC = NursingNavigationController(rootViewController: StudyViewController.make())
+    lazy var statsVC = NursingNavigationController(rootViewController: StatsViewController.make())
     
     private var previousVC: UIViewController?
     

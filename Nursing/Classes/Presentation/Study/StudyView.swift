@@ -33,7 +33,7 @@ private extension StudyView {
 private extension StudyView {
     func makeConstraints() {
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 59.scale),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 47.scale : 17.scale),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale)
         ])
     }

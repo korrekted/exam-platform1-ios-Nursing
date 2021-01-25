@@ -80,3 +80,13 @@
 
 // MARK: Study
 "Study.Title" = "Study";
+
+// MARK: Settings
+"Settings.Title" = "Settings";
+"Settings.Unlock" = "Unlock";
+"Settings.Premium" = "PREMIUM";
+"Settings.SelectedExam" = "Selected Exam";
+"Settings.RateUs" = "Rate us";
+"Settings.ContactUs" = "ContactUs";
+"Settings.TermsOfUse" = "Terms of use";
+"Settings.PrivacyPolicy" = "Privacy Policy";
