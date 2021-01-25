@@ -73,3 +73,7 @@
 "Onboarding.Slide15.Cell3" = "7 different courses";
 "Onboarding.Slide15.Cell4" = "reminders and notifications";
 "Onboarding.Slide15.Button" = "Let’s go!";
+
+// MARK: Courses
+"Courses.Title" = "Which exam are you studying for?";
+"Courses.Button" = "Select";

@@ -18,6 +18,8 @@
 		962AEA7225B4F8090032E7C3 /* SF-Pro-Rounded-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 962AEA6F25B4F8090032E7C3 /* SF-Pro-Rounded-Regular.otf */; };
 		962AEA7325B4F8090032E7C3 /* SF-Pro-Rounded-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 962AEA7025B4F8090032E7C3 /* SF-Pro-Rounded-Semibold.otf */; };
 		962AEA9D25B62C3F0032E7C3 /* PaygateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962AEA9C25B62C3F0032E7C3 /* PaygateViewController.swift */; };
+		965F025A25BF1B950067EF3C /* CoursesCollectionElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F025925BF1B950067EF3C /* CoursesCollectionElement.swift */; };
+		965F025D25BF1BDB0067EF3C /* CourseCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F025C25BF1BDB0067EF3C /* CourseCollectionCell.swift */; };
 		96C63D9D25BCB711007B7EB7 /* OSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C63D9C25BCB711007B7EB7 /* OSlideView.swift */; };
 		96C63DA025BCC981007B7EB7 /* OSlide1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C63D9F25BCC981007B7EB7 /* OSlide1View.swift */; };
 		96C63DA325BCD045007B7EB7 /* OSlide2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C63DA225BCD045007B7EB7 /* OSlide2View.swift */; };
@@ -88,6 +90,7 @@
 		96E437D725BED56700B4320D /* OSlide15Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E437D625BED56700B4320D /* OSlide15Cell.swift */; };
 		96E437DA25BEDCA200B4320D /* OSlide15View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E437D925BEDCA200B4320D /* OSlide15View.swift */; };
 		96E437FD25BEE2AA00B4320D /* Onboarding.Chart.json in Resources */ = {isa = PBXBuildFile; fileRef = 96E437FC25BEE2AA00B4320D /* Onboarding.Chart.json */; };
+		96E4380525BF1A7A00B4320D /* CoursesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E4380425BF1A7A00B4320D /* CoursesCollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,6 +106,8 @@
 		962AEA6F25B4F8090032E7C3 /* SF-Pro-Rounded-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Regular.otf"; sourceTree = "<group>"; };
 		962AEA7025B4F8090032E7C3 /* SF-Pro-Rounded-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Semibold.otf"; sourceTree = "<group>"; };
 		962AEA9C25B62C3F0032E7C3 /* PaygateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaygateViewController.swift; sourceTree = "<group>"; };
+		965F025925BF1B950067EF3C /* CoursesCollectionElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesCollectionElement.swift; sourceTree = "<group>"; };
+		965F025C25BF1BDB0067EF3C /* CourseCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCollectionCell.swift; sourceTree = "<group>"; };
 		96C63D9C25BCB711007B7EB7 /* OSlideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlideView.swift; sourceTree = "<group>"; };
 		96C63D9F25BCC981007B7EB7 /* OSlide1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlide1View.swift; sourceTree = "<group>"; };
 		96C63DA225BCD045007B7EB7 /* OSlide2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlide2View.swift; sourceTree = "<group>"; };
@@ -176,6 +181,7 @@
 		96E437D625BED56700B4320D /* OSlide15Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlide15Cell.swift; sourceTree = "<group>"; };
 		96E437D925BEDCA200B4320D /* OSlide15View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlide15View.swift; sourceTree = "<group>"; };
 		96E437FC25BEE2AA00B4320D /* Onboarding.Chart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Onboarding.Chart.json; sourceTree = "<group>"; };
+		96E4380425BF1A7A00B4320D /* CoursesCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesCollectionView.swift; sourceTree = "<group>"; };
 		96E686DC5654A1E4706B4192 /* Pods-Nursing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nursing.release.xcconfig"; path = "Target Support Files/Pods-Nursing/Pods-Nursing.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -518,6 +524,7 @@
 		96D38BA925B472CD00EADC9A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				96E4380325BF1A3B00B4320D /* CollectionView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -601,6 +608,16 @@
 				96E437FC25BEE2AA00B4320D /* Onboarding.Chart.json */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		96E4380325BF1A3B00B4320D /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				96E4380425BF1A7A00B4320D /* CoursesCollectionView.swift */,
+				965F025925BF1B950067EF3C /* CoursesCollectionElement.swift */,
+				965F025C25BF1BDB0067EF3C /* CourseCollectionCell.swift */,
+			);
+			path = CollectionView;
 			sourceTree = "<group>";
 		};
 		EB008DA8A37A3DCE06338AE5 /* Frameworks */ = {
@@ -759,11 +776,13 @@
 				96D38B6525B30A0700EADC9A /* SignError.swift in Sources */,
 				96D38BBC25B476FA00EADC9A /* TabView.swift in Sources */,
 				96D38B9D25B4722E00EADC9A /* OnboardingView.swift in Sources */,
+				965F025D25BF1BDB0067EF3C /* CourseCollectionCell.swift in Sources */,
 				96D38B4625B308CC00EADC9A /* UIViewRxExtension.swift in Sources */,
 				96D38BA625B4728400EADC9A /* CoursesView.swift in Sources */,
 				96D38B9725B4720000EADC9A /* OnboardingViewController.swift in Sources */,
 				96D38B7125B30A9C00EADC9A /* ScreenSize.swift in Sources */,
 				96C63DA325BCD045007B7EB7 /* OSlide2View.swift in Sources */,
+				965F025A25BF1B950067EF3C /* CoursesCollectionElement.swift in Sources */,
 				96D38BD925B4927A00EADC9A /* GetCourcesRequest.swift in Sources */,
 				96C63E1E25BEC856007B7EB7 /* OProgressView.swift in Sources */,
 				96D38B6B25B30A3A00EADC9A /* Scalable.swift in Sources */,
@@ -780,6 +799,7 @@
 				96D38BCE25B47BCE00EADC9A /* StatsViewModel.swift in Sources */,
 				96D38B8025B30B3D00EADC9A /* StringExtension.swift in Sources */,
 				96D38B3F25B3087800EADC9A /* ImagePicker.swift in Sources */,
+				96E4380525BF1A7A00B4320D /* CoursesCollectionView.swift in Sources */,
 				96D38B5725B3099100EADC9A /* CircleView.swift in Sources */,
 				96D38BC025B47B3A00EADC9A /* StudyViewController.swift in Sources */,
 				96D38BB425B476CB00EADC9A /* CourseViewCoordinator.swift in Sources */,

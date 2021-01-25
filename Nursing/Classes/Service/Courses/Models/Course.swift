@@ -12,3 +12,6 @@ struct Course {
     let isMain: Bool
     let sort: Int
 }
+
+// MARK: Codable
+extension Course: Codable {}

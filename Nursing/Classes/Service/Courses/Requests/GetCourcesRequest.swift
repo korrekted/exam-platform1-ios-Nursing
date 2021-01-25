@@ -8,6 +8,12 @@
 import Alamofire
 
 struct GetCourcesRequest: APIRequestBody {
+    private let userToken: String
+    
+    init(userToken: String) {
+        self.userToken = userToken
+    }
+    
     var url: String {
         GlobalDefinitions.domainUrl + "/api/courses/list"
     }
@@ -18,7 +24,8 @@ struct GetCourcesRequest: APIRequestBody {
     
     var parameters: Parameters? {
         [
-            "_api_key": GlobalDefinitions.apiKey
+            "_api_key": GlobalDefinitions.apiKey,
+            "_user_token": userToken
         ]
     }
 }

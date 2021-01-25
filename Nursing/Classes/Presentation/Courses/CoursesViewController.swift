@@ -18,6 +18,32 @@ final class CoursesViewController: UIViewController {
     override func loadView() {
         view = mainView
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        mainView
+            .collectionView.selected
+            .bind(to: viewModel.selected)
+            .disposed(by: disposeBag)
+
+        viewModel
+            .elements
+            .drive(onNext: mainView.collectionView.setup(elements:))
+            .disposed(by: disposeBag)
+        
+        mainView
+            .button.rx.tap
+            .bind(to: viewModel.store)
+            .disposed(by: disposeBag)
+        
+        viewModel
+            .stored
+            .drive(onNext: { [weak self] in
+                self?.goToCourse()
+            })
+            .disposed(by: disposeBag)
+    }
 }
 
 // MARK: Make
