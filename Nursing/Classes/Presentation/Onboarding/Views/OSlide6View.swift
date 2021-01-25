@@ -148,4 +148,3 @@ private extension OSlide6View {
         return view
     }
 }
-

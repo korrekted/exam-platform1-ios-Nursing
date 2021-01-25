@@ -9,7 +9,7 @@ import UIKit
 
 final class OnboardingView: UIView {
     enum Step: Int {
-        case slide1, slide2, slide3, slide4, slide5, slide6, slide7, slide8, slide9, slide10, slide11, slide12, slide13
+        case slide1, slide2, slide3, slide4, slide5, slide6, slide7, slide8, slide9, slide10, slide11, slide12, slide13, slide14, slide15
     }
     
     var didFinish: (() -> Void)?
@@ -37,6 +37,8 @@ final class OnboardingView: UIView {
             OSlideQuestionView(step: .slide11, questionKey: "Onboarding.Slide11.Question"),
             OSlideQuestionView(step: .slide12, questionKey: "Onboarding.Slide12.Question"),
             OSlideQuestionView(step: .slide13, questionKey: "Onboarding.Slide13.Question"),
+            OSlide14View(step: .slide14),
+            OSlide15View(step: .slide15)
         ]
     }()
     
@@ -95,9 +97,12 @@ private extension OnboardingView {
             return
         }
         
+        let view = contentViews[index]
         let frame = contentViews[index].frame
         
         scrollView.scrollRectToVisible(frame, animated: true)
+        
+        view.moveToThis()
     }
 }
 

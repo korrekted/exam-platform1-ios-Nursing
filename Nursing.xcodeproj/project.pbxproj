@@ -35,6 +35,8 @@
 		96C63E0A25BDFF1F007B7EB7 /* OSlide9View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C63E0925BDFF1F007B7EB7 /* OSlide9View.swift */; };
 		96C63E0D25BE0AC8007B7EB7 /* OSlideQuestiionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C63E0C25BE0AC8007B7EB7 /* OSlideQuestiionButton.swift */; };
 		96C63E1025BE0C28007B7EB7 /* OSlideQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C63E0F25BE0C28007B7EB7 /* OSlideQuestionView.swift */; };
+		96C63E1B25BEC69B007B7EB7 /* OSlide14View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C63E1A25BEC69B007B7EB7 /* OSlide14View.swift */; };
+		96C63E1E25BEC856007B7EB7 /* OProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C63E1D25BEC856007B7EB7 /* OProgressView.swift */; };
 		96D38AE125B3017A00EADC9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D38AE025B3017A00EADC9A /* AppDelegate.swift */; };
 		96D38AEA25B3017D00EADC9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96D38AE925B3017D00EADC9A /* Assets.xcassets */; };
 		96D38AED25B3017D00EADC9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96D38AEB25B3017D00EADC9A /* LaunchScreen.storyboard */; };
@@ -83,6 +85,9 @@
 		96D38BD925B4927A00EADC9A /* GetCourcesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D38BD825B4927A00EADC9A /* GetCourcesRequest.swift */; };
 		96D38BDC25B4928600EADC9A /* GetCourcesResponseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D38BDB25B4928600EADC9A /* GetCourcesResponseMapper.swift */; };
 		96D38BDF25B4929200EADC9A /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D38BDE25B4929200EADC9A /* Course.swift */; };
+		96E437D725BED56700B4320D /* OSlide15Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E437D625BED56700B4320D /* OSlide15Cell.swift */; };
+		96E437DA25BEDCA200B4320D /* OSlide15View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E437D925BEDCA200B4320D /* OSlide15View.swift */; };
+		96E437FD25BEE2AA00B4320D /* Onboarding.Chart.json in Resources */ = {isa = PBXBuildFile; fileRef = 96E437FC25BEE2AA00B4320D /* Onboarding.Chart.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,6 +120,8 @@
 		96C63E0925BDFF1F007B7EB7 /* OSlide9View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlide9View.swift; sourceTree = "<group>"; };
 		96C63E0C25BE0AC8007B7EB7 /* OSlideQuestiionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlideQuestiionButton.swift; sourceTree = "<group>"; };
 		96C63E0F25BE0C28007B7EB7 /* OSlideQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlideQuestionView.swift; sourceTree = "<group>"; };
+		96C63E1A25BEC69B007B7EB7 /* OSlide14View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlide14View.swift; sourceTree = "<group>"; };
+		96C63E1D25BEC856007B7EB7 /* OProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OProgressView.swift; sourceTree = "<group>"; };
 		96D38ADD25B3017A00EADC9A /* Nursing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nursing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96D38AE025B3017A00EADC9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96D38AE925B3017D00EADC9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -166,6 +173,9 @@
 		96D38BD825B4927A00EADC9A /* GetCourcesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCourcesRequest.swift; sourceTree = "<group>"; };
 		96D38BDB25B4928600EADC9A /* GetCourcesResponseMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCourcesResponseMapper.swift; sourceTree = "<group>"; };
 		96D38BDE25B4929200EADC9A /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
+		96E437D625BED56700B4320D /* OSlide15Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlide15Cell.swift; sourceTree = "<group>"; };
+		96E437D925BEDCA200B4320D /* OSlide15View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlide15View.swift; sourceTree = "<group>"; };
+		96E437FC25BEE2AA00B4320D /* Onboarding.Chart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Onboarding.Chart.json; sourceTree = "<group>"; };
 		96E686DC5654A1E4706B4192 /* Pods-Nursing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nursing.release.xcconfig"; path = "Target Support Files/Pods-Nursing/Pods-Nursing.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -244,12 +254,15 @@
 		96C63D9A25BCB470007B7EB7 /* Atoms */ = {
 			isa = PBXGroup;
 			children = (
+				96E437F825BEE29200B4320D /* Source */,
 				96C63DA525BCD193007B7EB7 /* OSlide2GenderView.swift */,
 				96C63DAC25BCE199007B7EB7 /* OSlide4Cell.swift */,
 				96C63DF625BD89CD007B7EB7 /* ODatePicker.swift */,
 				96C63DFA25BD972C007B7EB7 /* OSlide6Cell.swift */,
 				96C63E0625BDFD2F007B7EB7 /* OSlide9TagView.swift */,
 				96C63E0C25BE0AC8007B7EB7 /* OSlideQuestiionButton.swift */,
+				96C63E1D25BEC856007B7EB7 /* OProgressView.swift */,
+				96E437D625BED56700B4320D /* OSlide15Cell.swift */,
 			);
 			path = Atoms;
 			sourceTree = "<group>";
@@ -496,6 +509,8 @@
 				96C63E0325BDA27C007B7EB7 /* OSlide8View.swift */,
 				96C63E0925BDFF1F007B7EB7 /* OSlide9View.swift */,
 				96C63E0F25BE0C28007B7EB7 /* OSlideQuestionView.swift */,
+				96C63E1A25BEC69B007B7EB7 /* OSlide14View.swift */,
+				96E437D925BEDCA200B4320D /* OSlide15View.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -580,6 +595,14 @@
 			path = Requests;
 			sourceTree = "<group>";
 		};
+		96E437F825BEE29200B4320D /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				96E437FC25BEE2AA00B4320D /* Onboarding.Chart.json */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		EB008DA8A37A3DCE06338AE5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -647,6 +670,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96E437FD25BEE2AA00B4320D /* Onboarding.Chart.json in Resources */,
 				96D38B2825B3073900EADC9A /* Localizable.strings in Resources */,
 				962AEA7325B4F8090032E7C3 /* SF-Pro-Rounded-Semibold.otf in Resources */,
 				962AEA7225B4F8090032E7C3 /* SF-Pro-Rounded-Regular.otf in Resources */,
@@ -708,6 +732,7 @@
 				962AEA4C25B497AD0032E7C3 /* CoursesManager.swift in Sources */,
 				96D38B6E25B30A4C00EADC9A /* Fonts.swift in Sources */,
 				96D38BDF25B4929200EADC9A /* Course.swift in Sources */,
+				96E437D725BED56700B4320D /* OSlide15Cell.swift in Sources */,
 				96D38AE125B3017A00EADC9A /* AppDelegate.swift in Sources */,
 				96D38B9425B4718000EADC9A /* SplashView.swift in Sources */,
 				96D38B7D25B30B2C00EADC9A /* Weak.swift in Sources */,
@@ -721,11 +746,13 @@
 				96C63DB325BD7A2D007B7EB7 /* OSlide5View.swift in Sources */,
 				962AEA5425B498FC0032E7C3 /* CoursesManagerMediator.swift in Sources */,
 				962AEA9D25B62C3F0032E7C3 /* PaygateViewController.swift in Sources */,
+				96E437DA25BEDCA200B4320D /* OSlide15View.swift in Sources */,
 				96D38BB825B476F000EADC9A /* TabItemView.swift in Sources */,
 				96C63D9D25BCB711007B7EB7 /* OSlideView.swift in Sources */,
 				96D38B4325B308B500EADC9A /* RxActivityIndicator.swift in Sources */,
 				962AEA5B25B4C4580032E7C3 /* Session.swift in Sources */,
 				96D38B4E25B3094200EADC9A /* NursingNavigationController.swift in Sources */,
+				96C63E1B25BEC69B007B7EB7 /* OSlide14View.swift in Sources */,
 				96D38B4B25B3090B00EADC9A /* NursingNavigationControllerSettings.swift in Sources */,
 				96D38BC625B47B5500EADC9A /* StudyView.swift in Sources */,
 				96D38B8325B30B4C00EADC9A /* UIColorExtension.swift in Sources */,
@@ -738,6 +765,7 @@
 				96D38B7125B30A9C00EADC9A /* ScreenSize.swift in Sources */,
 				96C63DA325BCD045007B7EB7 /* OSlide2View.swift in Sources */,
 				96D38BD925B4927A00EADC9A /* GetCourcesRequest.swift in Sources */,
+				96C63E1E25BEC856007B7EB7 /* OProgressView.swift in Sources */,
 				96D38B6B25B30A3A00EADC9A /* Scalable.swift in Sources */,
 				962AEA6025B4C4A30032E7C3 /* SessionManager.swift in Sources */,
 				96C63E0D25BE0AC8007B7EB7 /* OSlideQuestiionButton.swift in Sources */,

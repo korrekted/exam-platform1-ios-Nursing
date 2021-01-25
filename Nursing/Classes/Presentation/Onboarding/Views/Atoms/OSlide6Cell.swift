@@ -95,4 +95,3 @@ private extension OSlide6Cell {
         return view
     }
 }
-
