@@ -6,6 +6,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Nursing' do
   pod 'NotificationBannerSwift'
+  pod 'lottie-ios'
   
   pod 'RushSDK', :git => "https://github.com/AgentChe/RushSDK.git"
 end

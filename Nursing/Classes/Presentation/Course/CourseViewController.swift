@@ -38,7 +38,9 @@ final class CourseViewController: UIViewController {
 // MARK: Make
 extension CourseViewController {
     static func make() -> CourseViewController {
-        CourseViewController()
+        let vc = CourseViewController()
+        vc.navigationItem.backButtonTitle = " "
+        return vc
     }
 }
  

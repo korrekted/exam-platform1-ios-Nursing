@@ -26,6 +26,8 @@ class OSlideView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func moveToThis() {}
+    
     @objc
     func onNext() {
         delegate?.slideViewDidNext(from: step)

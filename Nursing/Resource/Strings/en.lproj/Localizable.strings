@@ -45,7 +45,7 @@
 "Onboarding.Slide6.Cell4" = "Licensed nurse";
 "Onboarding.Slide6.Cell5" = "Expert";
 "Onboarding.Slide7.Title" = "HOW MUCH TIME CAN YOU SPEND ON A TEST?";
-"Onboarding.Slide7.Min" = "%i min";
+"Onboarding.Slide7.Min" = "min";
 "Onboarding.Slide8.Title" = "HOW MANY TESTS WOULD YOU WANT TO TAKE DAILY?";
 "Onboarding.Slide9.Title" = "WHERE DO YOU NEED TO IMPROVE THE MOST?";
 "Onboarding.Slide9.Tag1" = "Adult-\nGerontology\nCare";
@@ -66,7 +66,6 @@
 "Onboarding.Slide13.Question" = "Relatives often make  emotional decisions regarding patients’ conditions";
 "Onboarding.Slide14.Title" = "PREPARING YOUR INDIVIDUAL STUDY PLAN";
 "Onboarding.Slide14.Preloader1" = "Analyzing your skill level...";
-"Onboarding.Slide14.Percent" = "%i %";
 "Onboarding.Slide14.Preloader2" = "Anazling your study preferences...";
 "Onboarding.Slide15.Title" = "YOUR PERSONAL 98% PASS RATE STUDY PLAN";
 "Onboarding.Slide15.Cell1" = "500 tests";
@@ -74,6 +73,23 @@
 "Onboarding.Slide15.Cell3" = "7 different courses";
 "Onboarding.Slide15.Cell4" = "reminders and notifications";
 "Onboarding.Slide15.Button" = "Let’s go!";
+
+// MARK: Courses
+"Courses.Title" = "Which exam are you studying for?";
+"Courses.Button" = "Select";
+
+// MARK: Study
+"Study.Title" = "Study";
+
+// MARK: Settings
+"Settings.Title" = "Settings";
+"Settings.Unlock" = "Unlock";
+"Settings.Premium" = "PREMIUM";
+"Settings.SelectedExam" = "Selected Exam";
+"Settings.RateUs" = "Rate us";
+"Settings.ContactUs" = "ContactUs";
+"Settings.TermsOfUse" = "Terms of use";
+"Settings.PrivacyPolicy" = "Privacy Policy";
 
 // MARK: Stats
 "Stats.PassRate.Title" = " Current pass rate";

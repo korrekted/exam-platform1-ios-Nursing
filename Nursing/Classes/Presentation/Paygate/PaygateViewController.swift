@@ -22,6 +22,8 @@ final class PaygateViewController: UIViewController {
         button.setTitleColor(UIColor.white, for: .normal)
         button.setTitle("close", for: .normal)
         
+        view.addSubview(button)
+        
         NSLayoutConstraint.activate([
             button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             button.widthAnchor.constraint(equalToConstant: 300.scale),

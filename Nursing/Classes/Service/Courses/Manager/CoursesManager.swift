@@ -13,7 +13,7 @@ protocol CoursesManager: class {
     func getSelectedCourse() -> Course?
     
     // MARK: API(Rx)
-    func retrieveCourses(forceUpdate: Bool) -> Single<[Course]>
-    func rxSelect(course: Course) -> Completable
+    func retrieveCourses() -> Single<[Course]>
+    func rxSelect(course: Course) -> Single<Void>
     func rxGetSelectedCourse() -> Single<Course?>
 }

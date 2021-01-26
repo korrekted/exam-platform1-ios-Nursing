@@ -84,6 +84,7 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (7.2.0):
     - GoogleUtilities/Logger
+  - lottie-ios (3.1.9)
   - MarqueeLabel (4.0.5)
   - nanopb (2.30907.0):
     - nanopb/decode (= 2.30907.0)
@@ -114,6 +115,7 @@ PODS:
   - SwiftyStoreKit (0.16.1)
 
 DEPENDENCIES:
+  - lottie-ios
   - NotificationBannerSwift
   - RushSDK (from `https://github.com/AgentChe/RushSDK.git`)
 
@@ -134,6 +136,7 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleUtilities
+    - lottie-ios
     - MarqueeLabel
     - nanopb
     - NotificationBannerSwift
@@ -169,6 +172,7 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 688d7f00e2894d9e13823ed9a028b13b993bc277
   GoogleDataTransport: 1024b1a4dfbd7a0e92cb20d7e0a6f1fb66b449a4
   GoogleUtilities: d866834472f1324d080496bc67ab3ce5d0d46027
+  lottie-ios: 3a3758ef5a008e762faec9c9d50a39842f26d124
   MarqueeLabel: 00cc0bcd087111dca575878b3531af980559707d
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e
   NotificationBannerSwift: 7021be2338f8f29cf424b0aca43da462bf9e2a1a
@@ -180,6 +184,6 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftyStoreKit: 6b9c08810269f030586dac1fae8e75871a82e84a
 
-PODFILE CHECKSUM: 0e29a7a9fec352cdc5fe02db713d8d4179c6b5e6
+PODFILE CHECKSUM: 3444da6cf404b2821ad7741713d007f434f89fd7
 
 COCOAPODS: 1.10.0

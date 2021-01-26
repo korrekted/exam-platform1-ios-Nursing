@@ -18,11 +18,39 @@ final class StudyViewController: UIViewController {
     override func loadView() {
         view = mainView
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        addNavItemActions()
+    }
 }
 
 // MARK: Make
 extension StudyViewController {
     static func make() -> StudyViewController {
-        StudyViewController()
+        let vc = StudyViewController()
+        let item = UIBarButtonItem()
+        item.image = UIImage(named: "Study.Settings")
+        item.tintColor = UIColor(integralRed: 95, green: 70, blue: 245)
+        vc.navigationItem.rightBarButtonItem = item
+        vc.navigationItem.backButtonTitle = " "
+        return vc
+    }
+}
+
+// MARK: Private
+private extension StudyViewController {
+    func addNavItemActions() {
+        navigationItem.rightBarButtonItem?.rx.tap
+            .subscribe(onNext: { [weak self] event in
+                self?.settingsTapped()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    @objc
+    func settingsTapped() {
+        navigationController?.pushViewController(SettingsViewController.make(), animated: true)
     }
 }

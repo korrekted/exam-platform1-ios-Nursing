@@ -61,7 +61,7 @@ private extension SplashViewController {
         case .courses:
             UIApplication.shared.keyWindow?.rootViewController = NursingNavigationController(rootViewController: CoursesViewController.make())
         case .course:
-            UIApplication.shared.keyWindow?.rootViewController = NursingNavigationController(rootViewController: CourseViewController.make())
+            UIApplication.shared.keyWindow?.rootViewController = CourseViewController.make()
         }
     }
 }
