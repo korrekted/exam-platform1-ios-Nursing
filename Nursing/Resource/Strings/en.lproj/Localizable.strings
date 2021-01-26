@@ -74,3 +74,11 @@
 "Onboarding.Slide15.Cell3" = "7 different courses";
 "Onboarding.Slide15.Cell4" = "reminders and notifications";
 "Onboarding.Slide15.Button" = "Let’s go!";
+
+// MARK: Stats
+"Stats.PassRate.Title" = " Current pass rate";
+"Stats.MainRate.TestsTake" = "Tests taken";
+"Stats.MainRate.CorrectAnswers" = "Correct answers";
+"Stats.MainRate.QuestionsTaken" = "Questions taken";
+"Stats.MainRate.LongestStreak" = "Longest streak";
+"Stats.MainRate.AnsweredQuestions" = "Answered questions";

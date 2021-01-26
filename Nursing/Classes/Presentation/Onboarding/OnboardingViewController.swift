@@ -59,4 +59,8 @@ private extension OnboardingViewController {
     func goToCourses() {
         UIApplication.shared.keyWindow?.rootViewController = NursingNavigationController(rootViewController: CoursesViewController.make())
     }
+    
+    func goToStats() {
+        UIApplication.shared.keyWindow?.rootViewController = NursingNavigationController(rootViewController: StatsViewController.make())
+    }
 }

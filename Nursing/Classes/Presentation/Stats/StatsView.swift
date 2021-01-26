@@ -8,7 +8,8 @@
 import UIKit
 
 final class StatsView: UIView {
-    lazy var label = makeLabel()
+    
+    lazy var tableView = makeTableView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,20 +34,22 @@ private extension StatsView {
 private extension StatsView {
     func makeConstraints() {
         NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: centerYAnchor)
+            tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }
 
 // MARK: Lazy initialization
 private extension StatsView {
-    func makeLabel() -> UILabel {
-        let view = UILabel()
-        view.text = "StatsView"
-        view.textColor = UIColor.black
+    func makeTableView() -> UITableView {
+        let view = UITableView()
+        view.backgroundColor = UIColor(integralRed: 242, green: 245, blue: 252)
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view
     }
 }
+
