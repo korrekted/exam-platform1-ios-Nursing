@@ -13,10 +13,17 @@
 		86139A2B25BF03EC0099CA2F /* MainStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86139A2A25BF03EC0099CA2F /* MainStatsView.swift */; };
 		86139A2F25BF33E10099CA2F /* MainStatsDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86139A2E25BF33E10099CA2F /* MainStatsDescriptionView.swift */; };
 		86139A3225BF34DA0099CA2F /* MainStatsDescriptionLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86139A3125BF34DA0099CA2F /* MainStatsDescriptionLineView.swift */; };
+		864AFF5625C1352D00E185AB /* StatsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864AFF5525C1352D00E185AB /* StatsTableView.swift */; };
+		864AFFA525C17BF900E185AB /* MainProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864AFFA425C17BF900E185AB /* MainProgressView.swift */; };
 		86A9DF4025BD9F970070D214 /* PassRateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A9DF3F25BD9F970070D214 /* PassRateCell.swift */; };
 		86A9DF4525BDE71F0070D214 /* MainRateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A9DF4425BDE71F0070D214 /* MainRateCell.swift */; };
 		86A9DF4825BDEAB90070D214 /* CourseProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A9DF4725BDEAB90070D214 /* CourseProgressCell.swift */; };
 		86A9DF4B25BDECFB0070D214 /* CourseProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A9DF4A25BDECFB0070D214 /* CourseProgressView.swift */; };
+		86FAE0EC25C06DD700247A70 /* GetStatsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FAE0EB25C06DD700247A70 /* GetStatsRequest.swift */; };
+		86FAE0F125C06F0C00247A70 /* StatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FAE0F025C06F0C00247A70 /* StatsManager.swift */; };
+		86FAE0F425C06F4000247A70 /* StatsManagerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FAE0F325C06F4000247A70 /* StatsManagerCore.swift */; };
+		86FAE0F725C0719F00247A70 /* GetStatsResponseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FAE0F625C0719F00247A70 /* GetStatsResponseMapper.swift */; };
+		86FAE0FB25C0724700247A70 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FAE0FA25C0724700247A70 /* Stats.swift */; };
 		95A0D10A3FF5DF8ADD207AAB /* Pods_Nursing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D58953997718D4A60C1FB4B /* Pods_Nursing.framework */; };
 		962AEA4C25B497AD0032E7C3 /* CoursesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962AEA4B25B497AD0032E7C3 /* CoursesManager.swift */; };
 		962AEA5025B497DD0032E7C3 /* CoursesManagerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962AEA4F25B497DD0032E7C3 /* CoursesManagerCore.swift */; };
@@ -120,10 +127,17 @@
 		86139A2A25BF03EC0099CA2F /* MainStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStatsView.swift; sourceTree = "<group>"; };
 		86139A2E25BF33E10099CA2F /* MainStatsDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStatsDescriptionView.swift; sourceTree = "<group>"; };
 		86139A3125BF34DA0099CA2F /* MainStatsDescriptionLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStatsDescriptionLineView.swift; sourceTree = "<group>"; };
+		864AFF5525C1352D00E185AB /* StatsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTableView.swift; sourceTree = "<group>"; };
+		864AFFA425C17BF900E185AB /* MainProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProgressView.swift; sourceTree = "<group>"; };
 		86A9DF3F25BD9F970070D214 /* PassRateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassRateCell.swift; sourceTree = "<group>"; };
 		86A9DF4425BDE71F0070D214 /* MainRateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRateCell.swift; sourceTree = "<group>"; };
 		86A9DF4725BDEAB90070D214 /* CourseProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseProgressCell.swift; sourceTree = "<group>"; };
 		86A9DF4A25BDECFB0070D214 /* CourseProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseProgressView.swift; sourceTree = "<group>"; };
+		86FAE0EB25C06DD700247A70 /* GetStatsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStatsRequest.swift; sourceTree = "<group>"; };
+		86FAE0F025C06F0C00247A70 /* StatsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsManager.swift; sourceTree = "<group>"; };
+		86FAE0F325C06F4000247A70 /* StatsManagerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsManagerCore.swift; sourceTree = "<group>"; };
+		86FAE0F625C0719F00247A70 /* GetStatsResponseMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStatsResponseMapper.swift; sourceTree = "<group>"; };
+		86FAE0FA25C0724700247A70 /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		8D58953997718D4A60C1FB4B /* Pods_Nursing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nursing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		962AEA4B25B497AD0032E7C3 /* CoursesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesManager.swift; sourceTree = "<group>"; };
 		962AEA4F25B497DD0032E7C3 /* CoursesManagerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesManagerCore.swift; sourceTree = "<group>"; };
@@ -261,6 +275,7 @@
 				86139A2A25BF03EC0099CA2F /* MainStatsView.swift */,
 				86139A2E25BF33E10099CA2F /* MainStatsDescriptionView.swift */,
 				86139A3125BF34DA0099CA2F /* MainStatsDescriptionLineView.swift */,
+				864AFFA425C17BF900E185AB /* MainProgressView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -275,13 +290,58 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		86A9DF3D25BD9F880070D214 /* Views */ = {
+		864AFF5425C1350A00E185AB /* TableView */ = {
 			isa = PBXGroup;
 			children = (
 				86139A1C25BEF6450099CA2F /* Cells */,
+				864AFF5525C1352D00E185AB /* StatsTableView.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		86A9DF3D25BD9F880070D214 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				864AFF5425C1350A00E185AB /* TableView */,
 				86139A1A25BEF6150099CA2F /* Components */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		86FAE0E925C0660B00247A70 /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+				86FAE0EF25C06EE300247A70 /* Manager */,
+				86FAE0EA25C06DAC00247A70 /* Requests */,
+				86FAE0F925C0722E00247A70 /* Models */,
+			);
+			path = Stats;
+			sourceTree = "<group>";
+		};
+		86FAE0EA25C06DAC00247A70 /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				86FAE0EB25C06DD700247A70 /* GetStatsRequest.swift */,
+				86FAE0F625C0719F00247A70 /* GetStatsResponseMapper.swift */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
+		86FAE0EF25C06EE300247A70 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				86FAE0F025C06F0C00247A70 /* StatsManager.swift */,
+				86FAE0F325C06F4000247A70 /* StatsManagerCore.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		86FAE0F925C0722E00247A70 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				86FAE0FA25C0724700247A70 /* Stats.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		962AEA4925B4978D0032E7C3 /* Manager */ = {
@@ -491,6 +551,7 @@
 		96D38B3425B3083000EADC9A /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				86FAE0E925C0660B00247A70 /* Stats */,
 				962AEA5725B4C4410032E7C3 /* Session */,
 				96D38BD525B4925700EADC9A /* Courses */,
 			);
@@ -857,19 +918,24 @@
 				965F026325BF57B70067EF3C /* SettingsViewController.swift in Sources */,
 				96D38BDF25B4929200EADC9A /* Course.swift in Sources */,
 				965F028B25BF78D20067EF3C /* STLinkView.swift in Sources */,
+				86FAE0F725C0719F00247A70 /* GetStatsResponseMapper.swift in Sources */,
 				96E437D725BED56700B4320D /* OSlide15Cell.swift in Sources */,
 				96D38AE125B3017A00EADC9A /* AppDelegate.swift in Sources */,
+				86FAE0EC25C06DD700247A70 /* GetStatsRequest.swift in Sources */,
 				96D38B9425B4718000EADC9A /* SplashView.swift in Sources */,
 				96D38B7D25B30B2C00EADC9A /* Weak.swift in Sources */,
 				96D38B9A25B4722800EADC9A /* OnboardingViewModel.swift in Sources */,
 				86139A3225BF34DA0099CA2F /* MainStatsDescriptionLineView.swift in Sources */,
 				96C63DA925BCDA3D007B7EB7 /* OSlide3View.swift in Sources */,
+				864AFF5625C1352D00E185AB /* StatsTableView.swift in Sources */,
 				86A9DF4B25BDECFB0070D214 /* CourseProgressView.swift in Sources */,
 				96D38B5A25B309A000EADC9A /* GradientButton.swift in Sources */,
 				965F026925BF58280067EF3C /* SettingsView.swift in Sources */,
 				96D38B7925B30B0E00EADC9A /* UIDeviceExtension.swift in Sources */,
 				96D38BA325B4727900EADC9A /* CoursesViewModel.swift in Sources */,
 				96D38B8D25B4714100EADC9A /* SplashViewController.swift in Sources */,
+				864AFFA525C17BF900E185AB /* MainProgressView.swift in Sources */,
+				86FAE0FB25C0724700247A70 /* Stats.swift in Sources */,
 				96C63DFE25BD9CE2007B7EB7 /* OSlide6View.swift in Sources */,
 				96C63DB325BD7A2D007B7EB7 /* OSlide5View.swift in Sources */,
 				962AEA5425B498FC0032E7C3 /* CoursesManagerMediator.swift in Sources */,
@@ -881,6 +947,7 @@
 				86139A2325BEF7ED0099CA2F /* CourseStatsElement.swift in Sources */,
 				96D38B4325B308B500EADC9A /* RxActivityIndicator.swift in Sources */,
 				962AEA5B25B4C4580032E7C3 /* Session.swift in Sources */,
+				86FAE0F125C06F0C00247A70 /* StatsManager.swift in Sources */,
 				86139A2F25BF33E10099CA2F /* MainStatsDescriptionView.swift in Sources */,
 				96D38B4E25B3094200EADC9A /* NursingNavigationController.swift in Sources */,
 				86139A2B25BF03EC0099CA2F /* MainStatsView.swift in Sources */,
@@ -913,6 +980,7 @@
 				96D38B9125B4716A00EADC9A /* SplashViewModel.swift in Sources */,
 				96C63DB025BD7594007B7EB7 /* OSlide4View.swift in Sources */,
 				965F028225BF685C0067EF3C /* STUnlockCell.swift in Sources */,
+				86FAE0F425C06F4000247A70 /* StatsManagerCore.swift in Sources */,
 				96C63DA625BCD193007B7EB7 /* OSlide2GenderView.swift in Sources */,
 				962AEA5025B497DD0032E7C3 /* CoursesManagerCore.swift in Sources */,
 				96D38BCE25B47BCE00EADC9A /* StatsViewModel.swift in Sources */,

@@ -14,3 +14,13 @@ struct CourseStatsElement {
     let correctAnswers: Int
     let questionsTaken: Int
 }
+
+extension CourseStatsElement {
+    init(courseStats: Stats.CourseStats) {
+        id = courseStats.id
+        name = courseStats.name
+        testsTaken = courseStats.testsTaken
+        correctAnswers = courseStats.correctAnswers
+        questionsTaken = courseStats.questionsTaken
+    }
+}

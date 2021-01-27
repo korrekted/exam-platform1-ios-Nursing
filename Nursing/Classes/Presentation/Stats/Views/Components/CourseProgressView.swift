@@ -34,7 +34,7 @@ extension CourseProgressView {
         
         progressView.trackTintColor = color.withAlphaComponent(0.3)
         progressView.progressTintColor = color
-        progressView.setProgress(min(Float(Double(percent) / 100), 1.0), animated: true)
+        progressView.setProgress(min(Float(Double(percent) / 100), 1.0), animated: false)
     }
 }
 

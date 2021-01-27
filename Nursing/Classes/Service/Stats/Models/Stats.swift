@@ -1,0 +1,26 @@
+//
+//  Stats.swift
+//  Nursing
+//
+//  Created by Vitaliy Zagorodnov on 26.01.2021.
+//
+
+import Foundation
+
+struct Stats {
+    let passRate: Int
+    let testTaken: Int
+    let correctAnswers: Int
+    let questionsTaken: Int
+    let longestStreak: Int
+    let answeredQuestions: Int
+    let courseStats: [CourseStats]
+    
+    struct CourseStats {
+        let id: Int
+        let name: String
+        let testsTaken: Int
+        let correctAnswers: Int
+        let questionsTaken: Int
+    }
+}

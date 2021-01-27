@@ -28,11 +28,18 @@ class MainStatsDescriptionView: UIView {
 
 // MARK: Public
 extension MainStatsDescriptionView {
-    func setup(value: MainStatsElement) {
-        testTakenLineView.setup(title: "Stats.MainRate.TestsTake".localized, value: "\(value.testTaken)")
-        longestStreakLineView.setup(title: "Stats.MainRate.LongestStreak".localized, value: "\(value.longestStreak)")
-        answeredQuestionsLineView.setup(title: "Stats.MainRate.AnsweredQuestions".localized, value: "\(value.answeredQuestions)")
-        correctAnswersLineView.setup(title: "Stats.MainRate.CorrectAnswers".localized, value: "\(value.correctAnswers)")
+    func setup(model: MainStatsElement) {
+        let longestStreakValue = String.choosePluralForm(
+            byNumber: model.longestStreak,
+            one: "Stats.Day.One".localized,
+            two: "Stats.Day.Two".localized,
+            many: "Stats.Day.Many".localized
+        )
+        
+        testTakenLineView.setup(title: "Stats.MainRate.TestsTake".localized, value: "\(model.testTaken)")
+        longestStreakLineView.setup(title: "Stats.MainRate.LongestStreak".localized, value: "\(model.longestStreak) \(longestStreakValue)")
+        answeredQuestionsLineView.setup(title: "Stats.MainRate.AnsweredQuestions".localized, value: "\(model.answeredQuestions)")
+        correctAnswersLineView.setup(title: "Stats.MainRate.CorrectAnswers".localized, value: "\(model.correctAnswers)")
     }
 }
 
@@ -49,7 +56,6 @@ private extension MainStatsDescriptionView {
     
     func configure() {
         layer.cornerRadius = 20
-        
         [testTakenLineView, makeSeparatorView(), longestStreakLineView, makeSeparatorView(), answeredQuestionsLineView, makeSeparatorView(), correctAnswersLineView].forEach(stackView.addArrangedSubview)
     }
 }
@@ -78,29 +84,3 @@ private extension MainStatsDescriptionView {
         return view
     }
 }
-
-private extension MainStatsDescriptionView {
-    
-}
-
-#if DEBUG
-import SwiftUI
-@available(iOS 13.0, *)
-struct MainStatsDescriptionView_Previews: PreviewProvider {
-    
-    struct MainStatsDescriptionViewRepresentable: UIViewRepresentable {
-        func makeUIView(context: Context) -> MainStatsDescriptionView {
-            let view = MainStatsDescriptionView()
-            view.setup(value: .init(passRate: 100, testTaken: 200, correctAnswers: 300, questionsTaken: 400, longestStreak: 500, answeredQuestions: 600))
-            return view
-        }
-        func updateUIView(_ uiView: MainStatsDescriptionView, context: Context) {
-            
-        }
-    }
-
-    static var previews: some View {
-        return MainStatsDescriptionViewRepresentable().frame(width: 343, height: 203, alignment: .center)
-    }
-}
-#endif

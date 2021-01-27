@@ -9,13 +9,13 @@ import UIKit
 
 class PassRateCell: UITableViewCell {
     private lazy var titleLabel = makeTitleLabel()
+    private lazy var containerView = makeContainerView()
     private lazy var progressView = makeProgressView()
     private lazy var percentLabel = makePercentLabel()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         makeConstraints()
-        configure()
     }
     
     required init?(coder: NSCoder) {
@@ -25,9 +25,9 @@ class PassRateCell: UITableViewCell {
 
 // MARK: Public
 extension PassRateCell {
-    func setup(percent: Double) {
+    func setup(percent: Int) {
         percentLabel.attributedText = "\(percent)%".attributed(with: PassRateCell.textAttr)
-        progressView.setProgress(min(Float(percent / 100), 1.0), animated: true)
+        progressView.setProgress(min(Float(Double(percent) / 100), 1.0), animated: false)
     }
 }
 
@@ -38,7 +38,7 @@ private extension PassRateCell {
         view.attributedText = "Stats.PassRate.Title".localized.attributed(with: PassRateCell.textAttr)
         view.setContentHuggingPriority(.defaultLow, for: .horizontal)
         view.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(view)
+        containerView.addSubview(view)
         return view
     }
     
@@ -47,7 +47,7 @@ private extension PassRateCell {
         view.trackTintColor = UIColor.white.withAlphaComponent(0.3)
         view.progressTintColor = .white
         view.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(view)
+        containerView.addSubview(view)
         return view
     }
     
@@ -55,6 +55,15 @@ private extension PassRateCell {
         let view = UILabel()
         view.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         view.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(view)
+        return view
+    }
+    
+    func makeContainerView() -> UIView {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = 20
+        view.backgroundColor = UIColor(integralRed: 95, green: 70, blue: 245)
         contentView.addSubview(view)
         return view
     }
@@ -69,53 +78,30 @@ private extension PassRateCell {
 private extension PassRateCell {
     func makeConstraints() {
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20.scale),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15.scale),
+            containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10.scale),
+            containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10.scale)
+        ])
+        
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 20.scale),
+            titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 15.scale),
             titleLabel.bottomAnchor.constraint(equalTo: progressView.topAnchor, constant: -15.scale),
             titleLabel.trailingAnchor.constraint(equalTo: percentLabel.leadingAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            progressView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15.scale),
-            progressView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20.scale),
-            progressView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15.scale),
+            progressView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 15.scale),
+            progressView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -20.scale),
+            progressView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -15.scale),
             progressView.heightAnchor.constraint(equalToConstant: 3)
         ])
         
         NSLayoutConstraint.activate([
-            percentLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20.scale),
-            percentLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15.scale),
+            percentLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 20.scale),
+            percentLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -15.scale),
             percentLabel.bottomAnchor.constraint(equalTo: progressView.topAnchor, constant: -15.scale)
         ])
     }
 }
-
-// MARK: Private
-private extension PassRateCell {
-    func configure() {
-        contentView.layer.cornerRadius = 15
-        contentView.backgroundColor = UIColor(integralRed: 95, green: 70, blue: 245)
-    }
-}
-
-#if DEBUG
-import SwiftUI
-@available(iOS 13.0, *)
-struct PassRateCell_Previews: PreviewProvider {
-    
-    struct PassRateCellRepresentable: UIViewRepresentable {
-        func makeUIView(context: Context) -> PassRateCell {
-            let cell = PassRateCell()
-            cell.setup(percent: 30)
-            return cell
-        }
-        func updateUIView(_ uiView: PassRateCell, context: Context) {
-            
-        }
-    }
-
-    static var previews: some View {
-        return PassRateCellRepresentable().frame(width: 343, height: 80, alignment: .center)
-    }
-}
-#endif

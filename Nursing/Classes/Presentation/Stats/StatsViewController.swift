@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 
 final class StatsViewController: UIViewController {
-    lazy var mainView = StatsView()
+    private lazy var mainView = StatsView()
     
     private lazy var disposeBag = DisposeBag()
     
@@ -17,6 +17,17 @@ final class StatsViewController: UIViewController {
     
     override func loadView() {
         view = mainView
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        viewModel
+            .elements
+            .drive(onNext: { [mainView] elements in
+                mainView.tableView.setup(elements: elements)
+            })
+            .disposed(by: disposeBag)
     }
 }
 

@@ -13,6 +13,7 @@ class MainRateCell: UITableViewCell {
     private lazy var correctAnswersStatsView = makeMainStatsView()
     private lazy var questionsTakenStatsView = makeMainStatsView()
     private lazy var statsDescriptionView = makeStatsDescriptionView()
+    private lazy var mainProgressView = makeMainProgressView()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -31,13 +32,15 @@ extension MainRateCell {
         testTakenStatsView.setPercent(percent: model.testTaken)
         correctAnswersStatsView.setPercent(percent: model.correctAnswers)
         questionsTakenStatsView.setPercent(percent: model.questionsTaken)
-        statsDescriptionView.setup(value: model)
+        statsDescriptionView.setup(model: model)
+        mainProgressView.setProgress(big: model.testTaken, medium: model.correctAnswers, small: model.questionsTaken)
     }
 }
 
 // MARK: Private
 private extension MainRateCell {
     func configure() {
+        contentView.backgroundColor = .clear
         [testTakenStatsView, correctAnswersStatsView, questionsTakenStatsView].forEach(stackStatsView.addArrangedSubview)
         testTakenStatsView.setup(
             title: "Stats.MainRate.TestsTake".localized,
@@ -60,14 +63,21 @@ private extension MainRateCell {
         NSLayoutConstraint.activate([
             stackStatsView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             stackStatsView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            stackStatsView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            stackStatsView.bottomAnchor.constraint(equalTo: statsDescriptionView.topAnchor, constant: -15)
+            stackStatsView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            stackStatsView.bottomAnchor.constraint(equalTo: mainProgressView.topAnchor, constant: -10)
+        ])
+        
+        NSLayoutConstraint.activate([
+            mainProgressView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 65),
+            mainProgressView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -65),
+            mainProgressView.heightAnchor.constraint(equalTo: mainProgressView.widthAnchor, multiplier: 0.51),
+            mainProgressView.bottomAnchor.constraint(equalTo: statsDescriptionView.topAnchor, constant: 25),
         ])
         
         NSLayoutConstraint.activate([
             statsDescriptionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             statsDescriptionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            statsDescriptionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            statsDescriptionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         ])
     }
 }
@@ -92,30 +102,16 @@ private extension MainRateCell {
     func makeStatsDescriptionView() -> MainStatsDescriptionView {
         let view = MainStatsDescriptionView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
+        contentView.addSubview(view)
+        return view
+    }
+    
+    func makeMainProgressView() -> MainProgressView {
+        let view = MainProgressView()
+        view.backgroundColor = .clear
+        view.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(view)
         return view
     }
 }
-
-
-#if DEBUG
-import SwiftUI
-@available(iOS 13.0, *)
-struct MainRateCell_Previews: PreviewProvider {
-    
-    struct MainRateCellRepresentable: UIViewRepresentable {
-        func makeUIView(context: Context) -> MainRateCell {
-            let cell = MainRateCell()
-            cell.setup(model: .init(passRate: 10, testTaken: 20, correctAnswers: 30, questionsTaken: 40, longestStreak: 50, answeredQuestions: 60))
-            return cell
-        }
-        func updateUIView(_ uiView: MainRateCell, context: Context) {
-            
-        }
-    }
-
-    static var previews: some View {
-        return MainRateCellRepresentable().frame(width: 343, height: 268, alignment: .center)
-    }
-}
-#endif

@@ -15,3 +15,14 @@ struct MainStatsElement {
     let longestStreak: Int
     let answeredQuestions: Int
 }
+
+extension MainStatsElement {
+    init(stats: Stats) {
+        passRate = stats.passRate
+        testTaken = stats.testTaken
+        correctAnswers = stats.correctAnswers
+        questionsTaken = stats.questionsTaken
+        longestStreak = stats.longestStreak
+        answeredQuestions = stats.answeredQuestions
+    }
+}

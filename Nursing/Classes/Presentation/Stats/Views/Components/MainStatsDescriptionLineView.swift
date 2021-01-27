@@ -75,24 +75,3 @@ private extension MainStatsDescriptionLineView {
         return view
     }
 }
-#if DEBUG
-import SwiftUI
-@available(iOS 13.0, *)
-struct MainStatsDescriptionLineView_Previews: PreviewProvider {
-    
-    struct MainStatsDescriptionLineViewRepresentable: UIViewRepresentable {
-        func makeUIView(context: Context) -> MainStatsDescriptionLineView {
-            let view = MainStatsDescriptionLineView()
-            view.setup(title: "Title", value: "10")
-            return view
-        }
-        func updateUIView(_ uiView: MainStatsDescriptionLineView, context: Context) {
-            
-        }
-    }
-
-    static var previews: some View {
-        return MainStatsDescriptionLineViewRepresentable().frame(width: 343, height: 50, alignment: .center)
-    }
-}
-#endif

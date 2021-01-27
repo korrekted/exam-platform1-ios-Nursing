@@ -8,6 +8,7 @@
 import Foundation
 
 enum StatsCellType {
+    case passRate(Int)
     case main(MainStatsElement)
     case course(CourseStatsElement)
 }
