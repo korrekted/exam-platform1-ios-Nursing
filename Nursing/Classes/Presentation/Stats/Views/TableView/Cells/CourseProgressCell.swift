@@ -24,7 +24,6 @@ class CourseProgressCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
 
 // MARK: Public
@@ -40,6 +39,13 @@ extension CourseProgressCell {
         testTakenProgress.setup(percent: model.testsTaken, color: UIColor(integralRed: 83, green: 189, blue: 224))
         correctAnswersProgress.setup(percent: model.correctAnswers, color: UIColor(integralRed: 95, green: 70, blue: 245))
         questionsTakenProgress.setup(percent: model.questionsTaken, color: UIColor(integralRed: 198, green: 42, blue: 80))
+    }
+}
+
+// MARK: Private
+private extension CourseProgressCell {
+    func configure() {
+        [testTakenProgress, correctAnswersProgress, questionsTakenProgress].forEach(stackView.addArrangedSubview)
     }
 }
 
@@ -98,12 +104,5 @@ private extension CourseProgressCell {
         view.backgroundColor = .white
         contentView.addSubview(view)
         return view
-    }
-}
-
-// MARK: Private
-private extension CourseProgressCell {
-    func configure() {
-        [testTakenProgress, correctAnswersProgress, questionsTakenProgress].forEach(stackView.addArrangedSubview)
     }
 }

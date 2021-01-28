@@ -7,9 +7,7 @@
 
 import RxSwift
 
-final class StatsManagerCore: StatsManager {
-    
-}
+final class StatsManagerCore: StatsManager {}
 
 // MARK: API(Rx)
 extension StatsManagerCore {

@@ -5,8 +5,6 @@
 //  Created by Vitaliy Zagorodnov on 25.01.2021.
 //
 
-import Foundation
-
 struct CourseStatsElement {
     let id: Int
     let name: String

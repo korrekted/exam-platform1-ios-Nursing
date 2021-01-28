@@ -5,8 +5,6 @@
 //  Created by Vitaliy Zagorodnov on 25.01.2021.
 //
 
-import Foundation
-
 struct MainStatsElement {
     let passRate: Int
     let testTaken: Int

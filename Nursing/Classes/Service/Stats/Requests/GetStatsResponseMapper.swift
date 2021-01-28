@@ -38,8 +38,11 @@ struct GetStatsResponseMapper {
             courseStats: courseStats
         )
     }
-    
-    private static func map(from courseStats: [[String: Any]]) -> [Stats.CourseStats] {
+}
+
+// MARK: Private
+private extension GetStatsResponseMapper {
+    static func map(from courseStats: [[String: Any]]) -> [Stats.CourseStats] {
         courseStats
             .compactMap { restJSON -> Stats.CourseStats? in
                 guard

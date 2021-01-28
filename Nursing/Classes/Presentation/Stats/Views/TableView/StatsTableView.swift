@@ -7,12 +7,12 @@
 
 import UIKit
 
-class StatsTableView: UITableView {
-    
+final class StatsTableView: UITableView {
     private lazy var elements = [StatsCellType]()
     
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
+        
         initialize()
     }
     

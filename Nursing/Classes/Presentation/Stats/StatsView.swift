@@ -8,7 +8,6 @@
 import UIKit
 
 final class StatsView: UIView {
-    
     lazy var tableView = makeTableView()
     lazy var titleLabel = makeTitleLabel()
     

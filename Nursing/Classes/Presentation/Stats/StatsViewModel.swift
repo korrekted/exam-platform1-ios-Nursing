@@ -9,9 +9,9 @@ import RxSwift
 import RxCocoa
 
 final class StatsViewModel {
-
     private lazy var statsManager = StatsManagerCore()
     private lazy var courseManager = CoursesManagerCore()
+    
     lazy var elements = makeElements()
 }
 

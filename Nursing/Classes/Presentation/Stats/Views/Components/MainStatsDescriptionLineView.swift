@@ -13,6 +13,7 @@ class MainStatsDescriptionLineView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         makeConstraints()
     }
     
@@ -28,6 +29,7 @@ extension MainStatsDescriptionLineView {
             .font(Fonts.SFProRounded.bold(size: 17.scale))
             .lineHeight(20.scale)
             .textAlignment(.left)
+            .textColor(UIColor.black)
         
         let valueAttributes = TextAttributes()
             .font(Fonts.SFProRounded.bold(size: 17.scale))

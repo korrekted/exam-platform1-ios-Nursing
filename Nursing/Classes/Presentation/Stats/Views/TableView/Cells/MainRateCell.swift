@@ -41,19 +41,17 @@ extension MainRateCell {
 private extension MainRateCell {
     func configure() {
         contentView.backgroundColor = .clear
+        
         [testTakenStatsView, correctAnswersStatsView, questionsTakenStatsView].forEach(stackStatsView.addArrangedSubview)
-        testTakenStatsView.setup(
-            title: "Stats.MainRate.TestsTake".localized,
-            color: UIColor(integralRed: 95, green: 70, blue: 245)
-        )
-        correctAnswersStatsView.setup(
-            title: "Stats.MainRate.CorrectAnswers".localized,
-            color: UIColor(integralRed: 83, green: 189, blue: 224)
-        )
-        questionsTakenStatsView.setup(
-            title: "Stats.MainRate.QuestionsTaken".localized,
-            color: UIColor(integralRed: 198, green: 42, blue: 80)
-        )
+        
+        testTakenStatsView.setup(title: "Stats.MainRate.TestsTake".localized,
+                                 color: UIColor(integralRed: 95, green: 70, blue: 245))
+        
+        correctAnswersStatsView.setup(title: "Stats.MainRate.CorrectAnswers".localized,
+                                      color: UIColor(integralRed: 83, green: 189, blue: 224))
+        
+        questionsTakenStatsView.setup(title: "Stats.MainRate.QuestionsTaken".localized,
+                                      color: UIColor(integralRed: 198, green: 42, blue: 80))
     }
 }
 

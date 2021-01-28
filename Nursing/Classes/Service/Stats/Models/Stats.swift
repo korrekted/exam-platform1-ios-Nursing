@@ -16,7 +16,7 @@ struct Stats {
     let answeredQuestions: Int
     let courseStats: [CourseStats]
     
-    struct CourseStats {
+    struct CourseStats: Codable {
         let id: Int
         let name: String
         let testsTaken: Int
@@ -24,3 +24,6 @@ struct Stats {
         let questionsTaken: Int
     }
 }
+
+// MARK: Codable
+extension Stats: Codable {}

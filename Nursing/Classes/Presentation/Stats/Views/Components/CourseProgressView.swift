@@ -13,6 +13,7 @@ class CourseProgressView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         makeConstraints()
     }
     
