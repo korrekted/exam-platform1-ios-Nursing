@@ -16,6 +16,7 @@ struct MainStatsElement {
     let answeredQuestions: Int
 }
 
+// MARK: Initialize
 extension MainStatsElement {
     init(stats: Stats) {
         passRate = stats.passRate

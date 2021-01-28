@@ -45,14 +45,14 @@ private extension CourseProgressView {
             percentLabel.topAnchor.constraint(equalTo: topAnchor),
             percentLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             percentLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            percentLabel.bottomAnchor.constraint(equalTo: progressView.topAnchor, constant: -2)
+            percentLabel.bottomAnchor.constraint(equalTo: progressView.topAnchor, constant: -2.scale)
         ])
         
         NSLayoutConstraint.activate([
             progressView.leadingAnchor.constraint(equalTo: leadingAnchor),
             progressView.bottomAnchor.constraint(equalTo: bottomAnchor),
             progressView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            progressView.heightAnchor.constraint(equalToConstant: 3)
+            progressView.heightAnchor.constraint(equalToConstant: 3.scale)
         ])
     }
 }

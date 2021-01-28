@@ -44,11 +44,11 @@ private extension MainRateCell {
         [testTakenStatsView, correctAnswersStatsView, questionsTakenStatsView].forEach(stackStatsView.addArrangedSubview)
         testTakenStatsView.setup(
             title: "Stats.MainRate.TestsTake".localized,
-            color: UIColor(integralRed: 83, green: 189, blue: 224)
+            color: UIColor(integralRed: 95, green: 70, blue: 245)
         )
         correctAnswersStatsView.setup(
             title: "Stats.MainRate.CorrectAnswers".localized,
-            color: UIColor(integralRed: 95, green: 70, blue: 245)
+            color: UIColor(integralRed: 83, green: 189, blue: 224)
         )
         questionsTakenStatsView.setup(
             title: "Stats.MainRate.QuestionsTaken".localized,
@@ -63,21 +63,21 @@ private extension MainRateCell {
         NSLayoutConstraint.activate([
             stackStatsView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             stackStatsView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            stackStatsView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            stackStatsView.bottomAnchor.constraint(equalTo: mainProgressView.topAnchor, constant: -10)
+            stackStatsView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10.scale),
+            stackStatsView.bottomAnchor.constraint(equalTo: mainProgressView.topAnchor, constant: -10.scale)
         ])
         
         NSLayoutConstraint.activate([
-            mainProgressView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 65),
-            mainProgressView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -65),
+            mainProgressView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 65.scale),
+            mainProgressView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -65.scale),
             mainProgressView.heightAnchor.constraint(equalTo: mainProgressView.widthAnchor, multiplier: 0.51),
-            mainProgressView.bottomAnchor.constraint(equalTo: statsDescriptionView.topAnchor, constant: 25),
+            mainProgressView.bottomAnchor.constraint(equalTo: statsDescriptionView.topAnchor, constant: 25.scale),
         ])
         
         NSLayoutConstraint.activate([
             statsDescriptionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             statsDescriptionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            statsDescriptionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
+            statsDescriptionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10.scale)
         ])
     }
 }
@@ -93,7 +93,7 @@ private extension MainRateCell {
     func makeStackView() -> UIStackView {
         let view = UIStackView()
         view.axis = .horizontal
-        view.spacing = 20
+        view.spacing = 20.scale
         view.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(view)
         return view

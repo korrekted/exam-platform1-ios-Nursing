@@ -8,7 +8,7 @@
 import UIKit
 
 class MainProgressView: UIView {
-    private let trackBorderWidth: CGFloat = 11
+    private let trackBorderWidth: CGFloat = 11.scale
     private let startDegrees: CGFloat = 180
     private let endDegrees: CGFloat = 0
     

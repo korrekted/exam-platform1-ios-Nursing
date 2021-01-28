@@ -47,7 +47,7 @@ extension MainStatsDescriptionView {
 private extension MainStatsDescriptionView {
     func makeConstraints() {
         NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15.scale),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             stackView.topAnchor.constraint(equalTo: topAnchor),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
@@ -55,7 +55,7 @@ private extension MainStatsDescriptionView {
     }
     
     func configure() {
-        layer.cornerRadius = 20
+        layer.cornerRadius = 20.scale
         [testTakenLineView, makeSeparatorView(), longestStreakLineView, makeSeparatorView(), answeredQuestionsLineView, makeSeparatorView(), correctAnswersLineView].forEach(stackView.addArrangedSubview)
     }
 }
@@ -72,7 +72,7 @@ private extension MainStatsDescriptionView {
         let view = UIView()
         view.backgroundColor = UIColor(integralRed: 95, green: 70, blue: 245).withAlphaComponent(0.1)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        view.heightAnchor.constraint(equalToConstant: 1.scale).isActive = true
         return view
     }
     

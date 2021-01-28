@@ -22,6 +22,7 @@ class MainStatsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
 // MARK: Public
 extension MainStatsView {
     func setup(title: String, color: UIColor) {
@@ -44,6 +45,7 @@ extension MainStatsView {
         percentLabel.attributedText = "\(percent)%".attributed(with: percentAttributes)
     }
 }
+
 // MARK: Make constraints
 private extension MainStatsView {
     func makeConstraints() {
@@ -51,7 +53,7 @@ private extension MainStatsView {
             titleLabel.topAnchor.constraint(equalTo: topAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            titleLabel.bottomAnchor.constraint(equalTo: containerView.topAnchor, constant: -5)
+            titleLabel.bottomAnchor.constraint(equalTo: containerView.topAnchor, constant: -5.scale)
         ])
         
         NSLayoutConstraint.activate([
@@ -61,10 +63,10 @@ private extension MainStatsView {
         
         NSLayoutConstraint.activate([
             circleView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            circleView.trailingAnchor.constraint(equalTo: percentLabel.leadingAnchor, constant: -4),
+            circleView.trailingAnchor.constraint(equalTo: percentLabel.leadingAnchor, constant: -4.scale),
             circleView.centerYAnchor.constraint(equalTo: percentLabel.centerYAnchor),
-            circleView.heightAnchor.constraint(equalToConstant: 10),
-            circleView.widthAnchor.constraint(equalToConstant: 10)
+            circleView.heightAnchor.constraint(equalToConstant: 10.scale),
+            circleView.widthAnchor.constraint(equalToConstant: 10.scale)
         ])
         
         NSLayoutConstraint.activate([
@@ -100,7 +102,7 @@ private extension MainStatsView {
     func makeCircleView() -> UIView {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 5
+        view.layer.cornerRadius = 5.scale
         containerView.addSubview(view)
         return view
     }

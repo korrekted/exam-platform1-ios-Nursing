@@ -43,46 +43,6 @@ extension CourseProgressCell {
     }
 }
 
-// MARK: Lazy initialization
-private extension CourseProgressCell {
-    func makeTitleLabel() -> UILabel {
-        let view = UILabel()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addSubview(view)
-        return view
-    }
-    
-    func makeProgressView() -> CourseProgressView {
-        let view = CourseProgressView()
-        return view
-    }
-    
-    func makeStackView() -> UIStackView {
-        let view = UIStackView()
-        view.axis = .vertical
-        view.spacing = 15
-        view.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addSubview(view)
-        return view
-    }
-    
-    func makeContainerView() -> UIView {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 20
-        view.backgroundColor = .white
-        contentView.addSubview(view)
-        return view
-    }
-}
-
-// MARK: Private
-private extension CourseProgressCell {
-    func configure() {
-        [testTakenProgress, correctAnswersProgress, questionsTakenProgress].forEach(stackView.addArrangedSubview)
-    }
-}
-
 // MARK: Make constraints
 private extension CourseProgressCell {
     func makeConstraints() {
@@ -105,5 +65,45 @@ private extension CourseProgressCell {
             stackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -20.scale),
             stackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -15.scale)
         ])
+    }
+}
+
+// MARK: Lazy initialization
+private extension CourseProgressCell {
+    func makeTitleLabel() -> UILabel {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(view)
+        return view
+    }
+    
+    func makeProgressView() -> CourseProgressView {
+        let view = CourseProgressView()
+        return view
+    }
+    
+    func makeStackView() -> UIStackView {
+        let view = UIStackView()
+        view.axis = .vertical
+        view.spacing = 15.scale
+        view.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(view)
+        return view
+    }
+    
+    func makeContainerView() -> UIView {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = 20.scale
+        view.backgroundColor = .white
+        contentView.addSubview(view)
+        return view
+    }
+}
+
+// MARK: Private
+private extension CourseProgressCell {
+    func configure() {
+        [testTakenProgress, correctAnswersProgress, questionsTakenProgress].forEach(stackView.addArrangedSubview)
     }
 }

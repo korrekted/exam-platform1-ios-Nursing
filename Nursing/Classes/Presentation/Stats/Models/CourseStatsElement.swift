@@ -15,6 +15,7 @@ struct CourseStatsElement {
     let questionsTaken: Int
 }
 
+// MARK: Initialize
 extension CourseStatsElement {
     init(courseStats: Stats.CourseStats) {
         id = courseStats.id

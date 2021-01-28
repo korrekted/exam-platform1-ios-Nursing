@@ -31,6 +31,38 @@ extension PassRateCell {
     }
 }
 
+// MARK: Make constraints
+private extension PassRateCell {
+    func makeConstraints() {
+        NSLayoutConstraint.activate([
+            containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10.scale),
+            containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10.scale)
+        ])
+        
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 20.scale),
+            titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 15.scale),
+            titleLabel.bottomAnchor.constraint(equalTo: progressView.topAnchor, constant: -15.scale),
+            titleLabel.trailingAnchor.constraint(equalTo: percentLabel.leadingAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            progressView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 15.scale),
+            progressView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -20.scale),
+            progressView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -15.scale),
+            progressView.heightAnchor.constraint(equalToConstant: 3.scale)
+        ])
+        
+        NSLayoutConstraint.activate([
+            percentLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 20.scale),
+            percentLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -15.scale),
+            percentLabel.bottomAnchor.constraint(equalTo: progressView.topAnchor, constant: -15.scale)
+        ])
+    }
+}
+
 // MARK: Lazy initialization
 private extension PassRateCell {
     func makeTitleLabel() -> UILabel {
@@ -62,7 +94,7 @@ private extension PassRateCell {
     func makeContainerView() -> UIView {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 20
+        view.layer.cornerRadius = 20.scale
         view.backgroundColor = UIColor(integralRed: 95, green: 70, blue: 245)
         contentView.addSubview(view)
         return view
@@ -72,36 +104,4 @@ private extension PassRateCell {
         .textColor(.white)
         .font(Fonts.SFProRounded.bold(size: 21.scale))
         .lineHeight(25.scale)
-}
-
-// MARK: Make constraints
-private extension PassRateCell {
-    func makeConstraints() {
-        NSLayoutConstraint.activate([
-            containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10.scale),
-            containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10.scale)
-        ])
-        
-        NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 20.scale),
-            titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 15.scale),
-            titleLabel.bottomAnchor.constraint(equalTo: progressView.topAnchor, constant: -15.scale),
-            titleLabel.trailingAnchor.constraint(equalTo: percentLabel.leadingAnchor)
-        ])
-        
-        NSLayoutConstraint.activate([
-            progressView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 15.scale),
-            progressView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -20.scale),
-            progressView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -15.scale),
-            progressView.heightAnchor.constraint(equalToConstant: 3)
-        ])
-        
-        NSLayoutConstraint.activate([
-            percentLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 20.scale),
-            percentLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -15.scale),
-            percentLabel.bottomAnchor.constraint(equalTo: progressView.topAnchor, constant: -15.scale)
-        ])
-    }
 }
