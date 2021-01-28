@@ -8,11 +8,11 @@
 import UIKit
 
 final class StatsView: UIView {
-    lazy var label = makeLabel()
+    lazy var tableView = makeTableView()
+    lazy var titleLabel = makeTitleLabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         makeConstraints()
         initialize()
     }
@@ -33,20 +33,43 @@ private extension StatsView {
 private extension StatsView {
     func makeConstraints() {
         NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: centerYAnchor)
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 88.scale : 45.scale),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale)
+        ])
+        
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
+            tableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20.scale),
+            tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }
 
 // MARK: Lazy initialization
 private extension StatsView {
-    func makeLabel() -> UILabel {
+    func makeTitleLabel() -> UILabel {
+        let attrs = TextAttributes()
+            .textColor(UIColor.black)
+            .font(Fonts.SFProRounded.bold(size: 34.scale))
+            .lineHeight(40.scale)
+            .letterSpacing(0.37.scale)
+        
         let view = UILabel()
-        view.text = "StatsView"
-        view.textColor = UIColor.black
+        view.attributedText = "Stats.Title".localized.attributed(with: attrs)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
+    func makeTableView() -> StatsTableView {
+        let view = StatsTableView()
+        view.backgroundColor = UIColor(integralRed: 242, green: 245, blue: 252)
+        view.showsVerticalScrollIndicator = false
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view
     }
 }
+
