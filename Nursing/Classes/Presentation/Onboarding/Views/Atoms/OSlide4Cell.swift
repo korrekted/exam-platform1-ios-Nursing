@@ -7,21 +7,18 @@
 
 import UIKit
 
-final class OSlide4Cell: UIView {
-    lazy var label = makeLabel()
-    lazy var imageView = makeImageView()
-    
+final class OSlide4Cell: PaddingLabel {
     var isSelected = false {
         didSet {
-            imageView.isHidden = !isSelected
+            update()
         }
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        makeConstraints()
         initialize()
+        update()
     }
     
     required init?(coder: NSCoder) {
@@ -33,48 +30,21 @@ final class OSlide4Cell: UIView {
 private extension OSlide4Cell {
     func initialize() {
         backgroundColor = UIColor.white
-        layer.cornerRadius = 20.scale
-        layer.borderWidth = 1.scale
-        layer.borderColor = UIColor.white.cgColor
-    }
-}
-
-// MARK: Make constraints
-private extension OSlide4Cell {
-    func makeConstraints() {
-        NSLayoutConstraint.activate([
-            imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20.scale),
-            imageView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            imageView.widthAnchor.constraint(equalToConstant: 20.scale),
-            imageView.heightAnchor.constraint(equalToConstant: 15.scale)
-        ])
         
-        NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20.scale),
-            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50.scale),
-            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15.scale),
-            label.topAnchor.constraint(equalTo: topAnchor, constant: 15.scale)
-        ])
-    }
-}
-
-// MARK: Lazy initialization
-private extension OSlide4Cell {
-    func makeImageView() -> UIImageView {
-        let view = UIImageView()
-        view.image = UIImage(named: "Onboarding.Slide4.Checked")
-        view.contentMode = .scaleAspectFit
-        view.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(view)
-        return view
+        layer.masksToBounds = true
+        layer.cornerRadius = 20.scale
+        
+        topInset = 15.scale
+        bottomInset = 15.scale
+        leftInset = 20.scale
+        rightInset = 20.scale
+        
+        textColor = UIColor.black
+        font = Fonts.SFProRounded.semiBold(size: 17.scale)
     }
     
-    func makeLabel() -> UILabel {
-        let view = UILabel()
-        view.textColor = UIColor.black
-        view.font = Fonts.SFProRounded.semiBold(size: 17.scale)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(view)
-        return view
+    func update() {
+        layer.borderWidth = isSelected ? 2.scale : 0
+        layer.borderColor = isSelected ? UIColor(integralRed: 95, green: 70, blue: 245).cgColor : UIColor.white.cgColor
     }
 }

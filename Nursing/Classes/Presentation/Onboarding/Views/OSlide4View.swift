@@ -15,6 +15,7 @@ final class OSlide4View: OSlideView {
     lazy var cell4 = makeCell(title: "Onboarding.Slide4.Cell4", tag: 4)
     lazy var cell5 = makeCell(title: "Onboarding.Slide4.Cell5", tag: 5)
     lazy var button = makeButton()
+    lazy var imageView = makeImageView()
     
     override init(step: OnboardingView.Step) {
         super.init(step: step)
@@ -95,6 +96,13 @@ private extension OSlide4View {
             button.heightAnchor.constraint(equalToConstant: 60.scale),
             button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: ScreenSize.isIphoneXFamily ? -70.scale : -30.scale)
         ])
+        
+        NSLayoutConstraint.activate([
+            imageView.widthAnchor.constraint(equalToConstant: 269.scale),
+            imageView.heightAnchor.constraint(equalToConstant: 582.scale),
+            imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            imageView.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 124.scale : 40.scale)
+        ])
     }
 }
 
@@ -123,9 +131,7 @@ private extension OSlide4View {
         view.isUserInteractionEnabled = true
         view.addGestureRecognizer(tapGesture)
         view.isSelected = false
-        view.backgroundColor = UIColor.white
-        view.layer.cornerRadius = 20.scale
-        view.label.text = title.localized
+        view.text = title.localized
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view
@@ -143,6 +149,17 @@ private extension OSlide4View {
         view.layer.cornerRadius = 30.scale
         view.setAttributedTitle("Onboarding.Proceed".localized.attributed(with: attrs), for: .normal)
         view.addTarget(self, action: #selector(tapped), for: .touchUpInside)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
+    func makeImageView() -> UIImageView {
+        let view = UIImageView()
+        view.isUserInteractionEnabled = false
+        view.image = UIImage(named: "Onboarding.Slide4")
+        view.clipsToBounds = true
+        view.contentMode = .scaleAspectFit
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view
