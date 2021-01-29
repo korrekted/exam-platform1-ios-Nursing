@@ -23,7 +23,7 @@ final class CourseViewCoordinator {
         switch tab {
         case .study:
             parentVC?.mainView.tabView.selectedTab = tab
-            
+
             changeVC(on: studyVC)
         case .stats:
             parentVC?.mainView.tabView.selectedTab = tab

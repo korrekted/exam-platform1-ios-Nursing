@@ -6,6 +6,10 @@
   
 */
 
+// MARK: General
+"Cancel" = "Cancel";
+"Continue" = "Continue";
+
 // MARK: ImagePicker
 "ImagePicker.TakePhoto" = "Take photo";
 "ImagePicker.CameraRoll" = "Camera roll";
@@ -102,3 +106,15 @@
 "Stats.Day.One" = "day";
 "Stats.Day.Two" = "days";
 "Stats.Day.Many" = "days";
+
+// MARK: Paygate
+"Paygate.Main.Title" = "STUDY SMART\nKNOW THE QUESTIONS\nBEFOREHAND";
+"Paygate.Main.Cell1" = "Don’t spend hours learning";
+"Paygate.Main.Cell2" = "Train yourself with 5000+ questions";
+"Paygate.Main.Cell3" = "98% pass rate on the first attempt!";
+"Paygate.Main.Info" = "Secured with iTunes. Cancel anytime.";
+"Paygate.Main.TermsOfUse" = "Terms of use";
+"Paygate.Main.And" = " and ";
+"Paygate.Main.PrivacyPolicy" = "Privacy Policy";
+"Paygate.Main.RestorePurchases" = "Restore purchases";
+"Paygate.Purchase.Failed" = "Failed to make purchase";
