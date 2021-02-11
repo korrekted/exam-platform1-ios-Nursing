@@ -118,3 +118,8 @@
 "Paygate.Main.PrivacyPolicy" = "Privacy Policy";
 "Paygate.Main.RestorePurchases" = "Restore purchases";
 "Paygate.Purchase.Failed" = "Failed to make purchase";
+
+// MARK: Question
+"Question.Exploration" = "Exploration";
+"Question.Continue" = "Continue";
+"Question.Submit" = "Submit test";
