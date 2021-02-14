@@ -118,3 +118,20 @@
 "Paygate.Main.PrivacyPolicy" = "Privacy Policy";
 "Paygate.Main.RestorePurchases" = "Restore purchases";
 "Paygate.Purchase.Failed" = "Failed to make purchase";
+
+// MARK: Question
+"Question.Exploration" = "Exploration";
+"Question.Continue" = "Continue";
+"Question.Submit" = "Submit test";
+"Question.BackToStudying" = "Back to studying";
+
+// MARK: Test Stats
+"TestStats.Title" = "";
+"TestStats.TestTime" = "Your time";
+"TestStats.CommunityAverage" = "Community average";
+"TestStats.AverageScore" = "Average score";
+"TestStats.Filter.Title" = "Questions";
+"TestStats.Filter.Incorrect" = "Incorrect";
+"TestStats.Filter.Correct" = "Correct";
+"TestStats.Filter.All" = "All";
+"TestStats.QuestionsStats" = "%u correct\n%u incorrect";
