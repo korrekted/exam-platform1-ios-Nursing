@@ -12,6 +12,7 @@ final class TestView: UIView {
     lazy var bottomButton = makeBottomButton()
     lazy var nextButton = makeNextButton()
     lazy var tableView = makeTableView()
+    lazy var gradientView = makeGradientView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,15 +31,17 @@ extension TestView {
         switch state {
         case .confirm:
             bottomButton.setAttributedTitle("Question.Continue".localized.attributed(with: Self.buttonAttr), for: .normal)
-            bottomButton.isHidden = false
         case .submit:
             bottomButton.setAttributedTitle("Question.Submit".localized.attributed(with: Self.buttonAttr), for: .normal)
-            bottomButton.isHidden = false
         case .back:
             bottomButton.setAttributedTitle("Question.BackToStudying".localized.attributed(with: Self.buttonAttr), for: .normal)
-            bottomButton.isHidden = false
         case .hidden:
-            bottomButton.isHidden = true
+            break
+        }
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: state != .hidden ? 195 : 0, right: 0)
+        
+        [bottomButton, gradientView].forEach {
+            $0.isHidden = state == .hidden
         }
     }
 }
@@ -74,9 +77,16 @@ private extension TestView {
         ])
         
         NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            tableView.leftAnchor.constraint(equalTo: leftAnchor),
+            tableView.rightAnchor.constraint(equalTo: rightAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            gradientView.heightAnchor.constraint(equalToConstant: 195.scale),
+            gradientView.leftAnchor.constraint(equalTo: leftAnchor),
+            gradientView.rightAnchor.constraint(equalTo: rightAnchor),
+            gradientView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
         
         NSLayoutConstraint.activate([
@@ -92,6 +102,7 @@ private extension TestView {
             nextButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -16.scale),
             nextButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -67.scale)
         ])
+        
     }
 }
 
@@ -142,6 +153,24 @@ private extension TestView {
         view.tintColor = color
         view.backgroundColor = .white
         view.layer.cornerRadius = 20.scale
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
+    func makeGradientView() -> UIView {
+        let view = UIView()
+        let gradientLayer = CAGradientLayer()
+        
+        gradientLayer.colors = [UIColor.clear.cgColor, UIColor(integralRed: 241, green: 244, blue: 251).cgColor]
+        gradientLayer.locations = [0, 0.65]
+        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
+        gradientLayer.frame = CGRect(origin: .zero, size: CGSize(width: UIScreen.main.bounds.width, height: 195.scale))
+        
+        view.layer.mask = gradientLayer
+        view.isUserInteractionEnabled = false
+        view.backgroundColor = .white
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

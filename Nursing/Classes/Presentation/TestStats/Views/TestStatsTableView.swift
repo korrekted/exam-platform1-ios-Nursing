@@ -75,5 +75,4 @@ private extension TestStatsTableView {
         
         dataSource = self
     }
-    
 }

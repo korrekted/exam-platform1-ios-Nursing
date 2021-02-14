@@ -28,7 +28,7 @@ final class AnswersCell: UITableViewCell {
     }
 }
 
-// MARK: Make Public
+// MARK: Public
 extension AnswersCell {
     func configure(answers: [PossibleAnswerElement], isMultiple: Bool, didTap: (([Int]) -> Void)?) {
         stackView.arrangedSubviews.forEach {

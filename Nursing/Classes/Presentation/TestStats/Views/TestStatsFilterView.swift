@@ -39,6 +39,13 @@ extension TestStatsFilterView {
     }
 }
 
+// MARK: Private
+private extension TestStatsFilterView {
+    @objc func didTap(sender: UIButton) {
+        selectorView.frame = CGRect(x: sender.frame.minX, y: frame.height - 2.scale, width: sender.frame.width, height: 2.scale)
+    }
+}
+
 // MARK: Make constraints
 private extension TestStatsFilterView {
     func makeConstraints() {
@@ -60,10 +67,6 @@ private extension TestStatsFilterView {
             incorrectButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5.scale),
             incorrectButton.rightAnchor.constraint(lessThanOrEqualTo: rightAnchor, constant: -25.scale)
         ])
-    }
-    
-    @objc func didTap(sender: UIButton) {
-        selectorView.frame = CGRect(x: sender.frame.minX, y: frame.height - 2.scale, width: sender.frame.width, height: 2.scale)
     }
 }
 

@@ -32,7 +32,6 @@ private extension TestStatsView {
     }
 }
 
-
 // MARK: Make constraints
 private extension TestStatsView {
     func makeConstraints() {

@@ -144,6 +144,7 @@ private extension TestViewModel {
                     return .back
                 }
             }
+            .startWith(.hidden)
             .distinctUntilChanged()
     }
 }

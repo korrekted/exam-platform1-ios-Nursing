@@ -26,6 +26,7 @@ class TestStatsDescriptionView: UIView {
     }
 }
 
+// MARK: Public
 extension TestStatsDescriptionView {
     func setup(element: TestStatsDescriptionElement) {
         testTimeLineView.setup(title: "TestStats.TestTime".localized, value: element.userTime)

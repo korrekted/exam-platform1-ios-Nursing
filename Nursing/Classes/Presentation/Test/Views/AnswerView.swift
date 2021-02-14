@@ -20,7 +20,7 @@ final class AnswerView: UIView {
         
     private override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
+        initialize()
         makeConstraints()
     }
     
@@ -53,7 +53,7 @@ extension AnswerView {
 
 // MARK: Private
 private extension AnswerView {
-    func configure() {
+    func initialize() {
         layer.cornerRadius = 20.scale
         addGestureRecognizer(tapGesture)
         state = .initial

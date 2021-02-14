@@ -26,9 +26,9 @@ final class TestStatsProgressView: UIView {
     }
 }
 
-// MARK: API
+// MARK: Public
 extension TestStatsProgressView {
-    func progressAnimation(progress: CGFloat) {
+    func progress(progress: CGFloat) {
         progressLayer.strokeEnd = progress
     }
 }
@@ -52,7 +52,6 @@ private extension TestStatsProgressView {
         progressLayer.fillColor = UIColor.clear.cgColor
         progressLayer.lineCap = .round
         progressLayer.lineWidth = 15.scale
-        progressLayer.strokeEnd = 0
         progressLayer.strokeColor = UIColor(integralRed: 254, green: 105, blue: 88).cgColor
 
         layer.addSublayer(circleLayer)

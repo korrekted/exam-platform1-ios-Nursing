@@ -8,6 +8,8 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import AVFoundation
+import AVKit
 
 final class TestViewController: UIViewController {
     lazy var mainView = TestView()
@@ -75,8 +77,6 @@ final class TestViewController: UIViewController {
         viewModel.question
             .drive(Binder(mainView) { view, element in
                 view.progressView.setProgress(Float(element.index) / Float(element.questionsCount), animated: true)
-                let isNeedOffset = element.isMultiple || element.questionsCount == 1
-                view.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: isNeedOffset ? 150 : 0, right: 0)
             })
             .disposed(by: disposeBag)
         
@@ -100,7 +100,34 @@ final class TestViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        
+        mainView.tableView
+            .expandContent
+            .bind(to: Binder(self) { base, content in
+                switch content {
+                case let .image(url):
+                    let imageView = UIImageView()
+                    imageView.contentMode = .scaleAspectFit
+                    do {
+                        try imageView.image = UIImage(data: Data(contentsOf: url))
+                        let controller = UIViewController()
+                        controller.view.backgroundColor = .black
+                        controller.view.addSubview(imageView)
+                        imageView.frame = controller.view.bounds
+                        base.present(controller, animated: true)
+                    } catch {
+                        
+                    }
+                case let .video(url):
+                    let controller = AVPlayerViewController()
+                    controller.view.backgroundColor = .black
+                    let player = AVPlayer(url: url)
+                    controller.player = player
+                    base.present(controller, animated: true) { [weak player] in
+                        player?.play()
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
     }
 }
 

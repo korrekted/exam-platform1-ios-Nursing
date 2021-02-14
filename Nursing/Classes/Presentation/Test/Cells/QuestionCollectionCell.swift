@@ -7,11 +7,15 @@
 
 import UIKit
 import AVFoundation
+import RxSwift
+import RxCocoa
 
 class QuestionCollectionCell: UICollectionViewCell {
     
     private lazy var questionImageView = makeImageView()
     lazy var videoView = makeVideoView()
+    lazy var expandButton = makeExpandButton()
+    private var disposeBag = DisposeBag()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,7 +28,15 @@ class QuestionCollectionCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup(content: QuestionContentType) {
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+    }
+}
+
+// MARK: Public
+extension QuestionCollectionCell {
+    func setup(content: QuestionContentType, didTapExpand: @escaping () -> Void) {
         switch content {
         case let .image(url):
             videoView.isHidden = true
@@ -34,10 +46,17 @@ class QuestionCollectionCell: UICollectionViewCell {
             } catch {
                 
             }
-        case .video:
+        case let .video(url):
+            let player = AVPlayer(url: url)
+            videoView.player = player
             videoView.isHidden = false
             questionImageView.isHidden = true
+            player.play()
         }
+        
+        expandButton.rx.tap
+            .bind(onNext: didTapExpand)
+            .disposed(by: disposeBag)
     }
 }
 
@@ -54,15 +73,22 @@ private extension QuestionCollectionCell {
         NSLayoutConstraint.activate([
             questionImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             questionImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            questionImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            questionImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+            questionImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            questionImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor)
         ])
         
         NSLayoutConstraint.activate([
             videoView.topAnchor.constraint(equalTo: contentView.topAnchor),
             videoView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            videoView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            videoView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+            videoView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            videoView.rightAnchor.constraint(equalTo: contentView.rightAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            expandButton.heightAnchor.constraint(equalToConstant: 15.scale),
+            expandButton.widthAnchor.constraint(equalTo: expandButton.heightAnchor),
+            expandButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -15.scale),
+            expandButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15.scale)
         ])
     }
 }
@@ -84,6 +110,15 @@ private extension QuestionCollectionCell {
         view.layer.cornerRadius = 20.scale
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
+        contentView.addSubview(view)
+        return view
+    }
+    
+    func makeExpandButton() -> UIButton {
+        let view = UIButton()
+        view.setImage(UIImage(named: "Question.Expand"), for: .normal)
+        view.tintColor = .white
+        view.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(view)
         return view
     }
