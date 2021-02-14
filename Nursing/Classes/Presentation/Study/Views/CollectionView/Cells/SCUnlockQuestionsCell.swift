@@ -54,6 +54,7 @@ private extension SCUnlockQuestionsCell {
             .font(Fonts.SFProRounded.bold(size: 19.scale))
         
         let view = UIButton()
+        view.isUserInteractionEnabled = false
         view.layer.cornerRadius = 30.scale
         view.backgroundColor = UIColor(integralRed: 95, green: 70, blue: 245)
         view.setAttributedTitle("Study.UnlockQuestions".localized.attributed(with: attrs), for: .normal)

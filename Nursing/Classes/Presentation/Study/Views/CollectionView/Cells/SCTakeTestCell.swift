@@ -63,6 +63,7 @@ private extension SCTakeTestCell {
 private extension SCTakeTestCell {
     func makeButton() -> UIButton {
         let view = UIButton()
+        view.isUserInteractionEnabled = false
         view.layer.cornerRadius = 30.scale
         view.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(view)
