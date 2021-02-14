@@ -51,44 +51,6 @@ extension AnswerView {
     }
 }
 
-// MARK: Make constraints
-private extension AnswerView {
-    func makeConstraints() {
-        NSLayoutConstraint.activate([
-            answerLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15.scale),
-            answerLabel.topAnchor.constraint(equalTo: topAnchor, constant: 19.scale),
-            answerLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -19.scale),
-            answerLabel.trailingAnchor.constraint(equalTo: iconView.leadingAnchor, constant: -20.scale)
-        ])
-        
-        NSLayoutConstraint.activate([
-            iconView.heightAnchor.constraint(equalToConstant: 24.scale),
-            iconView.widthAnchor.constraint(equalTo: iconView.heightAnchor),
-            iconView.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -20.scale),
-            iconView.centerYAnchor.constraint(equalTo: centerYAnchor)
-        ])
-    }
-}
-
-// MARK: Lazy initialization
-private extension AnswerView {
-    func makeAnswerLabel() -> UILabel {
-        let view = UILabel()
-        view.numberOfLines = 0
-        view.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(view)
-        return view
-    }
-    
-    func makeIconView() -> UIImageView {
-        let view = UIImageView()
-        view.contentMode = .center
-        view.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(view)
-        return view
-    }
-}
-
 // MARK: Private
 private extension AnswerView {
     func configure() {
@@ -127,25 +89,40 @@ private extension AnswerView {
     }
 }
 
-#if DEBUG
-import SwiftUI
-@available(iOS 13.0, *)
-struct AnswerView_Previews: PreviewProvider {
-    
-    struct AnswerViewRepresentable: UIViewRepresentable {
-        func makeUIView(context: Context) -> AnswerView {
-            let view = AnswerView()
-            view.setAnswer(answer: "Answer")
-            view.setState(state: .error)
-            return view
-        }
-        func updateUIView(_ uiView: AnswerView, context: Context) {
-            
-        }
-    }
-
-    static var previews: some View {
-        return AnswerViewRepresentable().frame(width: 343, height: 58, alignment: .center)
+// MARK: Make constraints
+private extension AnswerView {
+    func makeConstraints() {
+        NSLayoutConstraint.activate([
+            answerLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15.scale),
+            answerLabel.topAnchor.constraint(equalTo: topAnchor, constant: 19.scale),
+            answerLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -19.scale),
+            answerLabel.trailingAnchor.constraint(equalTo: iconView.leadingAnchor, constant: -20.scale)
+        ])
+        
+        NSLayoutConstraint.activate([
+            iconView.heightAnchor.constraint(equalToConstant: 24.scale),
+            iconView.widthAnchor.constraint(equalTo: iconView.heightAnchor),
+            iconView.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -20.scale),
+            iconView.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
     }
 }
-#endif
+
+// MARK: Lazy initialization
+private extension AnswerView {
+    func makeAnswerLabel() -> UILabel {
+        let view = UILabel()
+        view.numberOfLines = 0
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
+    func makeIconView() -> UIImageView {
+        let view = UIImageView()
+        view.contentMode = .center
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+}

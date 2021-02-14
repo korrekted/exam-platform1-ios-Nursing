@@ -26,9 +26,9 @@ class QuestionCell: UITableViewCell {
 extension QuestionCell {
     func configure(question: String) {
         let attr = TextAttributes()
-            .font(Fonts.SFProRounded.regular(size: 25))
+            .font(Fonts.SFProRounded.regular(size: 25.scale))
             .textColor(.black)
-            .lineHeight(30)
+            .lineHeight(30.scale)
         
         questionLabel.attributedText = question.attributed(with: attr)
     }

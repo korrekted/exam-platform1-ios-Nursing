@@ -1,5 +1,5 @@
 //
-//  TestingViewModel.swift
+//  TestViewModel.swift
 //  Nursing
 //
 //  Created by Vitaliy Zagorodnov on 30.01.2021.
@@ -8,22 +8,28 @@
 import RxSwift
 import RxCocoa
 
-final class TestingViewModel {
+final class TestViewModel {
+    
+    let testType = BehaviorRelay<TestType?>(value: nil)
     let didTapNext = PublishRelay<Void>()
     let didTapConfirm = PublishRelay<Void>()
+    let didTapSubmit = PublishRelay<Void>()
     let selectedAnswers = BehaviorRelay<AnswerElement?>(value: nil)
     
     lazy var question = makeQuestion()
-    lazy var showNextButton = makeShowNext()
+    lazy var isEndOfTest = endOfTest()
+    lazy var userTestId = makeUserTestId()
+    lazy var bottomViewState = makeBottomState()
     
     private lazy var questionManager = QuestionManagerCore()
     private lazy var courseManager = CoursesManagerCore()
-    private lazy var testElement = makeTest().share(replay: 1, scope: .forever)
+    
+    private lazy var testElement = loadTest().share(replay: 1, scope: .forever)
     private lazy var answers = currentAnswers().share(replay: 1, scope: .forever)
 }
 
 // MARK: Private
-private extension TestingViewModel {
+private extension TestViewModel {
     func makeQuestion() -> Driver<QuestionElement> {
         Observable<Action>
             .merge(
@@ -36,7 +42,10 @@ private extension TestingViewModel {
     }
     
     func makeQestions() -> Observable<[QuestionElement]> {
-        let questions = testElement.compactMap { $0?.questions }
+        let questions = testElement.compactMap {
+            $0?.questions
+            
+        }
         
         let dataSource = Observable
             .combineLatest(questions, answers)
@@ -58,18 +67,44 @@ private extension TestingViewModel {
             .startWith(nil)
     }
     
-    func makeTest() -> Observable<Test?> {
+    func loadTest() -> Observable<Test?> {
         guard let courseId = courseManager.getSelectedCourse()?.id else {
             return .just(nil)
         }
         
-        return questionManager
-            .retrieveTenSet(courseId: courseId)
-            .asObservable()
-            .catchAndReturn(nil)
+        return testType
+            .compactMap { $0 }
+            .flatMapLatest { [weak self] type -> Observable<Test?> in
+                guard let self = self else { return .empty() }
+                
+                let test: Single<Test?>
+                
+                switch type {
+                case let .get(testId):
+                    test = self.questionManager.retrieve(courseId: courseId, testId: testId)
+                case .tenSet:
+                    test = self.questionManager.retrieveTenSet(courseId: courseId)
+                case .failedSet:
+                    test = self.questionManager.retrieveFailedSet(courseId: courseId)
+                case .qotd:
+                    test = self.questionManager.retrieveQotd(courseId: courseId)
+                case .randomSet:
+                    test = self.questionManager.retrieveRandomSet(courseId: courseId)
+                }
+                
+                return test
+                    .asObservable()
+                    .catchAndReturn(nil)
+            }
+    }
+
+    func makeUserTestId() -> Observable<Int> {
+        didTapSubmit
+            .withLatestFrom(testElement)
+            .compactMap { $0?.userTestId }
     }
     
-    func makeShowNext() -> Driver<Bool> {
+    func endOfTest() -> Driver<Bool> {
         answers
             .withLatestFrom(testElement) { ($0, $1?.userTestId) }
             .flatMapLatest { [questionManager] element, userTestId -> Observable<Bool> in
@@ -82,137 +117,39 @@ private extension TestingViewModel {
                         answerIds: element.answerIds
                     )
                     .catchAndReturn(nil)
-                    .map { !($0 ?? false) }
+                    .compactMap { $0 }
                     .asObservable()
                     
             }
-            .startWith(false)
+            .startWith(true)
             .asDriver(onErrorJustReturn: false)
     }
     
-    func makeMockTest() -> Observable<Test?> {
-        let answers = [
-            Answer(id: 1, answer: "Answer 1", isCorrect: false),
-            Answer(id: 2, answer: "Answer 2", isCorrect: false),
-            Answer(id: 3, answer: "Answer 3", isCorrect: true),
-            Answer(id: 4, answer: "Answer 4", isCorrect: false)]
-        
-        let questionText = "Which of the following tests should be ordered initially for the infant presenting with biliious emesis"
-        
-        let explanation = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat neque vel sagittis malesuada elit sed sit diam dictum. Venenatis vehicula neque purus risus leo, augue. Volutpat turpis in augue leo egestas integer feugiat eu sodales. Eget mattis turpis vitae aenean euismod lorem urna. Id potenti sagittis, sodales quis aliquet massa. Faucibus at quis neque, amet nisi. Ut etiam condimentum neque adipiscing id vitae, amet. Interdum."
-        
-        let question1 = Question(
-            id: 1,
-            image: URL(string: "https://rutasochi.ru/uploads/images/news/gori_sochi.jpg"),
-            video: URL(string: "https://www.radiantmediaplayer.com/media/big-buck-bunny-360p.mp4"),
-            question: "\(1) " + questionText,
-            answers: answers,
-            multiple: true,
-            explanation: explanation
-        )
-        
-        let question2 = Question(
-            id: 2,
-            image: nil,
-            video: nil,
-            question: "\(2) " + questionText,
-            answers: answers,
-            multiple: true,
-            explanation: explanation
-        )
-        
-        let question3 = Question(
-            id: 3,
-            image: nil,
-            video: nil,
-            question: "\(3) " + questionText,
-            answers: answers,
-            multiple: false,
-            explanation: explanation
-        )
-        
-        let question4 = Question(
-            id: 4,
-            image: nil,
-            video: nil,
-            question: "\(4) " + questionText,
-            answers: answers,
-            multiple: false,
-            explanation: explanation
-        )
-        
-        let question5 = Question(
-            id: 5,
-            image: nil,
-            video: nil,
-            question: "\(5) " + questionText,
-            answers: answers,
-            multiple: false,
-            explanation: explanation
-        )
-        
-        let question6 = Question(
-            id: 6,
-            image: nil,
-            video: nil,
-            question: "\(6) " + questionText,
-            answers: answers,
-            multiple: false,
-            explanation: explanation
-        )
-        
-        let question7 = Question(
-            id: 7,
-            image: nil,
-            video: nil,
-            question: "\(7) " + questionText,
-            answers: answers,
-            multiple: false,
-            explanation: explanation
-        )
-        
-        let question8 = Question(
-            id: 8,
-            image: nil,
-            video: nil,
-            question: "\(8) " + questionText,
-            answers: answers,
-            multiple: true,
-            explanation: explanation
-        )
-        
-        let question9 = Question(
-            id: 9,
-            image: nil,
-            video: nil,
-            question: "\(9) " + questionText,
-            answers: answers,
-            multiple: true,
-            explanation: explanation
-        )
-        
-        let question10 = Question(
-            id: 10,
-            image: nil,
-            video: nil,
-            question: "\(10) " + questionText,
-            answers: answers,
-            multiple: true,
-            explanation: explanation
-        )
-        
-        let test = Test(
-            paid: false,
-            userTestId: 0,
-            questions: [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10]
-        )
-        
-        return .just(test)
+    func makeBottomState() -> Driver<TestBottomButtonState> {
+        Driver.combineLatest(isEndOfTest, question)
+            .map { isEndOfTest, question -> TestBottomButtonState in
+                let isResult = question.elements.contains(where: {
+                    guard case .result = $0 else { return false }
+                    return true
+                })
+                
+                
+                if question.index == question.questionsCount, question.questionsCount != 1, isResult {
+                    return isEndOfTest ? .submit : .hidden
+                } else {
+                    guard isResult && question.questionsCount == 1 else {
+                        return isResult ? .hidden : question.isMultiple ? .confirm : .hidden
+                    }
+                    
+                    return .back
+                }
+            }
+            .distinctUntilChanged()
     }
 }
 
 // MARK: Additional
-private extension TestingViewModel {
+private extension TestViewModel {
     enum Action {
         case next
         case previos

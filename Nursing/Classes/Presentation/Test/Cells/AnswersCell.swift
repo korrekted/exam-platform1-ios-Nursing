@@ -8,7 +8,6 @@ import UIKit
 import RxSwift
 
 final class AnswersCell: UITableViewCell {
-    private lazy var containerView = makeContainerView()
     private lazy var stackView = makeStackView()
     
     private var disposeBag = DisposeBag()
@@ -107,36 +106,26 @@ private extension AnswersCell {
 private extension AnswersCell {
     func makeConstraints() {
         NSLayoutConstraint.activate([
-            containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10.scale),
-            containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10.scale),
-            containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.scale),
-            containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16.scale)
+            stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10.scale),
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.scale),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16.scale)
         ])
         
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: containerView.topAnchor),
-            stackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
-            stackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor)
-        ])
+        
+        let anchor = stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10.scale)
+        anchor.priority = .init(999)
+        anchor.isActive = true
     }
 }
 
 // MARK: Lazy initialization
 private extension AnswersCell {
-    func makeContainerView() -> UIView {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(view)
-        return view
-    }
-    
     func makeStackView() -> UIStackView {
         let view = UIStackView()
         view.spacing = 15.scale
         view.axis = .vertical
         view.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addSubview(view)
+        contentView.addSubview(view)
         return view
     }
     

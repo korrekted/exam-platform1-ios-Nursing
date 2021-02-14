@@ -51,6 +51,13 @@ private extension StudyViewController {
     
     @objc
     func settingsTapped() {
-        navigationController?.pushViewController(SettingsViewController.make(), animated: true)
+        let controller = TestViewController.make(testType: .tenSet)
+        controller.didTapSubmit = { [weak self] userTestId in
+            self?.dismiss(animated: false, completion: { [weak self] in
+                self?.present(TestStatsViewController.make(userTestId: userTestId), animated: true)
+            })
+        }
+        present(controller, animated: true)
+//        navigationController?.pushViewController(SettingsViewController.make(), animated: true)
     }
 }

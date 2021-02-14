@@ -1,16 +1,15 @@
 //
-//  TestingView.swift
+//  TestView.swift
 //  Nursing
 //
 //  Created by Vitaliy Zagorodnov on 30.01.2021.
 //
 import UIKit
 
-final class TestingView: UIView {
+final class TestView: UIView {
     lazy var progressView = makeProgressView()
     lazy var closeButton = makeCloseButton()
-    lazy var continueButton = makeBottomButton(title: "Question.Continue".localized)
-    lazy var submitButton = makeBottomButton(title: "Question.Submit".localized)
+    lazy var bottomButton = makeBottomButton()
     lazy var nextButton = makeNextButton()
     lazy var tableView = makeTableView()
     
@@ -25,15 +24,40 @@ final class TestingView: UIView {
     }
 }
 
-// MARK: Private
-private extension TestingView {
-    func initialize() {
-        backgroundColor = UIColor(integralRed: 242, green: 245, blue: 252)
+//MARK: Public
+extension TestView {
+    func setupBottomButton(for state: TestBottomButtonState) {
+        switch state {
+        case .confirm:
+            bottomButton.setAttributedTitle("Question.Continue".localized.attributed(with: Self.buttonAttr), for: .normal)
+            bottomButton.isHidden = false
+        case .submit:
+            bottomButton.setAttributedTitle("Question.Submit".localized.attributed(with: Self.buttonAttr), for: .normal)
+            bottomButton.isHidden = false
+        case .back:
+            bottomButton.setAttributedTitle("Question.BackToStudying".localized.attributed(with: Self.buttonAttr), for: .normal)
+            bottomButton.isHidden = false
+        case .hidden:
+            bottomButton.isHidden = true
+        }
     }
 }
 
+// MARK: Private
+private extension TestView {
+    func initialize() {
+        backgroundColor = UIColor(integralRed: 242, green: 245, blue: 252)
+    }
+    
+    static let buttonAttr = TextAttributes()
+        .font(Fonts.SFProRounded.regular(size: 20.scale))
+        .lineHeight(23.scale)
+        .textColor(.white)
+        .textAlignment(.center)
+}
+
 // MARK: Make constraints
-private extension TestingView {
+private extension TestView {
     func makeConstraints() {
         NSLayoutConstraint.activate([
             closeButton.heightAnchor.constraint(equalToConstant: 30.scale),
@@ -56,17 +80,10 @@ private extension TestingView {
         ])
         
         NSLayoutConstraint.activate([
-            continueButton.heightAnchor.constraint(equalToConstant: 60.scale),
-            continueButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 26.scale),
-            continueButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -26.scale),
-            continueButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -70.scale)
-        ])
-        
-        NSLayoutConstraint.activate([
-            submitButton.heightAnchor.constraint(equalToConstant: 60.scale),
-            submitButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 26.scale),
-            submitButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -26.scale),
-            submitButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -70.scale)
+            bottomButton.heightAnchor.constraint(equalToConstant: 60.scale),
+            bottomButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 26.scale),
+            bottomButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -26.scale),
+            bottomButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -70.scale)
         ])
         
         NSLayoutConstraint.activate([
@@ -79,7 +96,7 @@ private extension TestingView {
 }
 
 // MARK: Lazy initialization
-private extension TestingView {
+private extension TestView {
     func makeTableView() -> QuestionTableView {
         let view = QuestionTableView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -108,18 +125,10 @@ private extension TestingView {
         return view
     }
     
-    func makeBottomButton(title: String) -> UIButton {
-        let attr = TextAttributes()
-            .font(Fonts.SFProRounded.regular(size: 20.scale))
-            .lineHeight(23.scale)
-            .textColor(.white)
-            .textAlignment(.center)
-        
+    func makeBottomButton() -> UIButton {
         let view = UIButton()
-        view.setAttributedTitle(title.attributed(with: attr), for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 30.scale
-        view.isHidden = true
         view.backgroundColor = UIColor(integralRed: 95, green: 70, blue: 245)
         addSubview(view)
         return view
@@ -133,8 +142,6 @@ private extension TestingView {
         view.tintColor = color
         view.backgroundColor = .white
         view.layer.cornerRadius = 20.scale
-        view.layer.shadowColor = color.withAlphaComponent(0.05).cgColor
-        view.layer.shadowOffset = CGSize(width: 4.scale, height: 20.scale)        
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view
