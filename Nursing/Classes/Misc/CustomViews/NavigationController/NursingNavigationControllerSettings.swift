@@ -21,7 +21,7 @@ extension NursingNavigationControllerSettings {
         NursingNavigationControllerSettings(backgroundImage: UIImage(),
                                             shadowImage: UIImage(),
                                             isTranslucent: true,
-                                            tintColor: UIColor.white,
+                                            tintColor: UIColor(integralRed: 0, green: 122, blue: 255),
                                             titleTextAttrributes: TextAttributes()
                                                 .textColor(UIColor.white)
                                                 .font(Fonts.SFProRounded.semiBold(size: 17.scale))

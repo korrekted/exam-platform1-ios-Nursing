@@ -9,6 +9,8 @@ import UIKit
 
 final class StudyView: UIView {
     lazy var titleLabel = makeTitleLabel()
+    lazy var settingsButton = makeSettingsButton()
+    lazy var collectionView = makeCollectionView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,8 +35,22 @@ private extension StudyView {
 private extension StudyView {
     func makeConstraints() {
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 47.scale : 17.scale),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 88.scale : 45.scale),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale)
+        ])
+        
+        NSLayoutConstraint.activate([
+            settingsButton.widthAnchor.constraint(equalToConstant: 24.scale),
+            settingsButton.heightAnchor.constraint(equalToConstant: 24.scale),
+            settingsButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -19.scale),
+            settingsButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            collectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5.scale),
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }
@@ -50,6 +66,29 @@ private extension StudyView {
         
         let view = UILabel()
         view.attributedText = "Study.Title".localized.attributed(with: attrs)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
+    func makeSettingsButton() -> UIButton {
+        let view = UIButton()
+        view.backgroundColor = UIColor.clear
+        view.setImage(UIImage(named: "Study.Settings"), for: .normal)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
+    func makeCollectionView() -> StudyCollectionView {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 20.scale
+        
+        let view = StudyCollectionView(frame: .zero, collectionViewLayout: layout)
+        view.backgroundColor = UIColor.clear
+        view.contentInset = UIEdgeInsets(top: 0, left: 16.scale, bottom: 0, right: 16.scale)
+        view.showsVerticalScrollIndicator = false
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

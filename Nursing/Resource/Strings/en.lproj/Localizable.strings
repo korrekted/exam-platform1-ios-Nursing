@@ -84,6 +84,18 @@
 
 // MARK: Study
 "Study.Title" = "Study";
+"Study.Day.One" = "day";
+"Study.Day.Two" = "days";
+"Study.Day.Many" = "days";
+"Study.Streak" = "streak";
+"Study.TakeTest" = "Take a test";
+"Study.TakeFreeTest" = "Take a free test";
+"Study.UnlockQuestions" = "Unlock all questions";
+"Study.QuizModes" = "Quiz Modes";
+"Study.Mode.TodaysQuestion" = "Today’s\nQuestion";
+"Study.Mode.TenQuestions" = "10 Questions\nQuick Quiz";
+"Study.Mode.MissedQuestions" = "Missed\nQuestions Quiz";
+"Study.Mode.RandomSet" = "Random\nSet Quiz";
 
 // MARK: Settings
 "Settings.Title" = "Settings";

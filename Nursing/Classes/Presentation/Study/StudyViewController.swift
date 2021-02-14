@@ -22,7 +22,26 @@ final class StudyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addNavItemActions()
+        viewModel
+            .sections
+            .drive(onNext: { [weak self] sections in
+                self?.mainView.collectionView.setup(sections: sections)
+            })
+            .disposed(by: disposeBag)
+        
+        mainView
+            .settingsButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.settingsTapped()
+            })
+            .disposed(by: disposeBag)
+        
+        mainView
+            .collectionView.selected
+            .subscribe(onNext: { [weak self] element in
+                self?.selected(element: element)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -30,10 +49,6 @@ final class StudyViewController: UIViewController {
 extension StudyViewController {
     static func make() -> StudyViewController {
         let vc = StudyViewController()
-        let item = UIBarButtonItem()
-        item.image = UIImage(named: "Study.Settings")
-        item.tintColor = UIColor(integralRed: 95, green: 70, blue: 245)
-        vc.navigationItem.rightBarButtonItem = item
         vc.navigationItem.backButtonTitle = " "
         return vc
     }
@@ -41,16 +56,20 @@ extension StudyViewController {
 
 // MARK: Private
 private extension StudyViewController {
-    func addNavItemActions() {
-        navigationItem.rightBarButtonItem?.rx.tap
-            .subscribe(onNext: { [weak self] event in
-                self?.settingsTapped()
-            })
-            .disposed(by: disposeBag)
-    }
-    
-    @objc
     func settingsTapped() {
         navigationController?.pushViewController(SettingsViewController.make(), animated: true)
+    }
+    
+    func selected(element: StudyCollectionElement) {
+        switch element {
+        case .brief, .title:
+            break
+        case .unlockAllQuestions:
+            UIApplication.shared.keyWindow?.rootViewController?.present(PaygateViewController.make(), animated: true)
+        case .takeTest(let activeSubscription):
+            break
+        case .mode(let mode):
+            break
+        }
     }
 }

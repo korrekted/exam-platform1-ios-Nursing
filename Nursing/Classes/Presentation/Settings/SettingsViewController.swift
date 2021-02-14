@@ -46,7 +46,7 @@ private extension SettingsViewController {
     func tapped(_ tapped: SettingsTableView.Tapped) {
         switch tapped {
         case .unlock:
-            present(PaygateViewController.make(), animated: true)
+            UIApplication.shared.keyWindow?.rootViewController?.present(PaygateViewController.make(), animated: true)
         case .course:
             UIApplication.shared.keyWindow?.rootViewController = NursingNavigationController(rootViewController: CoursesViewController.make())
         case .rateUs:
