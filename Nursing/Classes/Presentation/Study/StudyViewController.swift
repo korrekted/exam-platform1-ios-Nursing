@@ -69,7 +69,32 @@ private extension StudyViewController {
         case .takeTest(let activeSubscription):
             break
         case .mode(let mode):
+            tapped(mode: mode.mode)
+        }
+    }
+    
+    func tapped(mode: SCEMode.Mode) {
+        switch mode {
+        case .ten:
+            break
+        case .random:
+            break
+        case .missed:
+            break
+        case .today:
             break
         }
+        
+        openTest(type: .tenSet)
+    }
+    
+    func openTest(type: TestType) {
+        let controller = TestViewController.make(testType: type)
+        controller.didTapSubmit = { [weak self] userTestId in
+            self?.dismiss(animated: false, completion: { [weak self] in
+                self?.present(TestStatsViewController.make(userTestId: userTestId), animated: true)
+            })
+        }
+        present(controller, animated: true)
     }
 }
