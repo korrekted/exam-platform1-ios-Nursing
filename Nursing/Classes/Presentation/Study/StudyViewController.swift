@@ -76,9 +76,15 @@ private extension StudyViewController {
     func tappedTakeTest(activeSubscription: Bool, configs: [TestConfig]) {
         switch activeSubscription {
         case true:
-            break
+            openTest(type: .get(testId: nil))
         case false:
+            let freeConfigs = configs.filter { !$0.paid }
             
+            guard let freeTestId = freeConfigs.randomElement()?.id else {
+                return
+            }
+            
+            openTest(type: .get(testId: freeTestId))
         }
     }
     
