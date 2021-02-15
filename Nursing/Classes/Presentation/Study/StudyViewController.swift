@@ -65,7 +65,7 @@ private extension StudyViewController {
         case .brief, .title:
             break
         case .unlockAllQuestions:
-            UIApplication.shared.keyWindow?.rootViewController?.present(PaygateViewController.make(), animated: true)
+            openPaygate()
         case .takeTest(let activeSubscription):
             break
         case .mode(let mode):
@@ -76,16 +76,14 @@ private extension StudyViewController {
     func tapped(mode: SCEMode.Mode) {
         switch mode {
         case .ten:
-            break
+            openTest(type: .tenSet)
         case .random:
-            break
+            openTest(type: .randomSet)
         case .missed:
-            break
+            openTest(type: .failedSet)
         case .today:
-            break
+            openTest(type: .qotd)
         }
-        
-        openTest(type: .tenSet)
     }
     
     func openTest(type: TestType) {
@@ -96,5 +94,9 @@ private extension StudyViewController {
             })
         }
         present(controller, animated: true)
+    }
+    
+    func openPaygate() {
+        UIApplication.shared.keyWindow?.rootViewController?.present(PaygateViewController.make(), animated: true)
     }
 }

@@ -15,4 +15,5 @@ protocol QuestionManager: class {
     func retrieveQotd(courseId: Int) -> Single<Test?>
     func retrieveRandomSet(courseId: Int) -> Single<Test?>
     func sendAnswer(questionId: Int, userTestId: Int, answerIds: [Int]) -> Single<Bool?>
+    func retrieveConfig(courseId: Int) -> Single<[TestConfig]>
 }

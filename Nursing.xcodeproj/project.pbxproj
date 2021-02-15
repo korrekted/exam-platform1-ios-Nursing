@@ -78,6 +78,9 @@
 		95A0D10A3FF5DF8ADD207AAB /* Pods_Nursing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D58953997718D4A60C1FB4B /* Pods_Nursing.framework */; };
 		9629513A25D7E7AC00643B6B /* SCBriefDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9629513925D7E7AC00643B6B /* SCBriefDayView.swift */; };
 		9629513E25D7E87700643B6B /* SCBriefDaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9629513D25D7E87700643B6B /* SCBriefDaysView.swift */; };
+		9629517B25DAC22700643B6B /* TestConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9629517A25DAC22700643B6B /* TestConfig.swift */; };
+		9629517F25DAC2B800643B6B /* GetTestConfigRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9629517E25DAC2B800643B6B /* GetTestConfigRequest.swift */; };
+		9629518225DAC36900643B6B /* GetTestConfigResponseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9629518125DAC36900643B6B /* GetTestConfigResponseMapper.swift */; };
 		962AEA4C25B497AD0032E7C3 /* CoursesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962AEA4B25B497AD0032E7C3 /* CoursesManager.swift */; };
 		962AEA5025B497DD0032E7C3 /* CoursesManagerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962AEA4F25B497DD0032E7C3 /* CoursesManagerCore.swift */; };
 		962AEA5425B498FC0032E7C3 /* CoursesManagerMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962AEA5325B498FC0032E7C3 /* CoursesManagerMediator.swift */; };
@@ -268,6 +271,9 @@
 		8D58953997718D4A60C1FB4B /* Pods_Nursing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nursing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9629513925D7E7AC00643B6B /* SCBriefDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCBriefDayView.swift; sourceTree = "<group>"; };
 		9629513D25D7E87700643B6B /* SCBriefDaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCBriefDaysView.swift; sourceTree = "<group>"; };
+		9629517A25DAC22700643B6B /* TestConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConfig.swift; sourceTree = "<group>"; };
+		9629517E25DAC2B800643B6B /* GetTestConfigRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTestConfigRequest.swift; sourceTree = "<group>"; };
+		9629518125DAC36900643B6B /* GetTestConfigResponseMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTestConfigResponseMapper.swift; sourceTree = "<group>"; };
 		962AEA4B25B497AD0032E7C3 /* CoursesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesManager.swift; sourceTree = "<group>"; };
 		962AEA4F25B497DD0032E7C3 /* CoursesManagerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesManagerCore.swift; sourceTree = "<group>"; };
 		962AEA5325B498FC0032E7C3 /* CoursesManagerMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesManagerMediator.swift; sourceTree = "<group>"; };
@@ -549,6 +555,8 @@
 				8649253D25D1BCAB00D1A491 /* SendAnswerRequest.swift */,
 				8649254625D1C12B00D1A491 /* GetTestResponseMapper.swift */,
 				8649254925D1C5BD00D1A491 /* SendAnswerResponseMapper.swift */,
+				9629517E25DAC2B800643B6B /* GetTestConfigRequest.swift */,
+				9629518125DAC36900643B6B /* GetTestConfigResponseMapper.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -610,6 +618,7 @@
 			isa = PBXGroup;
 			children = (
 				867D50F225C7411F00606B09 /* Test.swift */,
+				9629517A25DAC22700643B6B /* TestConfig.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1344,6 +1353,7 @@
 				8649253E25D1BCAB00D1A491 /* SendAnswerRequest.swift in Sources */,
 				8635FA3F25D6EB31007C06AB /* TestStatsDescriptionElement.swift in Sources */,
 				96B92B4225C4A76C0003002D /* PaygateViewControllerDelegate.swift in Sources */,
+				9629517F25DAC2B800643B6B /* GetTestConfigRequest.swift in Sources */,
 				962AEA4C25B497AD0032E7C3 /* CoursesManager.swift in Sources */,
 				96D38B6E25B30A4C00EADC9A /* Fonts.swift in Sources */,
 				8614563A25D5B40200C0E676 /* TestStatsTableView.swift in Sources */,
@@ -1387,7 +1397,9 @@
 				962AEA5425B498FC0032E7C3 /* CoursesManagerMediator.swift in Sources */,
 				96E437DA25BEDCA200B4320D /* OSlide15View.swift in Sources */,
 				96D38BB825B476F000EADC9A /* TabItemView.swift in Sources */,
+				9629517B25DAC22700643B6B /* TestConfig.swift in Sources */,
 				86A9DF4025BD9F970070D214 /* PassRateCell.swift in Sources */,
+				9629518225DAC36900643B6B /* GetTestConfigResponseMapper.swift in Sources */,
 				867D50DF25C6EFAC00606B09 /* QuestionTableView.swift in Sources */,
 				8635FA5025D6F5DD007C06AB /* TestStatsManagerCore.swift in Sources */,
 				8649253125D1BB7800D1A491 /* GetTenSetRequest.swift in Sources */,

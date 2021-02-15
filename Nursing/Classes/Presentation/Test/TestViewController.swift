@@ -135,9 +135,7 @@ final class TestViewController: UIViewController {
 extension TestViewController {
     static func make(testType: TestType) -> TestViewController {
         let controller = TestViewController()
-        if #available(iOS 13.0, *) {
-            controller.isModalInPresentation = true
-        }
+        controller.modalPresentationStyle = .fullScreen
         controller.viewModel.testType.accept(testType)
         return controller
     }

@@ -10,8 +10,10 @@ struct MainStatsElement {
     let testTaken: Int
     let correctAnswers: Int
     let questionsTaken: Int
+    let testsTakenNum: Int
     let longestStreak: Int
     let answeredQuestions: Int
+    let correctAnswersNum: Int
 }
 
 // MARK: Initialize
@@ -21,7 +23,9 @@ extension MainStatsElement {
         testTaken = stats.testTaken
         correctAnswers = stats.correctAnswers
         questionsTaken = stats.questionsTaken
+        testsTakenNum = stats.testsTakenNum
         longestStreak = stats.longestStreak
         answeredQuestions = stats.answeredQuestions
+        correctAnswersNum = stats.correctAnswersNum
     }
 }

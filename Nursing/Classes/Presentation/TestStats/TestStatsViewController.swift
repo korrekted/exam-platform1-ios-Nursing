@@ -46,9 +46,7 @@ class TestStatsViewController: UIViewController {
 extension TestStatsViewController {
     static func make(userTestId: Int) -> TestStatsViewController {
         let controller = TestStatsViewController()
-        if #available(iOS 13.0, *) {
-            controller.isModalInPresentation = true
-        }
+        controller.modalPresentationStyle = .fullScreen
         controller.viewModel.userTestId.accept(userTestId)
         return controller
     }

@@ -12,8 +12,10 @@ struct Stats {
     let testTaken: Int
     let correctAnswers: Int
     let questionsTaken: Int
+    let testsTakenNum: Int
     let longestStreak: Int
     let answeredQuestions: Int
+    let correctAnswersNum: Int
     let courseStats: [CourseStats]
     
     struct CourseStats: Codable {

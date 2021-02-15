@@ -98,4 +98,18 @@ extension QuestionManagerCore {
             .callServerApi(requestBody: request)
             .map(SendAnswerResponseMapper.map(from:))
     }
+    
+    func retrieveConfig(courseId: Int) -> Single<[TestConfig]> {
+        guard let userToken = SessionManagerCore().getSession()?.userToken else {
+            return .error(SignError.tokenNotFound)
+        }
+        
+        let request = GetTestConfigRequest(userToken: userToken,
+                                               courseId: courseId)
+        
+        return SDKStorage.shared
+            .restApiTransport
+            .callServerApi(requestBody: request)
+            .map(GetTestConfigResponseMapper.from(response:))
+    }
 }

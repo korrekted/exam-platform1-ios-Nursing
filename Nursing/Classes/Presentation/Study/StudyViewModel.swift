@@ -11,12 +11,24 @@ import RxCocoa
 final class StudyViewModel {
     private lazy var courseManager = CoursesManagerCore()
     private lazy var sessionManager = SessionManagerCore()
+    private lazy var questionManager = QuestionManagerCore()
     
     lazy var sections = makeSections()
+    lazy var testsConfig = makeTestsConfig()
 }
 
 // MARK: Private
 private extension StudyViewModel {
+    func makeTestsConfig() -> Driver<[TestConfig]> {
+        guard let courseId = courseManager.getSelectedCourse()?.id else {
+            return .empty()
+        }
+        
+        return questionManager
+            .retrieveConfig(courseId: courseId)
+            .asDriver(onErrorJustReturn: [])
+    }
+    
     func makeSections() -> Driver<[StudyCollectionSection]> {
         let brief = makeBrief()
         let unlockQuestions = makeUnlockQuestions()
@@ -100,17 +112,17 @@ private extension StudyViewModel {
                                     title: "Study.Mode.TodaysQuestion".localized)
                 let todayElement = StudyCollectionElement.mode(today)
                 
-                let ten = SCEMode(mode: .today,
+                let ten = SCEMode(mode: .ten,
                                     image: "Study.Mode.Ten",
                                     title: "Study.Mode.TenQuestions".localized)
                 let tenElement = StudyCollectionElement.mode(ten)
                 
-                let missed = SCEMode(mode: .today,
+                let missed = SCEMode(mode: .missed,
                                     image: "Study.Mode.Missed",
                                     title: "Study.Mode.MissedQuestions".localized)
                 let missedElement = StudyCollectionElement.mode(missed)
                 
-                let random = SCEMode(mode: .today,
+                let random = SCEMode(mode: .random,
                                     image: "Study.Mode.Random",
                                     title: "Study.Mode.RandomSet".localized)
                 let randomElement = StudyCollectionElement.mode(random)
