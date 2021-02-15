@@ -22,6 +22,8 @@ final class StudyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let activeSubscription = viewModel.activeSubscription
+        
         viewModel
             .sections
             .drive(onNext: { [weak self] sections in
@@ -38,8 +40,11 @@ final class StudyViewController: UIViewController {
         
         mainView
             .collectionView.selected
-            .subscribe(onNext: { [weak self] element in
-                self?.selected(element: element)
+            .withLatestFrom(activeSubscription) { ($0, $1) }
+            .subscribe(onNext: { [weak self] stub in
+                let (element, activeSubscription) = stub
+                
+                self?.selected(element: element, activeSubscription: activeSubscription)
             })
             .disposed(by: disposeBag)
     }
@@ -60,7 +65,7 @@ private extension StudyViewController {
         navigationController?.pushViewController(SettingsViewController.make(), animated: true)
     }
     
-    func selected(element: StudyCollectionElement) {
+    func selected(element: StudyCollectionElement, activeSubscription: Bool) {
         switch element {
         case .brief, .title:
             break
@@ -69,14 +74,14 @@ private extension StudyViewController {
         case .takeTest(let activeSubscription, let configs):
             tappedTakeTest(activeSubscription: activeSubscription, configs: configs)
         case .mode(let mode):
-            tapped(mode: mode.mode)
+            tapped(mode: mode.mode, activeSubscription: activeSubscription)
         }
     }
     
     func tappedTakeTest(activeSubscription: Bool, configs: [TestConfig]) {
         switch activeSubscription {
         case true:
-            openTest(type: .get(testId: nil))
+            openTest(type: .get(testId: nil), activeSubscription: activeSubscription)
         case false:
             let freeConfigs = configs.filter { !$0.paid }
             
@@ -84,25 +89,25 @@ private extension StudyViewController {
                 return
             }
             
-            openTest(type: .get(testId: freeTestId))
+            openTest(type: .get(testId: freeTestId), activeSubscription: activeSubscription)
         }
     }
     
-    func tapped(mode: SCEMode.Mode) {
+    func tapped(mode: SCEMode.Mode, activeSubscription: Bool) {
         switch mode {
         case .ten:
-            openTest(type: .tenSet)
+            openTest(type: .tenSet, activeSubscription: activeSubscription)
         case .random:
-            openTest(type: .randomSet)
+            openTest(type: .randomSet, activeSubscription: activeSubscription)
         case .missed:
-            openTest(type: .failedSet)
+            openTest(type: .failedSet, activeSubscription: activeSubscription)
         case .today:
-            openTest(type: .qotd)
+            openTest(type: .qotd, activeSubscription: activeSubscription)
         }
     }
     
-    func openTest(type: TestType) {
-        let controller = TestViewController.make(testType: type)
+    func openTest(type: TestType, activeSubscription: Bool) {
+        let controller = TestViewController.make(testType: type, activeSubscription: activeSubscription)
         controller.didTapSubmit = { [weak self] userTestId in
             self?.dismiss(animated: false, completion: { [weak self] in
                 self?.present(TestStatsViewController.make(userTestId: userTestId), animated: true)

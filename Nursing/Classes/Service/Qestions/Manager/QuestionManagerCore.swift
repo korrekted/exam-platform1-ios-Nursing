@@ -7,12 +7,10 @@
 
 import RxSwift
 
-final class QuestionManagerCore: QuestionManager {
-    
-}
+final class QuestionManagerCore: QuestionManager {}
 
 extension QuestionManagerCore {
-    func retrieve(courseId: Int, testId: Int?) -> Single<Test?> {
+    func retrieve(courseId: Int, testId: Int?, activeSubscription: Bool) -> Single<Test?> {
         guard let userToken = SessionManagerCore().getSession()?.userToken else {
             return .deferred { .just(nil) }
         }
@@ -20,7 +18,8 @@ extension QuestionManagerCore {
         let request = GetTestRequest(
             userToken: userToken,
             courseId: courseId,
-            testid: testId
+            testid: testId,
+            activeSubscription: activeSubscription
         )
         
         return SDKStorage.shared
@@ -29,12 +28,14 @@ extension QuestionManagerCore {
             .map(GetTestResponseMapper.map(from:))
     }
     
-    func retrieveTenSet(courseId: Int) -> Single<Test?> {
+    func retrieveTenSet(courseId: Int, activeSubscription: Bool) -> Single<Test?> {
         guard let userToken = SessionManagerCore().getSession()?.userToken else {
             return .deferred { .just(nil) }
         }
         
-        let request = GetTenSetRequest(userToken: userToken, courseId: courseId)
+        let request = GetTenSetRequest(userToken: userToken,
+                                       courseId: courseId,
+                                       activeSubscription: activeSubscription)
         
         return SDKStorage.shared
             .restApiTransport
@@ -42,12 +43,14 @@ extension QuestionManagerCore {
             .map(GetTestResponseMapper.map(from:))
     }
     
-    func retrieveFailedSet(courseId: Int) -> Single<Test?> {
+    func retrieveFailedSet(courseId: Int, activeSubscription: Bool) -> Single<Test?> {
         guard let userToken = SessionManagerCore().getSession()?.userToken else {
             return .deferred { .just(nil) }
         }
         
-        let request = GetFailedSetRequest(userToken: userToken, courseId: courseId)
+        let request = GetFailedSetRequest(userToken: userToken,
+                                          courseId: courseId,
+                                          activeSubscription: activeSubscription)
         
         return SDKStorage.shared
             .restApiTransport
@@ -55,12 +58,14 @@ extension QuestionManagerCore {
             .map(GetTestResponseMapper.map(from:))
     }
     
-    func retrieveQotd(courseId: Int) -> Single<Test?> {
+    func retrieveQotd(courseId: Int, activeSubscription: Bool) -> Single<Test?> {
         guard let userToken = SessionManagerCore().getSession()?.userToken else {
             return .deferred { .just(nil) }
         }
         
-        let request = GetQotdRequest(userToken: userToken, courseId: courseId)
+        let request = GetQotdRequest(userToken: userToken,
+                                     courseId: courseId,
+                                     activeSubscription: activeSubscription)
         
         return SDKStorage.shared
             .restApiTransport
@@ -68,12 +73,14 @@ extension QuestionManagerCore {
             .map(GetTestResponseMapper.map(from:))
     }
     
-    func retrieveRandomSet(courseId: Int) -> Single<Test?> {
+    func retrieveRandomSet(courseId: Int, activeSubscription: Bool) -> Single<Test?> {
         guard let userToken = SessionManagerCore().getSession()?.userToken else {
             return .deferred { .just(nil) }
         }
         
-        let request = GetRandomSetRequest(userToken: userToken, courseId: courseId)
+        let request = GetRandomSetRequest(userToken: userToken,
+                                          courseId: courseId,
+                                          activeSubscription: activeSubscription)
         
         return SDKStorage.shared
             .restApiTransport

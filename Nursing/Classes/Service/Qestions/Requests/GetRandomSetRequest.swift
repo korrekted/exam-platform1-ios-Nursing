@@ -10,10 +10,12 @@ import Alamofire
 struct GetRandomSetRequest: APIRequestBody {
     private let userToken: String
     private let courseId: Int
+    private let activeSubscription: Bool
     
-    init(userToken: String, courseId: Int) {
+    init(userToken: String, courseId: Int, activeSubscription: Bool) {
         self.userToken = userToken
         self.courseId = courseId
+        self.activeSubscription = activeSubscription
     }
     
     var url: String {
@@ -28,7 +30,8 @@ struct GetRandomSetRequest: APIRequestBody {
          [
             "_api_key": GlobalDefinitions.apiKey,
             "_user_token": userToken,
-            "course_id": courseId
+            "course_id": courseId,
+            "user_is_premium": activeSubscription
         ]
     }
 }

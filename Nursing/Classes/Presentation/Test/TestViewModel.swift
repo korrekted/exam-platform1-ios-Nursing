@@ -10,6 +10,8 @@ import RxCocoa
 
 final class TestViewModel {
     
+    var activeSubscription = false
+    
     let testType = BehaviorRelay<TestType?>(value: nil)
     let didTapNext = PublishRelay<Void>()
     let didTapConfirm = PublishRelay<Void>()
@@ -81,15 +83,21 @@ private extension TestViewModel {
                 
                 switch type {
                 case let .get(testId):
-                    test = self.questionManager.retrieve(courseId: courseId, testId: testId)
+                    test = self.questionManager.retrieve(courseId: courseId,
+                                                         testId: testId,
+                                                         activeSubscription: self.activeSubscription)
                 case .tenSet:
-                    test = self.questionManager.retrieveTenSet(courseId: courseId)
+                    test = self.questionManager.retrieveTenSet(courseId: courseId,
+                                                               activeSubscription: self.activeSubscription)
                 case .failedSet:
-                    test = self.questionManager.retrieveFailedSet(courseId: courseId)
+                    test = self.questionManager.retrieveFailedSet(courseId: courseId,
+                                                                  activeSubscription: self.activeSubscription)
                 case .qotd:
-                    test = self.questionManager.retrieveQotd(courseId: courseId)
+                    test = self.questionManager.retrieveQotd(courseId: courseId,
+                                                             activeSubscription: self.activeSubscription)
                 case .randomSet:
-                    test = self.questionManager.retrieveRandomSet(courseId: courseId)
+                    test = self.questionManager.retrieveRandomSet(courseId: courseId,
+                                                                  activeSubscription: self.activeSubscription)
                 }
                 
                 return test

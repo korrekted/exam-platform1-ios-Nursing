@@ -15,6 +15,7 @@ final class StudyViewModel {
     private lazy var statsManager = StatsManagerCore()
     
     lazy var sections = makeSections()
+    lazy var activeSubscription = makeActiveSubscription()
 }
 
 // MARK: Private
@@ -83,7 +84,7 @@ private extension StudyViewModel {
     }
     
     func makeUnlockQuestions() -> Driver<StudyCollectionSection?> {
-        activeSubscription()
+        activeSubscription
             .map { activeSubscription -> StudyCollectionSection? in
                 activeSubscription ? nil : StudyCollectionSection(elements: [.unlockAllQuestions])
             }
@@ -91,7 +92,7 @@ private extension StudyViewModel {
     
     func makeTakeTest() -> Driver<StudyCollectionSection> {
         Driver
-            .combineLatest(makeTestsConfig(), activeSubscription())
+            .combineLatest(makeTestsConfig(), activeSubscription)
             .map { configs, activeSubscription -> StudyCollectionSection in
                 StudyCollectionSection(elements: [.takeTest(activeSubscription: activeSubscription,
                                                             configs: configs)])
@@ -138,7 +139,7 @@ private extension StudyViewModel {
             }
     }
     
-    func activeSubscription() -> Driver<Bool> {
+    func makeActiveSubscription() -> Driver<Bool> {
         let updated = SDKStorage.shared
             .purchaseMediator
             .rxPurchaseMediatorDidValidateReceipt

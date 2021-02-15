@@ -11,11 +11,13 @@ struct GetTestRequest: APIRequestBody {
     private let userToken: String
     private let courseId: Int
     private let testId: Int?
+    private let activeSubscription: Bool
     
-    init(userToken: String, courseId: Int, testid: Int?) {
+    init(userToken: String, courseId: Int, testid: Int?, activeSubscription: Bool) {
         self.userToken = userToken
         self.courseId = courseId
         self.testId = testid
+        self.activeSubscription = activeSubscription
     }
     
     var url: String {
@@ -30,7 +32,8 @@ struct GetTestRequest: APIRequestBody {
         var params: [String: Any] = [
             "_api_key": GlobalDefinitions.apiKey,
             "_user_token": userToken,
-            "course_id": courseId
+            "course_id": courseId,
+            "user_is_premium": activeSubscription
         ]
         
         if let testId = testId {
