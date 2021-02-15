@@ -12,6 +12,7 @@ final class StudyViewModel {
     private lazy var courseManager = CoursesManagerCore()
     private lazy var sessionManager = SessionManagerCore()
     private lazy var questionManager = QuestionManagerCore()
+    private lazy var statsManager = StatsManagerCore()
     
     lazy var sections = makeSections()
 }
@@ -43,31 +44,42 @@ private extension StudyViewModel {
     
     // TODO: brief
     func makeBrief() -> Driver<StudyCollectionSection> {
-        let course = courseManager.rxGetSelectedCourse()
-            .asDriver(onErrorJustReturn: nil)
-        
-        let brief = Driver<(Int, [SCEBrief.Day])>.deferred {
-            var calendar = [SCEBrief.Day]()
-            
-            for n in 0...7 {
-                let date = Calendar.current.date(byAdding: .day, value: -n, to: Date()) ?? Date()
+        courseManager.rxGetSelectedCourse()
+            .flatMap { [weak self] course -> Single<(Course, Brief?)> in
+                guard let this = self, let course = course else {
+                    return .never()
+                }
                 
-                let day = SCEBrief.Day(date: date, activity: n % 2 == 0)
-                
-                calendar.append(day)
+                return this.statsManager
+                    .retrieveBrief(courseId: course.id)
+                    .map { (course, $0) }
             }
-            
-            return .just((3, calendar))
-        }
-        
-        return Driver
-            .combineLatest(course, brief) { course, brief -> StudyCollectionSection in
-                let entity = SCEBrief(courseName: course?.name ?? "",
-                                      streakDays: brief.0,
-                                      calendar: brief.1)
+            .map { stub -> StudyCollectionSection in
+                let (course, brief) = stub
+                
+                var calendar = [SCEBrief.Day]()
+                
+                for n in 0...6 {
+                    let date = Calendar.current.date(byAdding: .day, value: -n, to: Date()) ?? Date()
+                    
+                    let briefCalendar = brief?.calendar ?? []
+                    let activity = briefCalendar.indices.contains(n) ? briefCalendar[n] : false
+    
+                    let day = SCEBrief.Day(date: date, activity: activity)
+    
+                    calendar.append(day)
+                }
+                
+                calendar.reverse()
+                
+                let entity = SCEBrief(courseName: course.name,
+                                      streakDays: brief?.streak ?? 0,
+                                      calendar: calendar)
+                
                 let element = StudyCollectionElement.brief(entity)
                 return StudyCollectionSection(elements: [element])
             }
+            .asDriver(onErrorDriveWith: .empty())
     }
     
     func makeUnlockQuestions() -> Driver<StudyCollectionSection?> {

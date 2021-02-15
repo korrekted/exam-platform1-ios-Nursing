@@ -81,6 +81,9 @@
 		9629517B25DAC22700643B6B /* TestConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9629517A25DAC22700643B6B /* TestConfig.swift */; };
 		9629517F25DAC2B800643B6B /* GetTestConfigRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9629517E25DAC2B800643B6B /* GetTestConfigRequest.swift */; };
 		9629518225DAC36900643B6B /* GetTestConfigResponseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9629518125DAC36900643B6B /* GetTestConfigResponseMapper.swift */; };
+		9629518925DAD8CE00643B6B /* Brief.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9629518825DAD8CE00643B6B /* Brief.swift */; };
+		9629518C25DAD93A00643B6B /* GetBriefRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9629518B25DAD93A00643B6B /* GetBriefRequest.swift */; };
+		9629518F25DADA2000643B6B /* GetBriefResponseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9629518E25DADA2000643B6B /* GetBriefResponseMapper.swift */; };
 		962AEA4C25B497AD0032E7C3 /* CoursesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962AEA4B25B497AD0032E7C3 /* CoursesManager.swift */; };
 		962AEA5025B497DD0032E7C3 /* CoursesManagerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962AEA4F25B497DD0032E7C3 /* CoursesManagerCore.swift */; };
 		962AEA5425B498FC0032E7C3 /* CoursesManagerMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962AEA5325B498FC0032E7C3 /* CoursesManagerMediator.swift */; };
@@ -274,6 +277,9 @@
 		9629517A25DAC22700643B6B /* TestConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConfig.swift; sourceTree = "<group>"; };
 		9629517E25DAC2B800643B6B /* GetTestConfigRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTestConfigRequest.swift; sourceTree = "<group>"; };
 		9629518125DAC36900643B6B /* GetTestConfigResponseMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTestConfigResponseMapper.swift; sourceTree = "<group>"; };
+		9629518825DAD8CE00643B6B /* Brief.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brief.swift; sourceTree = "<group>"; };
+		9629518B25DAD93A00643B6B /* GetBriefRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBriefRequest.swift; sourceTree = "<group>"; };
+		9629518E25DADA2000643B6B /* GetBriefResponseMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBriefResponseMapper.swift; sourceTree = "<group>"; };
 		962AEA4B25B497AD0032E7C3 /* CoursesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesManager.swift; sourceTree = "<group>"; };
 		962AEA4F25B497DD0032E7C3 /* CoursesManagerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesManagerCore.swift; sourceTree = "<group>"; };
 		962AEA5325B498FC0032E7C3 /* CoursesManagerMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesManagerMediator.swift; sourceTree = "<group>"; };
@@ -658,6 +664,8 @@
 			children = (
 				86FAE0EB25C06DD700247A70 /* GetStatsRequest.swift */,
 				86FAE0F625C0719F00247A70 /* GetStatsResponseMapper.swift */,
+				9629518B25DAD93A00643B6B /* GetBriefRequest.swift */,
+				9629518E25DADA2000643B6B /* GetBriefResponseMapper.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -675,6 +683,7 @@
 			isa = PBXGroup;
 			children = (
 				86FAE0FA25C0724700247A70 /* Stats.swift */,
+				9629518825DAD8CE00643B6B /* Brief.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1368,6 +1377,7 @@
 				9632393525C5EFB200C21FD7 /* StudyCollectionView.swift in Sources */,
 				96E437D725BED56700B4320D /* OSlide15Cell.swift in Sources */,
 				8635FA4225D6ED38007C06AB /* TestStatsAnswer.swift in Sources */,
+				9629518F25DADA2000643B6B /* GetBriefResponseMapper.swift in Sources */,
 				96D38AE125B3017A00EADC9A /* AppDelegate.swift in Sources */,
 				86FAE0EC25C06DD700247A70 /* GetStatsRequest.swift in Sources */,
 				96D38B9425B4718000EADC9A /* SplashView.swift in Sources */,
@@ -1405,6 +1415,7 @@
 				8649253125D1BB7800D1A491 /* GetTenSetRequest.swift in Sources */,
 				86AA47AD25D4380400782821 /* QuestionContentCollectionView.swift in Sources */,
 				96C63D9D25BCB711007B7EB7 /* OSlideView.swift in Sources */,
+				9629518C25DAD93A00643B6B /* GetBriefRequest.swift in Sources */,
 				8635FA2125D6CEC7007C06AB /* TestStatsDescriptioCell.swift in Sources */,
 				86139A2325BEF7ED0099CA2F /* CourseStatsElement.swift in Sources */,
 				96D38B4325B308B500EADC9A /* RxActivityIndicator.swift in Sources */,
@@ -1515,6 +1526,7 @@
 				96C63DA025BCC981007B7EB7 /* OSlide1View.swift in Sources */,
 				867D50EE25C73DA000606B09 /* ExplanationCell.swift in Sources */,
 				96D38B3725B3085200EADC9A /* Toast.swift in Sources */,
+				9629518925DAD8CE00643B6B /* Brief.swift in Sources */,
 				8649253425D1BBB900D1A491 /* GetFailedSetRequest.swift in Sources */,
 				962AEA6425B4C4B60032E7C3 /* SessionManagerCore.swift in Sources */,
 				96D38B3125B307F100EADC9A /* GlobalDefinitions.swift in Sources */,

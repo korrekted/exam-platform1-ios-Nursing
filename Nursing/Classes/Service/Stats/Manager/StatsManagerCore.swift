@@ -23,4 +23,17 @@ extension StatsManagerCore {
             .callServerApi(requestBody: request)
             .map(GetStatsResponseMapper.map(from:))
     }
+    
+    func retrieveBrief(courseId: Int) -> Single<Brief?> {
+        guard let userToken = SessionManagerCore().getSession()?.userToken else {
+            return .deferred { .just(nil) }
+        }
+        
+        let request = GetBriefRequest(userToken: userToken, courseId: courseId)
+        
+        return SDKStorage.shared
+            .restApiTransport
+            .callServerApi(requestBody: request)
+            .map(GetBriefResponseMapper.from(response:))
+    }
 }
