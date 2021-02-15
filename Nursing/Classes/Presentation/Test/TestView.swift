@@ -70,7 +70,7 @@ private extension TestView {
         ])
         
         NSLayoutConstraint.activate([
-            progressView.topAnchor.constraint(equalTo: topAnchor, constant: 20.scale),
+            progressView.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 61.scale : 33.scale),
             progressView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16.scale),
             progressView.rightAnchor.constraint(equalTo: closeButton.leftAnchor),
             progressView.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -20.scale)
