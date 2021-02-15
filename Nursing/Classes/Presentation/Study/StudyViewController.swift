@@ -66,10 +66,19 @@ private extension StudyViewController {
             break
         case .unlockAllQuestions:
             openPaygate()
-        case .takeTest(let activeSubscription):
-            break
+        case .takeTest(let activeSubscription, let configs):
+            tappedTakeTest(activeSubscription: activeSubscription, configs: configs)
         case .mode(let mode):
             tapped(mode: mode.mode)
+        }
+    }
+    
+    func tappedTakeTest(activeSubscription: Bool, configs: [TestConfig]) {
+        switch activeSubscription {
+        case true:
+            break
+        case false:
+            
         }
     }
     

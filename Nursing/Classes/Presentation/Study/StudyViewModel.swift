@@ -14,21 +14,10 @@ final class StudyViewModel {
     private lazy var questionManager = QuestionManagerCore()
     
     lazy var sections = makeSections()
-    lazy var testsConfig = makeTestsConfig()
 }
 
 // MARK: Private
 private extension StudyViewModel {
-    func makeTestsConfig() -> Driver<[TestConfig]> {
-        guard let courseId = courseManager.getSelectedCourse()?.id else {
-            return .empty()
-        }
-        
-        return questionManager
-            .retrieveConfig(courseId: courseId)
-            .asDriver(onErrorJustReturn: [])
-    }
-    
     func makeSections() -> Driver<[StudyCollectionSection]> {
         let brief = makeBrief()
         let unlockQuestions = makeUnlockQuestions()
@@ -89,9 +78,11 @@ private extension StudyViewModel {
     }
     
     func makeTakeTest() -> Driver<StudyCollectionSection> {
-        activeSubscription()
-            .map { activeSubscription -> StudyCollectionSection in
-                StudyCollectionSection(elements: [.takeTest(activeSubscription: activeSubscription)])
+        Driver
+            .combineLatest(makeTestsConfig(), activeSubscription())
+            .map { configs, activeSubscription -> StudyCollectionSection in
+                StudyCollectionSection(elements: [.takeTest(activeSubscription: activeSubscription,
+                                                            configs: configs)])
             }
     }
     
@@ -155,5 +146,15 @@ private extension StudyViewModel {
         
         return Driver
             .merge(initial, updated)
+    }
+    
+    func makeTestsConfig() -> Driver<[TestConfig]> {
+        guard let courseId = courseManager.getSelectedCourse()?.id else {
+            return .empty()
+        }
+        
+        return questionManager
+            .retrieveConfig(courseId: courseId)
+            .asDriver(onErrorJustReturn: [])
     }
 }
