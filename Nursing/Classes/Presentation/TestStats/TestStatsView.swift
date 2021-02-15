@@ -43,7 +43,7 @@ private extension TestStatsView {
         ])
         
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20.scale),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 59.scale : 31.scale),
             titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 16.scale),
             titleLabel.rightAnchor.constraint(equalTo: closeButton.leftAnchor),
             titleLabel.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -20.scale)
