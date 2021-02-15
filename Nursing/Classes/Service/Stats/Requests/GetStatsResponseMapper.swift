@@ -22,8 +22,10 @@ struct GetStatsResponseMapper {
             let testTaken = main["tests_taken"] as? Int,
             let correctAnswers = main["correct_answers"] as? Int,
             let questionsTaken = main["questions_taken"] as? Int,
+            let testsTakenNum = main["tests_taken_num"] as? Int,
             let longestStreak = main["longest_streak"] as? Int,
-            let answeredQuestions = main["answered_questions"] as? Int
+            let answeredQuestions = main["answered_questions"] as? Int,
+            let correctAnswersNum = main["correct_answers_num"] as? Int
         else {
             return nil
         }
@@ -33,8 +35,10 @@ struct GetStatsResponseMapper {
             testTaken: testTaken,
             correctAnswers: correctAnswers,
             questionsTaken: questionsTaken,
+            testsTakenNum: testsTakenNum,
             longestStreak: longestStreak,
             answeredQuestions: answeredQuestions,
+            correctAnswersNum: correctAnswersNum,
             courseStats: courseStats
         )
     }
