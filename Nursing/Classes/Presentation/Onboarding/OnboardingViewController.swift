@@ -27,8 +27,23 @@ final class OnboardingViewController: UIViewController {
         super.viewDidLoad()
         
         mainView.didFinish = { [weak self] in
-            self?.markAsViewed()
-            self?.goToCourses()
+            guard let this = self else {
+                return
+            }
+            
+            this.markAsViewed()
+            
+            this.viewModel.hasSelectedCourse ? this.goToCourse() : this.goToCourses()
+        }
+        
+        mainView.didChangedSlide = { [weak self] step in
+            guard let this = self else {
+                return
+            }
+            
+            if step == .slide1 {
+                this.goToCourses()
+            }
         }
     }
 }
@@ -55,10 +70,11 @@ private extension OnboardingViewController {
     }
     
     func goToCourses() {
-        UIApplication.shared.keyWindow?.rootViewController = NursingNavigationController(rootViewController: CoursesViewController.make())
+        let vc = CoursesViewController.make(howOpen: .present)
+        present(vc, animated: true)
     }
     
-    func goToStats() {
-        UIApplication.shared.keyWindow?.rootViewController = NursingNavigationController(rootViewController: StatsViewController.make())
+    func goToCourse() {
+        UIApplication.shared.keyWindow?.rootViewController = CourseViewController.make()
     }
 }

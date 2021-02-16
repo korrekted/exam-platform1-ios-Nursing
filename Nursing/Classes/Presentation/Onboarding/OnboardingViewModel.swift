@@ -9,5 +9,9 @@ import RxSwift
 import RxCocoa
 
 final class OnboardingViewModel {
+    private lazy var coursesManager = CoursesManagerCore()
     
+    var hasSelectedCourse: Bool {
+        coursesManager.getSelectedCourse() != nil
+    }
 }

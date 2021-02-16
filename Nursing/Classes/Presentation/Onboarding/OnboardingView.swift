@@ -13,6 +13,7 @@ final class OnboardingView: UIView {
     }
     
     var didFinish: (() -> Void)?
+    var didChangedSlide: ((Step) -> Void)?
     
     var step = Step.slide1 {
         didSet {
@@ -57,6 +58,8 @@ final class OnboardingView: UIView {
 // MARK: OSlideViewDelegate
 extension OnboardingView: OSlideViewDelegate {
     func slideViewDidNext(from step: Step) {
+        didChangedSlide?(step)
+        
         let nextRawValue = step.rawValue + 1
         
         guard let nextStep = Step(rawValue: nextRawValue) else {

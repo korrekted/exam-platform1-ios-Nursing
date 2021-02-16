@@ -48,7 +48,7 @@ private extension SettingsViewController {
         case .unlock:
             UIApplication.shared.keyWindow?.rootViewController?.present(PaygateViewController.make(), animated: true)
         case .course:
-            UIApplication.shared.keyWindow?.rootViewController = NursingNavigationController(rootViewController: CoursesViewController.make())
+            UIApplication.shared.keyWindow?.rootViewController = CoursesViewController.make(howOpen: .root)
         case .rateUs:
             break // TODO
         case .contactUs:
