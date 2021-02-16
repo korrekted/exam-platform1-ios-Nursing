@@ -69,7 +69,9 @@ final class CoursesViewController: UIViewController {
 // MARK: Make
 extension CoursesViewController {
     static func make(howOpen: HowOpen) -> CoursesViewController {
-        CoursesViewController(howOpen: howOpen)
+        let vc = CoursesViewController(howOpen: howOpen)
+        vc.modalPresentationStyle = .fullScreen
+        return vc
     }
 }
 

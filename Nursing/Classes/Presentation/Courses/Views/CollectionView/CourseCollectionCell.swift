@@ -71,7 +71,7 @@ private extension CourseCollectionCell {
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 16.scale),
             titleLabel.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -16.scale),
-            titleLabel.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -84.scale)
+            titleLabel.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -104.scale)
         ])
 
         NSLayoutConstraint.activate([

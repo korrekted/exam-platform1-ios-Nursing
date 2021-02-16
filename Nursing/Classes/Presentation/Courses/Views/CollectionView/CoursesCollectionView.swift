@@ -54,7 +54,7 @@ extension CoursesCollectionView: UICollectionViewDelegateFlowLayout {
         let course = elements[indexPath.row].course
         
         return CGSize(width: course.isMain ? 343.scale : 164.scale,
-                      height: course.isMain ? 144.scale : 151.scale)
+                      height: course.isMain ? 164.scale : 171.scale)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
