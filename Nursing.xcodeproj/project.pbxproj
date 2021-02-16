@@ -76,6 +76,7 @@
 		86FAE0F725C0719F00247A70 /* GetStatsResponseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FAE0F625C0719F00247A70 /* GetStatsResponseMapper.swift */; };
 		86FAE0FB25C0724700247A70 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FAE0FA25C0724700247A70 /* Stats.swift */; };
 		95A0D10A3FF5DF8ADD207AAB /* Pods_Nursing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D58953997718D4A60C1FB4B /* Pods_Nursing.framework */; };
+		9612547125DC53D100D4D90B /* OnboardingAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9612547025DC53D100D4D90B /* OnboardingAnalytics.swift */; };
 		9629513A25D7E7AC00643B6B /* SCBriefDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9629513925D7E7AC00643B6B /* SCBriefDayView.swift */; };
 		9629513E25D7E87700643B6B /* SCBriefDaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9629513D25D7E87700643B6B /* SCBriefDaysView.swift */; };
 		9629517B25DAC22700643B6B /* TestConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9629517A25DAC22700643B6B /* TestConfig.swift */; };
@@ -272,6 +273,7 @@
 		86FAE0F625C0719F00247A70 /* GetStatsResponseMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStatsResponseMapper.swift; sourceTree = "<group>"; };
 		86FAE0FA25C0724700247A70 /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		8D58953997718D4A60C1FB4B /* Pods_Nursing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nursing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9612547025DC53D100D4D90B /* OnboardingAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAnalytics.swift; sourceTree = "<group>"; };
 		9629513925D7E7AC00643B6B /* SCBriefDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCBriefDayView.swift; sourceTree = "<group>"; };
 		9629513D25D7E87700643B6B /* SCBriefDaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCBriefDaysView.swift; sourceTree = "<group>"; };
 		9629517A25DAC22700643B6B /* TestConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConfig.swift; sourceTree = "<group>"; };
@@ -688,6 +690,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		9612546F25DC53B600D4D90B /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				9612547025DC53D100D4D90B /* OnboardingAnalytics.swift */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
 		9629513825D7E78800643B6B /* Atoms */ = {
 			isa = PBXGroup;
 			children = (
@@ -1087,6 +1097,7 @@
 		96D38B8925B46F0100EADC9A /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				9612546F25DC53B600D4D90B /* Analytics */,
 				96D38BA825B472C800EADC9A /* Views */,
 				96D38B9625B4720000EADC9A /* OnboardingViewController.swift */,
 				96D38B9925B4722800EADC9A /* OnboardingViewModel.swift */,
@@ -1401,6 +1412,7 @@
 				86FAE0FB25C0724700247A70 /* Stats.swift in Sources */,
 				96C63DFE25BD9CE2007B7EB7 /* OSlide6View.swift in Sources */,
 				96C63DB325BD7A2D007B7EB7 /* OSlide5View.swift in Sources */,
+				9612547125DC53D100D4D90B /* OnboardingAnalytics.swift in Sources */,
 				96B92B2125C4A5880003002D /* ProductPrice.swift in Sources */,
 				9632395225C5F6A300C21FD7 /* SCModeCell.swift in Sources */,
 				96B92B1B25C4A5880003002D /* PaygateManagerCore.swift in Sources */,

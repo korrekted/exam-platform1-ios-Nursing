@@ -38,6 +38,10 @@ final class CoursesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        SDKStorage.shared
+            .amplitudeManager
+            .logEvent(name: "Exam Screen", parameters: [:])
+        
         mainView
             .collectionView.selected
             .bind(to: viewModel.selected)

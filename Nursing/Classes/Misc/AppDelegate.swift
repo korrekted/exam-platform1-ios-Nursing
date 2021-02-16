@@ -82,7 +82,7 @@ private extension AppDelegate {
     func runProvider(on view: UIView) {
         let settings = SDKSettings(backendBaseUrl: GlobalDefinitions.sdkDomainUrl,
                                    backendApiKey: GlobalDefinitions.sdkApiKey,
-                                   amplitudeApiKey: nil,
+                                   amplitudeApiKey: GlobalDefinitions.amplitudeApiKey,
                                    facebookActive: false,
                                    branchActive: false,
                                    firebaseActive: false,

@@ -58,6 +58,8 @@ final class OnboardingView: UIView {
 // MARK: OSlideViewDelegate
 extension OnboardingView: OSlideViewDelegate {
     func slideViewDidNext(from step: Step) {
+        OnboardingAnalytics().log(step: step)
+        
         didChangedSlide?(step)
         
         let nextRawValue = step.rawValue + 1
