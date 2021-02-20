@@ -33,7 +33,7 @@ final class OnboardingViewController: UIViewController {
             
             this.markAsViewed()
             
-            this.viewModel.hasSelectedCourse ? this.goToCourse() : this.goToCourses()
+            this.goToNext()
         }
         
         mainView.didChangedSlide = { [weak self] step in
@@ -63,10 +63,37 @@ extension OnboardingViewController {
     }
 }
 
+// MARK: PaygateViewControllerDelegate
+extension OnboardingViewController: PaygateViewControllerDelegate {
+    func paygateDidClosed(with result: PaygateViewControllerResult) {
+        goToCourseOrCourses()
+    }
+}
+
 // MARK: Private
 private extension OnboardingViewController {
     func markAsViewed() {
         UserDefaults.standard.setValue(true, forKey: Constants.wasViewedKey)
+    }
+    
+    func goToNext() {
+        if !viewModel.hasActiveSubscription {
+            showPaygate()
+            
+            return
+        }
+        
+        goToCourseOrCourses()
+    }
+    
+    func goToCourseOrCourses() {
+        viewModel.hasSelectedCourse ? goToCourse() : goToCourses()
+    }
+    
+    func showPaygate() {
+        let vc = PaygateViewController.make()
+        vc.delegate = self
+        present(vc, animated: true)
     }
     
     func goToCourses() {
