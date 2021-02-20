@@ -39,7 +39,7 @@ final class OnboardingAnalytics {
         case .slide14:
             name = "Plan Preparing Screen"
         case .slide15:
-            name = "**Personal Plan Screen**"
+            name = "Personal Plan Screen"
         }
         
         SDKStorage.shared
