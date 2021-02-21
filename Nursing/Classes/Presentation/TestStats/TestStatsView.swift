@@ -81,7 +81,6 @@ private extension TestStatsView {
     func makeTitleLabel() -> UILabel {
         let view = UILabel()
         view.font = Fonts.SFProRounded.regular(size: 20.scale)
-        view.text = "Test Title Name"
         view.textAlignment = .center
         view.textColor = UIColor.black
         view.translatesAutoresizingMaskIntoConstraints = false

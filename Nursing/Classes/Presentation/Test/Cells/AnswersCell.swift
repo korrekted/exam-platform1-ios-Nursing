@@ -39,19 +39,33 @@ extension AnswersCell {
         answersElements.map { $0.0 }.forEach(stackView.addArrangedSubview)
         setNeedsLayout()
         
-        let test = answersElements.map { answerView, element in
-            answerView.didTap
-                .asObservable()
-                .scan(false) { old, _ in !old }
-                .do(onNext: {
-                    answerView.state = $0 && isMultiple ? .selected : .initial
-                })
-                .map { ($0, element) }
-        }
+        let test = answersElements
+            .map { answerView, element in
+                answerView.didTap
+                    .asObservable()
+                    .scan(false) { _, _ in answerView.state != .selected }
+                    .do(onNext: { isSelected in
+                        if isMultiple {
+                            answerView.state = isSelected && isMultiple ? .selected : .initial
+                        } else {
+                            answersElements.forEach { view, _ in
+                                if view === answerView {
+                                    answerView.state = isSelected ? .selected : .initial
+                                } else {
+                                    view.state = .initial
+                                }
+                            }
+                        }
+                    })
+                    .map { ($0, element) }
+            }
         
         Observable.merge(test)
             .scan(Set<PossibleAnswerElement>(), accumulator: { (old, args) -> Set<PossibleAnswerElement> in
                 let (isSelected, element) = args
+                
+                guard isMultiple else { return isSelected ? [element] : [] }
+                
                 var result = old
                 
                 if isSelected {
@@ -63,7 +77,6 @@ extension AnswersCell {
                 return result
             })
             .map { $0.map { $0.id } }
-            .take(until: { _ in !isMultiple }, behavior: .inclusive)
             .subscribe(onNext: didTap)
             .disposed(by: disposeBag)
     }
@@ -84,6 +97,8 @@ extension AnswersCell {
                 view.state = .correct
             case .error:
                 view.state = .error
+            case .warning:
+                view.state = .warning
             }
             
             return view

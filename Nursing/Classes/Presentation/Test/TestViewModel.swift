@@ -16,7 +16,7 @@ final class TestViewModel {
     let didTapNext = PublishRelay<Void>()
     let didTapConfirm = PublishRelay<Void>()
     let didTapSubmit = PublishRelay<Void>()
-    let selectedAnswers = BehaviorRelay<AnswerElement?>(value: nil)
+    let answers = BehaviorRelay<AnswerElement?>(value: nil)
     
     lazy var question = makeQuestion()
     lazy var isEndOfTest = endOfTest()
@@ -29,7 +29,8 @@ final class TestViewModel {
     private lazy var courseManager = CoursesManagerCore()
     
     private lazy var testElement = loadTest().share(replay: 1, scope: .forever)
-    private lazy var answers = currentAnswers().share(replay: 1, scope: .forever)
+    private lazy var selectedAnswers = makeSelectedAnswers().share(replay: 1, scope: .forever)
+    private lazy var currentAnswers = makeCurrentAnswers().share(replay: 1, scope: .forever)
 }
 
 // MARK: Private
@@ -50,22 +51,15 @@ private extension TestViewModel {
             .compactMap { $0.element?.questions }
         
         let dataSource = Observable
-            .combineLatest(questions, answers)
+            .combineLatest(questions, selectedAnswers)
             .scan([], accumulator: questionAccumulator)
         
         return dataSource
     }
     
-    func currentAnswers() -> Observable<AnswerElement?> {
-        let multipleAnswers = didTapConfirm
-            .withLatestFrom(selectedAnswers)
-            .filter { $0?.isMultiple == true }
-        
-        let singleAnswer = selectedAnswers
-            .filter { $0?.isMultiple == false }
-        
-        return Observable
-            .merge(multipleAnswers, singleAnswer)
+    func makeSelectedAnswers() -> Observable<AnswerElement?> {
+        didTapConfirm
+            .withLatestFrom(currentAnswers)
             .startWith(nil)
     }
     
@@ -104,7 +98,10 @@ private extension TestViewModel {
                     .compactMap { $0 }
                     .asObservable()
                     .materialize()
-                    .debug()
+                    .filter {
+                        guard case .completed = $0 else { return true }
+                        return false
+                    }
             }
     }
     
@@ -129,11 +126,19 @@ private extension TestViewModel {
             .compactMap { $0.element?.userTestId }
     }
     
+    func makeCurrentAnswers() -> Observable<AnswerElement?> {
+        Observable.merge(answers.asObservable(), didTapNext.map { _ in nil })
+    }
+    
     func endOfTest() -> Driver<Bool> {
-        answers
-            .withLatestFrom(testElement) { ($0, $1.element?.userTestId) }
+        selectedAnswers
+            .compactMap { $0 }
+            .withLatestFrom(testElement) {
+                ($0, $1.element?.userTestId)
+                
+            }
             .flatMapLatest { [questionManager] element, userTestId -> Observable<Bool> in
-                guard let element = element, let userTestId = userTestId else { return .just(false) }
+                guard let userTestId = userTestId else { return .just(false) }
                 
                 return questionManager
                     .sendAnswer(
@@ -151,8 +156,8 @@ private extension TestViewModel {
     }
     
     func makeBottomState() -> Driver<TestBottomButtonState> {
-        Driver.combineLatest(isEndOfTest, question)
-            .map { isEndOfTest, question -> TestBottomButtonState in
+        Driver.combineLatest(isEndOfTest, question, currentAnswers.asDriver(onErrorJustReturn: nil))
+            .map { isEndOfTest, question, answers -> TestBottomButtonState in
                 let isResult = question.elements.contains(where: {
                     guard case .result = $0 else { return false }
                     return true
@@ -163,7 +168,7 @@ private extension TestViewModel {
                     return isEndOfTest ? .submit : .hidden
                 } else {
                     guard isResult && question.questionsCount == 1 else {
-                        return isResult ? .hidden : question.isMultiple ? .confirm : .hidden
+                        return isResult ? .hidden : answers?.answerIds.isEmpty == false ? .confirm : .hidden
                     }
                     
                     return .back
@@ -195,7 +200,7 @@ private extension TestViewModel {
                     ].compactMap { $0 }
                     
                     let elements: [TestingCellType] = [
-                        questions.count > 1 ? .questionsProgress("Question \(index + 1)/\(questions.count)") : nil,
+                        questions.count > 1 ? .questionsProgress(String(format: "Question.QuestionProgress".localized, index + 1, questions.count)) : nil,
                         !content.isEmpty ? .content(content) : nil,
                         .question(question.question),
                         .answers(answers)
@@ -226,7 +231,7 @@ private extension TestViewModel {
                 let result = currentQuestion.answers.map { answer -> AnswerResultElement in
                     let state: AnswerState = currentAnswers.answerIds.contains(answer.id)
                         ? answer.isCorrect ? .correct : .error
-                        : answer.isCorrect ? .correct : .initial
+                        : answer.isCorrect ? currentQuestion.multiple ? .warning : .correct : .initial
                     
                     return AnswerResultElement(answer: answer.answer, state: state)
                 }
@@ -256,6 +261,10 @@ private extension TestViewModel {
             let withoutAnswered = elements.filter { !$0.isAnswered }
             switch action {
             case let .elements(questions):
+                // Проверка для вопроса дня, чтобы была возможность отобразить вопрос,
+                // если юзер уже на него отвечал
+                guard questions.count > 1 else { return (questions.first, questions) }
+                
                 let withoutAnswered = questions.filter { !$0.isAnswered }
                 let index = withoutAnswered.firstIndex(where: { $0.id == currentElement?.id }) ?? 0
                 return (withoutAnswered[safe: index], questions)

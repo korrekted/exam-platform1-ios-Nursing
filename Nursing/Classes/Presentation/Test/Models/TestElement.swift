@@ -18,7 +18,7 @@ struct AnswerResultElement {
 }
 
 enum AnswerState {
-    case initial, correct, error
+    case initial, correct, warning, error
 }
 
 

@@ -35,23 +35,24 @@ final class TestViewController: UIViewController {
         
         mainView.tableView
             .selectedAnswersRelay
-            .bind(to: viewModel.selectedAnswers)
+            .bind(to: viewModel.answers)
             .disposed(by: disposeBag)
         
-        mainView.bottomButton.rx.tap
+        let currentButtonState = mainView.bottomButton.rx.tap
             .withLatestFrom(viewModel.bottomViewState)
+            .share()
+        
+        currentButtonState
             .compactMap { $0 == .confirm ? () : nil }
             .bind(to: viewModel.didTapConfirm)
             .disposed(by: disposeBag)
         
-        mainView.bottomButton.rx.tap
-            .withLatestFrom(viewModel.bottomViewState)
+        currentButtonState
             .compactMap { $0 == .submit ? () : nil }
             .bind(to: viewModel.didTapSubmit)
             .disposed(by: disposeBag)
         
-        mainView.bottomButton.rx.tap
-            .withLatestFrom(viewModel.bottomViewState)
+        currentButtonState
             .filter { $0 == .back }
             .bind(to: Binder(self) { base, _ in
                 base.dismiss(animated: true)
@@ -85,7 +86,10 @@ final class TestViewController: UIViewController {
                 viewModel.isEndOfTest,
                 mainView.nextButton.rx.tap.asDriver().map { _ in true }
             )
-            .drive(mainView.nextButton.rx.isHidden)
+            .drive(Binder(mainView) { view, isHidden in
+                view.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: isHidden ? 0 : view.bounds.height - view.nextButton.frame.minY + 9, right: 0)
+                view.nextButton.isHidden = isHidden
+            })
             .disposed(by: disposeBag)
         
         viewModel.userTestId

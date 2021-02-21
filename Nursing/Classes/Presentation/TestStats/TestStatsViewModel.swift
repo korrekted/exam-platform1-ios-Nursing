@@ -10,9 +10,11 @@ import RxCocoa
 
 final class TestStatsViewModel {
     lazy var userTestId = BehaviorRelay<Int?>(value: nil)
+    lazy var testType = BehaviorRelay<TestType?>(value: nil)
     lazy var filterRelay = PublishRelay<TestStatsFilter>()
     
     lazy var elements = makeElements()
+    lazy var testName = makeTestName()
     
     private lazy var testStatsManager = TestStatsManagerCore()
 }
@@ -65,6 +67,27 @@ private extension TestStatsViewModel {
                     }
             }
             .asDriver(onErrorJustReturn: [])
+    }
+    
+    func makeTestName() -> Driver<String> {
+        testType
+            .map { type -> String in
+                switch type {
+                case .get:
+                    return "Study.TakeTest".localized
+                case .tenSet:
+                    return "Study.Mode.TenQuestions".localized
+                case .failedSet:
+                    return "Study.Mode.MissedQuestions".localized
+                case .qotd:
+                    return "Study.Mode.TodaysQuestion".localized
+                case .randomSet:
+                    return "Study.Mode.RandomSet".localized
+                case .none:
+                    return ""
+                }
+            }
+            .asDriver(onErrorJustReturn: "")
     }
 }
 
