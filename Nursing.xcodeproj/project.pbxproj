@@ -642,6 +642,13 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		86AAF3DE25E2892E00594EA2 /* Checker */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Checker;
+			sourceTree = "<group>";
+		};
 		86CEC7E425C556B5000825F8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -1078,6 +1085,7 @@
 		96D38B5D25B309BF00EADC9A /* Error */ = {
 			isa = PBXGroup;
 			children = (
+				86AAF3DE25E2892E00594EA2 /* Checker */,
 				96D38B6425B30A0700EADC9A /* SignError.swift */,
 			);
 			path = Error;

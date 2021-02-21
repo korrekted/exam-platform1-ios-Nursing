@@ -133,7 +133,7 @@
 "Paygate.Continue" = "Continue →";
 
 // MARK: Question
-"Question.Exploration" = "Exploration";
+"Question.Explanation" = "Explanation";
 "Question.Continue" = "Continue";
 "Question.Submit" = "Submit test";
 "Question.BackToStudying" = "Back to studying";

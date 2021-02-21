@@ -128,6 +128,21 @@ final class TestViewController: UIViewController {
                 }
             })
             .disposed(by: disposeBag)
+        
+        viewModel.errorMessage
+            .emit { [weak self] message in
+                Toast.notify(with: message, style: .danger)
+                self?.dismiss(animated: true)
+            }
+            .disposed(by: disposeBag)
+
+        viewModel.needPayment
+            .emit { [weak self] _ in
+                self?.dismiss(animated: false, completion: {
+                    UIApplication.shared.keyWindow?.rootViewController?.present(PaygateViewController.make(), animated: true)
+                })
+            }
+            .disposed(by: disposeBag)
     }
 }
 

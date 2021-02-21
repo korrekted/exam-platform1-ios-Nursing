@@ -27,6 +27,7 @@ struct QuestionElement {
     let elements: [TestingCellType]
     let isMultiple: Bool
     let index: Int
+    let isAnswered: Bool
     let questionsCount: Int
 }
 
