@@ -50,7 +50,7 @@ private extension SettingsViewController {
         case .course:
             UIApplication.shared.keyWindow?.rootViewController = CoursesViewController.make(howOpen: .root)
         case .rateUs:
-            break // TODO
+            RateUs.requestReview()
         case .contactUs:
             open(path: GlobalDefinitions.contactUsUrl)
         case .termsOfUse:
