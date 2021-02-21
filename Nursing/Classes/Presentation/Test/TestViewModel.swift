@@ -16,18 +16,21 @@ final class TestViewModel {
     let didTapNext = PublishRelay<Void>()
     let didTapConfirm = PublishRelay<Void>()
     let didTapSubmit = PublishRelay<Void>()
-    let selectedAnswers = BehaviorRelay<AnswerElement?>(value: nil)
+    let answers = BehaviorRelay<AnswerElement?>(value: nil)
     
     lazy var question = makeQuestion()
     lazy var isEndOfTest = endOfTest()
     lazy var userTestId = makeUserTestId()
     lazy var bottomViewState = makeBottomState()
+    lazy var errorMessage = makeErrorMessage()
+    lazy var needPayment = makeNeedPayment()
     
     private lazy var questionManager = QuestionManagerCore()
     private lazy var courseManager = CoursesManagerCore()
     
     private lazy var testElement = loadTest().share(replay: 1, scope: .forever)
-    private lazy var answers = currentAnswers().share(replay: 1, scope: .forever)
+    private lazy var selectedAnswers = makeSelectedAnswers().share(replay: 1, scope: .forever)
+    private lazy var currentAnswers = makeCurrentAnswers().share(replay: 1, scope: .forever)
 }
 
 // MARK: Private
@@ -44,39 +47,30 @@ private extension TestViewModel {
     }
     
     func makeQestions() -> Observable<[QuestionElement]> {
-        let questions = testElement.compactMap {
-            $0?.questions
-            
-        }
+        let questions = testElement
+            .compactMap { $0.element?.questions }
         
         let dataSource = Observable
-            .combineLatest(questions, answers)
+            .combineLatest(questions, selectedAnswers)
             .scan([], accumulator: questionAccumulator)
         
         return dataSource
     }
     
-    func currentAnswers() -> Observable<AnswerElement?> {
-        let multipleAnswers = didTapConfirm
-            .withLatestFrom(selectedAnswers)
-            .filter { $0?.isMultiple == true }
-        
-        let singleAnswer = selectedAnswers
-            .filter { $0?.isMultiple == false }
-        
-        return Observable
-            .merge(multipleAnswers, singleAnswer)
+    func makeSelectedAnswers() -> Observable<AnswerElement?> {
+        didTapConfirm
+            .withLatestFrom(currentAnswers)
             .startWith(nil)
     }
     
-    func loadTest() -> Observable<Test?> {
+    func loadTest() -> Observable<Event<Test>> {
         guard let courseId = courseManager.getSelectedCourse()?.id else {
-            return .just(nil)
+            return .empty()
         }
         
         return testType
             .compactMap { $0 }
-            .flatMapLatest { [weak self] type -> Observable<Test?> in
+            .flatMapLatest { [weak self] type -> Observable<Event<Test>> in
                 guard let self = self else { return .empty() }
                 
                 let test: Single<Test?>
@@ -101,22 +95,50 @@ private extension TestViewModel {
                 }
                 
                 return test
+                    .compactMap { $0 }
                     .asObservable()
-                    .catchAndReturn(nil)
+                    .materialize()
+                    .filter {
+                        guard case .completed = $0 else { return true }
+                        return false
+                    }
             }
+    }
+    
+    func makeErrorMessage() -> Signal<String> {
+        testElement
+            .compactMap { $0.error?.localizedDescription }
+            .asSignal(onErrorSignalWith: .empty())
+    }
+    
+    func makeNeedPayment() -> Signal<Void> {
+        testElement
+            .compactMap { [weak self] event in
+                guard let self = self, let element = event.element else { return nil }
+                return self.activeSubscription ? nil : element.paid ? () : nil
+            }
+            .asSignal(onErrorSignalWith: .empty())
     }
 
     func makeUserTestId() -> Observable<Int> {
         didTapSubmit
             .withLatestFrom(testElement)
-            .compactMap { $0?.userTestId }
+            .compactMap { $0.element?.userTestId }
+    }
+    
+    func makeCurrentAnswers() -> Observable<AnswerElement?> {
+        Observable.merge(answers.asObservable(), didTapNext.map { _ in nil })
     }
     
     func endOfTest() -> Driver<Bool> {
-        answers
-            .withLatestFrom(testElement) { ($0, $1?.userTestId) }
+        selectedAnswers
+            .compactMap { $0 }
+            .withLatestFrom(testElement) {
+                ($0, $1.element?.userTestId)
+                
+            }
             .flatMapLatest { [questionManager] element, userTestId -> Observable<Bool> in
-                guard let element = element, let userTestId = userTestId else { return .just(false) }
+                guard let userTestId = userTestId else { return .just(false) }
                 
                 return questionManager
                     .sendAnswer(
@@ -127,15 +149,14 @@ private extension TestViewModel {
                     .catchAndReturn(nil)
                     .compactMap { $0 }
                     .asObservable()
-                    
             }
             .startWith(true)
             .asDriver(onErrorJustReturn: false)
     }
     
     func makeBottomState() -> Driver<TestBottomButtonState> {
-        Driver.combineLatest(isEndOfTest, question)
-            .map { isEndOfTest, question -> TestBottomButtonState in
+        Driver.combineLatest(isEndOfTest, question, currentAnswers.asDriver(onErrorJustReturn: nil))
+            .map { isEndOfTest, question, answers -> TestBottomButtonState in
                 let isResult = question.elements.contains(where: {
                     guard case .result = $0 else { return false }
                     return true
@@ -146,7 +167,7 @@ private extension TestViewModel {
                     return isEndOfTest ? .submit : .hidden
                 } else {
                     guard isResult && question.questionsCount == 1 else {
-                        return isResult ? .hidden : question.isMultiple ? .confirm : .hidden
+                        return isResult ? .hidden : answers?.answerIds.isEmpty == false ? .confirm : .hidden
                     }
                     
                     return .back
@@ -178,7 +199,7 @@ private extension TestViewModel {
                     ].compactMap { $0 }
                     
                     let elements: [TestingCellType] = [
-                        questions.count > 1 ? .questionsProgress("Question \(index + 1)/\(questions.count)") : nil,
+                        questions.count > 1 ? .questionsProgress(String(format: "Question.QuestionProgress".localized, index + 1, questions.count)) : nil,
                         !content.isEmpty ? .content(content) : nil,
                         .question(question.question),
                         .answers(answers)
@@ -189,6 +210,7 @@ private extension TestViewModel {
                         elements: elements,
                         isMultiple: question.multiple,
                         index: index + 1,
+                        isAnswered: question.isAnswered,
                         questionsCount: questions.count
                     )
                 }
@@ -208,7 +230,7 @@ private extension TestViewModel {
                 let result = currentQuestion.answers.map { answer -> AnswerResultElement in
                     let state: AnswerState = currentAnswers.answerIds.contains(answer.id)
                         ? answer.isCorrect ? .correct : .error
-                        : answer.isCorrect ? .correct : .initial
+                        : answer.isCorrect ? currentQuestion.multiple ? .warning : .correct : .initial
                     
                     return AnswerResultElement(answer: answer.answer, state: state)
                 }
@@ -223,6 +245,7 @@ private extension TestViewModel {
                 elements: newElements + explanation,
                 isMultiple: currentElement.isMultiple,
                 index: currentElement.index,
+                isAnswered: currentElement.isAnswered,
                 questionsCount: currentElement.questionsCount
             )
             var result = old
@@ -234,17 +257,22 @@ private extension TestViewModel {
     var currentQuestionAccumulator: ((QuestionElement?, [QuestionElement]), Action) -> (QuestionElement?, [QuestionElement]) {
         return { old, action -> (QuestionElement?, [QuestionElement]) in
             let (currentElement, elements) = old
-            
+            let withoutAnswered = elements.filter { !$0.isAnswered }
             switch action {
             case let .elements(questions):
-                let index = questions.firstIndex(where: { $0.id == currentElement?.id }) ?? 0
-                return (questions[safe: index], questions)
+                // Проверка для вопроса дня, чтобы была возможность отобразить вопрос,
+                // если юзер уже на него отвечал
+                guard questions.count > 1 else { return (questions.first, questions) }
+                
+                let withoutAnswered = questions.filter { !$0.isAnswered }
+                let index = withoutAnswered.firstIndex(where: { $0.id == currentElement?.id }) ?? 0
+                return (withoutAnswered[safe: index], questions)
             case .next:
-                let index = elements.firstIndex(where: { $0.id == currentElement?.id }).map { $0 + 1 } ?? 0
-                return (elements[safe: index] ?? currentElement, elements)
+                let index = withoutAnswered.firstIndex(where: { $0.id == currentElement?.id }).map { $0 + 1 } ?? 0
+                return (withoutAnswered[safe: index] ?? currentElement, elements)
             case .previos:
-                let index = elements.firstIndex(where: { $0.id == currentElement?.id }).map { $0 - 1 } ?? 0
-                return (elements[safe: index] ?? currentElement, elements)
+                let index = withoutAnswered.firstIndex(where: { $0.id == currentElement?.id }).map { $0 - 1 } ?? 0
+                return (withoutAnswered[safe: index] ?? currentElement, elements)
             }
         }
     }

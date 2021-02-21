@@ -23,10 +23,14 @@ class TestStatsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.elements
+        viewModel.elements.startWith([])
             .drive(Binder(mainView.tableView) {
                 $0.setup(elements: $1)
             })
+            .disposed(by: disposeBag)
+        
+        viewModel.testName
+            .drive(mainView.titleLabel.rx.text)
             .disposed(by: disposeBag)
         
         mainView.tableView
@@ -44,10 +48,11 @@ class TestStatsViewController: UIViewController {
 
 // MARK: Make
 extension TestStatsViewController {
-    static func make(userTestId: Int) -> TestStatsViewController {
+    static func make(userTestId: Int, testType: TestType) -> TestStatsViewController {
         let controller = TestStatsViewController()
         controller.modalPresentationStyle = .fullScreen
         controller.viewModel.userTestId.accept(userTestId)
+        controller.viewModel.testType.accept(testType)
         return controller
     }
 }

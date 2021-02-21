@@ -8,9 +8,17 @@
 import Foundation
 
 struct GetTestResponseMapper {
-    static func map(from response: Any) -> Test? {
+    static func map(from response: Any) throws -> Test? {
         guard
             let json = response as? [String: Any],
+            let code = json["_code"] as? Int
+        else { return nil }
+        
+        guard code == 200 else {
+            throw NSError(domain: "\(type(of: self))", code: code, userInfo: [NSLocalizedDescriptionKey : (json["_msg"] as? String) ?? ""])
+        }
+        
+        guard
             let data = json["_data"] as? [String: Any],
             let paid = data["paid"] as? Bool,
             let userTestId = data["user_test_id"] as? Int,
@@ -39,6 +47,7 @@ private extension GetTestResponseMapper {
                 let id = restJSON["id"] as? Int,
                 let question = restJSON["question"] as? String,
                 let multiple = restJSON["multiple"] as? Bool,
+                let isAnswered = restJSON["answered"] as? Bool,
                 let answersJSON = restJSON["answers"] as? [[String: Any]]
             else {
                 return nil
@@ -48,17 +57,18 @@ private extension GetTestResponseMapper {
             let answers: [Answer] = Self.map(from: answersJSON)
             guard !answers.isEmpty else { return nil }
             
-            let image = restJSON["image"] as? URL
-            let video = restJSON["video"] as? URL
+            let image = (restJSON["image"] as? String)?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+            let video = (restJSON["video"] as? String)?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
             
             return Question(
                 id: id,
-                image: image,
-                video: video,
+                image: URL(string: image),
+                video: URL(string: video),
                 question: question,
                 answers: answers,
                 multiple: multiple,
-                explanation: explanation
+                explanation: explanation,
+                isAnswered: isAnswered
             )
         }
     }

@@ -18,7 +18,7 @@ struct AnswerResultElement {
 }
 
 enum AnswerState {
-    case initial, correct, error
+    case initial, correct, warning, error
 }
 
 
@@ -27,6 +27,7 @@ struct QuestionElement {
     let elements: [TestingCellType]
     let isMultiple: Bool
     let index: Int
+    let isAnswered: Bool
     let questionsCount: Int
 }
 

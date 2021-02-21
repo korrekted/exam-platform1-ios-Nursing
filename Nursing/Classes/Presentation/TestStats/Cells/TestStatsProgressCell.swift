@@ -27,7 +27,7 @@ class TestStatsProgressCell: UITableViewCell {
 // MARK: Public
 extension TestStatsProgressCell {
     func setup(element: TestStatsProgressElement) {
-        let progress = max(CGFloat(100 - element.percent) / 100, 0)
+        let progress = min(CGFloat(element.percent) / 100, 1)
         progressView.progress(progress: progress)
         percentLabel.text = "\(element.percent) %"
         answerLabel.text = String(format: "TestStats.QuestionsStats".localized, element.correctNumbers, element.incorrectNumbers)

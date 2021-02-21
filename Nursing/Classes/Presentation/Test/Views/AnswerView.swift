@@ -32,7 +32,7 @@ final class AnswerView: UIView {
 // MARK: Public
 extension AnswerView {
     enum State {
-        case initial, correct, error, selected
+        case initial, correct, error, warning, selected
     }
     
     func setAnswer(answer: String) {
@@ -85,6 +85,13 @@ private extension AnswerView {
             backgroundColor = errorColor.withAlphaComponent(0.15)
             iconView.tintColor = errorColor
             iconView.image = UIImage(named: "Question.Error")
+        case .warning:
+            let warningColor = UIColor(integralRed: 254, green: 168, blue: 88)
+            layer.borderWidth = 3.scale
+            layer.borderColor = warningColor.cgColor
+            backgroundColor = warningColor.withAlphaComponent(0.15)
+            iconView.tintColor = warningColor
+            iconView.image = UIImage(named: "Question.Warning")
         }
     }
 }

@@ -37,6 +37,7 @@ extension QuestionTableView {
         elements = question.elements
         isMultiple = question.isMultiple
         reloadData()
+        scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
     }
 }
 

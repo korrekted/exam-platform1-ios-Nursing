@@ -95,7 +95,7 @@ private extension StudyViewController {
         let controller = TestViewController.make(testType: type, activeSubscription: activeSubscription)
         controller.didTapSubmit = { [weak self] userTestId in
             self?.dismiss(animated: false, completion: { [weak self] in
-                self?.present(TestStatsViewController.make(userTestId: userTestId), animated: true)
+                self?.present(TestStatsViewController.make(userTestId: userTestId, testType: type), animated: true)
             })
         }
         present(controller, animated: true)

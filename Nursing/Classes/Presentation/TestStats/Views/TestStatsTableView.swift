@@ -61,8 +61,6 @@ extension TestStatsTableView: UITableViewDataSource {
             return cell
         }
     }
-    
-    
 }
 
 // MARK: Private

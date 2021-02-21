@@ -42,7 +42,21 @@ extension TestStatsFilterView {
 // MARK: Private
 private extension TestStatsFilterView {
     @objc func didTap(sender: UIButton) {
-        selectorView.frame = CGRect(x: sender.frame.minX, y: frame.height - 2.scale, width: sender.frame.width, height: 2.scale)
+        if frame == .zero {
+            guard let titleLabel = sender.titleLabel, let attributedText = titleLabel.attributedText else { return  }
+            
+            let labelSizeWithContent = attributedText.boundingRect(
+                with: CGSize(width: titleLabel.bounds.size.width, height: .greatestFiniteMagnitude),
+                options: .usesLineFragmentOrigin,
+                context: nil
+            )
+
+            let size = sender.systemLayoutSizeFitting(CGSize(width: labelSizeWithContent.width, height: UIView.layoutFittingCompressedSize.height))
+            
+            selectorView.frame = CGRect(x: sender.frame.minX, y: size.height - 2.scale, width: size.width, height: 2.scale)
+        } else {
+            selectorView.frame = CGRect(x: sender.frame.minX, y: frame.height - 2.scale, width: sender.frame.width, height: 2.scale)
+        }
     }
 }
 

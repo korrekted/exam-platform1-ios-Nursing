@@ -70,7 +70,7 @@ private extension ExplanationCell {
             .textColor(UIColor(integralRed: 95, green: 70, blue: 245))
             .lineHeight(20.scale)
         
-        view.attributedText = "Question.Exploration".localized.attributed(with: attr)
+        view.attributedText = "Question.Explanation".localized.attributed(with: attr)
         view.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(view)
         return view
