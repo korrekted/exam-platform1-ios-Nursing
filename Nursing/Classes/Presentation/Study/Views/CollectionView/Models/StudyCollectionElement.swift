@@ -11,7 +11,7 @@ struct StudyCollectionSection {
 
 enum StudyCollectionElement {
     case brief(SCEBrief)
-    case takeTest(activeSubscription: Bool, configs: [TestConfig])
+    case takeTest(activeSubscription: Bool)
     case unlockAllQuestions
     case title(String)
     case mode(SCEMode)

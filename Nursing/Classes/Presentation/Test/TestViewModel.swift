@@ -149,7 +149,6 @@ private extension TestViewModel {
                     .catchAndReturn(nil)
                     .compactMap { $0 }
                     .asObservable()
-                    
             }
             .startWith(true)
             .asDriver(onErrorJustReturn: false)

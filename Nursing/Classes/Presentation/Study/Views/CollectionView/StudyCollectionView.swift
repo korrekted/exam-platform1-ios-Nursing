@@ -49,7 +49,7 @@ extension StudyCollectionView: UICollectionViewDataSource {
             let cell = dequeueReusableCell(withReuseIdentifier: String(describing: SCBriefCell.self), for: indexPath) as! SCBriefCell
             cell.setup(element: brief)
             return cell
-        case .takeTest(let activeSubscription, _):
+        case .takeTest(let activeSubscription):
             let cell = dequeueReusableCell(withReuseIdentifier: String(describing: SCTakeTestCell.self), for: indexPath) as! SCTakeTestCell
             cell.setup(activeSubscription: activeSubscription)
             return cell
