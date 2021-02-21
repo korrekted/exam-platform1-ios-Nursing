@@ -9,7 +9,6 @@
 import UIKit
 
 final class PaygateView: UIView {
-    lazy var closeButton = makeCloseButton()
     lazy var mainView = makeMainView()
     lazy var specialOfferView = makeSpecialOfferView()
     
@@ -41,27 +40,12 @@ private extension PaygateView {
             specialOfferView.topAnchor.constraint(equalTo: topAnchor),
             specialOfferView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
-        
-        NSLayoutConstraint.activate([
-            closeButton.widthAnchor.constraint(equalToConstant: 37.scale),
-            closeButton.heightAnchor.constraint(equalToConstant: 37.scale),
-            closeButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20.scale),
-            closeButton.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 44.scale : 30.scale)
-        ])
     }
 }
 
 // MARK: Lazy initialization
 
 private extension PaygateView {
-    func makeCloseButton() -> UIButton {
-        let view = UIButton()
-        view.setImage(UIImage(named: "Paygate.MainOffer.Close"), for: .normal)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(view)
-        return view
-    }
-    
     func makeMainView() -> PaygateMainView {
         let view = PaygateMainView()
         view.isHidden = true
