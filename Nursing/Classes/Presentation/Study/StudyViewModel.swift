@@ -43,7 +43,6 @@ private extension StudyViewModel {
             }
     }
     
-    // TODO: brief
     func makeBrief() -> Driver<StudyCollectionSection> {
         courseManager.rxGetSelectedCourse()
             .flatMap { [weak self] course -> Single<(Course, Brief?)> in
@@ -91,11 +90,9 @@ private extension StudyViewModel {
     }
     
     func makeTakeTest() -> Driver<StudyCollectionSection> {
-        Driver
-            .combineLatest(makeTestsConfig(), activeSubscription)
-            .map { configs, activeSubscription -> StudyCollectionSection in
-                StudyCollectionSection(elements: [.takeTest(activeSubscription: activeSubscription,
-                                                            configs: configs)])
+        activeSubscription
+            .map { activeSubscription -> StudyCollectionSection in
+                StudyCollectionSection(elements: [.takeTest(activeSubscription: activeSubscription)])
             }
     }
     
@@ -159,15 +156,5 @@ private extension StudyViewModel {
         
         return Driver
             .merge(initial, updated)
-    }
-    
-    func makeTestsConfig() -> Driver<[TestConfig]> {
-        guard let courseId = courseManager.getSelectedCourse()?.id else {
-            return .empty()
-        }
-        
-        return questionManager
-            .retrieveConfig(courseId: courseId)
-            .asDriver(onErrorJustReturn: [])
     }
 }
