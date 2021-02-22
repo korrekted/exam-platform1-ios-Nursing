@@ -38,7 +38,7 @@ extension TestView {
         case .hidden:
             break
         }
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: state != .hidden ? 195 : 0, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: state != .hidden ? 195.scale : 0, right: 0)
         
         [bottomButton, gradientView].forEach {
             $0.isHidden = state == .hidden

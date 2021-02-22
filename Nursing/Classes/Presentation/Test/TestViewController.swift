@@ -87,7 +87,9 @@ final class TestViewController: UIViewController {
                 mainView.nextButton.rx.tap.asDriver().map { _ in true }
             )
             .drive(Binder(mainView) { view, isHidden in
-                view.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: isHidden ? 0 : view.bounds.height - view.nextButton.frame.minY + 9, right: 0)
+                let currentBottomInset = view.tableView.contentInset.bottom
+                let bottomInset = isHidden ? 0 : view.bounds.height - view.nextButton.frame.minY + 9
+                view.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: (currentBottomInset + bottomInset).scale, right: 0)
                 view.nextButton.isHidden = isHidden
             })
             .disposed(by: disposeBag)
