@@ -8,6 +8,7 @@
 import UIKit
 
 final class OSlide5View: OSlideView {
+    lazy var skipButton = makeSkipButton()
     lazy var titleLabel = makeTitleLabel()
     lazy var datePickerView = makeDatePickerView()
     lazy var button = makeButton()
@@ -26,6 +27,11 @@ final class OSlide5View: OSlideView {
 // MARK: Make constraints
 private extension OSlide5View {
     func makeConstraints() {
+        NSLayoutConstraint.activate([
+            skipButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -26.scale),
+            skipButton.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 49.scale : 20.scale)
+        ])
+        
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 17.scale),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -17.scale),
@@ -49,6 +55,21 @@ private extension OSlide5View {
 
 // MARK: Lazy initialization
 private extension OSlide5View {
+    func makeSkipButton() -> UIButton {
+        let attrs = TextAttributes()
+            .textColor(UIColor.black)
+            .font(Fonts.SFProRounded.semiBold(size: 13.scale))
+            .letterSpacing(-0.6.scale)
+            .lineHeight(20.scale)
+        
+        let view = UIButton()
+        view.setAttributedTitle("Onboarding.Skip".localized.attributed(with: attrs), for: .normal)
+        view.addTarget(self, action: #selector(onNext), for: .touchUpInside)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
     func makeTitleLabel() -> UILabel {
         let attrs = TextAttributes()
             .textColor(UIColor.black)

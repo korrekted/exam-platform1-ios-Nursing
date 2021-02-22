@@ -25,6 +25,7 @@
 "Splash.Title.Part3" = "US students";
 
 // MARK: Onboarding
+"Onboarding.Skip" = "Skip";
 "Onboarding.Proceed" = "Proceed";
 "Onboarding.Yes" = "Yes";
 "Onboarding.No" = "No";
