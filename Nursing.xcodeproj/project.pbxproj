@@ -113,6 +113,7 @@
 		965F028825BF68FF0067EF3C /* STLinksCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F028725BF68FF0067EF3C /* STLinksCell.swift */; };
 		965F028B25BF78D20067EF3C /* STLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F028A25BF78D20067EF3C /* STLinkView.swift */; };
 		9685640E25E2412100238AEB /* RateUs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9685640D25E2412100238AEB /* RateUs.swift */; };
+		9685649125E44F5E00238AEB /* Onboarding.Chart.json in Resources */ = {isa = PBXBuildFile; fileRef = 9685649025E44F5E00238AEB /* Onboarding.Chart.json */; };
 		96B92B1B25C4A5880003002D /* PaygateManagerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B92B0A25C4A5880003002D /* PaygateManagerCore.swift */; };
 		96B92B1D25C4A5880003002D /* PaygateMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B92B0D25C4A5880003002D /* PaygateMapper.swift */; };
 		96B92B1F25C4A5880003002D /* PaygateOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B92B1025C4A5880003002D /* PaygateOption.swift */; };
@@ -199,7 +200,6 @@
 		96D38BDF25B4929200EADC9A /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D38BDE25B4929200EADC9A /* Course.swift */; };
 		96E437D725BED56700B4320D /* OSlide15Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E437D625BED56700B4320D /* OSlide15Cell.swift */; };
 		96E437DA25BEDCA200B4320D /* OSlide15View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E437D925BEDCA200B4320D /* OSlide15View.swift */; };
-		96E437FD25BEE2AA00B4320D /* Onboarding.Chart.json in Resources */ = {isa = PBXBuildFile; fileRef = 96E437FC25BEE2AA00B4320D /* Onboarding.Chart.json */; };
 		96E4380525BF1A7A00B4320D /* CoursesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E4380425BF1A7A00B4320D /* CoursesCollectionView.swift */; };
 /* End PBXBuildFile section */
 
@@ -311,6 +311,7 @@
 		965F028725BF68FF0067EF3C /* STLinksCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STLinksCell.swift; sourceTree = "<group>"; };
 		965F028A25BF78D20067EF3C /* STLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STLinkView.swift; sourceTree = "<group>"; };
 		9685640D25E2412100238AEB /* RateUs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateUs.swift; sourceTree = "<group>"; };
+		9685649025E44F5E00238AEB /* Onboarding.Chart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Onboarding.Chart.json; sourceTree = "<group>"; };
 		96B92B0A25C4A5880003002D /* PaygateManagerCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaygateManagerCore.swift; sourceTree = "<group>"; };
 		96B92B0D25C4A5880003002D /* PaygateMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaygateMapper.swift; sourceTree = "<group>"; };
 		96B92B1025C4A5880003002D /* PaygateOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaygateOption.swift; sourceTree = "<group>"; };
@@ -400,7 +401,6 @@
 		96D38BDE25B4929200EADC9A /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		96E437D625BED56700B4320D /* OSlide15Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlide15Cell.swift; sourceTree = "<group>"; };
 		96E437D925BEDCA200B4320D /* OSlide15View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlide15View.swift; sourceTree = "<group>"; };
-		96E437FC25BEE2AA00B4320D /* Onboarding.Chart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Onboarding.Chart.json; sourceTree = "<group>"; };
 		96E4380425BF1A7A00B4320D /* CoursesCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesCollectionView.swift; sourceTree = "<group>"; };
 		96E686DC5654A1E4706B4192 /* Pods-Nursing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nursing.release.xcconfig"; path = "Target Support Files/Pods-Nursing/Pods-Nursing.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1247,7 +1247,7 @@
 		96E437F825BEE29200B4320D /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				96E437FC25BEE2AA00B4320D /* Onboarding.Chart.json */,
+				9685649025E44F5E00238AEB /* Onboarding.Chart.json */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -1329,7 +1329,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96E437FD25BEE2AA00B4320D /* Onboarding.Chart.json in Resources */,
+				9685649125E44F5E00238AEB /* Onboarding.Chart.json in Resources */,
 				96D38B2825B3073900EADC9A /* Localizable.strings in Resources */,
 				962AEA7325B4F8090032E7C3 /* SF-Pro-Rounded-Semibold.otf in Resources */,
 				962AEA7225B4F8090032E7C3 /* SF-Pro-Rounded-Regular.otf in Resources */,

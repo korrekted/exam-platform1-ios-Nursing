@@ -45,7 +45,7 @@ private extension OSlide15View {
             chartView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 9.scale),
             chartView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -9.scale),
             chartView.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 179.scale : 110.scale),
-            chartView.heightAnchor.constraint(equalToConstant: ScreenSize.isIphoneXFamily ? 311.scale : 280.scale)
+            chartView.heightAnchor.constraint(equalToConstant: ScreenSize.isIphoneXFamily ? 294.scale : 265.scale)
         ])
         
         NSLayoutConstraint.activate([

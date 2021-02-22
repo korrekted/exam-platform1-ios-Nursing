@@ -62,6 +62,7 @@ extension OSlide3View: UIPickerViewDelegate {
 private extension OSlide3View {
     func initialize() {
         pickerView.reloadAllComponents()
+        pickerView.selectRow(9, inComponent: 0, animated: false)
     }
 }
 

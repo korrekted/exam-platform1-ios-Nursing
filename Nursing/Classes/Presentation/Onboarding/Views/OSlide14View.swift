@@ -26,7 +26,7 @@ final class OSlide14View: OSlideView {
     }
     
     override func moveToThis() {
-        progressView.progressAnimation(duration: 5)
+        progressView.progressAnimation(duration: 3)
         calculatePercent()
     }
 }
@@ -34,7 +34,7 @@ final class OSlide14View: OSlideView {
 // MARK: Private
 private extension OSlide14View {
     func calculatePercent() {
-        let duration = Double(5)
+        let duration = Double(3)
         var seconds = Double(0)
         
         timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] timer in
@@ -46,10 +46,16 @@ private extension OSlide14View {
             }
             self?.percentLabel.text = "\(percent) %"
             
-            if percent < 50 {
+            if percent <= 20 {
                 self?.analyzeLabel.text = "Onboarding.Slide14.Preloader1".localized
-            } else {
+            } else if percent <= 40 {
                 self?.analyzeLabel.text = "Onboarding.Slide14.Preloader2".localized
+            } else if percent <= 60 {
+                self?.analyzeLabel.text = "Onboarding.Slide14.Preloader3".localized
+            } else if percent <= 80 {
+                self?.analyzeLabel.text = "Onboarding.Slide14.Preloader4".localized
+            } else {
+                self?.analyzeLabel.text = "Onboarding.Slide14.Preloader5".localized
             }
             
             if seconds >= duration {

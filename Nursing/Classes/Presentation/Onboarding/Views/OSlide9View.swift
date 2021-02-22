@@ -40,17 +40,6 @@ private extension OSlide9View {
         
         tagView.isSelected = !tagView.isSelected
     }
-    
-    @objc
-    func tapped() {
-        let views = [tag1, tag2, tag3, tag4, tag5, tag6, tag7, tag8]
-        
-        guard views.contains(where: { $0.isSelected }) else {
-            return
-        }
-        
-        onNext()
-    }
 }
 
 // MARK: Make constraints
@@ -169,7 +158,7 @@ private extension OSlide9View {
         view.backgroundColor = UIColor(integralRed: 95, green: 70, blue: 245)
         view.layer.cornerRadius = 30.scale
         view.setAttributedTitle("Onboarding.Proceed".localized.attributed(with: attrs), for: .normal)
-        view.addTarget(self, action: #selector(tapped), for: .touchUpInside)
+        view.addTarget(self, action: #selector(onNext), for: .touchUpInside)
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

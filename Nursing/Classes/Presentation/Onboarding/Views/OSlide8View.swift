@@ -36,15 +36,17 @@ final class OSlide8View: OSlideView {
 private extension OSlide8View {
     @objc
     func update(sender: UISlider) {
-        if slider.value <= 5 {
+        sender.value = round(sender.value)
+        
+        if slider.value <= 2 {
             imageView.image = UIImage(named: "Onboarding.Slide8.Image1")
-        } else if slider.value < 7 {
+        } else if slider.value <= 5 {
             imageView.image = UIImage(named: "Onboarding.Slide8.Image2")
         } else {
             imageView.image = UIImage(named: "Onboarding.Slide8.Image3")
         }
         
-        valueLabel.text = String(Int(sender.value))
+        valueLabel.text = sender.value >= 7 ? "7+" : String(Int(sender.value))
         valueLabel.sizeToFit()
         
         let trackRect = sender.trackRect(forBounds: sender.frame)

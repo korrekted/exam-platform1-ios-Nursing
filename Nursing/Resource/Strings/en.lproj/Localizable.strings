@@ -64,19 +64,22 @@
 "Onboarding.Slide10.Title" = "Do you agree with the statement?";
 "Onboarding.Slide10.Question" = "Older people should know more about nursing so it's easier for them to accept help";
 "Onboarding.Slide11.Title" = "Do you agree with the statement?";
-"Onboarding.Slide11.Question" = "To some extent, I feel I have the right to change a patient's mind about their condition and treatment";
+"Onboarding.Slide11.Question" = "I feel I have the right to change a patient's mind about their condition and treatment";
 "Onboarding.Slide12.Title" = "Do you agree with the statement?";
 "Onboarding.Slide12.Question" = "I believe a theory course represents only a tiny part of what I'll encounter in reality";
 "Onboarding.Slide13.Title" = "Do you agree with the statement?";
 "Onboarding.Slide13.Question" = "Relatives often make  emotional decisions regarding patients’ conditions";
 "Onboarding.Slide14.Title" = "PREPARING YOUR INDIVIDUAL STUDY PLAN";
-"Onboarding.Slide14.Preloader1" = "Analyzing your skill level...";
-"Onboarding.Slide14.Preloader2" = "Anazling your study preferences...";
+"Onboarding.Slide14.Preloader1" = "Analyzing your goals...";
+"Onboarding.Slide14.Preloader2" = "Analyzing your skill level...";
+"Onboarding.Slide14.Preloader3" = "Comparing your age and gender with community average...";
+"Onboarding.Slide14.Preloader4" = "Anazling your study preferences...";
+"Onboarding.Slide14.Preloader5" = "Analyzing areas to improve...";
 "Onboarding.Slide15.Title" = "YOUR PERSONAL 98% PASS RATE STUDY PLAN";
-"Onboarding.Slide15.Cell1" = "500 tests";
-"Onboarding.Slide15.Cell2" = "10000 individual questions";
-"Onboarding.Slide15.Cell3" = "7 different courses";
-"Onboarding.Slide15.Cell4" = "reminders and notifications";
+"Onboarding.Slide15.Cell1" = "500+ tests";
+"Onboarding.Slide15.Cell2" = "10,000+ individual questions";
+"Onboarding.Slide15.Cell3" = "Over 10 courses";
+"Onboarding.Slide15.Cell4" = "Reminders & notifications ";
 "Onboarding.Slide15.Button" = "Let’s go!";
 
 // MARK: Courses
