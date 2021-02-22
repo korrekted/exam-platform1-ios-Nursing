@@ -71,8 +71,10 @@ private extension StudyView {
         return view
     }
     
-    func makeSettingsButton() -> UIButton {
-        let view = UIButton()
+    func makeSettingsButton() -> TapAreaButton {
+        let view = TapAreaButton()
+        view.dx = -16.scale
+        view.dy = -16.scale
         view.backgroundColor = UIColor.clear
         view.setImage(UIImage(named: "Study.Settings"), for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false

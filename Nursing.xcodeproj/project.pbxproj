@@ -114,6 +114,7 @@
 		965F028B25BF78D20067EF3C /* STLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F028A25BF78D20067EF3C /* STLinkView.swift */; };
 		9685640E25E2412100238AEB /* RateUs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9685640D25E2412100238AEB /* RateUs.swift */; };
 		9685649125E44F5E00238AEB /* Onboarding.Chart.json in Resources */ = {isa = PBXBuildFile; fileRef = 9685649025E44F5E00238AEB /* Onboarding.Chart.json */; };
+		9685649425E4537A00238AEB /* TapAreaButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9685649325E4537A00238AEB /* TapAreaButton.swift */; };
 		96B92B1B25C4A5880003002D /* PaygateManagerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B92B0A25C4A5880003002D /* PaygateManagerCore.swift */; };
 		96B92B1D25C4A5880003002D /* PaygateMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B92B0D25C4A5880003002D /* PaygateMapper.swift */; };
 		96B92B1F25C4A5880003002D /* PaygateOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B92B1025C4A5880003002D /* PaygateOption.swift */; };
@@ -312,6 +313,7 @@
 		965F028A25BF78D20067EF3C /* STLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STLinkView.swift; sourceTree = "<group>"; };
 		9685640D25E2412100238AEB /* RateUs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateUs.swift; sourceTree = "<group>"; };
 		9685649025E44F5E00238AEB /* Onboarding.Chart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Onboarding.Chart.json; sourceTree = "<group>"; };
+		9685649325E4537A00238AEB /* TapAreaButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapAreaButton.swift; sourceTree = "<group>"; };
 		96B92B0A25C4A5880003002D /* PaygateManagerCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaygateManagerCore.swift; sourceTree = "<group>"; };
 		96B92B0D25C4A5880003002D /* PaygateMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaygateMapper.swift; sourceTree = "<group>"; };
 		96B92B1025C4A5880003002D /* PaygateOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaygateOption.swift; sourceTree = "<group>"; };
@@ -1056,6 +1058,7 @@
 				96D38B5325B3098100EADC9A /* PaddingLabel.swift */,
 				96D38B5625B3099100EADC9A /* CircleView.swift */,
 				96D38B5925B309A000EADC9A /* GradientButton.swift */,
+				9685649325E4537A00238AEB /* TapAreaButton.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -1414,6 +1417,7 @@
 				96D38B7D25B30B2C00EADC9A /* Weak.swift in Sources */,
 				96D38B9A25B4722800EADC9A /* OnboardingViewModel.swift in Sources */,
 				8667316325D8336A00927D0E /* TestBottomButtonState.swift in Sources */,
+				9685649425E4537A00238AEB /* TapAreaButton.swift in Sources */,
 				8635FA4D25D6F3B6007C06AB /* GetTestStatsResponseMapper.swift in Sources */,
 				86139A3225BF34DA0099CA2F /* MainStatsDescriptionLineView.swift in Sources */,
 				96C63DA925BCDA3D007B7EB7 /* OSlide3View.swift in Sources */,
