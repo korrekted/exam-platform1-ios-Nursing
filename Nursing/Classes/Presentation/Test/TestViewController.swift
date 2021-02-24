@@ -144,7 +144,7 @@ final class TestViewController: UIViewController {
 
         viewModel.needPayment
             .emit { [weak self] _ in
-                self?.dismiss(animated: false, completion: {
+                self?.dismiss(animated: true, completion: {
                     UIApplication.shared.keyWindow?.rootViewController?.present(PaygateViewController.make(), animated: true)
                 })
             }
