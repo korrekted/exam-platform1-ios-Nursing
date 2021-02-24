@@ -44,6 +44,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        sdkProvider.applicationDidBecomeActive(application)
+    }
+    
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         SDKStorage.shared.pushNotificationsManager.application(didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
     }
@@ -83,6 +87,7 @@ private extension AppDelegate {
         let settings = SDKSettings(backendBaseUrl: GlobalDefinitions.sdkDomainUrl,
                                    backendApiKey: GlobalDefinitions.sdkApiKey,
                                    amplitudeApiKey: GlobalDefinitions.amplitudeApiKey,
+                                   appsFlyerApiKey: GlobalDefinitions.appsFlyerApiKey,
                                    facebookActive: true,
                                    branchActive: false,
                                    firebaseActive: false,
@@ -92,7 +97,8 @@ private extension AppDelegate {
                                    view: view,
                                    shouldAddStorePayment: true,
                                    featureAppBackendUrl: GlobalDefinitions.domainUrl,
-                                   featureAppBackendApiKey: GlobalDefinitions.apiKey)
+                                   featureAppBackendApiKey: GlobalDefinitions.apiKey,
+                                   appleAppID: "1550433302")
         
         sdkProvider.initialize(settings: settings) { [weak self] in
             self?.generateStepInSplash.accept(Void())
