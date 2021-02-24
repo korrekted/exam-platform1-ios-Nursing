@@ -39,6 +39,10 @@ private extension OSlide9View {
         }
         
         tagView.isSelected = !tagView.isSelected
+        
+        SDKStorage.shared
+            .amplitudeManager
+            .logEvent(name: "Improve Tap", parameters: [:])
     }
 }
 

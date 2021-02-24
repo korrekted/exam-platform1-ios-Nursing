@@ -12,11 +12,19 @@ final class StatsViewModel {
     private lazy var statsManager = StatsManagerCore()
     private lazy var courseManager = CoursesManagerCore()
     
+    lazy var courseName = makeCourseName()
     lazy var elements = makeElements()
 }
 
 // MARK: Private
 private extension StatsViewModel {
+    func makeCourseName() -> Driver<String> {
+        courseManager
+            .rxGetSelectedCourse()
+            .compactMap { $0?.name }
+            .asDriver(onErrorDriveWith: .empty())
+    }
+    
     func makeElements() -> Driver<[StatsCellType]> {
         guard let courseId = courseManager.getSelectedCourse()?.id else {
             return .just([])

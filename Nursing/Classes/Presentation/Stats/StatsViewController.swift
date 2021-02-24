@@ -23,6 +23,15 @@ final class StatsViewController: UIViewController {
         super.viewDidLoad()
         
         viewModel
+            .courseName
+            .drive(onNext: { name in
+                SDKStorage.shared
+                    .amplitudeManager
+                    .logEvent(name: "Stats Screen", parameters: ["course": ""])
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel
             .elements
             .drive(onNext: { [mainView] elements in
                 mainView.tableView.setup(elements: elements)

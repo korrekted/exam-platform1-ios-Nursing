@@ -43,6 +43,12 @@ class TestStatsViewController: UIViewController {
                 base.dismiss(animated: true)
             })
             .disposed(by: disposeBag)
+        
+        viewModel.courseName
+            .drive(onNext: { [weak self] name in
+                self?.logAnalytics(courseName: name)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -54,5 +60,21 @@ extension TestStatsViewController {
         controller.viewModel.userTestId.accept(userTestId)
         controller.viewModel.testType.accept(testType)
         return controller
+    }
+}
+
+// MARK: Private
+private extension TestStatsViewController {
+    func logAnalytics(courseName: String) {
+        guard let type = viewModel.testType.value else {
+            return
+        }
+        
+        let name = TestAnalytics.name(mode: type)
+        
+        SDKStorage.shared
+            .amplitudeManager
+            .logEvent(name: "Test Stats Screen", parameters: ["course": courseName,
+                                                              "mode": name])
     }
 }

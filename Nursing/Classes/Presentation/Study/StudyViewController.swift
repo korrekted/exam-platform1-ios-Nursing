@@ -25,6 +25,15 @@ final class StudyViewController: UIViewController {
         let activeSubscription = viewModel.activeSubscription
         
         viewModel
+            .courseName
+            .drive(onNext: { name in
+                SDKStorage.shared
+                    .amplitudeManager
+                    .logEvent(name: "Study Screen", parameters: ["exam": name])
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel
             .sections
             .drive(onNext: { [weak self] sections in
                 self?.mainView.collectionView.setup(sections: sections)
@@ -43,7 +52,7 @@ final class StudyViewController: UIViewController {
             .withLatestFrom(activeSubscription) { ($0, $1) }
             .subscribe(onNext: { [weak self] stub in
                 let (element, activeSubscription) = stub
-                
+ 
                 self?.selected(element: element, activeSubscription: activeSubscription)
             })
             .disposed(by: disposeBag)
@@ -63,6 +72,10 @@ extension StudyViewController {
 private extension StudyViewController {
     func settingsTapped() {
         navigationController?.pushViewController(SettingsViewController.make(), animated: true)
+        
+        SDKStorage.shared
+            .amplitudeManager
+            .logEvent(name: "Study Tap", parameters: ["what": "settings"])
     }
     
     func selected(element: StudyCollectionElement, activeSubscription: Bool) {
@@ -71,8 +84,16 @@ private extension StudyViewController {
             break
         case .unlockAllQuestions:
             openPaygate()
+            
+            SDKStorage.shared
+                .amplitudeManager
+                .logEvent(name: "Study Tap", parameters: ["what": "unlock all questions"])
         case .takeTest(let activeSubscription):
             openTest(type: .get(testId: nil), activeSubscription: activeSubscription)
+            
+            SDKStorage.shared
+                .amplitudeManager
+                .logEvent(name: "Study Tap", parameters: ["what": "take a free test"])
         case .mode(let mode):
             tapped(mode: mode.mode, activeSubscription: activeSubscription)
         }
@@ -82,12 +103,28 @@ private extension StudyViewController {
         switch mode {
         case .ten:
             openTest(type: .tenSet, activeSubscription: activeSubscription)
+            
+            SDKStorage.shared
+                .amplitudeManager
+                .logEvent(name: "Study Tap", parameters: ["what": "10 questions"])
         case .random:
             openTest(type: .randomSet, activeSubscription: activeSubscription)
+            
+            SDKStorage.shared
+                .amplitudeManager
+                .logEvent(name: "Study Tap", parameters: ["what": "random set"])
         case .missed:
             openTest(type: .failedSet, activeSubscription: activeSubscription)
+            
+            SDKStorage.shared
+                .amplitudeManager
+                .logEvent(name: "Study Tap", parameters: ["what": "missed questions"])
         case .today:
             openTest(type: .qotd, activeSubscription: activeSubscription)
+            
+            SDKStorage.shared
+                .amplitudeManager
+                .logEvent(name: "Study Tap", parameters: ["what": "question of the day"])
         }
     }
     

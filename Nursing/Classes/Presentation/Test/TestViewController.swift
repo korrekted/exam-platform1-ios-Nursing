@@ -27,6 +27,8 @@ final class TestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let courseName = viewModel.courseName
+        
         viewModel.question
             .drive(Binder(self) { base, element in
                 base.mainView.tableView.setup(question: element)
@@ -35,7 +37,13 @@ final class TestViewController: UIViewController {
         
         mainView.tableView
             .selectedAnswersRelay
-            .bind(to: viewModel.answers)
+            .withLatestFrom(courseName) { ($0, $1) }
+            .subscribe(onNext: { [weak self] stub in
+                let (answers, name) = stub
+                
+                self?.viewModel.answers.accept(answers)
+                self?.logTapAnalytics(courseName: name, what: "answer")
+            })
             .disposed(by: disposeBag)
         
         let currentButtonState = mainView.bottomButton.rx.tap
@@ -60,11 +68,18 @@ final class TestViewController: UIViewController {
             .disposed(by: disposeBag)
         
         mainView.nextButton.rx.tap
-            .bind(to: viewModel.didTapNext)
+            .withLatestFrom(courseName)
+            .subscribe(onNext: { [weak self] name in
+                self?.viewModel.didTapNext.accept(Void())
+                self?.logTapAnalytics(courseName: name, what: "continue")
+            })
             .disposed(by: disposeBag)
         
         mainView.closeButton.rx.tap
-            .bind(to: Binder(self) { base, _ in
+            .withLatestFrom(courseName)
+            .bind(to: Binder(self) { base, name in
+                base.logTapAnalytics(courseName: name, what: "close")
+                
                 base.dismiss(animated: true)
             })
             .disposed(by: disposeBag)
@@ -95,8 +110,12 @@ final class TestViewController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.userTestId
-            .bind(to: Binder(self) {
-                $0.didTapSubmit?($1)
+            .withLatestFrom(courseName) { ($0, $1) }
+            .bind(to: Binder(self) { base, stub in
+                let (id, name) = stub
+                
+                base.didTapSubmit?(id)
+                base.logTapAnalytics(courseName: name, what: "finish test")
             })
             .disposed(by: disposeBag)
         
@@ -149,6 +168,20 @@ final class TestViewController: UIViewController {
                 })
             }
             .disposed(by: disposeBag)
+            
+        courseName
+            .drive(onNext: { [weak self] name in
+                self?.logAnalytics(courseName: name)
+            })
+            .disposed(by: disposeBag)
+        
+        mainView.tableView
+            .expandContent
+            .withLatestFrom(courseName)
+            .subscribe(onNext: { [weak self] name in
+                self?.logTapAnalytics(courseName: name, what: "media")
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -160,5 +193,35 @@ extension TestViewController {
         controller.viewModel.activeSubscription = activeSubscription
         controller.viewModel.testType.accept(testType)
         return controller
+    }
+}
+
+// MARK: Private
+private extension TestViewController {
+    func logAnalytics(courseName: String) {
+        guard let type = viewModel.testType.value else {
+            return
+        }
+        
+        let name = TestAnalytics.name(mode: type)
+        
+        SDKStorage.shared
+            .amplitudeManager
+            .logEvent(name: "Question Screen", parameters: ["course": courseName,
+                                                            "mode": name])
+    }
+    
+    func logTapAnalytics(courseName: String, what: String) {
+        guard let type = viewModel.testType.value else {
+            return
+        }
+        
+        let name = TestAnalytics.name(mode: type)
+        
+        SDKStorage.shared
+            .amplitudeManager
+            .logEvent(name: "Question Tap", parameters: ["course": courseName,
+                                                         "mode": name,
+                                                         "what": what])
     }
 }

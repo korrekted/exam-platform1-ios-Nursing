@@ -25,10 +25,18 @@ final class CourseViewCoordinator {
             parentVC?.mainView.tabView.selectedTab = tab
 
             changeVC(on: studyVC)
+            
+            SDKStorage.shared
+                .amplitudeManager
+                .logEvent(name: "Tab Bar Tap", parameters: ["what": "study"])
         case .stats:
             parentVC?.mainView.tabView.selectedTab = tab
             
             changeVC(on: statsVC)
+            
+            SDKStorage.shared
+                .amplitudeManager
+                .logEvent(name: "Tab Bar Tap", parameters: ["what": "stats"])
         }
     }
 }

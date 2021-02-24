@@ -37,6 +37,10 @@ private extension OSlide4View {
         }
         
         cell.isSelected = !cell.isSelected
+        
+        SDKStorage.shared
+            .amplitudeManager
+            .logEvent(name: "Goals Tap", parameters: [:])
     }
 }
 

@@ -13,16 +13,24 @@ final class TestStatsViewModel {
     lazy var testType = BehaviorRelay<TestType?>(value: nil)
     lazy var filterRelay = PublishRelay<TestStatsFilter>()
     
+    lazy var courseName = makeCourseName()
     lazy var elements = makeElements()
     lazy var testName = makeTestName()
     
     private lazy var testStatsManager = TestStatsManagerCore()
+    private lazy var courseManager = CoursesManagerCore()
 }
 
 // MARK: Private
 private extension TestStatsViewModel {
+    func makeCourseName() -> Driver<String> {
+        courseManager
+            .rxGetSelectedCourse()
+            .compactMap { $0?.name }
+            .asDriver(onErrorDriveWith: .empty())
+    }
+    
     func makeElements() -> Driver<[TestStatsCellType]> {
-        
         let stats = userTestId
             .compactMap { $0 }
             .flatMapLatest { [weak self] userTestId -> Observable<TestStats?> in

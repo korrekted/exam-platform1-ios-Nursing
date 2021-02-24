@@ -44,7 +44,10 @@ final class CoursesViewController: UIViewController {
         
         mainView
             .collectionView.selected
-            .bind(to: viewModel.selected)
+            .subscribe(onNext: { [weak self] element in
+                self?.viewModel.selected.accept(element)
+                self?.logAnalytics(selected: element)
+            })
             .disposed(by: disposeBag)
 
         viewModel
@@ -84,5 +87,13 @@ private extension CoursesViewController {
         case .present:
             dismiss(animated: true)
         }
+    }
+    
+    func logAnalytics(selected element: CoursesCollectionElement) {
+        let name = element.course.name
+        
+        SDKStorage.shared
+            .amplitudeManager
+            .logEvent(name: "Exam Tap", parameters: ["what":name])
     }
 }

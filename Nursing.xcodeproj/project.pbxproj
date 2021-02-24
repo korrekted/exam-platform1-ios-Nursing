@@ -115,6 +115,7 @@
 		9685640E25E2412100238AEB /* RateUs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9685640D25E2412100238AEB /* RateUs.swift */; };
 		9685649125E44F5E00238AEB /* Onboarding.Chart.json in Resources */ = {isa = PBXBuildFile; fileRef = 9685649025E44F5E00238AEB /* Onboarding.Chart.json */; };
 		9685649425E4537A00238AEB /* TapAreaButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9685649325E4537A00238AEB /* TapAreaButton.swift */; };
+		9685651C25E6E8D000238AEB /* TestAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9685651B25E6E8D000238AEB /* TestAnalytics.swift */; };
 		96B92B1B25C4A5880003002D /* PaygateManagerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B92B0A25C4A5880003002D /* PaygateManagerCore.swift */; };
 		96B92B1D25C4A5880003002D /* PaygateMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B92B0D25C4A5880003002D /* PaygateMapper.swift */; };
 		96B92B1F25C4A5880003002D /* PaygateOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B92B1025C4A5880003002D /* PaygateOption.swift */; };
@@ -314,6 +315,7 @@
 		9685640D25E2412100238AEB /* RateUs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateUs.swift; sourceTree = "<group>"; };
 		9685649025E44F5E00238AEB /* Onboarding.Chart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Onboarding.Chart.json; sourceTree = "<group>"; };
 		9685649325E4537A00238AEB /* TapAreaButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapAreaButton.swift; sourceTree = "<group>"; };
+		9685651B25E6E8D000238AEB /* TestAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAnalytics.swift; sourceTree = "<group>"; };
 		96B92B0A25C4A5880003002D /* PaygateManagerCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaygateManagerCore.swift; sourceTree = "<group>"; };
 		96B92B0D25C4A5880003002D /* PaygateMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaygateMapper.swift; sourceTree = "<group>"; };
 		96B92B1025C4A5880003002D /* PaygateOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaygateOption.swift; sourceTree = "<group>"; };
@@ -612,6 +614,7 @@
 				86AA47B325D4464F00782821 /* QuestionContentType.swift */,
 				8667315C25D8147200927D0E /* TestType.swift */,
 				8667316225D8336A00927D0E /* TestBottomButtonState.swift */,
+				9685651B25E6E8D000238AEB /* TestAnalytics.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1437,6 +1440,7 @@
 				96C63DB325BD7A2D007B7EB7 /* OSlide5View.swift in Sources */,
 				9612547125DC53D100D4D90B /* OnboardingAnalytics.swift in Sources */,
 				96B92B2125C4A5880003002D /* ProductPrice.swift in Sources */,
+				9685651C25E6E8D000238AEB /* TestAnalytics.swift in Sources */,
 				9632395225C5F6A300C21FD7 /* SCModeCell.swift in Sources */,
 				96B92B1B25C4A5880003002D /* PaygateManagerCore.swift in Sources */,
 				962AEA5425B498FC0032E7C3 /* CoursesManagerMediator.swift in Sources */,
@@ -1727,7 +1731,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 2W4U9UWRKZ;
 				INFOPLIST_FILE = "$(SRCROOT)/Nursing/Resource/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1735,7 +1739,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = exam.nursing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Nursing Development";
@@ -1753,7 +1757,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 2W4U9UWRKZ;
 				INFOPLIST_FILE = "$(SRCROOT)/Nursing/Resource/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1761,7 +1765,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = exam.nursing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Nursing AppStore";

@@ -18,6 +18,7 @@ final class TestViewModel {
     let didTapSubmit = PublishRelay<Void>()
     let answers = BehaviorRelay<AnswerElement?>(value: nil)
     
+    lazy var courseName = makeCourseName()
     lazy var question = makeQuestion()
     lazy var isEndOfTest = endOfTest()
     lazy var userTestId = makeUserTestId()
@@ -35,6 +36,13 @@ final class TestViewModel {
 
 // MARK: Private
 private extension TestViewModel {
+    func makeCourseName() -> Driver<String> {
+        courseManager
+            .rxGetSelectedCourse()
+            .compactMap { $0?.name }
+            .asDriver(onErrorDriveWith: .empty())
+    }
+    
     func makeQuestion() -> Driver<QuestionElement> {
         Observable<Action>
             .merge(

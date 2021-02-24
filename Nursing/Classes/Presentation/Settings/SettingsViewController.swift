@@ -22,6 +22,10 @@ final class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        SDKStorage.shared
+            .amplitudeManager
+            .logEvent(name: "Settings Screen", parameters: [:])
+        
         viewModel
             .sections
             .drive(onNext: mainView.tableView.setup(sections:))
@@ -47,16 +51,40 @@ private extension SettingsViewController {
         switch tapped {
         case .unlock:
             UIApplication.shared.keyWindow?.rootViewController?.present(PaygateViewController.make(), animated: true)
+            
+            SDKStorage.shared
+                .amplitudeManager
+                .logEvent(name: "Settings Tap", parameters: ["what": "unlock premium"])
         case .course:
             UIApplication.shared.keyWindow?.rootViewController = CoursesViewController.make(howOpen: .root)
+            
+            SDKStorage.shared
+                .amplitudeManager
+                .logEvent(name: "Settings Tap", parameters: ["what": "select exam"])
         case .rateUs:
             RateUs.requestReview()
+            
+            SDKStorage.shared
+                .amplitudeManager
+                .logEvent(name: "Settings Tap", parameters: ["what": "rate us"])
         case .contactUs:
             open(path: GlobalDefinitions.contactUsUrl)
+            
+            SDKStorage.shared
+                .amplitudeManager
+                .logEvent(name: "Settings Tap", parameters: ["what": "contact us"])
         case .termsOfUse:
             open(path: GlobalDefinitions.termsOfServiceUrl)
+            
+            SDKStorage.shared
+                .amplitudeManager
+                .logEvent(name: "Settings Tap", parameters: ["what": "terms of use"])
         case .privacyPoliicy:
             open(path: GlobalDefinitions.privacyPolicyUrl)
+            
+            SDKStorage.shared
+                .amplitudeManager
+                .logEvent(name: "Settings Tap", parameters: ["what": "privacy policy"])
         }
     }
     
