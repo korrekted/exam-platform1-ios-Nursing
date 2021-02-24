@@ -83,14 +83,14 @@ private extension AppDelegate {
         let settings = SDKSettings(backendBaseUrl: GlobalDefinitions.sdkDomainUrl,
                                    backendApiKey: GlobalDefinitions.sdkApiKey,
                                    amplitudeApiKey: GlobalDefinitions.amplitudeApiKey,
-                                   facebookActive: false,
+                                   facebookActive: true,
                                    branchActive: false,
                                    firebaseActive: false,
                                    applicationTag: GlobalDefinitions.applicationTag,
                                    userToken: SessionManagerCore().getSession()?.userToken,
                                    userId: SessionManagerCore().getSession()?.userId,
                                    view: view,
-                                   shouldAddStorePayment: false,
+                                   shouldAddStorePayment: true,
                                    featureAppBackendUrl: GlobalDefinitions.domainUrl,
                                    featureAppBackendApiKey: GlobalDefinitions.apiKey)
         
