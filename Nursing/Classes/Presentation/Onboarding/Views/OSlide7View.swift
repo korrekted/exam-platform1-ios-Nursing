@@ -115,7 +115,8 @@ private extension OSlide7View {
     }
     
     func makePickerView() -> UIPickerView {
-        let view = UIPickerView()
+        let view = PaddingPickerView()
+        view.padding = UIEdgeInsets(top: 0, left: 200.scale, bottom: 0, right: 200.scale)
         view.backgroundColor = UIColor.clear
         view.dataSource = self
         view.delegate = self

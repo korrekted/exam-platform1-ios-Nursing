@@ -162,6 +162,7 @@ final class TestViewController: UIViewController {
             .disposed(by: disposeBag)
 
         viewModel.needPayment
+            .filter { $0 }
             .emit { [weak self] _ in
                 self?.dismiss(animated: true, completion: {
                     UIApplication.shared.keyWindow?.rootViewController?.present(PaygateViewController.make(), animated: true)
@@ -169,8 +170,10 @@ final class TestViewController: UIViewController {
             }
             .disposed(by: disposeBag)
             
-        courseName
-            .drive(onNext: { [weak self] name in
+        viewModel.needPayment
+            .filter(!)
+            .withLatestFrom(courseName)
+            .emit(onNext: { [weak self] name in
                 self?.logAnalytics(courseName: name)
             })
             .disposed(by: disposeBag)

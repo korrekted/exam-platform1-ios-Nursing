@@ -52,9 +52,11 @@ private extension StudyViewModel {
     }
     
     func makeBrief() -> Driver<StudyCollectionSection> {
-        courseManager.rxGetSelectedCourse()
-            .flatMap { [weak self] course -> Single<(Course, Brief?)> in
-                guard let this = self, let course = course else {
+        QuestionManagerMediator.shared.rxTestPassed
+            .asObservable()
+            .startWith(())
+            .flatMap { [weak self] _ -> Single<(Course, Brief?)> in
+                guard let this = self, let course = self?.courseManager.getSelectedCourse() else {
                     return .never()
                 }
                 

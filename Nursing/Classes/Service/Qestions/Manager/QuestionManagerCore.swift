@@ -104,6 +104,12 @@ extension QuestionManagerCore {
             .restApiTransport
             .callServerApi(requestBody: request)
             .map(SendAnswerResponseMapper.map(from:))
+            .do(onSuccess: { isEndOfTest in
+                if isEndOfTest == true {
+                    QuestionManagerMediator.shared.testPassed()
+                }
+            })
+
     }
     
     func retrieveConfig(courseId: Int) -> Single<[TestConfig]> {
