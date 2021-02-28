@@ -89,7 +89,7 @@ private extension AppDelegate {
                                    amplitudeApiKey: GlobalDefinitions.amplitudeApiKey,
                                    appsFlyerApiKey: GlobalDefinitions.appsFlyerApiKey,
                                    facebookActive: true,
-                                   branchActive: false,
+                                   branchActive: true,
                                    firebaseActive: false,
                                    applicationTag: GlobalDefinitions.applicationTag,
                                    userToken: SessionManagerCore().getSession()?.userToken,
