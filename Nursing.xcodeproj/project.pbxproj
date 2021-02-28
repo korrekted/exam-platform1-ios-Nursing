@@ -37,6 +37,8 @@
 		8635FA4A25D6F360007C06AB /* GetTestStatsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8635FA4925D6F360007C06AB /* GetTestStatsRequest.swift */; };
 		8635FA4D25D6F3B6007C06AB /* GetTestStatsResponseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8635FA4C25D6F3B6007C06AB /* GetTestStatsResponseMapper.swift */; };
 		8635FA5025D6F5DD007C06AB /* TestStatsManagerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8635FA4F25D6F5DD007C06AB /* TestStatsManagerCore.swift */; };
+		863C2A1325EA9BEC00750E22 /* QuestionManagerMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863C2A1225EA9BEC00750E22 /* QuestionManagerMediator.swift */; };
+		863C2A1625EA9EEA00750E22 /* QuestionManagerDelagate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863C2A1525EA9EEA00750E22 /* QuestionManagerDelagate.swift */; };
 		8649252E25D1B9FA00D1A491 /* GetTestRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8649252D25D1B9FA00D1A491 /* GetTestRequest.swift */; };
 		8649253125D1BB7800D1A491 /* GetTenSetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8649253025D1BB7800D1A491 /* GetTenSetRequest.swift */; };
 		8649253425D1BBB900D1A491 /* GetFailedSetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8649253325D1BBB900D1A491 /* GetFailedSetRequest.swift */; };
@@ -70,6 +72,8 @@
 		86AA47B025D4452E00782821 /* QuestionCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AA47AF25D4452E00782821 /* QuestionCollectionCell.swift */; };
 		86AA47B425D4464F00782821 /* QuestionContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AA47B325D4464F00782821 /* QuestionContentType.swift */; };
 		86AA47B825D44DF800782821 /* AVPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AA47B725D44DF800782821 /* AVPlayerView.swift */; };
+		86BED87825EBB7720085218C /* PaddingPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BED87725EBB7720085218C /* PaddingPickerView.swift */; };
+		86BED87B25EBB7BD0085218C /* UIEdgeInsets+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BED87A25EBB7BD0085218C /* UIEdgeInsets+Extension.swift */; };
 		86FAE0EC25C06DD700247A70 /* GetStatsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FAE0EB25C06DD700247A70 /* GetStatsRequest.swift */; };
 		86FAE0F125C06F0C00247A70 /* StatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FAE0F025C06F0C00247A70 /* StatsManager.swift */; };
 		86FAE0F425C06F4000247A70 /* StatsManagerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FAE0F325C06F4000247A70 /* StatsManagerCore.swift */; };
@@ -237,6 +241,8 @@
 		8635FA4925D6F360007C06AB /* GetTestStatsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTestStatsRequest.swift; sourceTree = "<group>"; };
 		8635FA4C25D6F3B6007C06AB /* GetTestStatsResponseMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTestStatsResponseMapper.swift; sourceTree = "<group>"; };
 		8635FA4F25D6F5DD007C06AB /* TestStatsManagerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestStatsManagerCore.swift; sourceTree = "<group>"; };
+		863C2A1225EA9BEC00750E22 /* QuestionManagerMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionManagerMediator.swift; sourceTree = "<group>"; };
+		863C2A1525EA9EEA00750E22 /* QuestionManagerDelagate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionManagerDelagate.swift; sourceTree = "<group>"; };
 		8649252D25D1B9FA00D1A491 /* GetTestRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTestRequest.swift; sourceTree = "<group>"; };
 		8649253025D1BB7800D1A491 /* GetTenSetRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTenSetRequest.swift; sourceTree = "<group>"; };
 		8649253325D1BBB900D1A491 /* GetFailedSetRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFailedSetRequest.swift; sourceTree = "<group>"; };
@@ -270,6 +276,8 @@
 		86AA47AF25D4452E00782821 /* QuestionCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCollectionCell.swift; sourceTree = "<group>"; };
 		86AA47B325D4464F00782821 /* QuestionContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionContentType.swift; sourceTree = "<group>"; };
 		86AA47B725D44DF800782821 /* AVPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerView.swift; sourceTree = "<group>"; };
+		86BED87725EBB7720085218C /* PaddingPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingPickerView.swift; sourceTree = "<group>"; };
+		86BED87A25EBB7BD0085218C /* UIEdgeInsets+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Extension.swift"; sourceTree = "<group>"; };
 		86FAE0EB25C06DD700247A70 /* GetStatsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStatsRequest.swift; sourceTree = "<group>"; };
 		86FAE0F025C06F0C00247A70 /* StatsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsManager.swift; sourceTree = "<group>"; };
 		86FAE0F325C06F4000247A70 /* StatsManagerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsManagerCore.swift; sourceTree = "<group>"; };
@@ -580,6 +588,8 @@
 			children = (
 				8649254025D1BE4400D1A491 /* QuestionManager.swift */,
 				8649254325D1BF4400D1A491 /* QuestionManagerCore.swift */,
+				863C2A1225EA9BEC00750E22 /* QuestionManagerMediator.swift */,
+				863C2A1525EA9EEA00750E22 /* QuestionManagerDelagate.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1062,6 +1072,7 @@
 				96D38B5625B3099100EADC9A /* CircleView.swift */,
 				96D38B5925B309A000EADC9A /* GradientButton.swift */,
 				9685649325E4537A00238AEB /* TapAreaButton.swift */,
+				86BED87725EBB7720085218C /* PaddingPickerView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -1105,6 +1116,7 @@
 				96D38B8225B30B4C00EADC9A /* UIColorExtension.swift */,
 				96D38B8525B30B5D00EADC9A /* UITapGestureRecognizerExtension.swift */,
 				8635FA2B25D6D317007C06AB /* Collection+Extension.swift */,
+				86BED87A25EBB7BD0085218C /* UIEdgeInsets+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1482,6 +1494,7 @@
 				96B92B1D25C4A5880003002D /* PaygateMapper.swift in Sources */,
 				96D38B9D25B4722E00EADC9A /* OnboardingView.swift in Sources */,
 				9632393D25C5F04400C21FD7 /* StudyCollectionElement.swift in Sources */,
+				863C2A1325EA9BEC00750E22 /* QuestionManagerMediator.swift in Sources */,
 				965F025D25BF1BDB0067EF3C /* CourseCollectionCell.swift in Sources */,
 				8649254725D1C12B00D1A491 /* GetTestResponseMapper.swift in Sources */,
 				96B92B3925C4A75C0003002D /* PaygateSpecialOfferView.swift in Sources */,
@@ -1502,6 +1515,7 @@
 				96D38B6B25B30A3A00EADC9A /* Scalable.swift in Sources */,
 				962AEA6025B4C4A30032E7C3 /* SessionManager.swift in Sources */,
 				8635FA4A25D6F360007C06AB /* GetTestStatsRequest.swift in Sources */,
+				86BED87825EBB7720085218C /* PaddingPickerView.swift in Sources */,
 				96C63E0D25BE0AC8007B7EB7 /* OSlideQuestiionButton.swift in Sources */,
 				96D38B8625B30B5D00EADC9A /* UITapGestureRecognizerExtension.swift in Sources */,
 				8649254A25D1C5BD00D1A491 /* SendAnswerResponseMapper.swift in Sources */,
@@ -1557,8 +1571,10 @@
 				96C63E0425BDA27C007B7EB7 /* OSlide8View.swift in Sources */,
 				96C63E1025BE0C28007B7EB7 /* OSlideQuestionView.swift in Sources */,
 				96D38BC325B47B4C00EADC9A /* StudyViewModel.swift in Sources */,
+				863C2A1625EA9EEA00750E22 /* QuestionManagerDelagate.swift in Sources */,
 				96B92B2225C4A5880003002D /* Paygate.swift in Sources */,
 				86AA47B425D4464F00782821 /* QuestionContentType.swift in Sources */,
+				86BED87B25EBB7BD0085218C /* UIEdgeInsets+Extension.swift in Sources */,
 				96C63E0A25BDFF1F007B7EB7 /* OSlide9View.swift in Sources */,
 				965F027E25BF67C90067EF3C /* SettingsTableSection.swift in Sources */,
 				96B92B3C25C4A7640003002D /* PaygateViewController.swift in Sources */,

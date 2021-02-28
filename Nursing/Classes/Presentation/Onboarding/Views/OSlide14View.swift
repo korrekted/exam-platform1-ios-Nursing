@@ -26,7 +26,7 @@ final class OSlide14View: OSlideView {
     }
     
     override func moveToThis() {
-        progressView.progressAnimation(duration: 3)
+        progressView.progressAnimation(duration: 4.5)
         calculatePercent()
     }
 }
@@ -34,7 +34,7 @@ final class OSlide14View: OSlideView {
 // MARK: Private
 private extension OSlide14View {
     func calculatePercent() {
-        let duration = Double(3)
+        let duration = Double(4.5)
         var seconds = Double(0)
         
         timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] timer in

@@ -119,11 +119,11 @@ private extension TestViewModel {
             .asSignal(onErrorSignalWith: .empty())
     }
     
-    func makeNeedPayment() -> Signal<Void> {
+    func makeNeedPayment() -> Signal<Bool> {
         testElement
-            .compactMap { [weak self] event in
-                guard let self = self, let element = event.element else { return nil }
-                return self.activeSubscription ? nil : element.paid ? () : nil
+            .map { [weak self] event in
+                guard let self = self, let element = event.element else { return false }
+                return self.activeSubscription ? false : element.paid ? true : false
             }
             .asSignal(onErrorSignalWith: .empty())
     }
@@ -170,7 +170,6 @@ private extension TestViewModel {
                     return true
                 })
                 
-                
                 if question.index == question.questionsCount, question.questionsCount != 1, isResult {
                     return isEndOfTest ? .submit : .hidden
                 } else {
@@ -195,7 +194,7 @@ private extension TestViewModel {
     }
     
     var questionAccumulator: ([QuestionElement], ([Question], AnswerElement?)) -> [QuestionElement] {
-        return { (old, args) -> [QuestionElement] in
+        return { [weak self] (old, args) -> [QuestionElement] in
             let (questions, answers) = args
             guard !old.isEmpty else {
                 return questions.enumerated().map { index, question in
@@ -243,6 +242,14 @@ private extension TestViewModel {
                     return AnswerResultElement(answer: answer.answer, state: state)
                 }
                 
+                if currentQuestion.multiple {
+                    let isCorrect = !result.contains(where: { $0.state == .warning || $0.state == .error })
+                    self?.logAnswerAnalitycs(isCorrect: isCorrect)
+                } else {
+                    let isCorrect = result.contains(where: { $0.state == .correct })
+                    self?.logAnswerAnalitycs(isCorrect: isCorrect)
+                }
+                
                 return .result(result)
             }
             
@@ -283,5 +290,20 @@ private extension TestViewModel {
                 return (withoutAnswered[safe: index] ?? currentElement, elements)
             }
         }
+    }
+}
+
+private extension TestViewModel {
+    
+    func logAnswerAnalitycs(isCorrect: Bool) {
+        guard let type = testType.value, let courseName = courseManager.getSelectedCourse()?.name else {
+            return
+        }
+        let name = isCorrect ? "Question Answered Correctly" : "Question Answered Incorrectly"
+        let mode = TestAnalytics.name(mode: type)
+        
+        SDKStorage.shared
+            .amplitudeManager
+            .logEvent(name: name, parameters: ["course" : courseName, "mode": mode])
     }
 }

@@ -86,12 +86,14 @@ private extension OSlide5View {
     }
     
     func makeDatePickerView() -> PIDatePicker {
-        let minimumDate = Calendar.current.date(byAdding: .day, value: 7, to: Date()) ?? Date()
+        let minimumDate = Calendar.current.date(byAdding: .day, value: 6, to: Date()) ?? Date()
+        
+        let startDate = Calendar.current.date(byAdding: .day, value: 7, to: Date()) ?? Date()
         
         let view = PIDatePicker()
         view.backgroundColor = UIColor.clear
         view.minimumDate = minimumDate
-        view.setDate(minimumDate, animated: true)
+        view.setDate(startDate, animated: true)
         view.locale = Locale.current
         view.textColor = UIColor(integralRed: 95, green: 70, blue: 245)
         view.font = Fonts.SFProRounded.bold(size: 27.scale)
