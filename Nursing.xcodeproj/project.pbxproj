@@ -74,6 +74,8 @@
 		86AA47B825D44DF800782821 /* AVPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AA47B725D44DF800782821 /* AVPlayerView.swift */; };
 		86BED87825EBB7720085218C /* PaddingPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BED87725EBB7720085218C /* PaddingPickerView.swift */; };
 		86BED87B25EBB7BD0085218C /* UIEdgeInsets+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BED87A25EBB7BD0085218C /* UIEdgeInsets+Extension.swift */; };
+		86F47D6425EF70F90032D46E /* RateManagerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F47D6025EF70F90032D46E /* RateManagerCore.swift */; };
+		86F47D6525EF70F90032D46E /* RateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F47D6125EF70F90032D46E /* RateManager.swift */; };
 		86FAE0EC25C06DD700247A70 /* GetStatsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FAE0EB25C06DD700247A70 /* GetStatsRequest.swift */; };
 		86FAE0F125C06F0C00247A70 /* StatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FAE0F025C06F0C00247A70 /* StatsManager.swift */; };
 		86FAE0F425C06F4000247A70 /* StatsManagerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FAE0F325C06F4000247A70 /* StatsManagerCore.swift */; };
@@ -278,6 +280,8 @@
 		86AA47B725D44DF800782821 /* AVPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerView.swift; sourceTree = "<group>"; };
 		86BED87725EBB7720085218C /* PaddingPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingPickerView.swift; sourceTree = "<group>"; };
 		86BED87A25EBB7BD0085218C /* UIEdgeInsets+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Extension.swift"; sourceTree = "<group>"; };
+		86F47D6025EF70F90032D46E /* RateManagerCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateManagerCore.swift; sourceTree = "<group>"; };
+		86F47D6125EF70F90032D46E /* RateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateManager.swift; sourceTree = "<group>"; };
 		86FAE0EB25C06DD700247A70 /* GetStatsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStatsRequest.swift; sourceTree = "<group>"; };
 		86FAE0F025C06F0C00247A70 /* StatsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsManager.swift; sourceTree = "<group>"; };
 		86FAE0F325C06F4000247A70 /* StatsManagerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsManagerCore.swift; sourceTree = "<group>"; };
@@ -675,6 +679,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		86F47D5F25EF70F90032D46E /* Rate */ = {
+			isa = PBXGroup;
+			children = (
+				86F47D6025EF70F90032D46E /* RateManagerCore.swift */,
+				86F47D6125EF70F90032D46E /* RateManager.swift */,
+			);
+			path = Rate;
+			sourceTree = "<group>";
+		};
 		86FAE0E925C0660B00247A70 /* Stats */ = {
 			isa = PBXGroup;
 			children = (
@@ -1035,6 +1048,7 @@
 		96D38B3425B3083000EADC9A /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				86F47D5F25EF70F90032D46E /* Rate */,
 				8635FA3425D6E8E2007C06AB /* TestStats */,
 				867D50F025C740F900606B09 /* Qestions */,
 				96B92B0925C4A5880003002D /* Paygate */,
@@ -1465,6 +1479,7 @@
 				867D50DF25C6EFAC00606B09 /* QuestionTableView.swift in Sources */,
 				8635FA5025D6F5DD007C06AB /* TestStatsManagerCore.swift in Sources */,
 				8649253125D1BB7800D1A491 /* GetTenSetRequest.swift in Sources */,
+				86F47D6525EF70F90032D46E /* RateManager.swift in Sources */,
 				86AA47AD25D4380400782821 /* QuestionContentCollectionView.swift in Sources */,
 				96C63D9D25BCB711007B7EB7 /* OSlideView.swift in Sources */,
 				9629518C25DAD93A00643B6B /* GetBriefRequest.swift in Sources */,
@@ -1504,6 +1519,7 @@
 				96D38B9725B4720000EADC9A /* OnboardingViewController.swift in Sources */,
 				8629EAD625C5A8BC00010DD7 /* TestView.swift in Sources */,
 				8614563625D5B32900C0E676 /* TestStatsViewModel.swift in Sources */,
+				86F47D6425EF70F90032D46E /* RateManagerCore.swift in Sources */,
 				86AA47B825D44DF800782821 /* AVPlayerView.swift in Sources */,
 				96D38B7125B30A9C00EADC9A /* ScreenSize.swift in Sources */,
 				96C63DA325BCD045007B7EB7 /* OSlide2View.swift in Sources */,

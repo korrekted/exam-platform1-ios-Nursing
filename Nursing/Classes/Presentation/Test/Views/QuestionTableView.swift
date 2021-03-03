@@ -36,8 +36,14 @@ extension QuestionTableView {
         }
         elements = question.elements
         isMultiple = question.isMultiple
+        // В виду активного изменения контента и инсетов,
+        // в момент скролла ячейки могут наезжать друг на друга
+        CATransaction.begin()
+        CATransaction.setCompletionBlock { [weak self] in
+            self?.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        }
         reloadData()
-        scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        CATransaction.commit()
     }
 }
 
@@ -60,9 +66,9 @@ extension QuestionTableView: UITableViewDataSource {
                 self?.expandContent.accept($0)
             }
              return cell
-        case let .question(question):
+        case let .question(question, html):
             let cell = dequeueReusableCell(withIdentifier: String(describing: QuestionCell.self), for: indexPath) as! QuestionCell
-            cell.configure(question: question)
+            cell.configure(question: question, questionHtml: html)
             return cell
         case let .answers(answers):
             let cell = dequeueReusableCell(withIdentifier: String(describing: AnswersCell.self), for: indexPath) as! AnswersCell

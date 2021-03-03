@@ -113,6 +113,7 @@ private extension TestView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.showsVerticalScrollIndicator = false
         view.backgroundColor = .clear
+        view.contentInsetAdjustmentBehavior = .never
         addSubview(view)
         return view
     }

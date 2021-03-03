@@ -60,11 +60,14 @@ private extension GetTestResponseMapper {
             let image = (restJSON["image"] as? String)?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
             let video = (restJSON["video"] as? String)?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
             
+            let questionHtml = restJSON["question_html"] as? String ?? ""
+            
             return Question(
                 id: id,
                 image: URL(string: image),
                 video: URL(string: video),
                 question: question,
+                questionHtml: questionHtml,
                 answers: answers,
                 multiple: multiple,
                 explanation: explanation,
@@ -83,7 +86,9 @@ private extension GetTestResponseMapper {
                 return nil
             }
             
-            return Answer(id: id, answer: answer, isCorrect: correct)
+            let image = (restJSON["image"] as? String)?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+            
+            return Answer(id: id, answer: answer, image: URL(string: image), isCorrect: correct)
         }
     }
 }
