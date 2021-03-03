@@ -14,13 +14,24 @@ final class SplashViewModel {
     }
     
     private lazy var coursesManager = CoursesManagerCore()
+    private let monetizationManager = MonetizationManagerCore()
     
-    lazy var step = makeStep()
+    func step() -> Driver<Step> {
+        library()
+            .andThen(makeStep())
+            .asDriver(onErrorDriveWith: .empty())
+    }
 }
 
 // MARK: Private
 private extension SplashViewModel {
-    func makeStep() -> Driver<Step> {
+    func library() -> Completable {
+        monetizationManager
+            .rxRetrieveMonetizationConfig(forceUpdate: true)
+            .catchAndReturn(nil)
+            .asCompletable()
+    }
+    func makeStep() -> Observable<Step> {
         guard OnboardingViewController.wasViewed() else {
             return .deferred { .just(.onboarding) }
         }
