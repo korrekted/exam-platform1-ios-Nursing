@@ -10,10 +10,12 @@ import Foundation
 struct PossibleAnswerElement: Hashable {
     let id: Int
     let answer: String
+    let image: URL?
 }
 
 struct AnswerResultElement {
     let answer: String
+    let image: URL?
     let state: AnswerState
 }
 

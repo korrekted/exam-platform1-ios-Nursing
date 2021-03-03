@@ -18,6 +18,7 @@ struct Question {
     let image: URL?
     let video: URL?
     let question: String
+    let questionHtml: String
     let answers: [Answer]
     let multiple: Bool
     let explanation: String?
@@ -27,5 +28,6 @@ struct Question {
 struct Answer {
     let id: Int
     let answer: String
+    let image: URL?
     let isCorrect: Bool
 }

@@ -28,7 +28,11 @@ class TestStatsAnswerCell: UITableViewCell {
 // MARK: Public
 extension TestStatsAnswerCell {
     func setup(element: TestStatsAnswerElement) {
-        answerLabel.text = element.question
+        let attr = TextAttributes()
+            .font(Fonts.SFProRounded.regular(size: 17.scale))
+            .lineHeight(20).textColor(.black)
+        
+        answerLabel.attributedText = element.question.attributed(with: attr)
         iconView.image = element.isCorrect
             ? UIImage(named: "Question.Correct")
             : UIImage(named: "Question.Error")

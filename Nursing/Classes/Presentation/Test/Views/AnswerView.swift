@@ -10,7 +10,9 @@ import RxCocoa
 final class AnswerView: UIView {
     private lazy var iconView = makeIconView()
     private lazy var answerLabel = makeAnswerLabel()
+    private lazy var imageView = makeImageView()
     private let tapGesture = UITapGestureRecognizer()
+    private var labelBottomConstraint: NSLayoutConstraint?
     
     var state: State = .initial {
         didSet {
@@ -35,11 +37,20 @@ extension AnswerView {
         case initial, correct, error, warning, selected
     }
     
-    func setAnswer(answer: String) {
+    func setAnswer(answer: String, image: URL?) {
         let attrs = TextAttributes()
             .font(Fonts.SFProRounded.regular(size: 17.scale))
             .textColor(.black)
             .lineHeight(20.scale)
+        
+        if let imageUrl = image {
+            do {
+                try imageView.image = UIImage(data: Data(contentsOf: imageUrl))
+                needUpdateConstraints()
+            } catch {
+                
+            }
+        }
         
         answerLabel.attributedText = answer.attributed(with: attrs)
     }
@@ -102,9 +113,11 @@ private extension AnswerView {
         NSLayoutConstraint.activate([
             answerLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15.scale),
             answerLabel.topAnchor.constraint(equalTo: topAnchor, constant: 19.scale),
-            answerLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -19.scale),
             answerLabel.trailingAnchor.constraint(equalTo: iconView.leadingAnchor, constant: -20.scale)
         ])
+        
+        labelBottomConstraint = answerLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -19.scale)
+        labelBottomConstraint?.isActive = true
         
         NSLayoutConstraint.activate([
             iconView.heightAnchor.constraint(equalToConstant: 24.scale),
@@ -112,6 +125,21 @@ private extension AnswerView {
             iconView.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -20.scale),
             iconView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
+        
+        
+    }
+    
+    func needUpdateConstraints() {
+        labelBottomConstraint?.isActive = false
+        NSLayoutConstraint.activate([
+            imageView.heightAnchor.constraint(equalToConstant: 124.scale),
+            imageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15.scale),
+            imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 44.scale),
+            imageView.trailingAnchor.constraint(equalTo: iconView.leadingAnchor)
+        ])
+        
+        labelBottomConstraint = imageView.topAnchor.constraint(equalTo: answerLabel.bottomAnchor, constant: 10.scale)
+        labelBottomConstraint?.isActive = true
     }
 }
 
@@ -128,6 +156,14 @@ private extension AnswerView {
     func makeIconView() -> UIImageView {
         let view = UIImageView()
         view.contentMode = .center
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
+    func makeImageView() -> UIImageView {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFit
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

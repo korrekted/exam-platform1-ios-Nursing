@@ -10,7 +10,7 @@ import Foundation
 enum TestingCellType {
     case questionsProgress(String)
     case content([QuestionContentType])
-    case question(String)
+    case question(String, html: String)
     case answers([PossibleAnswerElement])
     case result([AnswerResultElement])
     case explanation(String)

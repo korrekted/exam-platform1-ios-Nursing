@@ -185,6 +185,15 @@ final class TestViewController: UIViewController {
                 self?.logTapAnalytics(courseName: name, what: "media")
             })
             .disposed(by: disposeBag)
+        
+        currentButtonState
+            .filter { [.submit, .back].contains($0) }
+            .withLatestFrom(viewModel.needPayment)
+            .subscribe(onNext: { needPayment in
+                guard !needPayment else { return }
+                RateManagerCore().showFirstAfterPassRateAlert()
+            })
+            .disposed(by: disposeBag)
     }
 }
 

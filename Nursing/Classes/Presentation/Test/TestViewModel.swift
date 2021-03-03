@@ -198,7 +198,7 @@ private extension TestViewModel {
             let (questions, answers) = args
             guard !old.isEmpty else {
                 return questions.enumerated().map { index, question in
-                    let answers = question.answers.map { PossibleAnswerElement(id: $0.id, answer: $0.answer) }
+                    let answers = question.answers.map { PossibleAnswerElement(id: $0.id, answer: $0.answer, image: $0.image) }
                     
                     let content: [QuestionContentType] = [
                         question.image.map { .image($0) },
@@ -208,7 +208,7 @@ private extension TestViewModel {
                     let elements: [TestingCellType] = [
                         questions.count > 1 ? .questionsProgress(String(format: "Question.QuestionProgress".localized, index + 1, questions.count)) : nil,
                         !content.isEmpty ? .content(content) : nil,
-                        .question(question.question),
+                        .question(question.question, html: question.questionHtml),
                         .answers(answers)
                     ].compactMap { $0 }
                     
@@ -239,7 +239,7 @@ private extension TestViewModel {
                         ? answer.isCorrect ? .correct : .error
                         : answer.isCorrect ? currentQuestion.multiple ? .warning : .correct : .initial
                     
-                    return AnswerResultElement(answer: answer.answer, state: state)
+                    return AnswerResultElement(answer: answer.answer, image: answer.image, state: state)
                 }
                 
                 if currentQuestion.multiple {

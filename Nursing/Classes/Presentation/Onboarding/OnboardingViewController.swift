@@ -77,13 +77,11 @@ private extension OnboardingViewController {
     }
     
     func goToNext() {
-        if !viewModel.hasActiveSubscription {
+        if viewModel.needPayment() {
             showPaygate()
-            
-            return
+        } else {
+            goToCourseOrCourses()
         }
-        
-        goToCourseOrCourses()
     }
     
     func goToCourseOrCourses() {

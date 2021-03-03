@@ -24,13 +24,29 @@ class QuestionCell: UITableViewCell {
 
 // MARK: Public
 extension QuestionCell {
-    func configure(question: String) {
+    func configure(question: String, questionHtml: String) {
         let attr = TextAttributes()
             .font(Fonts.SFProRounded.regular(size: 25.scale))
             .textColor(.black)
             .lineHeight(30.scale)
         
-        questionLabel.attributedText = question.attributed(with: attr)
+        questionLabel.attributedText = attributedString(for: questionHtml) ?? question.attributed(with: attr)
+    }
+    
+    func attributedString(for htmlString: String) -> NSAttributedString? {
+        guard !htmlString.isEmpty else { return nil }
+        
+        let font = Fonts.SFProRounded.regular(size: 25.scale)
+        let htmlWithStyle = "<span style=\"font-family: \(font.fontName); font-style: regular; font-size: \(font.pointSize); line-height: 30px;\">\(htmlString)</span>"
+        let data = Data(htmlWithStyle.utf8)
+        
+        let attributedString = try? NSAttributedString(
+            data: data,
+            options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue],
+            documentAttributes: nil
+        )
+        
+        return attributedString
     }
 }
 

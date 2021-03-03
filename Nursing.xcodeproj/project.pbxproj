@@ -74,6 +74,13 @@
 		86AA47B825D44DF800782821 /* AVPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AA47B725D44DF800782821 /* AVPlayerView.swift */; };
 		86BED87825EBB7720085218C /* PaddingPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BED87725EBB7720085218C /* PaddingPickerView.swift */; };
 		86BED87B25EBB7BD0085218C /* UIEdgeInsets+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BED87A25EBB7BD0085218C /* UIEdgeInsets+Extension.swift */; };
+		86F47D6425EF70F90032D46E /* RateManagerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F47D6025EF70F90032D46E /* RateManagerCore.swift */; };
+		86F47D6525EF70F90032D46E /* RateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F47D6125EF70F90032D46E /* RateManager.swift */; };
+		86F47D6925EFE71F0032D46E /* GetMonetizationConfigRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F47D6825EFE71F0032D46E /* GetMonetizationConfigRequest.swift */; };
+		86F47D6D25EFE7810032D46E /* MonetizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F47D6B25EFE7810032D46E /* MonetizationManager.swift */; };
+		86F47D6E25EFE7810032D46E /* MonetizationManagerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F47D6C25EFE7810032D46E /* MonetizationManagerCore.swift */; };
+		86F47D7125EFE7B40032D46E /* GetMonetizationResponseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F47D7025EFE7B40032D46E /* GetMonetizationResponseMapper.swift */; };
+		86F47D7425EFE8A50032D46E /* MonetizationConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F47D7325EFE8A50032D46E /* MonetizationConfig.swift */; };
 		86FAE0EC25C06DD700247A70 /* GetStatsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FAE0EB25C06DD700247A70 /* GetStatsRequest.swift */; };
 		86FAE0F125C06F0C00247A70 /* StatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FAE0F025C06F0C00247A70 /* StatsManager.swift */; };
 		86FAE0F425C06F4000247A70 /* StatsManagerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FAE0F325C06F4000247A70 /* StatsManagerCore.swift */; };
@@ -278,6 +285,13 @@
 		86AA47B725D44DF800782821 /* AVPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerView.swift; sourceTree = "<group>"; };
 		86BED87725EBB7720085218C /* PaddingPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingPickerView.swift; sourceTree = "<group>"; };
 		86BED87A25EBB7BD0085218C /* UIEdgeInsets+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Extension.swift"; sourceTree = "<group>"; };
+		86F47D6025EF70F90032D46E /* RateManagerCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateManagerCore.swift; sourceTree = "<group>"; };
+		86F47D6125EF70F90032D46E /* RateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateManager.swift; sourceTree = "<group>"; };
+		86F47D6825EFE71F0032D46E /* GetMonetizationConfigRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetMonetizationConfigRequest.swift; sourceTree = "<group>"; };
+		86F47D6B25EFE7810032D46E /* MonetizationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonetizationManager.swift; sourceTree = "<group>"; };
+		86F47D6C25EFE7810032D46E /* MonetizationManagerCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonetizationManagerCore.swift; sourceTree = "<group>"; };
+		86F47D7025EFE7B40032D46E /* GetMonetizationResponseMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetMonetizationResponseMapper.swift; sourceTree = "<group>"; };
+		86F47D7325EFE8A50032D46E /* MonetizationConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonetizationConfig.swift; sourceTree = "<group>"; };
 		86FAE0EB25C06DD700247A70 /* GetStatsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStatsRequest.swift; sourceTree = "<group>"; };
 		86FAE0F025C06F0C00247A70 /* StatsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsManager.swift; sourceTree = "<group>"; };
 		86FAE0F325C06F4000247A70 /* StatsManagerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsManagerCore.swift; sourceTree = "<group>"; };
@@ -675,6 +689,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		86F47D5F25EF70F90032D46E /* Rate */ = {
+			isa = PBXGroup;
+			children = (
+				86F47D6025EF70F90032D46E /* RateManagerCore.swift */,
+				86F47D6125EF70F90032D46E /* RateManager.swift */,
+			);
+			path = Rate;
+			sourceTree = "<group>";
+		};
 		86FAE0E925C0660B00247A70 /* Stats */ = {
 			isa = PBXGroup;
 			children = (
@@ -866,6 +889,8 @@
 				96B92B1625C4A5880003002D /* Requests */,
 				96B92B1A25C4A5880003002D /* PaygateManager.swift */,
 				96B92B0A25C4A5880003002D /* PaygateManagerCore.swift */,
+				86F47D6B25EFE7810032D46E /* MonetizationManager.swift */,
+				86F47D6C25EFE7810032D46E /* MonetizationManagerCore.swift */,
 			);
 			path = Paygate;
 			sourceTree = "<group>";
@@ -873,6 +898,7 @@
 		96B92B0C25C4A5880003002D /* Mapper */ = {
 			isa = PBXGroup;
 			children = (
+				86F47D7025EFE7B40032D46E /* GetMonetizationResponseMapper.swift */,
 				96B92B0D25C4A5880003002D /* PaygateMapper.swift */,
 			);
 			path = Mapper;
@@ -885,6 +911,7 @@
 				96B92B1225C4A5880003002D /* ProductPrice.swift */,
 				96B92B1325C4A5880003002D /* Paygate.swift */,
 				96B92B1425C4A5880003002D /* PaygateMainOffer.swift */,
+				86F47D7325EFE8A50032D46E /* MonetizationConfig.swift */,
 				96B92B1525C4A5880003002D /* PaygateSpecialOffer.swift */,
 			);
 			path = Models;
@@ -894,6 +921,7 @@
 			isa = PBXGroup;
 			children = (
 				96B92B1725C4A5880003002D /* GetPaygateRequest.swift */,
+				86F47D6825EFE71F0032D46E /* GetMonetizationConfigRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -1035,6 +1063,7 @@
 		96D38B3425B3083000EADC9A /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				86F47D5F25EF70F90032D46E /* Rate */,
 				8635FA3425D6E8E2007C06AB /* TestStats */,
 				867D50F025C740F900606B09 /* Qestions */,
 				96B92B0925C4A5880003002D /* Paygate */,
@@ -1409,6 +1438,7 @@
 				965F028525BF68E80067EF3C /* STCourseCell.swift in Sources */,
 				8649253E25D1BCAB00D1A491 /* SendAnswerRequest.swift in Sources */,
 				8635FA3F25D6EB31007C06AB /* TestStatsDescriptionElement.swift in Sources */,
+				86F47D7125EFE7B40032D46E /* GetMonetizationResponseMapper.swift in Sources */,
 				96B92B4225C4A76C0003002D /* PaygateViewControllerDelegate.swift in Sources */,
 				9629517F25DAC2B800643B6B /* GetTestConfigRequest.swift in Sources */,
 				962AEA4C25B497AD0032E7C3 /* CoursesManager.swift in Sources */,
@@ -1465,6 +1495,7 @@
 				867D50DF25C6EFAC00606B09 /* QuestionTableView.swift in Sources */,
 				8635FA5025D6F5DD007C06AB /* TestStatsManagerCore.swift in Sources */,
 				8649253125D1BB7800D1A491 /* GetTenSetRequest.swift in Sources */,
+				86F47D6525EF70F90032D46E /* RateManager.swift in Sources */,
 				86AA47AD25D4380400782821 /* QuestionContentCollectionView.swift in Sources */,
 				96C63D9D25BCB711007B7EB7 /* OSlideView.swift in Sources */,
 				9629518C25DAD93A00643B6B /* GetBriefRequest.swift in Sources */,
@@ -1504,11 +1535,14 @@
 				96D38B9725B4720000EADC9A /* OnboardingViewController.swift in Sources */,
 				8629EAD625C5A8BC00010DD7 /* TestView.swift in Sources */,
 				8614563625D5B32900C0E676 /* TestStatsViewModel.swift in Sources */,
+				86F47D6425EF70F90032D46E /* RateManagerCore.swift in Sources */,
 				86AA47B825D44DF800782821 /* AVPlayerView.swift in Sources */,
 				96D38B7125B30A9C00EADC9A /* ScreenSize.swift in Sources */,
 				96C63DA325BCD045007B7EB7 /* OSlide2View.swift in Sources */,
 				965F027725BF678D0067EF3C /* SettingsTableView.swift in Sources */,
+				86F47D6D25EFE7810032D46E /* MonetizationManager.swift in Sources */,
 				9632394525C5F59F00C21FD7 /* SCTakeTestCell.swift in Sources */,
+				86F47D6E25EFE7810032D46E /* MonetizationManagerCore.swift in Sources */,
 				965F025A25BF1B950067EF3C /* CoursesCollectionElement.swift in Sources */,
 				96D38BD925B4927A00EADC9A /* GetCourcesRequest.swift in Sources */,
 				96C63E1E25BEC856007B7EB7 /* OProgressView.swift in Sources */,
@@ -1556,6 +1590,7 @@
 				8684A5B925C5585D00BC44BD /* AnswerView.swift in Sources */,
 				96B92B1F25C4A5880003002D /* PaygateOption.swift in Sources */,
 				96D38BC025B47B3A00EADC9A /* StudyViewController.swift in Sources */,
+				86F47D7425EFE8A50032D46E /* MonetizationConfig.swift in Sources */,
 				96D38BB425B476CB00EADC9A /* CourseViewCoordinator.swift in Sources */,
 				8667315D25D8147200927D0E /* TestType.swift in Sources */,
 				86139A2625BEF86C0099CA2F /* StatsCellType.swift in Sources */,
@@ -1596,6 +1631,7 @@
 				96D38BA025B4726800EADC9A /* CoursesViewController.swift in Sources */,
 				96C63DAD25BCE199007B7EB7 /* OSlide4Cell.swift in Sources */,
 				867D50F325C7411F00606B09 /* Test.swift in Sources */,
+				86F47D6925EFE71F0032D46E /* GetMonetizationConfigRequest.swift in Sources */,
 				96C63E0125BD9F25007B7EB7 /* OSlide7View.swift in Sources */,
 				96D38BCB25B47BBF00EADC9A /* StatsViewController.swift in Sources */,
 			);
