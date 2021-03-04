@@ -46,7 +46,7 @@ private extension TestViewModel {
     func makeQuestion() -> Driver<QuestionElement> {
         Observable<Action>
             .merge(
-                didTapNext.map { _ in .next },
+                didTapNext.debounce(.microseconds(500), scheduler: MainScheduler.instance).map { _ in .next },
                 makeQestions().map { .elements($0) }
             )
             .scan((nil, []), accumulator: currentQuestionAccumulator)
