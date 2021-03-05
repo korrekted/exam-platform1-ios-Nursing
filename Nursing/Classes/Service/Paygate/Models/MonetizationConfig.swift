@@ -6,8 +6,16 @@
 //
 
 struct MonetizationConfig: Hashable {
-    let afterOnboarding: Bool
+    let afterOnboarding: ModeAfterOnboarding
 }
 
 // MARK: Codable
 extension MonetizationConfig: Codable {}
+
+// MARK: ModeAfterOnboarding
+extension MonetizationConfig {
+    enum ModeAfterOnboarding: String, Codable {
+        case block
+        case suggest
+    }
+}

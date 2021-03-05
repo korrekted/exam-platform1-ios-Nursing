@@ -77,21 +77,21 @@ private extension OnboardingViewController {
     }
     
     func goToNext() {
-        if viewModel.needPayment() {
-            showPaygate()
-        } else {
+        switch viewModel.whatNext() {
+        case .paygateBlock:
+            let vc = PaygateViewController.make()
+            present(vc, animated: true)
+        case .paygateSuggest:
+            let vc = PaygateViewController.make()
+            vc.delegate = self
+            present(vc, animated: true)
+        case .nextScreen:
             goToCourseOrCourses()
         }
     }
     
     func goToCourseOrCourses() {
         viewModel.hasSelectedCourse ? goToCourse() : goToCourses()
-    }
-    
-    func showPaygate() {
-        let vc = PaygateViewController.make()
-        vc.delegate = self
-        present(vc, animated: true)
     }
     
     func goToCourses() {

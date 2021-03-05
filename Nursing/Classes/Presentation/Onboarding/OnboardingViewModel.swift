@@ -9,6 +9,12 @@ import RxSwift
 import RxCocoa
 
 final class OnboardingViewModel {
+    enum Step {
+        case paygateBlock
+        case paygateSuggest
+        case nextScreen
+    }
+    
     private lazy var coursesManager = CoursesManagerCore()
     private lazy var sessionManager = SessionManagerCore()
     private lazy var monetizationManager = MonetizationManagerCore()
@@ -17,14 +23,22 @@ final class OnboardingViewModel {
         coursesManager.getSelectedCourse() != nil
     }
     
-    func needPayment() -> Bool {
+    func whatNext() -> Step {
         let hasActiveSubscription = sessionManager.getSession()?.activeSubscription ?? false
-        let needPayment = monetizationManager.getMonetizationConfig()?.afterOnboarding ?? false
         
         if hasActiveSubscription {
-            return false
+            return .nextScreen
         }
         
-        return needPayment
+        guard let config = monetizationManager.getMonetizationConfig()?.afterOnboarding else {
+            return .nextScreen
+        }
+        
+        switch config {
+        case .block:
+            return .paygateBlock
+        case .suggest:
+            return .paygateSuggest
+        }
     }
 }

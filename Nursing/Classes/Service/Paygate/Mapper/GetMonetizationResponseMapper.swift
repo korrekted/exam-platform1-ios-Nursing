@@ -18,10 +18,10 @@ final class GetMonetizationResponseMapper {
         switch mode {
         case 1:
             // без оплаты/подписки доступен бесплатный контент, пользователя нужно запустить в приложение
-            return MonetizationConfig(afterOnboarding: false)
+            return MonetizationConfig(afterOnboarding: .suggest)
         case 2:
             // без оплаты/подписки невозможно пройти далее онбординга
-            return MonetizationConfig(afterOnboarding: true)
+            return MonetizationConfig(afterOnboarding: .block)
         default:
             return nil
         }
