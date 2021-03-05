@@ -40,7 +40,13 @@ extension QuestionTableView {
         // в момент скролла ячейки могут наезжать друг на друга
         CATransaction.begin()
         CATransaction.setCompletionBlock { [weak self] in
-            self?.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+            let isBottomScroll = question.elements.contains(where: {
+                guard case .result = $0 else { return false }
+                return true
+            })
+            
+            let indexPath = IndexPath(row: isBottomScroll ? question.elements.count - 1 : 0, section: 0)
+            self?.scrollToRow(at: indexPath, at: .top, animated: true)
         }
         reloadData()
         CATransaction.commit()
