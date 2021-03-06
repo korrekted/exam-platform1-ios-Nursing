@@ -30,7 +30,7 @@ final class OnboardingViewModel {
             return .nextScreen
         }
         
-        guard let config = monetizationManager.getMonetizationConfig()?.afterOnboarding else {
+        guard let config = monetizationManager.getMonetizationConfig() else {
             return .nextScreen
         }
         

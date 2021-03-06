@@ -44,6 +44,12 @@ final class PaygateViewController: UIViewController {
         
         addMainOptionsSelection()
         
+        viewModel.monetizationConfig()
+            .drive(onNext: { [weak self] config in
+                self?.retrieve(config: config)
+            })
+            .disposed(by: disposeBag)
+        
         let retrieved = viewModel.retrieve()
         
         retrieved
@@ -200,7 +206,6 @@ final class PaygateViewController: UIViewController {
 }
 
 // MARK: Make
-
 extension PaygateViewController {
     static func make() -> PaygateViewController {
         let vc = PaygateViewController()
@@ -211,8 +216,16 @@ extension PaygateViewController {
 }
 
 // MARK: Private
-
 private extension PaygateViewController {
+    func retrieve(config: PaygateViewModel.Config) {
+        switch config {
+        case .block:
+            paygateView.mainView.closeButton.isHidden = true
+        case .suggest:
+            paygateView.mainView.closeButton.isHidden = false
+        }
+    }
+    
     func addMainOptionsSelection() {
         let leftOptionTapGesture = UITapGestureRecognizer()
         paygateView.mainView.leftOptionView.addGestureRecognizer(leftOptionTapGesture)

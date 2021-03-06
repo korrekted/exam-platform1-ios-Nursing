@@ -10,6 +10,10 @@ import RxSwift
 import RxCocoa
 
 final class PaygateViewModel {
+    enum Config {
+        case block, suggest
+    }
+    
     let buy = PublishRelay<String>()
     let restore = PublishRelay<String>()
 
@@ -20,8 +24,25 @@ final class PaygateViewModel {
     let restoreProcessing = RxActivityIndicator()
     let retrieveCompleted = BehaviorRelay<Bool>(value: false)
     
-    private let paygateManager = PaygateManagerCore()
-    private let purchaseInteractor = SDKStorage.shared.purchaseInteractor
+    private lazy var paygateManager = PaygateManagerCore()
+    private lazy var purchaseInteractor = SDKStorage.shared.purchaseInteractor
+    private lazy var monetizatiionManager = MonetizationManagerCore()
+}
+
+// MARK: Monetization
+extension PaygateViewModel {
+    func monetizationConfig() -> Driver<Config> {
+        guard let conf = monetizatiionManager.getMonetizationConfig() else {
+            return .deferred { .just(.suggest) }
+        }
+        
+        switch conf {
+        case .block:
+            return .deferred { .just(.block) }
+        case .suggest:
+            return .deferred { .just(.suggest) }
+        }
+    }
 }
 
 // MARK: Get paygate content

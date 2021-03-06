@@ -52,6 +52,13 @@ extension SplashViewController {
     }
 }
 
+// MARK: PaygateViewControllerDelegate
+extension SplashViewController: PaygateViewControllerDelegate {
+    func paygateDidClosed(with result: PaygateViewControllerResult) {
+        step(viewModel.stepAfterPaygateClosed())
+    }
+}
+
 // MARK: Private
 private extension SplashViewController {
     func step(_ step: SplashViewModel.Step) {
@@ -62,6 +69,10 @@ private extension SplashViewController {
             UIApplication.shared.keyWindow?.rootViewController = CoursesViewController.make(howOpen: .root)
         case .course:
             UIApplication.shared.keyWindow?.rootViewController = CourseViewController.make()
+        case .paygate:
+            let vc = PaygateViewController.make()
+            vc.delegate = self
+            present(vc, animated: true)
         }
     }
 }
