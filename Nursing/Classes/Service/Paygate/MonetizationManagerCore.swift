@@ -53,23 +53,28 @@ private extension MonetizationManagerCore {
             .callServerApi(requestBody: request)
             .map { GetMonetizationResponseMapper.map(from: $0) }
             .catchAndReturn(nil)
-            .do(onSuccess: { [weak self] config in
-                guard let config = config else {
-                    return
+            .flatMap { [weak self] config -> Single<MonetizationConfig?> in
+                guard let this = self else {
+                    return .never()
                 }
                 
-                self?.store(config: config)
-            })
+                return this.store(config: config)
+            }
     }
     
-    @discardableResult
-    func store(config: MonetizationConfig) -> Bool {
-        guard let data = try? JSONEncoder().encode(config) else {
-            return false
-        }
+    func store(config: MonetizationConfig?) -> Single<MonetizationConfig?> {
+        Single<MonetizationConfig?>
+            .create { event in
+                guard let conf = config, let data = try? JSONEncoder().encode(conf) else {
+                    event(.success(config))
+                    return Disposables.create()
+                }
         
-        UserDefaults.standard.setValue(data, forKey: Constants.cachedMonetizationConfig)
-        
-        return true
+                UserDefaults.standard.setValue(data, forKey: Constants.cachedMonetizationConfig)
+                
+                event(.success(config))
+                
+                return Disposables.create()
+            }
     }
 }
