@@ -12,6 +12,3 @@ enum MonetizationConfig: String {
 
 // MARK: Hashable
 extension MonetizationConfig: Hashable {}
-
-// MARK: Codable
-extension MonetizationConfig: Codable {}

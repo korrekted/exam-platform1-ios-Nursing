@@ -16,11 +16,11 @@ final class MonetizationManagerCore: MonetizationManager {
 // MARK: API
 extension MonetizationManagerCore {
     func getMonetizationConfig() -> MonetizationConfig? {
-        guard let data = UserDefaults.standard.data(forKey: Constants.cachedMonetizationConfig) else {
+        guard let rawValue = UserDefaults.standard.string(forKey: Constants.cachedMonetizationConfig) else {
             return nil
         }
         
-        return try? JSONDecoder().decode(MonetizationConfig.self, from: data)
+        return MonetizationConfig(rawValue: rawValue)
     }
 }
 
@@ -65,12 +65,12 @@ private extension MonetizationManagerCore {
     func store(config: MonetizationConfig?) -> Single<MonetizationConfig?> {
         Single<MonetizationConfig?>
             .create { event in
-                guard let conf = config, let data = try? JSONEncoder().encode(conf) else {
+                guard let rawValue = config?.rawValue else {
                     event(.success(config))
                     return Disposables.create()
                 }
         
-                UserDefaults.standard.setValue(data, forKey: Constants.cachedMonetizationConfig)
+                UserDefaults.standard.setValue(rawValue, forKey: Constants.cachedMonetizationConfig)
                 
                 event(.success(config))
                 
