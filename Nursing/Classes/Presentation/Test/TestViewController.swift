@@ -96,16 +96,29 @@ final class TestViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        Driver
+        let isHiddenNext = Driver
             .merge(
                 viewModel.isEndOfTest,
                 mainView.nextButton.rx.tap.asDriver().map { _ in true }
             )
-            .drive(Binder(mainView) { view, isHidden in
-                let currentBottomInset = view.tableView.contentInset.bottom
-                let bottomInset = isHidden ? 0 : view.bounds.height - view.nextButton.frame.minY + 9.scale
-                view.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: currentBottomInset + bottomInset, right: 0)
-                view.nextButton.isHidden = isHidden
+        
+        isHiddenNext
+            .drive(mainView.nextButton.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        let nextOffset = isHiddenNext
+            .map { [weak mainView] isHidden -> CGFloat in
+                let bottomOffset = mainView.map { $0.bounds.height - $0.nextButton.frame.minY + 9.scale } ?? 0
+                return isHidden ? 0 : bottomOffset
+            }
+        
+        let bottomButtonOffset = viewModel.bottomViewState.map { $0 == .hidden ? 0 : 195.scale }
+        
+        Driver
+            .merge(nextOffset, bottomButtonOffset)
+            .distinctUntilChanged()
+            .drive(Binder(mainView.tableView) {
+                $0.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: $1, right: 0)
             })
             .disposed(by: disposeBag)
         
