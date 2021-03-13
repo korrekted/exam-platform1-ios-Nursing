@@ -36,20 +36,15 @@ extension QuestionTableView {
         }
         elements = question.elements
         isMultiple = question.isMultiple
-        // В виду активного изменения контента и инсетов,
-        // в момент скролла ячейки могут наезжать друг на друга
-        CATransaction.begin()
-        CATransaction.setCompletionBlock { [weak self] in
-            let isBottomScroll = question.elements.contains(where: {
-                guard case .result = $0 else { return false }
-                return true
-            })
-            
-            let indexPath = IndexPath(row: isBottomScroll ? question.elements.count - 1 : 0, section: 0)
-            self?.scrollToRow(at: indexPath, at: .top, animated: true)
-        }
+        
         reloadData()
-        CATransaction.commit()
+        let isBottomScroll = question.elements.contains(where: {
+            guard case .result = $0 else { return false }
+            return true
+        })
+        
+        let indexPath = IndexPath(row: isBottomScroll ? question.elements.count - 1 : 0, section: 0)
+        scrollToRow(at: indexPath, at: .top, animated: true)
     }
 }
 
