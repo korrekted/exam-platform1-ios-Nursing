@@ -30,17 +30,26 @@ private extension StatsViewModel {
             return .just([])
         }
         
-        return statsManager
-            .retrieveStats(courseId: courseId)
-            .map { stats -> [StatsCellType] in
-                guard let stats = stats else { return [] }
-                let passRate: StatsCellType = .passRate(stats.passRate)
-                let main: StatsCellType = .main(.init(stats: stats))
+        return QuestionManagerMediator.shared.rxTestPassed
+            .asObservable()
+            .startWith(Void())
+            .flatMapLatest { [weak self] _ -> Single<[StatsCellType]> in
+                guard let this = self else {
+                    return .never()
+                }
                 
-                return stats
-                    .courseStats
-                    .reduce(into: [passRate, main]) {
-                        $0.append(.course(.init(courseStats: $1)))
+                return this.statsManager
+                    .retrieveStats(courseId: courseId)
+                    .map { stats -> [StatsCellType] in
+                        guard let stats = stats else { return [] }
+                        let passRate: StatsCellType = .passRate(stats.passRate)
+                        let main: StatsCellType = .main(.init(stats: stats))
+                        
+                        return stats
+                            .courseStats
+                            .reduce(into: [passRate, main]) {
+                                $0.append(.course(.init(courseStats: $1)))
+                            }
                     }
             }
             .asDriver(onErrorJustReturn: [])
