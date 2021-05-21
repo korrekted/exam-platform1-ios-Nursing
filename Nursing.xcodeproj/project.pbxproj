@@ -214,6 +214,7 @@
 		96E437D725BED56700B4320D /* OSlide15Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E437D625BED56700B4320D /* OSlide15Cell.swift */; };
 		96E437DA25BEDCA200B4320D /* OSlide15View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E437D925BEDCA200B4320D /* OSlide15View.swift */; };
 		96E4380525BF1A7A00B4320D /* CoursesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E4380425BF1A7A00B4320D /* CoursesCollectionView.swift */; };
+		96F4560426579AE800B63D53 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96F4560326579AE800B63D53 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -429,6 +430,7 @@
 		96E437D925BEDCA200B4320D /* OSlide15View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlide15View.swift; sourceTree = "<group>"; };
 		96E4380425BF1A7A00B4320D /* CoursesCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesCollectionView.swift; sourceTree = "<group>"; };
 		96E686DC5654A1E4706B4192 /* Pods-Nursing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nursing.release.xcconfig"; path = "Target Support Files/Pods-Nursing/Pods-Nursing.release.xcconfig"; sourceTree = "<group>"; };
+		96F4560326579AE800B63D53 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -996,6 +998,7 @@
 				96D38AE925B3017D00EADC9A /* Assets.xcassets */,
 				96D38AEB25B3017D00EADC9A /* LaunchScreen.storyboard */,
 				96D38AEE25B3017D00EADC9A /* Info.plist */,
+				96F4560326579AE800B63D53 /* GoogleService-Info.plist */,
 				96D38B2425B3071300EADC9A /* Strings */,
 				96D38B1725B3042E00EADC9A /* Fonts */,
 				96D38B2E25B3079100EADC9A /* Nursing-Thermo-Bridging-Header.h */,
@@ -1329,6 +1332,7 @@
 				96D38ADA25B3017A00EADC9A /* Frameworks */,
 				96D38ADB25B3017A00EADC9A /* Resources */,
 				D269B5F7FFABE34911458007 /* [CP] Embed Pods Frameworks */,
+				96F4560026579A6C00B63D53 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1377,6 +1381,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9685649125E44F5E00238AEB /* Onboarding.Chart.json in Resources */,
+				96F4560426579AE800B63D53 /* GoogleService-Info.plist in Resources */,
 				96D38B2825B3073900EADC9A /* Localizable.strings in Resources */,
 				962AEA7325B4F8090032E7C3 /* SF-Pro-Rounded-Semibold.otf in Resources */,
 				962AEA7225B4F8090032E7C3 /* SF-Pro-Rounded-Regular.otf in Resources */,
@@ -1410,6 +1415,25 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		96F4560026579A6C00B63D53 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 		D269B5F7FFABE34911458007 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1783,7 +1807,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2W4U9UWRKZ;
 				INFOPLIST_FILE = "$(SRCROOT)/Nursing/Resource/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1791,7 +1816,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.14;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = exam.nursing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Nursing Development";
@@ -1809,7 +1834,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = 2W4U9UWRKZ;
 				INFOPLIST_FILE = "$(SRCROOT)/Nursing/Resource/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1817,7 +1842,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.14;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = exam.nursing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Nursing AppStore";
