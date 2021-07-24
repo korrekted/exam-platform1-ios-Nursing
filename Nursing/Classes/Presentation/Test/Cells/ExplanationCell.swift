@@ -20,18 +20,17 @@ class ExplanationCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }
 
 // MARK: Public
 extension ExplanationCell {
-    func confugure(explanation: String) {
+    func confugure(explanation: String, html: String) {
         let attr = TextAttributes()
             .font(Fonts.SFProRounded.bold(size: 17.scale))
             .textColor(.black)
             .lineHeight(20.scale)
         
-        explanationLabel.attributedText = explanation.attributed(with: attr)
+        explanationLabel.attributedText = attributedString(for: html) ?? explanation.attributed(with: attr)
     }
 }
 
@@ -40,6 +39,22 @@ private extension ExplanationCell {
     func initialize() {
         backgroundColor = .clear
         selectionStyle = .none
+    }
+    
+    func attributedString(for htmlString: String) -> NSAttributedString? {
+        guard !htmlString.isEmpty else { return nil }
+        
+        let font = Fonts.SFProRounded.bold(size: 17.scale)
+        let htmlWithStyle = "<span style=\"font-family: \(font.fontName); font-style: regular; font-size: \(font.pointSize); line-height: 20px;\">\(htmlString)</span>"
+        let data = Data(htmlWithStyle.utf8)
+        
+        let attributedString = try? NSAttributedString(
+            data: data,
+            options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue],
+            documentAttributes: nil
+        )
+        
+        return attributedString
     }
 }
 
@@ -67,7 +82,7 @@ private extension ExplanationCell {
         let view = UILabel()
         let attr = TextAttributes()
             .font(Fonts.SFProRounded.bold(size: 17.scale))
-            .textColor(UIColor(integralRed: 95, green: 70, blue: 245))
+            .textColor(Appearance.mainColor)
             .lineHeight(20.scale)
         
         view.attributedText = "Question.Explanation".localized.attributed(with: attr)

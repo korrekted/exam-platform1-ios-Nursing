@@ -46,7 +46,7 @@ final class TestViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        let currentButtonState = mainView.bottomButton.rx.tap
+        let currentButtonState = mainView.bottomView.bottomButton.rx.tap
             .withLatestFrom(viewModel.bottomViewState)
             .share()
         
@@ -67,7 +67,7 @@ final class TestViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        mainView.nextButton.rx.tap
+        mainView.bottomView.nextButton.rx.tap
             .withLatestFrom(courseName)
             .subscribe(onNext: { [weak self] name in
                 self?.viewModel.didTapNext.accept(Void())
@@ -96,26 +96,47 @@ final class TestViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        let testMode = viewModel.testMode
+            .startWith(nil)
+        
         let isHiddenNext = Driver
             .merge(
-                viewModel.isEndOfTest,
-                mainView.nextButton.rx.tap.asDriver().map { _ in true }
+                viewModel.isEndOfTest.withLatestFrom(testMode) { ($0, $1) },
+                mainView.bottomView.nextButton.rx.tap.asDriver().map { _ in (true, nil) }
             )
         
         isHiddenNext
-            .drive(mainView.nextButton.rx.isHidden)
+            .drive(onNext: { [weak self] stub in
+                let (isHidden, testMode) = stub
+                
+                if testMode == .onAnExam {
+                    self?.viewModel.didTapNext.accept(Void())
+                } else {
+                    self?.mainView.bottomView.nextButton.isHidden = isHidden
+                }
+            })
             .disposed(by: disposeBag)
         
         let nextOffset = isHiddenNext
-            .map { [weak mainView] isHidden -> CGFloat in
-                let bottomOffset = mainView.map { $0.bounds.height - $0.nextButton.frame.minY + 9.scale } ?? 0
-                return isHidden ? 0 : bottomOffset
+            .map { $0.0 }
+            .map { isHidden -> CGFloat in
+                return isHidden ? 90.scale : 140.scale
             }
         
-        let bottomButtonOffset = viewModel.bottomViewState.map { $0 == .hidden ? 0 : 195.scale }
+        let bottomViewData = viewModel.bottomViewState
+            .startWith(.hidden)
+        
+        let bottomButtonOffset = bottomViewData
+            .map { $0 == .hidden ? 90 : 140.scale }
+        
+        bottomViewData
+            .drive(Binder(mainView.bottomView) {
+                $0.setup(state: $1)
+            })
+            .disposed(by: disposeBag)
         
         Driver
-            .merge(nextOffset, bottomButtonOffset)
+            .combineLatest(nextOffset, bottomButtonOffset) { max($0, $1) }
             .distinctUntilChanged()
             .drive(Binder(mainView.tableView) {
                 $0.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: $1, right: 0)
@@ -129,12 +150,6 @@ final class TestViewController: UIViewController {
                 
                 base.didTapSubmit?(id)
                 base.logTapAnalytics(courseName: name, what: "finish test")
-            })
-            .disposed(by: disposeBag)
-        
-        viewModel.bottomViewState
-            .drive(Binder(mainView) {
-                $0.setupBottomButton(for: $1)
             })
             .disposed(by: disposeBag)
         

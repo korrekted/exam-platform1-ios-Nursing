@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol OSlideViewDelegate: class {
+protocol OSlideViewDelegate: AnyObject {
     func slideViewDidNext(from step: OnboardingView.Step)
 }
 
@@ -15,6 +15,7 @@ class OSlideView: UIView {
     let step: OnboardingView.Step
     
     weak var delegate: OSlideViewDelegate?
+    var didNextTapped: ((OnboardingView.Step) -> Void)?
     
     init(step: OnboardingView.Step) {
         self.step = step
@@ -31,5 +32,6 @@ class OSlideView: UIView {
     @objc
     func onNext() {
         delegate?.slideViewDidNext(from: step)
+        didNextTapped?(step)
     }
 }

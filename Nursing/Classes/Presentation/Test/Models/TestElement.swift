@@ -9,12 +9,14 @@ import Foundation
 
 struct PossibleAnswerElement: Hashable {
     let id: Int
-    let answer: String
+    let answer: String?
+    let answerHtml: String?
     let image: URL?
 }
 
 struct AnswerResultElement {
-    let answer: String
+    let answer: String?
+    let answerHtml: String?
     let image: URL?
     let state: AnswerState
 }
@@ -22,7 +24,6 @@ struct AnswerResultElement {
 enum AnswerState {
     case initial, correct, warning, error
 }
-
 
 struct QuestionElement {
     let id: Int

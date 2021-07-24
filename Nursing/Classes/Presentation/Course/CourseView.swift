@@ -45,7 +45,7 @@ private extension CourseView {
 private extension CourseView {
     func makeContainer() -> UIView {
         let view = UIView()
-        view.backgroundColor = UIColor(integralRed: 242, green: 245, blue: 252)
+        view.backgroundColor = Appearance.backgroundColor
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view
@@ -53,7 +53,7 @@ private extension CourseView {
     
     func makeTabView() -> TabView {
         let view = TabView()
-        view.backgroundColor = UIColor(integralRed: 242, green: 245, blue: 252)
+        view.backgroundColor = Appearance.backgroundColor
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

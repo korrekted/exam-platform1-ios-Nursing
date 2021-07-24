@@ -40,10 +40,18 @@ final class SplashViewModel {
 // MARK: Private
 private extension SplashViewModel {
     func library() -> Completable {
-        monetizationManager
-            .rxRetrieveMonetizationConfig(forceUpdate: true)
-            .catchAndReturn(nil)
-            .asCompletable()
+        Completable
+            .zip(
+                monetizationManager
+                    .rxRetrieveMonetizationConfig(forceUpdate: true)
+                    .catchAndReturn(nil)
+                    .asCompletable(),
+                
+                coursesManager
+                    .retrieveReferences(forceUpdate: true)
+                    .catchAndReturn([])
+                    .asCompletable()
+            )
     }
     
     func makeStep() -> Observable<Step> {

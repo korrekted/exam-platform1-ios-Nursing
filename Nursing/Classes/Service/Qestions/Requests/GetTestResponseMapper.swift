@@ -10,7 +10,8 @@ import Foundation
 struct GetTestResponseMapper {
     static func map(from response: Any) throws -> Test? {
         guard
-            let json = response as? [String: Any],
+            let string = response as? String,
+            let json = XOREncryption.toJSON(string, key: GlobalDefinitions.apiKey),
             let code = json["_code"] as? Int
         else { return nil }
         
@@ -45,7 +46,6 @@ private extension GetTestResponseMapper {
         questions.compactMap { restJSON -> Question? in
             guard
                 let id = restJSON["id"] as? Int,
-                let question = restJSON["question"] as? String,
                 let multiple = restJSON["multiple"] as? Bool,
                 let isAnswered = restJSON["answered"] as? Bool,
                 let answersJSON = restJSON["answers"] as? [[String: Any]]
@@ -54,13 +54,18 @@ private extension GetTestResponseMapper {
             }
             
             let explanation = restJSON["explanation"] as? String
+            let explanationHtml = restJSON["explanation_html"] as? String
+            
             let answers: [Answer] = Self.map(from: answersJSON)
             guard !answers.isEmpty else { return nil }
             
             let image = (restJSON["image"] as? String)?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
             let video = (restJSON["video"] as? String)?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
             
+            let question = restJSON["question"] as? String ?? ""
             let questionHtml = restJSON["question_html"] as? String ?? ""
+            
+            let reference = restJSON["reference"] as? String
             
             return Question(
                 id: id,
@@ -71,7 +76,9 @@ private extension GetTestResponseMapper {
                 answers: answers,
                 multiple: multiple,
                 explanation: explanation,
-                isAnswered: isAnswered
+                explanationHtml: explanationHtml,
+                isAnswered: isAnswered,
+                reference: reference
             )
         }
     }
@@ -80,15 +87,21 @@ private extension GetTestResponseMapper {
         answers.compactMap { restJSON -> Answer? in
             guard
                 let id = restJSON["id"] as? Int,
-                let answer = restJSON["answer"] as? String,
                 let correct = restJSON["correct"] as? Bool
             else {
                 return nil
             }
             
+            let answer = restJSON["answer"] as? String
+            let answerHtml = restJSON["answer_html"] as? String
+            
             let image = (restJSON["image"] as? String)?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
             
-            return Answer(id: id, answer: answer, image: URL(string: image), isCorrect: correct)
+            return Answer(id: id,
+                          answer: answer,
+                          answerHtml: answerHtml,
+                          image: URL(string: image),
+                          isCorrect: correct)
         }
     }
 }

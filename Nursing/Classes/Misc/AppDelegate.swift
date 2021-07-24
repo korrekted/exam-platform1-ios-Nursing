@@ -101,7 +101,7 @@ private extension AppDelegate {
                                    shouldAddStorePayment: true,
                                    featureAppBackendUrl: GlobalDefinitions.domainUrl,
                                    featureAppBackendApiKey: GlobalDefinitions.apiKey,
-                                   appleAppID: "1550433302")
+                                   appleAppID: GlobalDefinitions.appleAppID)
         
         sdkProvider.initialize(settings: settings) { [weak self] in
             self?.generateStepInSplash.accept(Void())

@@ -41,10 +41,12 @@ final class OnboardingViewController: UIViewController {
                 return
             }
             
-            if step == .slide1 {
+            if step == .welcome {
                 this.goToCourses()
             }
         }
+        
+        addPreviousAction()
     }
 }
 
@@ -54,7 +56,6 @@ extension OnboardingViewController {
         OnboardingViewController()
     }
 }
-
 
 // MARK: API
 extension OnboardingViewController {
@@ -88,6 +89,18 @@ private extension OnboardingViewController {
         case .nextScreen:
             goToCourseOrCourses()
         }
+    }
+    
+    func addPreviousAction() {
+        mainView.previousButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                guard let self = self else {
+                    return
+                }
+                
+                self.mainView.slideViewMoveToPrevious(from: self.mainView.step)
+            })
+            .disposed(by: disposeBag)
     }
     
     func goToCourseOrCourses() {

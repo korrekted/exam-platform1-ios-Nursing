@@ -23,11 +23,13 @@ final class TestViewModel {
     lazy var isEndOfTest = endOfTest()
     lazy var userTestId = makeUserTestId()
     lazy var bottomViewState = makeBottomState()
+    lazy var testMode = makeTestMode()
     lazy var errorMessage = makeErrorMessage()
     lazy var needPayment = makeNeedPayment()
     
     private lazy var questionManager = QuestionManagerCore()
     private lazy var courseManager = CoursesManagerCore()
+    private lazy var profileManager = ProfileManagerCore()
     
     private lazy var testElement = loadTest().share(replay: 1, scope: .forever)
     private lazy var selectedAnswers = makeSelectedAnswers().share(replay: 1, scope: .forever)
@@ -60,6 +62,7 @@ private extension TestViewModel {
         
         let dataSource = Observable
             .combineLatest(questions, selectedAnswers)
+            .withLatestFrom(testMode) { ($0.0, $0.1, $1) }
             .scan([], accumulator: questionAccumulator)
         
         return dataSource
@@ -183,6 +186,12 @@ private extension TestViewModel {
             .startWith(.hidden)
             .distinctUntilChanged()
     }
+    
+    func makeTestMode() -> Driver<TestMode?> {
+        profileManager
+            .obtainTestMode()
+            .asDriver(onErrorJustReturn: nil)
+    }
 }
 
 // MARK: Additional
@@ -193,12 +202,15 @@ private extension TestViewModel {
         case elements([QuestionElement])
     }
     
-    var questionAccumulator: ([QuestionElement], ([Question], AnswerElement?)) -> [QuestionElement] {
+    var questionAccumulator: ([QuestionElement], ([Question], AnswerElement?, TestMode?)) -> [QuestionElement] {
         return { [weak self] (old, args) -> [QuestionElement] in
-            let (questions, answers) = args
+            let (questions, answers, testMode) = args
             guard !old.isEmpty else {
                 return questions.enumerated().map { index, question in
-                    let answers = question.answers.map { PossibleAnswerElement(id: $0.id, answer: $0.answer, image: $0.image) }
+                    let answers = question.answers.map { PossibleAnswerElement(id: $0.id,
+                                                                               answer: $0.answer,
+                                                                               answerHtml: $0.answerHtml,
+                                                                               image: $0.image) }
                     
                     let content: [QuestionContentType] = [
                         question.image.map { .image($0) },
@@ -212,9 +224,14 @@ private extension TestViewModel {
                         .answers(answers)
                     ].compactMap { $0 }
                     
+                    var referenceCellType = [TestingCellType]()
+                    if let reference = question.reference, !reference.isEmpty {
+                        referenceCellType.append(.reference(reference))
+                    }
+                    
                     return QuestionElement(
                         id: question.id,
-                        elements: elements,
+                        elements: elements + referenceCellType,
                         isMultiple: question.multiple,
                         index: index + 1,
                         isAnswered: question.isAnswered,
@@ -227,19 +244,32 @@ private extension TestViewModel {
                 return old
             }
             
+            let currentMode = questions.count > 1 ? testMode : .fullComplect
+            
             guard let index = old.firstIndex(where: { $0.id == currentAnswers.questionId }) else {
                 return old
             }
             let currentElement = old[index]
-            let newElements = currentElement.elements.map { value -> TestingCellType in
+            let newElements = currentElement.elements.compactMap { value -> TestingCellType? in
+                if case .reference = value { return nil }
+                
                 guard case .answers = value else { return value }
                 
                 let result = currentQuestion.answers.map { answer -> AnswerResultElement in
-                    let state: AnswerState = currentAnswers.answerIds.contains(answer.id)
-                        ? answer.isCorrect ? .correct : .error
-                        : answer.isCorrect ? currentQuestion.multiple ? .warning : .correct : .initial
+                    let state: AnswerState
                     
-                    return AnswerResultElement(answer: answer.answer, image: answer.image, state: state)
+                    if currentMode == .onAnExam {
+                        state = .initial
+                    } else {
+                        state = currentAnswers.answerIds.contains(answer.id)
+                            ? answer.isCorrect ? .correct : .error
+                            : answer.isCorrect ? currentQuestion.multiple ? .warning : .correct : .initial
+                    }
+                    
+                    return AnswerResultElement(answer: answer.answer,
+                                               answerHtml: answer.answerHtml,
+                                               image: answer.image,
+                                               state: state)
                 }
                 
                 if currentQuestion.multiple {
@@ -253,11 +283,20 @@ private extension TestViewModel {
                 return .result(result)
             }
             
-            let explanation: [TestingCellType] = currentQuestion.explanation.map { [.explanation($0)] } ?? []
+            var explanation = [TestingCellType]()
+            if (currentQuestion.explanation != nil || currentQuestion.explanationHtml != nil) && [.none, .fullComplect].contains(currentMode) {
+                explanation.append(.explanation(currentQuestion.explanation ?? "",
+                                                html: currentQuestion.explanationHtml ?? ""))
+            }
+            
+            var referenceCellType = [TestingCellType]()
+            if let reference = currentQuestion.reference, !reference.isEmpty {
+                referenceCellType.append(.reference(reference))
+            }
             
             let newElement = QuestionElement(
                 id: currentElement.id,
-                elements: newElements + explanation,
+                elements: newElements + explanation + referenceCellType,
                 isMultiple: currentElement.isMultiple,
                 index: currentElement.index,
                 isAnswered: currentElement.isAnswered,

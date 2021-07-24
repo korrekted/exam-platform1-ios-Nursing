@@ -35,7 +35,9 @@ extension AnswersCell {
             stackView.removeArrangedSubview($0)
             $0.removeFromSuperview()
         }
-        let answersElements = answers.map { (makeAnswerView(answer: $0.answer, image: $0.image), $0) }
+        let answersElements = answers.map { (makeAnswerView(answer: $0.answer,
+                                                            answerHtml: $0.answerHtml,
+                                                            image: $0.image), $0) }
         answersElements.map { $0.0 }.forEach(stackView.addArrangedSubview)
         setNeedsLayout()
         
@@ -88,7 +90,9 @@ extension AnswersCell {
         }
         
         let views = result.map { element -> AnswerView in
-            let view = makeAnswerView(answer: element.answer, image: element.image)
+            let view = makeAnswerView(answer: element.answer,
+                                      answerHtml: element.answerHtml,
+                                      image: element.image)
             view.isUserInteractionEnabled = false
             switch element.state {
             case .initial:
@@ -144,9 +148,13 @@ private extension AnswersCell {
         return view
     }
     
-    func makeAnswerView(answer: String, image: URL?) -> AnswerView {
+    func makeAnswerView(answer: String?, answerHtml: String?, image: URL?) -> AnswerView {
         let view = AnswerView()
-        view.setAnswer(answer: answer, image: image)
+        if let answerHtml = answerHtml {
+            view.setAnswer(answerHtml: answerHtml, image: image)
+        } else if let answer = answer {
+            view.setAnswer(answer: answer, image: image)
+        }
         return view
     }
 }

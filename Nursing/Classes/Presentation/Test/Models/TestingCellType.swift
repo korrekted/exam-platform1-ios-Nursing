@@ -13,5 +13,6 @@ enum TestingCellType {
     case question(String, html: String)
     case answers([PossibleAnswerElement])
     case result([AnswerResultElement])
-    case explanation(String)
+    case explanation(String, html: String)
+    case reference(String)
 }

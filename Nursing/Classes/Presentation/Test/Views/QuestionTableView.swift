@@ -75,13 +75,17 @@ extension QuestionTableView: UITableViewDataSource {
             let cell = dequeueReusableCell(withIdentifier: String(describing: AnswersCell.self), for: indexPath) as! AnswersCell
             cell.configure(answers: answers, isMultiple: isMultiple, didTap: selectedIds)
             return cell
-        case let .explanation(explanation):
+        case let .explanation(explanation, html):
             let cell = dequeueReusableCell(withIdentifier: String(describing: ExplanationCell.self), for: indexPath) as! ExplanationCell
-            cell.confugure(explanation: explanation)
+            cell.confugure(explanation: explanation, html: html)
             return cell
         case let .result(elements):
             let cell = dequeueReusableCell(withIdentifier: String(describing: AnswersCell.self), for: indexPath) as! AnswersCell
             cell.configure(result: elements)
+            return cell
+        case let .reference(reference):
+            let cell = dequeueReusableCell(withIdentifier: String(describing: QuestionReferenceCell.self), for: indexPath) as! QuestionReferenceCell
+            cell.confugure(reference: reference)
             return cell
         }
     }
@@ -95,9 +99,10 @@ private extension QuestionTableView {
         register(AnswersCell.self, forCellReuseIdentifier: String(describing: AnswersCell.self))
         register(QuestionCell.self, forCellReuseIdentifier: String(describing: QuestionCell.self))
         register(ExplanationCell.self, forCellReuseIdentifier: String(describing: ExplanationCell.self))
+        register(QuestionReferenceCell.self, forCellReuseIdentifier: String(describing: QuestionReferenceCell.self))
+        
         separatorStyle = .none
         
         dataSource = self
     }
 }
-

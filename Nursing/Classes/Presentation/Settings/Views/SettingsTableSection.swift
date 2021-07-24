@@ -9,4 +9,6 @@ enum SettingsTableSection {
     case unlockPremium
     case selectedCourse(Course)
     case links
+    case mode(TestMode)
+    case references
 }

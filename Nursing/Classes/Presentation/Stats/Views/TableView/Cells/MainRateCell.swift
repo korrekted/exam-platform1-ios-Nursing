@@ -45,13 +45,13 @@ private extension MainRateCell {
         [testTakenStatsView, correctAnswersStatsView, questionsTakenStatsView].forEach(stackStatsView.addArrangedSubview)
         
         testTakenStatsView.setup(title: "Stats.MainRate.TestsTake".localized,
-                                 color: UIColor(integralRed: 95, green: 70, blue: 245))
+                                 color: Appearance.progress1Color)
         
         correctAnswersStatsView.setup(title: "Stats.MainRate.CorrectAnswers".localized,
-                                      color: UIColor(integralRed: 83, green: 189, blue: 224))
+                                      color: Appearance.progress2Color)
         
         questionsTakenStatsView.setup(title: "Stats.MainRate.QuestionsTaken".localized,
-                                      color: UIColor(integralRed: 198, green: 42, blue: 80))
+                                      color: Appearance.progress3Color)
     }
 }
 

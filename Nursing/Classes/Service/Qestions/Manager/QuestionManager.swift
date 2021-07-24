@@ -7,7 +7,7 @@
 
 import RxSwift
 
-protocol QuestionManager: class {
+protocol QuestionManager: AnyObject {
     // MARK: API(Rx)
     func retrieve(courseId: Int, testId: Int?, activeSubscription: Bool) -> Single<Test?>
     func retrieveTenSet(courseId: Int, activeSubscription: Bool) -> Single<Test?>

@@ -18,7 +18,7 @@ struct GetTestConfigRequest: APIRequestBody {
     }
     
     var url: String {
-        GlobalDefinitions.domainUrl + "/api/tests/list"
+        GlobalDefinitions.domainUrl + "/api/testings/list"
     }
     
     var method: HTTPMethod {

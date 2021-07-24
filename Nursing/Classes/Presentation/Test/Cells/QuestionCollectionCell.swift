@@ -117,7 +117,7 @@ private extension QuestionCollectionCell {
     func makeExpandButton() -> UIButton {
         let view = UIButton()
         view.setImage(UIImage(named: "Question.Expand"), for: .normal)
-        view.tintColor = .white
+        view.tintColor = Appearance.mainColor
         view.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(view)
         return view

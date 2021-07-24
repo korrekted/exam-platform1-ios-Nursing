@@ -59,7 +59,7 @@ final class PaygateMainView: UIView {
 // MARK: Private
 private extension PaygateMainView {
     func initialize() {
-        backgroundColor = UIColor(integralRed: 242, green: 245, blue: 252)
+        backgroundColor = Appearance.backgroundColor
     }
     
     @objc
@@ -281,7 +281,7 @@ private extension PaygateMainView {
         let view = UIButton()
         view.setAttributedTitle("Paygate.Continue".localized.attributed(with: attrs), for: .normal)
         view.isHidden = true
-        view.backgroundColor = UIColor(integralRed: 95, green: 70, blue: 245)
+        view.backgroundColor = Appearance.mainColor
         view.layer.cornerRadius = 30.scale
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)

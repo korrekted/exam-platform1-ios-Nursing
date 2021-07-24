@@ -8,7 +8,8 @@
 final class GetTestConfigResponseMapper {
     static func from(response: Any) -> [TestConfig] {
         guard
-            let json = response as? [String: Any],
+            let string = response as? String,
+            let json = XOREncryption.toJSON(string, key: GlobalDefinitions.apiKey),
             let data = json["_data"] as? [String: Any],
             let tests = data["tests"] as? [[String: Any]]
         else {

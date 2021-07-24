@@ -4,6 +4,7 @@
 //
 //  Created by Vitaliy Zagorodnov on 30.01.2021.
 //
+
 import UIKit
 import RxCocoa
 
@@ -12,7 +13,9 @@ final class AnswerView: UIView {
     private lazy var answerLabel = makeAnswerLabel()
     private lazy var imageView = makeImageView()
     private let tapGesture = UITapGestureRecognizer()
+    
     private var labelBottomConstraint: NSLayoutConstraint?
+    private var labelTrailingConstraint: NSLayoutConstraint?
     
     var state: State = .initial {
         didSet {
@@ -22,6 +25,7 @@ final class AnswerView: UIView {
         
     private override init(frame: CGRect) {
         super.init(frame: frame)
+        
         initialize()
         makeConstraints()
     }
@@ -55,6 +59,19 @@ extension AnswerView {
         answerLabel.attributedText = answer.attributed(with: attrs)
     }
     
+    func setAnswer(answerHtml: String, image: URL?) {
+        answerLabel.attributedText = attributedString(for: answerHtml)
+        
+        if let imageUrl = image {
+            do {
+                try imageView.image = UIImage(data: Data(contentsOf: imageUrl))
+                needUpdateConstraints()
+            } catch {
+                
+            }
+        }
+    }
+    
     var didTap: Signal<Void> {
         tapGesture.rx.event
             .map { _ in () }
@@ -79,7 +96,7 @@ private extension AnswerView {
             iconView.image = nil
         case .selected:
             layer.borderWidth = 3.scale
-            layer.borderColor = UIColor(integralRed: 95, green: 70, blue: 245).cgColor
+            layer.borderColor = Appearance.mainColor.cgColor
             backgroundColor = .white
             iconView.image = nil
         case .correct:
@@ -104,6 +121,24 @@ private extension AnswerView {
             iconView.tintColor = warningColor
             iconView.image = UIImage(named: "Question.Warning")
         }
+        
+        needUpdateLabelConstraints()
+    }
+    
+    func attributedString(for htmlString: String) -> NSAttributedString? {
+        guard !htmlString.isEmpty else { return nil }
+        
+        let font = Fonts.SFProRounded.regular(size: 17.scale)
+        let htmlWithStyle = "<span style=\"font-family: \(font.fontName); font-style: regular; font-size: \(font.pointSize); line-height: 20px;\">\(htmlString)</span>"
+        let data = Data(htmlWithStyle.utf8)
+        
+        let attributedString = try? NSAttributedString(
+            data: data,
+            options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue],
+            documentAttributes: nil
+        )
+        
+        return attributedString
     }
 }
 
@@ -112,12 +147,13 @@ private extension AnswerView {
     func makeConstraints() {
         NSLayoutConstraint.activate([
             answerLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15.scale),
-            answerLabel.topAnchor.constraint(equalTo: topAnchor, constant: 19.scale),
-            answerLabel.trailingAnchor.constraint(equalTo: iconView.leadingAnchor, constant: -20.scale)
+            answerLabel.topAnchor.constraint(equalTo: topAnchor, constant: 19.scale)
         ])
         
         labelBottomConstraint = answerLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -19.scale)
         labelBottomConstraint?.isActive = true
+        
+        needUpdateLabelConstraints()
         
         NSLayoutConstraint.activate([
             iconView.heightAnchor.constraint(equalToConstant: 24.scale),
@@ -125,8 +161,6 @@ private extension AnswerView {
             iconView.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -20.scale),
             iconView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
-        
-        
     }
     
     func needUpdateConstraints() {
@@ -140,6 +174,16 @@ private extension AnswerView {
         
         labelBottomConstraint = imageView.topAnchor.constraint(equalTo: answerLabel.bottomAnchor, constant: 10.scale)
         labelBottomConstraint?.isActive = true
+    }
+    
+    func needUpdateLabelConstraints() {
+        labelTrailingConstraint?.isActive = false
+        
+        let hasIcon = iconView.image != nil
+        
+        labelTrailingConstraint = answerLabel.trailingAnchor.constraint(equalTo: hasIcon ? iconView.leadingAnchor : trailingAnchor,
+                                                                        constant: hasIcon ? -20.scale : -15.scale)
+        labelTrailingConstraint?.isActive = true
     }
 }
 

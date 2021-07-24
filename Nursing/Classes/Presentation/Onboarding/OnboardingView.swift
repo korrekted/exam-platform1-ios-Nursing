@@ -9,37 +9,38 @@ import UIKit
 
 final class OnboardingView: UIView {
     enum Step: Int {
-        case slide1, slide2, slide3, slide4, slide5, slide6, slide7, slide8, slide9, slide10, slide11, slide12, slide13, slide14, slide15
+        case welcome, references, whenTaking, goals, improve, modes, time, count, whenStudy, push, widgets, preloader, plan
     }
     
     var didFinish: (() -> Void)?
     var didChangedSlide: ((Step) -> Void)?
     
-    var step = Step.slide1 {
+    var step = Step.welcome {
         didSet {
             scroll()
+            headerUpdate()
         }
     }
     
     lazy var scrollView = makeScrollView()
+    lazy var progressView = makeProgressView()
+    lazy var previousButton = makePreviousButton()
     
     private lazy var contentViews: [OSlideView] = {
         [
-            OSlide1View(step: .slide1),
-            OSlide2View(step: .slide2),
-            OSlide3View(step: .slide3),
-            OSlide4View(step: .slide4),
-            OSlide5View(step: .slide5),
-            OSlide6View(step: .slide6),
-            OSlide7View(step: .slide7),
-            OSlide8View(step: .slide8),
-            OSlide9View(step: .slide9),
-            OSlideQuestionView(step: .slide10, questionKey: "Onboarding.Slide10.Question"),
-            OSlideQuestionView(step: .slide11, questionKey: "Onboarding.Slide11.Question"),
-            OSlideQuestionView(step: .slide12, questionKey: "Onboarding.Slide12.Question"),
-            OSlideQuestionView(step: .slide13, questionKey: "Onboarding.Slide13.Question"),
-            OSlide14View(step: .slide14),
-            OSlide15View(step: .slide15)
+            OSlideWelcomeView(step: .welcome),
+            OSlideReferencesView(step: .references),
+            OSlideWhenTakingView(step: .whenTaking),
+            OSlideGoalsView(step: .goals),
+            OSlideImproveView(step: .improve),
+            OSlideModesView(step: .modes),
+            OSlideTimeView(step: .time),
+            OSlideCountView(step: .count),
+            OWhenStudyView(step: .whenStudy),
+            OPushView(step: .push),
+            OSlideWidgetsView(step: .widgets),
+            OSlidePreloaderView(step: .preloader),
+            OSlidePlanView(step: .plan)
         ]
     }()
     
@@ -48,18 +49,21 @@ final class OnboardingView: UIView {
         
         makeConstraints()
         initialize()
+        headerUpdate()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    private lazy var progressCases: [Step] = [
+        .whenTaking, .goals, .improve, .modes, .time, .count, .whenStudy
+    ]
 }
 
 // MARK: OSlideViewDelegate
 extension OnboardingView: OSlideViewDelegate {
     func slideViewDidNext(from step: Step) {
-        OnboardingAnalytics().log(step: step)
-        
         didChangedSlide?(step)
         
         let nextRawValue = step.rawValue + 1
@@ -74,10 +78,23 @@ extension OnboardingView: OSlideViewDelegate {
     }
 }
 
+// MARK: Public
+extension OnboardingView {
+    func slideViewMoveToPrevious(from step: Step) {
+        let previousRawValue = step.rawValue - 1
+        
+        guard let previousStep = Step(rawValue: previousRawValue) else {
+            return
+        }
+        
+        self.step = previousStep
+    }
+}
+
 // MARK: Private
 private extension OnboardingView {
     func initialize() {
-        backgroundColor = UIColor(integralRed: 242, green: 245, blue: 252)
+        backgroundColor = Appearance.backgroundColor
         
         contentViews
             .enumerated()
@@ -109,6 +126,22 @@ private extension OnboardingView {
         
         view.moveToThis()
     }
+    
+    func headerUpdate() {
+        switch step {
+        case .welcome, .references, .push, .widgets, .preloader, .plan:
+            previousButton.isHidden = true
+            progressView.isHidden = true
+        default:
+            previousButton.isHidden = false
+            progressView.isHidden = false
+        }
+        
+        guard let index = progressCases.firstIndex(of: step) else {
+            return
+        }
+        progressView.step = index + 1
+    }
 }
 
 // MARK: Make constraints
@@ -119,6 +152,20 @@ private extension OnboardingView {
             scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
             scrollView.topAnchor.constraint(equalTo: topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            previousButton.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 74.scale : 34.scale),
+            previousButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
+            previousButton.widthAnchor.constraint(equalToConstant: 6.scale),
+            previousButton.heightAnchor.constraint(equalToConstant: 13.scale)
+        ])
+        
+        NSLayoutConstraint.activate([
+            progressView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 37.scale),
+            progressView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
+            progressView.centerYAnchor.constraint(equalTo: previousButton.centerYAnchor),
+            progressView.heightAnchor.constraint(equalToConstant: 5.scale)
         ])
     }
 }
@@ -133,6 +180,27 @@ private extension OnboardingView {
         view.showsVerticalScrollIndicator = false
         view.showsHorizontalScrollIndicator = false
         view.contentInsetAdjustmentBehavior = .never
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
+    func makePreviousButton() -> TapAreaButton {
+        let view = TapAreaButton()
+        view.dx = -10.scale
+        view.dy = -10.scale
+        view.setImage(UIImage(named: "Onboarding.Previous"), for: .normal)
+        view.backgroundColor = UIColor.clear
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
+    func makeProgressView() -> OStepView {
+        let view = OStepView()
+        view.count = progressCases.count
+        view.step = 1
+        view.backgroundColor = UIColor.clear
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

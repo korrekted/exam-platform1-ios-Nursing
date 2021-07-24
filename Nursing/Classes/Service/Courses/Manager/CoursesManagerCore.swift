@@ -8,8 +8,9 @@
 import RxSwift
 
 final class CoursesManagerCore: CoursesManager {
-    struct Constants {
+    enum Constants {
         static let selectedCourseCacheKey = "courses_manager_core_selected_course_cache_key"
+        static let cachedReferencesKey = "courses_manager_core_cached_references_key"
     }
 }
 
@@ -71,5 +72,59 @@ extension CoursesManagerCore {
             }
             .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .background))
             .observe(on: MainScheduler.asyncInstance)
+    }
+}
+
+// MARK: References
+extension CoursesManagerCore {
+    func retrieveReferences(forceUpdate: Bool) -> Single<[Reference]> {
+        guard forceUpdate else {
+            return getCachedReferenced()
+        }
+        
+        return SDKStorage.shared
+            .restApiTransport
+            .callServerApi(requestBody: GetReferencesRequest())
+            .map(GetReferencesResponseMapper.map(from:))
+            .flatMap { [weak self] references -> Single<[Reference]> in
+                guard let self = self else {
+                    return .never()
+                }
+                
+                return self.write(references: references)
+            }
+    }
+    
+    private func write(references: [Reference]) -> Single<[Reference]> {
+        Single<[Reference]>
+            .create { event in
+                guard let data = try? JSONEncoder().encode(references) else {
+                    event(.success(references))
+                    return Disposables.create()
+                }
+                
+                UserDefaults.standard.setValue(data, forKey: Constants.cachedReferencesKey)
+                
+                event(.success(references))
+                
+                return Disposables.create()
+            }
+    }
+    
+    private func getCachedReferenced() -> Single<[Reference]> {
+        Single<[Reference]>
+            .create { event in
+                guard
+                    let data = UserDefaults.standard.data(forKey: Constants.cachedReferencesKey),
+                    let references = try? JSONDecoder().decode([Reference].self, from: data)
+                else {
+                    event(.success([]))
+                    return Disposables.create()
+                }
+                
+                event(.success(references))
+                
+                return Disposables.create()
+            }
     }
 }
