@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (5.4.3)
+  - Alamofire (5.4.4)
   - Amplitude-iOS (4.10.0)
   - AppsFlyerFramework (6.4.0):
     - AppsFlyerFramework/Main (= 6.4.0)
@@ -200,7 +200,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/AgentChe/RushSDK.git
 
 SPEC CHECKSUMS:
-  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
   Amplitude-iOS: 7d8cdc3408ba35c2e68368fc7c692cd104606b94
   AppsFlyerFramework: 9c37252d3edce38257afc065ad48a48c0f004000
   Branch: d21c40c47b5c15c6ab709cdf7d965a50059e0546
