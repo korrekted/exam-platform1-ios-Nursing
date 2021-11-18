@@ -50,7 +50,7 @@
 "Onboarding.SlideCount.Title" = "HOW MANY TESTS WOULD YOU WANT TO TAKE DAILY?";
 "Onboarding.SlidePreloader.Title" = "PREPARING YOUR\nINDIVIDUAL STUDY PLAN";
 "Onboarding.SlidePreloader.Preloader1" = "Analyzing your skill level...";
-"Onboarding.SlidePreloader.Preloader2" = "Anazling your study preferences...";
+"Onboarding.SlidePreloader.Preloader2" = "Analyzing your study preferences...";
 "Onboarding.SlidePlan.Title" = "YOUR PERSONAL 98% PASS\nRATE STUDY PLAN";
 "Onboarding.SlidePlan.Cell1" = "Multiple sets of questions";
 "Onboarding.SlidePlan.Cell2" = "Consise explanation";
@@ -117,9 +117,9 @@
 "Settings.Unlock" = "Unlock";
 "Settings.Premium" = "PREMIUM";
 "Settings.SelectedExam" = "Selected Exam";
-"Settings.RateUs" = "Rate us";
-"Settings.ContactUs" = "Contact us";
-"Settings.TermsOfUse" = "Terms of use";
+"Settings.RateUs" = "Rate Us";
+"Settings.ContactUs" = "Contact Us";
+"Settings.TermsOfUse" = "Terms of Use";
 "Settings.PrivacyPolicy" = "Privacy Policy";
 "Settings.ExamMode" = "Exam mode";
 "Settings.References" = "References";
