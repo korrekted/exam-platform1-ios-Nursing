@@ -10,4 +10,5 @@ import Foundation.NSAttributedString
 
 struct PaygateMainOffer {
     let options: [PaygateOption]?
+    let questionCount: Int
 }
