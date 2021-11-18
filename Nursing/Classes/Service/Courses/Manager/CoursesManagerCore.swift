@@ -16,13 +16,13 @@ final class CoursesManagerCore: CoursesManager {
 
 // MARK: API
 extension CoursesManagerCore {
-    func select(course: Course) {
-        guard let data = try? JSONEncoder().encode(course) else {
-            return
-        }
-        
-        UserDefaults.standard.set(data, forKey: Constants.selectedCourseCacheKey)
-    }
+//    func select(course: Course) {
+//        guard let data = try? JSONEncoder().encode(course) else {
+//            return
+//        }
+//
+//        UserDefaults.standard.set(data, forKey: Constants.selectedCourseCacheKey)
+//    }
     
     func getSelectedCourse() -> Course? {
         guard let data = UserDefaults.standard.data(forKey: Constants.selectedCourseCacheKey) else {
@@ -49,16 +49,23 @@ extension CoursesManagerCore {
     }
     
     func rxSelect(course: Course) -> Single<Void> {
-        Single<Void>
-            .create { [weak self] event in
-                self?.select(course: course)
-                
-                event(.success(Void()))
-                
-                return Disposables.create()
-            }
-            .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .background))
-            .observe(on: MainScheduler.asyncInstance)
+        guard let userToken = SessionManagerCore().getSession()?.userToken else {
+            return .error(SignError.tokenNotFound)
+        }
+        
+        let request = SetSelectCourseRequest(userToken: userToken, courseId: course.id)
+        
+        return SDKStorage.shared
+            .restApiTransport
+            .callServerApi(requestBody: request)
+            .map { _ in Void() }
+            .do(onSuccess: {
+                guard let data = try? JSONEncoder().encode(course) else {
+                    return
+                }
+        
+                UserDefaults.standard.set(data, forKey: Constants.selectedCourseCacheKey)
+            })
     }
     
     func rxGetSelectedCourse() -> Single<Course?> {
@@ -72,6 +79,19 @@ extension CoursesManagerCore {
             }
             .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .background))
             .observe(on: MainScheduler.asyncInstance)
+    }
+    
+    func obtainSelectedCourseId() -> Single<Int?> {
+        guard let userToken = SessionManagerCore().getSession()?.userToken else {
+            return .error(SignError.tokenNotFound)
+        }
+        
+        let request = GetSelectedCourseRequest(userToken: userToken)
+        
+        return SDKStorage.shared
+            .restApiTransport
+            .callServerApi(requestBody: request)
+            .map { GetSelectedCourseResponse.map(from: $0) }
     }
 }
 

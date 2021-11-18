@@ -11,6 +11,9 @@
 		962AEA7125B4F8090032E7C3 /* SF-Pro-Rounded-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 962AEA6E25B4F8090032E7C3 /* SF-Pro-Rounded-Bold.otf */; };
 		962AEA7225B4F8090032E7C3 /* SF-Pro-Rounded-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 962AEA6F25B4F8090032E7C3 /* SF-Pro-Rounded-Regular.otf */; };
 		962AEA7325B4F8090032E7C3 /* SF-Pro-Rounded-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 962AEA7025B4F8090032E7C3 /* SF-Pro-Rounded-Semibold.otf */; };
+		9695B1BD2746668800D6DEC5 /* SetSelectCourseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9695B1BC2746668800D6DEC5 /* SetSelectCourseRequest.swift */; };
+		9695B1C02746673700D6DEC5 /* GetSelectedCourseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9695B1BF2746673700D6DEC5 /* GetSelectedCourseRequest.swift */; };
+		9695B1C22746678100D6DEC5 /* GetSelectedCourseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9695B1C12746678100D6DEC5 /* GetSelectedCourseResponse.swift */; };
 		96BF1FCF26ACA28500AEF6D3 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96BF1FCE26ACA28500AEF6D3 /* WidgetKit.framework */; };
 		96BF1FD126ACA28500AEF6D3 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96BF1FD026ACA28500AEF6D3 /* SwiftUI.framework */; };
 		96BF1FD626ACA29100AEF6D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96BF1FD526ACA29100AEF6D3 /* Assets.xcassets */; };
@@ -296,6 +299,9 @@
 		962AEA6E25B4F8090032E7C3 /* SF-Pro-Rounded-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Bold.otf"; sourceTree = "<group>"; };
 		962AEA6F25B4F8090032E7C3 /* SF-Pro-Rounded-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Regular.otf"; sourceTree = "<group>"; };
 		962AEA7025B4F8090032E7C3 /* SF-Pro-Rounded-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Semibold.otf"; sourceTree = "<group>"; };
+		9695B1BC2746668800D6DEC5 /* SetSelectCourseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetSelectCourseRequest.swift; sourceTree = "<group>"; };
+		9695B1BF2746673700D6DEC5 /* GetSelectedCourseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSelectedCourseRequest.swift; sourceTree = "<group>"; };
+		9695B1C12746678100D6DEC5 /* GetSelectedCourseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSelectedCourseResponse.swift; sourceTree = "<group>"; };
 		96BF1FCD26ACA28500AEF6D3 /* StatsManagerExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = StatsManagerExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		96BF1FCE26ACA28500AEF6D3 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		96BF1FD026ACA28500AEF6D3 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -581,6 +587,23 @@
 				96E686DC5654A1E4706B4192 /* Pods-Nursing.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		9695B1BB2746667100D6DEC5 /* SetSelectCourse */ = {
+			isa = PBXGroup;
+			children = (
+				9695B1BC2746668800D6DEC5 /* SetSelectCourseRequest.swift */,
+			);
+			path = SetSelectCourse;
+			sourceTree = "<group>";
+		};
+		9695B1BE2746671D00D6DEC5 /* GetSelectedCourse */ = {
+			isa = PBXGroup;
+			children = (
+				9695B1BF2746673700D6DEC5 /* GetSelectedCourseRequest.swift */,
+				9695B1C12746678100D6DEC5 /* GetSelectedCourseResponse.swift */,
+			);
+			path = GetSelectedCourse;
 			sourceTree = "<group>";
 		};
 		96BF1FD226ACA28500AEF6D3 /* StatsManager */ = {
@@ -873,8 +896,10 @@
 		96BF203C26ACA35E00AEF6D3 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
-				96BF203D26ACA35E00AEF6D3 /* GetCourcesRequest.swift */,
+				9695B1BE2746671D00D6DEC5 /* GetSelectedCourse */,
+				9695B1BB2746667100D6DEC5 /* SetSelectCourse */,
 				96BF203E26ACA35E00AEF6D3 /* GetReferences */,
+				96BF203D26ACA35E00AEF6D3 /* GetCourcesRequest.swift */,
 				96BF204126ACA35E00AEF6D3 /* GetCourcesResponseMapper.swift */,
 			);
 			path = Requests;
@@ -1897,6 +1922,7 @@
 				96BF21CA26ACA35E00AEF6D3 /* CoursesCollectionElement.swift in Sources */,
 				96BF21D226ACA35E00AEF6D3 /* CourseProgressCell.swift in Sources */,
 				96BF211F26ACA35E00AEF6D3 /* TextAttributes.swift in Sources */,
+				9695B1C02746673700D6DEC5 /* GetSelectedCourseRequest.swift in Sources */,
 				96BF214A26ACA35E00AEF6D3 /* GetTestResponseMapper.swift in Sources */,
 				96BF214526ACA35E00AEF6D3 /* GetTestStatsResponseMapper.swift in Sources */,
 				96BF213926ACA35E00AEF6D3 /* PaygateOption.swift in Sources */,
@@ -1908,6 +1934,7 @@
 				96BF21ED26ACA35E00AEF6D3 /* OSlideImproveView.swift in Sources */,
 				96BF21C426ACA35E00AEF6D3 /* TestStatsView.swift in Sources */,
 				96BF212426ACA35E00AEF6D3 /* Weak.swift in Sources */,
+				9695B1C22746678100D6DEC5 /* GetSelectedCourseResponse.swift in Sources */,
 				96BF216726ACA35E00AEF6D3 /* ProfileMediatorDelegate.swift in Sources */,
 				96BF219626ACA35E00AEF6D3 /* QuestionContentCell.swift in Sources */,
 				96BF217A26ACA35E00AEF6D3 /* STLinksCell.swift in Sources */,
@@ -2035,6 +2062,7 @@
 				96BF21E726ACA35E00AEF6D3 /* WelcomeSlide2View.swift in Sources */,
 				96BF211D26ACA35E00AEF6D3 /* GlobalDefinitions.swift in Sources */,
 				96BF21B826ACA35E00AEF6D3 /* TestStatsAnswerCell.swift in Sources */,
+				9695B1BD2746668800D6DEC5 /* SetSelectCourseRequest.swift in Sources */,
 				96BF218126ACA35E00AEF6D3 /* SettingsViewController.swift in Sources */,
 				96BF21EB26ACA35E00AEF6D3 /* OSlideReferencesView.swift in Sources */,
 			);
