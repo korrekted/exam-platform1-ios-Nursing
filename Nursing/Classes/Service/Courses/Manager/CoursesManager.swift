@@ -14,8 +14,7 @@ protocol CoursesManager: AnyObject {
     // MARK: API(Rx)
     func retrieveCourses() -> Single<[Course]>
     func rxSelect(course: Course) -> Single<Void>
-    func rxGetSelectedCourse() -> Single<Course?>
-    func obtainSelectedCourseId() -> Single<Int?>
+    func retrieveSelectedCourse(forceUpdate: Bool) -> Single<Course?>
     
     // MARK: References
     func retrieveReferences(forceUpdate: Bool) -> Single<[Reference]>

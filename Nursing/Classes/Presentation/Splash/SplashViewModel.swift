@@ -56,14 +56,14 @@ private extension SplashViewModel {
     
     func makeStep() -> Single<Step> {
         coursesManager
-            .obtainSelectedCourseId()
+            .retrieveSelectedCourse(forceUpdate: true)
             .catchAndReturn(nil)
-            .map { [weak self] selectedCourseId -> Step in
+            .map { [weak self] selectedCourse -> Step in
                 guard let self = self else {
                     return .onboarding
                 }
                 
-                if selectedCourseId != nil {
+                if selectedCourse != nil {
                     return .course
                 }
                 

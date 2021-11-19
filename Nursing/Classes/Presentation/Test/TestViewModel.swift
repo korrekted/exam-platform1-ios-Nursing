@@ -40,7 +40,7 @@ final class TestViewModel {
 private extension TestViewModel {
     func makeCourseName() -> Driver<String> {
         courseManager
-            .rxGetSelectedCourse()
+            .retrieveSelectedCourse()
             .compactMap { $0?.name }
             .asDriver(onErrorDriveWith: .empty())
     }
