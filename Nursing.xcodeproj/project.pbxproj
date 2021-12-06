@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		86AB1C06275E0AAB006BE6B5 /* ExplanationImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AB1C03275E0AAB006BE6B5 /* ExplanationImageCell.swift */; };
+		86AB1C07275E0AAB006BE6B5 /* ExplanationTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AB1C04275E0AAB006BE6B5 /* ExplanationTextCell.swift */; };
+		86AB1C08275E0AAB006BE6B5 /* ExplanationTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AB1C05275E0AAB006BE6B5 /* ExplanationTitleCell.swift */; };
 		95A0D10A3FF5DF8ADD207AAB /* Pods_Nursing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D58953997718D4A60C1FB4B /* Pods_Nursing.framework */; };
 		962AEA7125B4F8090032E7C3 /* SF-Pro-Rounded-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 962AEA6E25B4F8090032E7C3 /* SF-Pro-Rounded-Bold.otf */; };
 		962AEA7225B4F8090032E7C3 /* SF-Pro-Rounded-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 962AEA6F25B4F8090032E7C3 /* SF-Pro-Rounded-Regular.otf */; };
@@ -151,7 +154,6 @@
 		96BF219826ACA35E00AEF6D3 /* QuestionsProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BF209C26ACA35E00AEF6D3 /* QuestionsProgressCell.swift */; };
 		96BF219926ACA35E00AEF6D3 /* QuestionCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BF209D26ACA35E00AEF6D3 /* QuestionCollectionCell.swift */; };
 		96BF219A26ACA35E00AEF6D3 /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BF209E26ACA35E00AEF6D3 /* QuestionCell.swift */; };
-		96BF219B26ACA35E00AEF6D3 /* ExplanationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BF209F26ACA35E00AEF6D3 /* ExplanationCell.swift */; };
 		96BF219C26ACA35E00AEF6D3 /* AnswersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BF20A026ACA35E00AEF6D3 /* AnswersCell.swift */; };
 		96BF219D26ACA35E00AEF6D3 /* QuestionsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BF20A226ACA35E00AEF6D3 /* QuestionsCollectionView.swift */; };
 		96BF219E26ACA35E00AEF6D3 /* QuestionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BF20A326ACA35E00AEF6D3 /* QuestionViewCell.swift */; };
@@ -295,6 +297,9 @@
 
 /* Begin PBXFileReference section */
 		6071E190F9A489E4A58040FD /* Pods-Nursing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nursing.debug.xcconfig"; path = "Target Support Files/Pods-Nursing/Pods-Nursing.debug.xcconfig"; sourceTree = "<group>"; };
+		86AB1C03275E0AAB006BE6B5 /* ExplanationImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExplanationImageCell.swift; sourceTree = "<group>"; };
+		86AB1C04275E0AAB006BE6B5 /* ExplanationTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExplanationTextCell.swift; sourceTree = "<group>"; };
+		86AB1C05275E0AAB006BE6B5 /* ExplanationTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExplanationTitleCell.swift; sourceTree = "<group>"; };
 		8D58953997718D4A60C1FB4B /* Pods_Nursing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nursing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		962AEA6E25B4F8090032E7C3 /* SF-Pro-Rounded-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Bold.otf"; sourceTree = "<group>"; };
 		962AEA6F25B4F8090032E7C3 /* SF-Pro-Rounded-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Regular.otf"; sourceTree = "<group>"; };
@@ -440,7 +445,6 @@
 		96BF209C26ACA35E00AEF6D3 /* QuestionsProgressCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionsProgressCell.swift; sourceTree = "<group>"; };
 		96BF209D26ACA35E00AEF6D3 /* QuestionCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionCollectionCell.swift; sourceTree = "<group>"; };
 		96BF209E26ACA35E00AEF6D3 /* QuestionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
-		96BF209F26ACA35E00AEF6D3 /* ExplanationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExplanationCell.swift; sourceTree = "<group>"; };
 		96BF20A026ACA35E00AEF6D3 /* AnswersCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswersCell.swift; sourceTree = "<group>"; };
 		96BF20A226ACA35E00AEF6D3 /* QuestionsCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionsCollectionView.swift; sourceTree = "<group>"; };
 		96BF20A326ACA35E00AEF6D3 /* QuestionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewCell.swift; sourceTree = "<group>"; };
@@ -1232,7 +1236,9 @@
 				96BF209C26ACA35E00AEF6D3 /* QuestionsProgressCell.swift */,
 				96BF209D26ACA35E00AEF6D3 /* QuestionCollectionCell.swift */,
 				96BF209E26ACA35E00AEF6D3 /* QuestionCell.swift */,
-				96BF209F26ACA35E00AEF6D3 /* ExplanationCell.swift */,
+				86AB1C03275E0AAB006BE6B5 /* ExplanationImageCell.swift */,
+				86AB1C04275E0AAB006BE6B5 /* ExplanationTextCell.swift */,
+				86AB1C05275E0AAB006BE6B5 /* ExplanationTitleCell.swift */,
 				96BF20A026ACA35E00AEF6D3 /* AnswersCell.swift */,
 			);
 			path = Cells;
@@ -1854,6 +1860,7 @@
 				96BF21D126ACA35E00AEF6D3 /* PassRateCell.swift in Sources */,
 				96BF21AF26ACA35E00AEF6D3 /* PaygateView.swift in Sources */,
 				96BF215D26ACA35E00AEF6D3 /* GetCourcesResponseMapper.swift in Sources */,
+				86AB1C08275E0AAB006BE6B5 /* ExplanationTitleCell.swift in Sources */,
 				96BF216126ACA35E00AEF6D3 /* TestMode.swift in Sources */,
 				96BF21CC26ACA35E00AEF6D3 /* StatsViewController.swift in Sources */,
 				96BF21C826ACA35E00AEF6D3 /* CourseCollectionCell.swift in Sources */,
@@ -1903,6 +1910,7 @@
 				96BF219526ACA35E00AEF6D3 /* TabView.swift in Sources */,
 				96BF21B526ACA35E00AEF6D3 /* TestStatsViewController.swift in Sources */,
 				96BF21DE26ACA35E00AEF6D3 /* OModeCell.swift in Sources */,
+				86AB1C07275E0AAB006BE6B5 /* ExplanationTextCell.swift in Sources */,
 				96BF214326ACA35E00AEF6D3 /* TestStats.swift in Sources */,
 				96BF21CE26ACA35E00AEF6D3 /* MainStatsElement.swift in Sources */,
 				96BF21BC26ACA35E00AEF6D3 /* TestStatsCellType.swift in Sources */,
@@ -2044,7 +2052,6 @@
 				96BF21AC26ACA35E00AEF6D3 /* AVPlayerView.swift in Sources */,
 				96BF212E26ACA35E00AEF6D3 /* GradientView.swift in Sources */,
 				96BF216F26ACA35E00AEF6D3 /* StatsManagerCore.swift in Sources */,
-				96BF219B26ACA35E00AEF6D3 /* ExplanationCell.swift in Sources */,
 				96BF215626ACA35E00AEF6D3 /* QuestionManagerCore.swift in Sources */,
 				96BF21C626ACA35E00AEF6D3 /* CoursesViewModel.swift in Sources */,
 				96BF219726ACA35E00AEF6D3 /* QuestionReferenceCell.swift in Sources */,
@@ -2062,6 +2069,7 @@
 				96BF21E726ACA35E00AEF6D3 /* WelcomeSlide2View.swift in Sources */,
 				96BF211D26ACA35E00AEF6D3 /* GlobalDefinitions.swift in Sources */,
 				96BF21B826ACA35E00AEF6D3 /* TestStatsAnswerCell.swift in Sources */,
+				86AB1C06275E0AAB006BE6B5 /* ExplanationImageCell.swift in Sources */,
 				9695B1BD2746668800D6DEC5 /* SetSelectCourseRequest.swift in Sources */,
 				96BF218126ACA35E00AEF6D3 /* SettingsViewController.swift in Sources */,
 				96BF21EB26ACA35E00AEF6D3 /* OSlideReferencesView.swift in Sources */,
