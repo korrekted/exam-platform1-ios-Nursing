@@ -10,6 +10,8 @@
 		86AB1C06275E0AAB006BE6B5 /* ExplanationImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AB1C03275E0AAB006BE6B5 /* ExplanationImageCell.swift */; };
 		86AB1C07275E0AAB006BE6B5 /* ExplanationTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AB1C04275E0AAB006BE6B5 /* ExplanationTextCell.swift */; };
 		86AB1C08275E0AAB006BE6B5 /* ExplanationTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AB1C05275E0AAB006BE6B5 /* ExplanationTitleCell.swift */; };
+		86AB1C0B2764B956006BE6B5 /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AB1C0A2764B956006BE6B5 /* ImageScrollView.swift */; };
+		86AB1C0F2764C4C5006BE6B5 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AB1C0E2764C4C5006BE6B5 /* PhotoViewController.swift */; };
 		95A0D10A3FF5DF8ADD207AAB /* Pods_Nursing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D58953997718D4A60C1FB4B /* Pods_Nursing.framework */; };
 		962AEA7125B4F8090032E7C3 /* SF-Pro-Rounded-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 962AEA6E25B4F8090032E7C3 /* SF-Pro-Rounded-Bold.otf */; };
 		962AEA7225B4F8090032E7C3 /* SF-Pro-Rounded-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 962AEA6F25B4F8090032E7C3 /* SF-Pro-Rounded-Regular.otf */; };
@@ -300,6 +302,8 @@
 		86AB1C03275E0AAB006BE6B5 /* ExplanationImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExplanationImageCell.swift; sourceTree = "<group>"; };
 		86AB1C04275E0AAB006BE6B5 /* ExplanationTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExplanationTextCell.swift; sourceTree = "<group>"; };
 		86AB1C05275E0AAB006BE6B5 /* ExplanationTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExplanationTitleCell.swift; sourceTree = "<group>"; };
+		86AB1C0A2764B956006BE6B5 /* ImageScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
+		86AB1C0E2764C4C5006BE6B5 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		8D58953997718D4A60C1FB4B /* Pods_Nursing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nursing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		962AEA6E25B4F8090032E7C3 /* SF-Pro-Rounded-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Bold.otf"; sourceTree = "<group>"; };
 		962AEA6F25B4F8090032E7C3 /* SF-Pro-Rounded-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Regular.otf"; sourceTree = "<group>"; };
@@ -591,6 +595,23 @@
 				96E686DC5654A1E4706B4192 /* Pods-Nursing.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		86AB1C0C2764C49C006BE6B5 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				86AB1C0E2764C4C5006BE6B5 /* PhotoViewController.swift */,
+				86AB1C0D2764C4AC006BE6B5 /* Views */,
+			);
+			path = Photo;
+			sourceTree = "<group>";
+		};
+		86AB1C0D2764C4AC006BE6B5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				86AB1C0A2764B956006BE6B5 /* ImageScrollView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		9695B1BB2746667100D6DEC5 /* SetSelectCourse */ = {
@@ -1067,6 +1088,7 @@
 		96BF206926ACA35E00AEF6D3 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				86AB1C0C2764C49C006BE6B5 /* Photo */,
 				96BF206A26ACA35E00AEF6D3 /* Settings */,
 				96BF207B26ACA35E00AEF6D3 /* Splash */,
 				96BF207F26ACA35E00AEF6D3 /* Study */,
@@ -1914,6 +1936,7 @@
 				96BF214326ACA35E00AEF6D3 /* TestStats.swift in Sources */,
 				96BF21CE26ACA35E00AEF6D3 /* MainStatsElement.swift in Sources */,
 				96BF21BC26ACA35E00AEF6D3 /* TestStatsCellType.swift in Sources */,
+				86AB1C0B2764B956006BE6B5 /* ImageScrollView.swift in Sources */,
 				96BF214126ACA35E00AEF6D3 /* MonetizationManagerCore.swift in Sources */,
 				96BF21A226ACA35E00AEF6D3 /* TestType.swift in Sources */,
 				96BF217C26ACA35E00AEF6D3 /* STReferencesCell.swift in Sources */,
@@ -1937,6 +1960,7 @@
 				96BF21B226ACA35E00AEF6D3 /* PaygateMainInfoCell.swift in Sources */,
 				96BF21EE26ACA35E00AEF6D3 /* OSlideView.swift in Sources */,
 				96BF212626ACA35E00AEF6D3 /* Toast.swift in Sources */,
+				86AB1C0F2764C4C5006BE6B5 /* PhotoViewController.swift in Sources */,
 				96BF21BD26ACA35E00AEF6D3 /* TestStatsDescriptionElement.swift in Sources */,
 				96BF216626ACA35E00AEF6D3 /* SetRequest.swift in Sources */,
 				96BF21ED26ACA35E00AEF6D3 /* OSlideImproveView.swift in Sources */,

@@ -57,7 +57,7 @@ private extension ExplanationImageCell {
     func makeImageView() -> UIImageView {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentMode = .scaleAspectFill
+        view.contentMode = .scaleAspectFit
         view.layer.cornerRadius = 20.scale
         view.clipsToBounds = true
         contentView.addSubview(view)
