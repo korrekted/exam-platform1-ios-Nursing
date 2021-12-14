@@ -98,6 +98,16 @@ extension QuestionTableView: UITableViewDataSource {
     }
 }
 
+extension QuestionTableView: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard case let .explanationImage(url) = elements[indexPath.row] else {
+            return
+        }
+        
+        expandContent.accept(.image(url))
+    }
+}
+
 // MARK: Private
 private extension QuestionTableView {
     func initialize() {
@@ -113,5 +123,6 @@ private extension QuestionTableView {
         separatorStyle = .none
         
         dataSource = self
+        delegate = self
     }
 }
