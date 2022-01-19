@@ -83,7 +83,7 @@ private extension CoursesViewController {
     func goToNext() {
         switch howOpen {
         case .root:
-            UIApplication.shared.keyWindow?.rootViewController = CourseViewController.make()
+            UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController = CourseViewController.make()
         case .present:
             dismiss(animated: true)
         }

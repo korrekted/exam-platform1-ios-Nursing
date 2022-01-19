@@ -183,7 +183,7 @@ final class TestViewController: UIViewController {
             .filter { $0 }
             .emit { [weak self] _ in
                 self?.dismiss(animated: true, completion: {
-                    UIApplication.shared.keyWindow?.rootViewController?.present(PaygateViewController.make(), animated: true)
+                    UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController?.present(PaygateViewController.make(), animated: true)
                 })
             }
             .disposed(by: disposeBag)

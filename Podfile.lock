@@ -126,6 +126,7 @@ PODS:
   - NotificationBannerSwift (3.0.6):
     - MarqueeLabel (~> 4.0.5)
     - SnapKit (~> 5.0.1)
+  - OtterScaleiOS (0.0.1)
   - PromisesObjC (2.0.0)
   - RushSDK (2.8.9):
     - Alamofire
@@ -152,6 +153,7 @@ DEPENDENCIES:
   - Kingfisher
   - lottie-ios
   - NotificationBannerSwift
+  - OtterScaleiOS (from `https://github.com/AgentChe/OtterScaleiOS.git`)
   - RushSDK (from `https://github.com/AgentChe/RushSDK.git`)
 
 SPEC REPOS:
@@ -186,10 +188,15 @@ SPEC REPOS:
     - SwiftyStoreKit
 
 EXTERNAL SOURCES:
+  OtterScaleiOS:
+    :git: https://github.com/AgentChe/OtterScaleiOS.git
   RushSDK:
     :git: https://github.com/AgentChe/RushSDK.git
 
 CHECKOUT OPTIONS:
+  OtterScaleiOS:
+    :commit: 8fb52b67c6aeb0786e4a4f0f0df0e34cc38e2e60
+    :git: https://github.com/AgentChe/OtterScaleiOS.git
   RushSDK:
     :commit: b47164412815c38dfbceed55b9771a34147b482c
     :git: https://github.com/AgentChe/RushSDK.git
@@ -217,6 +224,7 @@ SPEC CHECKSUMS:
   MarqueeLabel: 00cc0bcd087111dca575878b3531af980559707d
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   NotificationBannerSwift: 7021be2338f8f29cf424b0aca43da462bf9e2a1a
+  OtterScaleiOS: 08bf6264510531727528b49a4c881ffc5ef502fc
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   RushSDK: d752555cd3d7c97bda8db784128fec42134d13bc
   RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
@@ -225,6 +233,6 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftyStoreKit: 6b9c08810269f030586dac1fae8e75871a82e84a
 
-PODFILE CHECKSUM: e9f6e8f5b0792810157fd025d0b0c78a4e26d772
+PODFILE CHECKSUM: d88754edc518b9dc31379d34180267135cfcc7b9
 
 COCOAPODS: 1.11.2

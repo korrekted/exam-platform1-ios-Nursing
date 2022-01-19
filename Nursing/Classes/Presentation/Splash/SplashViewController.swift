@@ -64,9 +64,9 @@ private extension SplashViewController {
     func step(_ step: SplashViewModel.Step) {
         switch step {
         case .onboarding:
-            UIApplication.shared.keyWindow?.rootViewController = OnboardingViewController.make()
+            UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController = OnboardingViewController.make()
         case .course:
-            UIApplication.shared.keyWindow?.rootViewController = CourseViewController.make()
+            UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController = CourseViewController.make()
         case .paygate:
             let vc = PaygateViewController.make()
             vc.delegate = self

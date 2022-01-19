@@ -139,6 +139,6 @@ private extension StudyViewController {
     }
     
     func openPaygate() {
-        UIApplication.shared.keyWindow?.rootViewController?.present(PaygateViewController.make(), animated: true)
+        UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController?.present(PaygateViewController.make(), animated: true)
     }
 }
