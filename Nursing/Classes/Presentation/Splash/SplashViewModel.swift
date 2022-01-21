@@ -7,18 +7,23 @@
 
 import RxSwift
 import RxCocoa
+import OtterScaleiOS
 
 final class SplashViewModel {
     enum Step {
         case onboarding, course, paygate
     }
     
+    lazy var validationComplete = PublishRelay<Void>()
+    
     private lazy var coursesManager = CoursesManagerCore()
     private lazy var monetizationManager = MonetizationManagerCore()
     private lazy var sessionManager = SessionManagerCore()
+    private lazy var profileManager = ProfileManagerCore()
     
     func step() -> Driver<Step> {
-        library()
+        handleValidationComplete()
+            .andThen(library())
             .andThen(makeStep())
             .asDriver(onErrorDriveWith: .empty())
     }
@@ -39,6 +44,41 @@ final class SplashViewModel {
 
 // MARK: Private
 private extension SplashViewModel {
+    func handleValidationComplete() -> Completable {
+        validationComplete.flatMapLatest { [weak self] _ -> Single<Void> in
+            guard let self = self else {
+                return .never()
+            }
+            
+            let otterScaleID = OtterScale.shared.getOtterScaleID()
+            
+            let complete: Single<Void>
+            
+            if let cachedToken = self.sessionManager.getSession()?.userToken {
+                if cachedToken != otterScaleID {
+                    complete = self.profileManager.syncTokens(oldToken: cachedToken, newToken: otterScaleID)
+                } else {
+                    complete = .deferred { .just(Void()) }
+                }
+            } else {
+                complete = self.profileManager.login(userToken: otterScaleID)
+            }
+            
+            return complete.flatMap { [weak self] _ -> Single<Void> in
+                guard let self = self else {
+                    return .never()
+                }
+                
+                let session = Session(userToken: otterScaleID)
+                self.sessionManager.store(session: session)
+                
+                return .deferred { .just(Void()) }
+            }
+        }
+        .asSingle()
+        .asCompletable()
+    }
+    
     func library() -> Completable {
         Completable
             .zip(
@@ -80,7 +120,7 @@ private extension SplashViewModel {
     }
     
     func needPayment() -> Bool {
-        let activeSubscription = sessionManager.getSession()?.activeSubscription ?? false
+        let activeSubscription = sessionManager.hasActiveSubscriptions()
         return !activeSubscription
     }
 }

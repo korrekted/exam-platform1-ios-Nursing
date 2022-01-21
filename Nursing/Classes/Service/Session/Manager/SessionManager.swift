@@ -10,6 +10,6 @@ import RxCocoa
 protocol SessionManager: AnyObject {
     // MARK: API
     func store(session: Session)
-    func set(userToken: String)
     func getSession() -> Session?
+    func hasActiveSubscriptions() -> Bool
 }

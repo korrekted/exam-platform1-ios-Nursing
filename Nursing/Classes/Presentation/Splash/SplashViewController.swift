@@ -7,26 +7,18 @@
 
 import UIKit
 import RxSwift
-import RxCocoa
+import OtterScaleiOS
 
 final class SplashViewController: UIViewController {
+    deinit {
+        OtterScale.shared.remove(delegate: self)
+    }
+    
     lazy var mainView = SplashView()
     
     private lazy var disposeBag = DisposeBag()
     
     private lazy var viewModel = SplashViewModel()
-    
-    private let generateStep: Signal<Void>
-    
-    private init(generateStep: Signal<Void>) {
-        self.generateStep = generateStep
-        
-        super.init(nibName: nil, bundle: .main)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func loadView() {
         view = mainView
@@ -35,20 +27,20 @@ final class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        generateStep
-            .delay(RxTimeInterval.seconds(1))
-            .flatMap { [weak self] in
-                self?.viewModel.step() ?? .empty()
-            }
-            .drive(onNext: step(_:))
+        OtterScale.shared.add(delegate: self)
+        
+        viewModel.step()
+            .drive(onNext: { [weak self] step in
+                self?.step(step)
+            })
             .disposed(by: disposeBag)
     }
 }
 
 // MARK: Make
 extension SplashViewController {
-    static func make(generateStep: Signal<Void>) -> SplashViewController {
-        SplashViewController(generateStep: generateStep)
+    static func make() -> SplashViewController {
+        SplashViewController()
     }
 }
 
@@ -56,6 +48,13 @@ extension SplashViewController {
 extension SplashViewController: PaygateViewControllerDelegate {
     func paygateDidClosed(with result: PaygateViewControllerResult) {
         step(viewModel.stepAfterPaygateClosed())
+    }
+}
+
+// MARK: OtterScaleReceiptValidationDelegate
+extension SplashViewController: OtterScaleReceiptValidationDelegate {
+    func otterScaleDidValidatedReceipt(with result: PaymentData?) {
+        viewModel.validationComplete.accept(Void())
     }
 }
 

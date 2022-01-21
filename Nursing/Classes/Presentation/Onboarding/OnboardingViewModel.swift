@@ -24,7 +24,7 @@ final class OnboardingViewModel {
     }
     
     func whatNext() -> Step {
-        let hasActiveSubscription = sessionManager.getSession()?.activeSubscription ?? false
+        let hasActiveSubscription = sessionManager.hasActiveSubscriptions()
         
         if hasActiveSubscription {
             return .nextScreen

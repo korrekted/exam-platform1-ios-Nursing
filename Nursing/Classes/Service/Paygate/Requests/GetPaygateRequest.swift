@@ -12,12 +12,10 @@ import OtterScaleiOS
 struct GetPaygateRequest: APIRequestBody {
     private let userToken: String?
     private let version: String
-    private let usedProducts: [String]
     
-    init(userToken: String?, version: String, usedProducts: [String]) {
+    init(userToken: String?, version: String) {
         self.userToken = userToken
         self.version = version
-        self.usedProducts = usedProducts
     }
     
     var url: String {
@@ -32,8 +30,7 @@ struct GetPaygateRequest: APIRequestBody {
         var params: [String: Any] = [
             "_api_key": GlobalDefinitions.apiKey,
             "version": version,
-            "anonymous_id": OtterScale.shared.getOtterScaleID(),
-            "used_products": usedProducts
+            "anonymous_id": OtterScale.shared.getOtterScaleID()
         ]
         
         if let userToken = userToken {

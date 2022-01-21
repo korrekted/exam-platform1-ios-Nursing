@@ -7,7 +7,7 @@
 
 import RxSwift
 
-final class ProfileManagerCore {}
+final class ProfileManagerCore: ProfileManager {}
 
 // MARK: Study
 extension ProfileManagerCore {
@@ -42,6 +42,20 @@ extension ProfileManagerCore {
                 
                 return self.notifyAboutChangedIfNotNil(testMode: testMode)
             }
+    }
+    
+    func syncTokens(oldToken: String, newToken: String) -> Single<Void> {
+        let request = SyncTokensRequest(oldToken: oldToken, newToken: newToken)
+        
+        return RestAPITransport()
+            .callServerApi(requestBody: request)
+            .map { _ in Void() }
+    }
+    
+    func login(userToken: String) -> Single<Void> {
+        RestAPITransport()
+            .callServerApi(requestBody: LoginRequest(userToken: userToken))
+            .map { _ in Void() }
     }
 }
 

@@ -6,6 +6,7 @@
 //
 
 import RxCocoa
+import OtterScaleiOS
 
 final class SessionManagerCore: SessionManager {
     struct Constants {
@@ -23,24 +24,6 @@ extension SessionManagerCore {
         UserDefaults.standard.setValue(data, forKey: Constants.sessionCacheKey)
     }
     
-    func set(userToken: String) {
-        let session: Session
-        
-        if let cachedSession = getSession() {
-            session = Session(userId: cachedSession.userId,
-                              userToken: userToken,
-                              activeSubscription: cachedSession.activeSubscription,
-                              usedProducts: cachedSession.usedProducts)
-        } else {
-            session = Session(userId: nil,
-                              userToken: userToken,
-                              activeSubscription: false,
-                              usedProducts: [])
-        }
-        
-        store(session: session)
-    }
-    
     func getSession() -> Session? {
         guard
             let data = UserDefaults.standard.data(forKey: Constants.sessionCacheKey),
@@ -50,5 +33,19 @@ extension SessionManagerCore {
         }
 
         return session
+    }
+    
+    func hasActiveSubscriptions() -> Bool {
+        guard let paymentData = OtterScale.shared.getPaymentData() else {
+            return false
+        }
+        
+        let subscriptions = paymentData.subscriptions.appleAppStore + paymentData.subscriptions.googlePlay
+        let nonConsumables = paymentData.nonConsumables.appleAppStore + paymentData.nonConsumables.googlePlay
+        
+        let hasValidSubscription = subscriptions.contains(where: { $0.valid })
+        let hasValidNonConsumable = nonConsumables.contains(where: { $0.valid })
+        
+        return hasValidSubscription || hasValidNonConsumable
     }
 }

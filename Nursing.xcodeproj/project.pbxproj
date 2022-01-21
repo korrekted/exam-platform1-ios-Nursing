@@ -281,6 +281,8 @@
 		DECE90ED279A8CE5009F9E74 /* PushNotificationsManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECE90E4279A8CE5009F9E74 /* PushNotificationsManagerDelegate.swift */; };
 		DECE90EE279A8CE6009F9E74 /* SendUserPushNotificationsTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECE90E6279A8CE5009F9E74 /* SendUserPushNotificationsTokenRequest.swift */; };
 		DECE90EF279A8CE6009F9E74 /* SendAnonymousPushNotificationsTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECE90E7279A8CE5009F9E74 /* SendAnonymousPushNotificationsTokenRequest.swift */; };
+		DECE90F1279AA726009F9E74 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECE90F0279AA726009F9E74 /* LoginRequest.swift */; };
+		DECE90F3279AA7A2009F9E74 /* SyncTokensRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECE90F2279AA7A2009F9E74 /* SyncTokensRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -584,6 +586,8 @@
 		DECE90E4279A8CE5009F9E74 /* PushNotificationsManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationsManagerDelegate.swift; sourceTree = "<group>"; };
 		DECE90E6279A8CE5009F9E74 /* SendUserPushNotificationsTokenRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendUserPushNotificationsTokenRequest.swift; sourceTree = "<group>"; };
 		DECE90E7279A8CE5009F9E74 /* SendAnonymousPushNotificationsTokenRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendAnonymousPushNotificationsTokenRequest.swift; sourceTree = "<group>"; };
+		DECE90F0279AA726009F9E74 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		DECE90F2279AA7A2009F9E74 /* SyncTokensRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncTokensRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1010,6 +1014,8 @@
 			children = (
 				96BF204E26ACA35E00AEF6D3 /* GetTestMode */,
 				96BF205126ACA35E00AEF6D3 /* SetRequest.swift */,
+				DECE90F0279AA726009F9E74 /* LoginRequest.swift */,
+				DECE90F2279AA7A2009F9E74 /* SyncTokensRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1980,6 +1986,7 @@
 				96BF21E526ACA35E00AEF6D3 /* WelcomeSlideIndicatorView.swift in Sources */,
 				96BF212D26ACA35E00AEF6D3 /* CircleView.swift in Sources */,
 				96BF216826ACA35E00AEF6D3 /* ProfileMediator.swift in Sources */,
+				DECE90F1279AA726009F9E74 /* LoginRequest.swift in Sources */,
 				96BF21F126ACA35E00AEF6D3 /* OSlideWhenStudyView.swift in Sources */,
 				96BF21D726ACA35E00AEF6D3 /* CourseProgressView.swift in Sources */,
 				96BF21DF26ACA35E00AEF6D3 /* OImproveCell.swift in Sources */,
@@ -2130,6 +2137,7 @@
 				96BF212026ACA35E00AEF6D3 /* ScreenSize.swift in Sources */,
 				96BF217326ACA35E00AEF6D3 /* SessionManagerCore.swift in Sources */,
 				96BF212A26ACA35E00AEF6D3 /* PaddingLabel.swift in Sources */,
+				DECE90F3279AA7A2009F9E74 /* SyncTokensRequest.swift in Sources */,
 				96BF211726ACA35E00AEF6D3 /* Collection+Extension.swift in Sources */,
 				96BF218026ACA35E00AEF6D3 /* SettingsTableSection.swift in Sources */,
 				96BF21F926ACA35E00AEF6D3 /* OnboardingViewModel.swift in Sources */,
