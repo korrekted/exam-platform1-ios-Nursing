@@ -47,8 +47,7 @@ final class OWhenStudyView: OSlideView {
     override func moveToThis() {
         super.moveToThis()
         
-        SDKStorage.shared
-            .amplitudeManager
+        AmplitudeManager.shared
             .logEvent(name: "When Study Screen", parameters: [:])
     }
 }

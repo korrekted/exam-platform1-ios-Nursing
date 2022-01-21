@@ -48,8 +48,7 @@ final class OSlideTimeView: OSlideView {
     override func moveToThis() {
         super.moveToThis()
         
-        SDKStorage.shared
-            .amplitudeManager
+        AmplitudeManager.shared
             .logEvent(name: "Test Time Screen", parameters: [:])
     }
 }

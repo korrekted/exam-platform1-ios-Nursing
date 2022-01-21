@@ -5,6 +5,8 @@
 //  Created by Andrey Chernyshev on 11.07.2021.
 //
 
+import Foundation
+
 final class XOREncryption {
     static func encryptDecrypt(_ input: String, key: String) -> String? {
         guard !input.isEmpty else {

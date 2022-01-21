@@ -25,7 +25,6 @@
 		96BF1FDA26ACA29100AEF6D3 /* StatsManagerExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 96BF1FCD26ACA28500AEF6D3 /* StatsManagerExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		96BF211626ACA35E00AEF6D3 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BF1FE226ACA35E00AEF6D3 /* UIColorExtension.swift */; };
 		96BF211726ACA35E00AEF6D3 /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BF1FE326ACA35E00AEF6D3 /* Collection+Extension.swift */; };
-		96BF211826ACA35E00AEF6D3 /* RestApiTransportExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BF1FE426ACA35E00AEF6D3 /* RestApiTransportExtension.swift */; };
 		96BF211926ACA35E00AEF6D3 /* UITapGestureRecognizerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BF1FE526ACA35E00AEF6D3 /* UITapGestureRecognizerExtension.swift */; };
 		96BF211A26ACA35E00AEF6D3 /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BF1FE626ACA35E00AEF6D3 /* UIDeviceExtension.swift */; };
 		96BF211B26ACA35E00AEF6D3 /* UIEdgeInsets+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BF1FE726ACA35E00AEF6D3 /* UIEdgeInsets+Extension.swift */; };
@@ -271,6 +270,17 @@
 		96D38AED25B3017D00EADC9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96D38AEB25B3017D00EADC9A /* LaunchScreen.storyboard */; };
 		96D38B2825B3073900EADC9A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96D38B2A25B3073900EADC9A /* Localizable.strings */; };
 		96F4560426579AE800B63D53 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96F4560326579AE800B63D53 /* GoogleService-Info.plist */; };
+		DECE90D327985CAF009F9E74 /* APIRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECE90D227985CAF009F9E74 /* APIRequestBody.swift */; };
+		DECE90D527985CC0009F9E74 /* RestAPITransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECE90D427985CC0009F9E74 /* RestAPITransport.swift */; };
+		DECE90D727985CD1009F9E74 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECE90D627985CD1009F9E74 /* NetworkError.swift */; };
+		DECE90DA279A7E6C009F9E74 /* AmplitudeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECE90D9279A7E6C009F9E74 /* AmplitudeManager.swift */; };
+		DECE90E8279A8CE5009F9E74 /* PushNotificationsTokenUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECE90DD279A8CE5009F9E74 /* PushNotificationsTokenUpdater.swift */; };
+		DECE90E9279A8CE5009F9E74 /* PushNotificationsAuthorizationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECE90DF279A8CE5009F9E74 /* PushNotificationsAuthorizationStatus.swift */; };
+		DECE90EA279A8CE5009F9E74 /* PushNotificationsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECE90E0279A8CE5009F9E74 /* PushNotificationsModel.swift */; };
+		DECE90EC279A8CE5009F9E74 /* PushNotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECE90E3279A8CE5009F9E74 /* PushNotificationsManager.swift */; };
+		DECE90ED279A8CE5009F9E74 /* PushNotificationsManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECE90E4279A8CE5009F9E74 /* PushNotificationsManagerDelegate.swift */; };
+		DECE90EE279A8CE6009F9E74 /* SendUserPushNotificationsTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECE90E6279A8CE5009F9E74 /* SendUserPushNotificationsTokenRequest.swift */; };
+		DECE90EF279A8CE6009F9E74 /* SendAnonymousPushNotificationsTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECE90E7279A8CE5009F9E74 /* SendAnonymousPushNotificationsTokenRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -318,7 +328,6 @@
 		96BF1FD726ACA29100AEF6D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96BF1FE226ACA35E00AEF6D3 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		96BF1FE326ACA35E00AEF6D3 /* Collection+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
-		96BF1FE426ACA35E00AEF6D3 /* RestApiTransportExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestApiTransportExtension.swift; sourceTree = "<group>"; };
 		96BF1FE526ACA35E00AEF6D3 /* UITapGestureRecognizerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITapGestureRecognizerExtension.swift; sourceTree = "<group>"; };
 		96BF1FE626ACA35E00AEF6D3 /* UIDeviceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
 		96BF1FE726ACA35E00AEF6D3 /* UIEdgeInsets+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Extension.swift"; sourceTree = "<group>"; };
@@ -562,9 +571,19 @@
 		96D38AEC25B3017D00EADC9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		96D38AEE25B3017D00EADC9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96D38B2925B3073900EADC9A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		96D38B2E25B3079100EADC9A /* Nursing-Thermo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nursing-Thermo-Bridging-Header.h"; sourceTree = "<group>"; };
 		96E686DC5654A1E4706B4192 /* Pods-Nursing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nursing.release.xcconfig"; path = "Target Support Files/Pods-Nursing/Pods-Nursing.release.xcconfig"; sourceTree = "<group>"; };
 		96F4560326579AE800B63D53 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DECE90D227985CAF009F9E74 /* APIRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestBody.swift; sourceTree = "<group>"; };
+		DECE90D427985CC0009F9E74 /* RestAPITransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestAPITransport.swift; sourceTree = "<group>"; };
+		DECE90D627985CD1009F9E74 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		DECE90D9279A7E6C009F9E74 /* AmplitudeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeManager.swift; sourceTree = "<group>"; };
+		DECE90DD279A8CE5009F9E74 /* PushNotificationsTokenUpdater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationsTokenUpdater.swift; sourceTree = "<group>"; };
+		DECE90DF279A8CE5009F9E74 /* PushNotificationsAuthorizationStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationsAuthorizationStatus.swift; sourceTree = "<group>"; };
+		DECE90E0279A8CE5009F9E74 /* PushNotificationsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationsModel.swift; sourceTree = "<group>"; };
+		DECE90E3279A8CE5009F9E74 /* PushNotificationsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationsManager.swift; sourceTree = "<group>"; };
+		DECE90E4279A8CE5009F9E74 /* PushNotificationsManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationsManagerDelegate.swift; sourceTree = "<group>"; };
+		DECE90E6279A8CE5009F9E74 /* SendUserPushNotificationsTokenRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendUserPushNotificationsTokenRequest.swift; sourceTree = "<group>"; };
+		DECE90E7279A8CE5009F9E74 /* SendAnonymousPushNotificationsTokenRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendAnonymousPushNotificationsTokenRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -657,13 +676,16 @@
 		96BF1FE026ACA35E00AEF6D3 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				DECE90DB279A8CE5009F9E74 /* PushNotifications */,
+				DECE90D8279A7E54009F9E74 /* Analytics */,
+				DECE90D127985CA4009F9E74 /* Network */,
 				96BF1FE126ACA35E00AEF6D3 /* Extension */,
-				96BF1FE926ACA35E00AEF6D3 /* GlobalDefinitions.swift */,
 				96BF1FEA26ACA35E00AEF6D3 /* Utils */,
 				96BF1FF326ACA35E00AEF6D3 /* Components */,
 				96BF1FF626ACA35E00AEF6D3 /* CustomViews */,
-				96BF200026ACA35E00AEF6D3 /* AppDelegate.swift */,
 				96BF200126ACA35E00AEF6D3 /* Rx */,
+				96BF200026ACA35E00AEF6D3 /* AppDelegate.swift */,
+				96BF1FE926ACA35E00AEF6D3 /* GlobalDefinitions.swift */,
 				96BF200426ACA35E00AEF6D3 /* Appearance.swift */,
 			);
 			path = Misc;
@@ -674,7 +696,6 @@
 			children = (
 				96BF1FE226ACA35E00AEF6D3 /* UIColorExtension.swift */,
 				96BF1FE326ACA35E00AEF6D3 /* Collection+Extension.swift */,
-				96BF1FE426ACA35E00AEF6D3 /* RestApiTransportExtension.swift */,
 				96BF1FE526ACA35E00AEF6D3 /* UITapGestureRecognizerExtension.swift */,
 				96BF1FE626ACA35E00AEF6D3 /* UIDeviceExtension.swift */,
 				96BF1FE726ACA35E00AEF6D3 /* UIEdgeInsets+Extension.swift */,
@@ -1628,7 +1649,6 @@
 				96F4560326579AE800B63D53 /* GoogleService-Info.plist */,
 				96D38B2425B3071300EADC9A /* Strings */,
 				96D38B1725B3042E00EADC9A /* Fonts */,
-				96D38B2E25B3079100EADC9A /* Nursing-Thermo-Bridging-Header.h */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -1657,6 +1677,70 @@
 				96D38B2A25B3073900EADC9A /* Localizable.strings */,
 			);
 			path = Strings;
+			sourceTree = "<group>";
+		};
+		DECE90D127985CA4009F9E74 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				DECE90D227985CAF009F9E74 /* APIRequestBody.swift */,
+				DECE90D427985CC0009F9E74 /* RestAPITransport.swift */,
+				DECE90D627985CD1009F9E74 /* NetworkError.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		DECE90D8279A7E54009F9E74 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				DECE90D9279A7E6C009F9E74 /* AmplitudeManager.swift */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		DECE90DB279A8CE5009F9E74 /* PushNotifications */ = {
+			isa = PBXGroup;
+			children = (
+				DECE90DC279A8CE5009F9E74 /* Updater */,
+				DECE90DE279A8CE5009F9E74 /* Models */,
+				DECE90E1279A8CE5009F9E74 /* Manager */,
+				DECE90E5279A8CE5009F9E74 /* Request */,
+			);
+			path = PushNotifications;
+			sourceTree = "<group>";
+		};
+		DECE90DC279A8CE5009F9E74 /* Updater */ = {
+			isa = PBXGroup;
+			children = (
+				DECE90DD279A8CE5009F9E74 /* PushNotificationsTokenUpdater.swift */,
+			);
+			path = Updater;
+			sourceTree = "<group>";
+		};
+		DECE90DE279A8CE5009F9E74 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DECE90DF279A8CE5009F9E74 /* PushNotificationsAuthorizationStatus.swift */,
+				DECE90E0279A8CE5009F9E74 /* PushNotificationsModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DECE90E1279A8CE5009F9E74 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				DECE90E3279A8CE5009F9E74 /* PushNotificationsManager.swift */,
+				DECE90E4279A8CE5009F9E74 /* PushNotificationsManagerDelegate.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		DECE90E5279A8CE5009F9E74 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				DECE90E6279A8CE5009F9E74 /* SendUserPushNotificationsTokenRequest.swift */,
+				DECE90E7279A8CE5009F9E74 /* SendAnonymousPushNotificationsTokenRequest.swift */,
+			);
+			path = Request;
 			sourceTree = "<group>";
 		};
 		EB008DA8A37A3DCE06338AE5 /* Frameworks */ = {
@@ -1873,6 +1957,7 @@
 				96BF216526ACA35E00AEF6D3 /* GetTestModeRequest.swift in Sources */,
 				96BF218E26ACA35E00AEF6D3 /* StudyCollectionElement.swift in Sources */,
 				96BF21CD26ACA35E00AEF6D3 /* StatsCellType.swift in Sources */,
+				DECE90D527985CC0009F9E74 /* RestAPITransport.swift in Sources */,
 				96BF21D326ACA35E00AEF6D3 /* MainRateCell.swift in Sources */,
 				96BF217426ACA35E00AEF6D3 /* SessionManager.swift in Sources */,
 				96BF21AD26ACA35E00AEF6D3 /* PaygateViewModel.swift in Sources */,
@@ -1883,6 +1968,7 @@
 				96BF21AF26ACA35E00AEF6D3 /* PaygateView.swift in Sources */,
 				96BF215D26ACA35E00AEF6D3 /* GetCourcesResponseMapper.swift in Sources */,
 				86AB1C08275E0AAB006BE6B5 /* ExplanationTitleCell.swift in Sources */,
+				DECE90D727985CD1009F9E74 /* NetworkError.swift in Sources */,
 				96BF216126ACA35E00AEF6D3 /* TestMode.swift in Sources */,
 				96BF21CC26ACA35E00AEF6D3 /* StatsViewController.swift in Sources */,
 				96BF21C826ACA35E00AEF6D3 /* CourseCollectionCell.swift in Sources */,
@@ -1897,6 +1983,7 @@
 				96BF21F126ACA35E00AEF6D3 /* OSlideWhenStudyView.swift in Sources */,
 				96BF21D726ACA35E00AEF6D3 /* CourseProgressView.swift in Sources */,
 				96BF21DF26ACA35E00AEF6D3 /* OImproveCell.swift in Sources */,
+				DECE90D327985CAF009F9E74 /* APIRequestBody.swift in Sources */,
 				96BF21E126ACA35E00AEF6D3 /* ReferencesTableView.swift in Sources */,
 				96BF21EA26ACA35E00AEF6D3 /* OTimeCell.swift in Sources */,
 				96BF21BF26ACA35E00AEF6D3 /* TestStatsViewModel.swift in Sources */,
@@ -1906,9 +1993,11 @@
 				96BF219E26ACA35E00AEF6D3 /* QuestionViewCell.swift in Sources */,
 				96BF212926ACA35E00AEF6D3 /* TapAreaButton.swift in Sources */,
 				96BF21F426ACA35E00AEF6D3 /* OSlideModesView.swift in Sources */,
+				DECE90E9279A8CE5009F9E74 /* PushNotificationsAuthorizationStatus.swift in Sources */,
 				96BF21A326ACA35E00AEF6D3 /* TestAnalytics.swift in Sources */,
 				96BF215C26ACA35E00AEF6D3 /* GetReferencesRequest.swift in Sources */,
 				96BF21BA26ACA35E00AEF6D3 /* TestStatsProgressElement.swift in Sources */,
+				DECE90ED279A8CE5009F9E74 /* PushNotificationsManagerDelegate.swift in Sources */,
 				96BF215E26ACA35E00AEF6D3 /* CoursesManagerCore.swift in Sources */,
 				96BF21E926ACA35E00AEF6D3 /* OSlideGoalCell.swift in Sources */,
 				96BF218A26ACA35E00AEF6D3 /* SCUnlockQuestionsCell.swift in Sources */,
@@ -1954,8 +2043,10 @@
 				96BF21D226ACA35E00AEF6D3 /* CourseProgressCell.swift in Sources */,
 				96BF211F26ACA35E00AEF6D3 /* TextAttributes.swift in Sources */,
 				9695B1C02746673700D6DEC5 /* GetSelectedCourseRequest.swift in Sources */,
+				DECE90E8279A8CE5009F9E74 /* PushNotificationsTokenUpdater.swift in Sources */,
 				96BF214A26ACA35E00AEF6D3 /* GetTestResponseMapper.swift in Sources */,
 				96BF214526ACA35E00AEF6D3 /* GetTestStatsResponseMapper.swift in Sources */,
+				DECE90EA279A8CE5009F9E74 /* PushNotificationsModel.swift in Sources */,
 				96BF213926ACA35E00AEF6D3 /* PaygateOption.swift in Sources */,
 				96BF21B226ACA35E00AEF6D3 /* PaygateMainInfoCell.swift in Sources */,
 				96BF21EE26ACA35E00AEF6D3 /* OSlideView.swift in Sources */,
@@ -2030,6 +2121,7 @@
 				96BF215B26ACA35E00AEF6D3 /* GetReferencesResponseMapper.swift in Sources */,
 				96BF21AB26ACA35E00AEF6D3 /* BottomView.swift in Sources */,
 				96BF219A26ACA35E00AEF6D3 /* QuestionCell.swift in Sources */,
+				DECE90EE279A8CE6009F9E74 /* SendUserPushNotificationsTokenRequest.swift in Sources */,
 				96BF212326ACA35E00AEF6D3 /* SignError.swift in Sources */,
 				96BF214226ACA35E00AEF6D3 /* PaygateManager.swift in Sources */,
 				96BF215726ACA35E00AEF6D3 /* QuestionManagerDelagate.swift in Sources */,
@@ -2040,7 +2132,6 @@
 				96BF212A26ACA35E00AEF6D3 /* PaddingLabel.swift in Sources */,
 				96BF211726ACA35E00AEF6D3 /* Collection+Extension.swift in Sources */,
 				96BF218026ACA35E00AEF6D3 /* SettingsTableSection.swift in Sources */,
-				96BF211826ACA35E00AEF6D3 /* RestApiTransportExtension.swift in Sources */,
 				96BF21F926ACA35E00AEF6D3 /* OnboardingViewModel.swift in Sources */,
 				96BF218B26ACA35E00AEF6D3 /* SCBriefCell.swift in Sources */,
 				96BF215426ACA35E00AEF6D3 /* QuestionManager.swift in Sources */,
@@ -2050,12 +2141,14 @@
 				96BF219826ACA35E00AEF6D3 /* QuestionsProgressCell.swift in Sources */,
 				96BF219226ACA35E00AEF6D3 /* CourseView.swift in Sources */,
 				96BF218826ACA35E00AEF6D3 /* SCModeCell.swift in Sources */,
+				DECE90EC279A8CE5009F9E74 /* PushNotificationsManager.swift in Sources */,
 				96BF218F26ACA35E00AEF6D3 /* StudyCollectionView.swift in Sources */,
 				96BF218626ACA35E00AEF6D3 /* StudyViewController.swift in Sources */,
 				96BF213626ACA35E00AEF6D3 /* MonetizationManager.swift in Sources */,
 				96BF21BE26ACA35E00AEF6D3 /* TestStatsFilter.swift in Sources */,
 				96BF218726ACA35E00AEF6D3 /* SCTitleCell.swift in Sources */,
 				96BF216D26ACA35E00AEF6D3 /* GetStatsResponseMapper.swift in Sources */,
+				DECE90EF279A8CE6009F9E74 /* SendAnonymousPushNotificationsTokenRequest.swift in Sources */,
 				96BF217026ACA35E00AEF6D3 /* StatsManager.swift in Sources */,
 				96BF215926ACA35E00AEF6D3 /* Course.swift in Sources */,
 				96BF215226ACA35E00AEF6D3 /* GetTestRequest.swift in Sources */,
@@ -2073,6 +2166,7 @@
 				96BF214C26ACA35E00AEF6D3 /* SendAnswerResponseMapper.swift in Sources */,
 				96BF21D026ACA35E00AEF6D3 /* StatsView.swift in Sources */,
 				96BF212526ACA35E00AEF6D3 /* ImagePicker.swift in Sources */,
+				DECE90DA279A7E6C009F9E74 /* AmplitudeManager.swift in Sources */,
 				96BF21AC26ACA35E00AEF6D3 /* AVPlayerView.swift in Sources */,
 				96BF212E26ACA35E00AEF6D3 /* GradientView.swift in Sources */,
 				96BF216F26ACA35E00AEF6D3 /* StatsManagerCore.swift in Sources */,
@@ -2323,7 +2417,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = exam.nursing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Nursing Development";
-				SWIFT_OBJC_BRIDGING_HEADER = "Nursing/Resource/Nursing-Thermo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2351,7 +2445,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = exam.nursing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Nursing AppStore";
-				SWIFT_OBJC_BRIDGING_HEADER = "Nursing/Resource/Nursing-Thermo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

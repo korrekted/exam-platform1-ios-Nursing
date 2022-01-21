@@ -20,8 +20,7 @@ extension TestStatsManagerCore {
         
         let request = GetTestStatsRequest(userToken: userToken, userTestId: userTestId)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return RestAPITransport()
             .callServerApi(requestBody: request)
             .map(GetTestStatsResponseMapper.map(from:))
     }

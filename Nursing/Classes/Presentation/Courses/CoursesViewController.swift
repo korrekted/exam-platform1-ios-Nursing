@@ -38,8 +38,7 @@ final class CoursesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        SDKStorage.shared
-            .amplitudeManager
+        AmplitudeManager.shared
             .logEvent(name: "Exam Screen", parameters: [:])
         
         mainView
@@ -92,8 +91,7 @@ private extension CoursesViewController {
     func logAnalytics(selected element: CoursesCollectionElement) {
         let name = element.course.name
         
-        SDKStorage.shared
-            .amplitudeManager
+        AmplitudeManager.shared
             .logEvent(name: "Exam Tap", parameters: ["what":name])
     }
 }

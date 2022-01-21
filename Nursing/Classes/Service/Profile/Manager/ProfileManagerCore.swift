@@ -33,8 +33,7 @@ extension ProfileManagerCore {
                                  testWhen: testWhen,
                                  notificationKey: notificationKey)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return RestAPITransport()
             .callServerApi(requestBody: request)
             .flatMap { [weak self] _ -> Single<Void> in
                 guard let self = self else {
@@ -55,8 +54,7 @@ extension ProfileManagerCore {
         
         let request = GetTestModeRequest(userToken: userToken)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return RestAPITransport()
             .callServerApi(requestBody: request)
             .map(GetTestModeResponseMapper.map(from:))
     }

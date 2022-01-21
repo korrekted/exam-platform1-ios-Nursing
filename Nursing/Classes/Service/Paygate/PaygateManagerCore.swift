@@ -13,8 +13,7 @@ final class PaygateManagerCore: PaygateManager {}
 // MARK: Retrieve
 extension PaygateManagerCore {
     func retrievePaygate() -> Single<PaygateMapper.PaygateResponse?> {
-        SDKStorage.shared
-            .restApiTransport
+        RestAPITransport()
             .callServerApi(requestBody: GetPaygateRequest(userToken: SessionManagerCore().getSession()?.userToken,
                                                           version: UIDevice.appVersion ?? "1",
                                                           usedProducts: SessionManagerCore().getSession()?.usedProducts ?? []))

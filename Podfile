@@ -9,7 +9,17 @@ target 'Nursing' do
   pod 'lottie-ios'
   pod 'Kingfisher'
   
-  pod 'RushSDK', :git => "https://github.com/AgentChe/RushSDK.git"
+  pod 'Alamofire'
+  
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  
+  pod 'SwiftyStoreKit'
+  
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Crashlytics'
+  pod 'Firebase/Messaging'
+  pod 'Amplitude-iOS'
   pod 'OtterScaleiOS', :git => "https://github.com/AgentChe/OtterScaleiOS.git"
 end
 
@@ -21,3 +31,7 @@ post_install do |installer|
     end
   end
 end
+
+#  pod 'FBSDKCoreKit'
+#  pod 'Branch'
+#  pod 'AppsFlyerFramework'

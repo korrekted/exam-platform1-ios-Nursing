@@ -7,6 +7,7 @@
 //
 
 import Alamofire
+import OtterScaleiOS
 
 struct GetPaygateRequest: APIRequestBody {
     private let userToken: String?
@@ -31,7 +32,7 @@ struct GetPaygateRequest: APIRequestBody {
         var params: [String: Any] = [
             "_api_key": GlobalDefinitions.apiKey,
             "version": version,
-            "anonymous_id": SDKStorage.shared.applicationAnonymousID,
+            "anonymous_id": OtterScale.shared.getOtterScaleID(),
             "used_products": usedProducts
         ]
         

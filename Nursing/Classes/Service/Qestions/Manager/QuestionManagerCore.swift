@@ -22,8 +22,7 @@ extension QuestionManagerCore {
             activeSubscription: activeSubscription
         )
         
-        return SDKStorage.shared
-            .restApiTransport
+        return RestAPITransport()
             .callServerStringApi(requestBody: request)
             .map(GetTestResponseMapper.map(from:))
     }
@@ -37,8 +36,7 @@ extension QuestionManagerCore {
                                        courseId: courseId,
                                        activeSubscription: activeSubscription)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return RestAPITransport()
             .callServerStringApi(requestBody: request)
             .map(GetTestResponseMapper.map(from:))
     }
@@ -52,8 +50,7 @@ extension QuestionManagerCore {
                                           courseId: courseId,
                                           activeSubscription: activeSubscription)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return RestAPITransport()
             .callServerStringApi(requestBody: request)
             .map(GetTestResponseMapper.map(from:))
     }
@@ -67,8 +64,7 @@ extension QuestionManagerCore {
                                      courseId: courseId,
                                      activeSubscription: activeSubscription)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return RestAPITransport()
             .callServerStringApi(requestBody: request)
             .map(GetTestResponseMapper.map(from:))
     }
@@ -82,8 +78,7 @@ extension QuestionManagerCore {
                                           courseId: courseId,
                                           activeSubscription: activeSubscription)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return RestAPITransport()
             .callServerStringApi(requestBody: request)
             .map(GetTestResponseMapper.map(from:))
     }
@@ -100,8 +95,7 @@ extension QuestionManagerCore {
             answerIds: answerIds
         )
         
-        return SDKStorage.shared
-            .restApiTransport
+        return RestAPITransport()
             .callServerApi(requestBody: request)
             .map(SendAnswerResponseMapper.map(from:))
             .do(onSuccess: { isEndOfTest in
@@ -120,8 +114,7 @@ extension QuestionManagerCore {
         let request = GetTestConfigRequest(userToken: userToken,
                                                courseId: courseId)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return RestAPITransport()
             .callServerStringApi(requestBody: request)
             .map(GetTestConfigResponseMapper.from(response:))
     }

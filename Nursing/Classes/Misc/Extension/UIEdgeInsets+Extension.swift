@@ -5,7 +5,7 @@
 //  Created by Vitaliy Zagorodnov on 28.02.2021.
 //
 
-import Foundation
+import UIKit
 
 extension UIEdgeInsets {
     func inverted() -> UIEdgeInsets {

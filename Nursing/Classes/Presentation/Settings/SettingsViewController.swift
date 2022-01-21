@@ -23,8 +23,7 @@ final class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        SDKStorage.shared
-            .amplitudeManager
+        AmplitudeManager.shared
             .logEvent(name: "Settings Screen", parameters: [:])
         
         viewModel
@@ -53,38 +52,32 @@ private extension SettingsViewController {
         case .unlock:
             UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController?.present(PaygateViewController.make(), animated: true)
             
-            SDKStorage.shared
-                .amplitudeManager
+            AmplitudeManager.shared
                 .logEvent(name: "Settings Tap", parameters: ["what": "unlock premium"])
         case .course:
             UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController = CoursesViewController.make(howOpen: .root)
             
-            SDKStorage.shared
-                .amplitudeManager
+            AmplitudeManager.shared
                 .logEvent(name: "Settings Tap", parameters: ["what": "select exam"])
         case .rateUs:
             RateUs.requestReview()
             
-            SDKStorage.shared
-                .amplitudeManager
+            AmplitudeManager.shared
                 .logEvent(name: "Settings Tap", parameters: ["what": "rate us"])
         case .contactUs:
             open(path: GlobalDefinitions.contactUsUrl)
             
-            SDKStorage.shared
-                .amplitudeManager
+            AmplitudeManager.shared
                 .logEvent(name: "Settings Tap", parameters: ["what": "contact us"])
         case .termsOfUse:
             open(path: GlobalDefinitions.termsOfServiceUrl)
             
-            SDKStorage.shared
-                .amplitudeManager
+            AmplitudeManager.shared
                 .logEvent(name: "Settings Tap", parameters: ["what": "terms of use"])
         case .privacyPoliicy:
             open(path: GlobalDefinitions.privacyPolicyUrl)
             
-            SDKStorage.shared
-                .amplitudeManager
+            AmplitudeManager.shared
                 .logEvent(name: "Settings Tap", parameters: ["what": "privacy policy"])
         case .mode(let testMode):
             screenOpener.open(screen: .mode(testMode), from: self)

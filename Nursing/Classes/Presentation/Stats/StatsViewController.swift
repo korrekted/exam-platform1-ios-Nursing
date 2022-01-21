@@ -25,8 +25,7 @@ final class StatsViewController: UIViewController {
         viewModel
             .courseName
             .drive(onNext: { name in
-                SDKStorage.shared
-                    .amplitudeManager
+                AmplitudeManager.shared
                     .logEvent(name: "Stats Screen", parameters: ["course": ""])
             })
             .disposed(by: disposeBag)

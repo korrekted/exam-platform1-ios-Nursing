@@ -18,8 +18,7 @@ extension StatsManagerCore {
         
         let request = GetStatsRequest(userToken: userToken, courseId: courseId)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return RestAPITransport()
             .callServerApi(requestBody: request)
             .map(GetStatsResponseMapper.map(from:))
             .flatMap { [weak self] stats -> Single<Stats?> in
@@ -38,8 +37,7 @@ extension StatsManagerCore {
         
         let request = GetBriefRequest(userToken: userToken, courseId: courseId)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return RestAPITransport()
             .callServerApi(requestBody: request)
             .map(GetBriefResponseMapper.from(response:))
     }

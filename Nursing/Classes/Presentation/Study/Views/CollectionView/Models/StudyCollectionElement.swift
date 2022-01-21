@@ -5,6 +5,8 @@
 //  Created by Andrey Chernyshev on 30.01.2021.
 //
 
+import Foundation
+
 struct StudyCollectionSection {
     let elements: [StudyCollectionElement]
 }

@@ -5,7 +5,7 @@
 //  Created by Vitaliy Zagorodnov on 04.02.2021.
 //
 
-import Foundation
+import UIKit
 
 class QuestionContentCell: UITableViewCell {
     

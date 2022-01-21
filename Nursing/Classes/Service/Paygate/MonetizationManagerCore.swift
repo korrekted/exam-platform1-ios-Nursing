@@ -6,6 +6,7 @@
 //
 
 import RxSwift
+import OtterScaleiOS
 
 final class MonetizationManagerCore: MonetizationManager {
     struct Constants {
@@ -46,10 +47,9 @@ private extension MonetizationManagerCore {
     func loadConfig() -> Single<MonetizationConfig?> {
         let request = GetMonetizationConfigRequest(userToken: SessionManagerCore().getSession()?.userToken,
                                                    version: UIDevice.appVersion ?? "1",
-                                                   appAnonymousId: SDKStorage.shared.applicationAnonymousID)
+                                                   appAnonymousId: OtterScale.shared.getOtterScaleID())
         
-        return SDKStorage.shared
-            .restApiTransport
+        return RestAPITransport()
             .callServerApi(requestBody: request)
             .map { GetMonetizationResponseMapper.map(from: $0) }
             .catchAndReturn(nil)

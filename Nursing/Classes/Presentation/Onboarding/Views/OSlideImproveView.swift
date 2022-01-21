@@ -32,8 +32,7 @@ final class OSlideImproveView: OSlideView {
     override func moveToThis() {
         super.moveToThis()
         
-        SDKStorage.shared
-            .amplitudeManager
+        AmplitudeManager.shared
             .logEvent(name: "Improve Screen", parameters: [:])
     }
 }

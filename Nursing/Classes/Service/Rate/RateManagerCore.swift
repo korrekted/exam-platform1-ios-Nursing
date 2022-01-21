@@ -8,9 +8,7 @@
 import Foundation
 import StoreKit
 
-final class RateManagerCore: RateManager {
-    
-}
+final class RateManagerCore: RateManager {}
 
 // MARK: API
 extension RateManagerCore {
@@ -19,8 +17,7 @@ extension RateManagerCore {
         
         guard !isFirstAfterPass else { return }
         
-        SDKStorage.shared
-            .amplitudeManager
+        AmplitudeManager.shared
             .logEvent(name: "Rating Request ", parameters: [:])
         
         SKStoreReviewController.requestReview()

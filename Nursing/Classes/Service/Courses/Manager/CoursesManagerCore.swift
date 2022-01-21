@@ -34,8 +34,7 @@ extension CoursesManagerCore {
         
         let request = GetCourcesRequest(userToken: userToken)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return RestAPITransport()
             .callServerApi(requestBody: request)
             .map(GetCourcesResponseMapper.map(from:))
     }
@@ -47,8 +46,7 @@ extension CoursesManagerCore {
         
         let request = SetSelectCourseRequest(userToken: userToken, courseId: course.id)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return RestAPITransport()
             .callServerApi(requestBody: request)
             .map { _ in Void() }
             .do(onSuccess: {
@@ -79,8 +77,7 @@ extension CoursesManagerCore {
         
         let request = GetSelectedCourseRequest(userToken: userToken)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return RestAPITransport()
             .callServerApi(requestBody: request)
             .map { GetSelectedCourseResponse.map(from: $0) }
             .do(onSuccess: { course in
@@ -100,8 +97,7 @@ extension CoursesManagerCore {
             return getCachedReferenced()
         }
         
-        return SDKStorage.shared
-            .restApiTransport
+        return RestAPITransport()
             .callServerApi(requestBody: GetReferencesRequest())
             .map(GetReferencesResponseMapper.map(from:))
             .flatMap { [weak self] references -> Single<[Reference]> in

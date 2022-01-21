@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         FirebaseApp.configure()
+        AmplitudeManager.shared.initialize()
         OtterScale.shared.initialize(host: "https://api.otterscale.com", apiKey: "oCrVwRgejQISV560")
         
         addDelegates()
@@ -32,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         runProvider(on: vc.view)
         
         sdkProvider.application(application, didFinishLaunchingWithOptions: launchOptions)
-        SDKStorage.shared.pushNotificationsManager.application(didFinishLaunchingWithOptions: launchOptions)
+        PushNotificationsManager.shared.application(didFinishLaunchingWithOptions: launchOptions)
         
         return true
     }
@@ -54,15 +55,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        SDKStorage.shared.pushNotificationsManager.application(didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
+        PushNotificationsManager.shared.application(didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        SDKStorage.shared.pushNotificationsManager.application(didFailToRegisterForRemoteNotificationsWithError: error)
+        PushNotificationsManager.shared.application(didFailToRegisterForRemoteNotificationsWithError: error)
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        SDKStorage.shared.pushNotificationsManager.application(didReceiveRemoteNotification: userInfo, fetchCompletionHandler: completionHandler)
+        PushNotificationsManager.shared.application(didReceiveRemoteNotification: userInfo, fetchCompletionHandler: completionHandler)
     }
 }
 
