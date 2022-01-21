@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Firebase
 import OtterScaleiOS
 
 @main
@@ -16,13 +15,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         
+        NumberLaunches().launch()
+        
         let vc = SplashViewController.make()
         window?.rootViewController = vc
         window?.makeKeyAndVisible()
         
-        FirebaseApp.configure()
+        FirebaseManager.shared.initialize()
         AmplitudeManager.shared.initialize()
         OtterScale.shared.initialize(host: "https://api.otterscale.com", apiKey: "oCrVwRgejQISV560")
+        
+        PurchaseValidationObserver.shared.startObserve()
         
         PushNotificationsManager.shared.application(didFinishLaunchingWithOptions: launchOptions)
         

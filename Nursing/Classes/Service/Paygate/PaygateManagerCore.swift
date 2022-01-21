@@ -8,7 +8,9 @@
 
 import RxSwift
 
-final class PaygateManagerCore: PaygateManager {}
+final class PaygateManagerCore: PaygateManager {
+    private lazy var purchaseManager = PurchaseManager()
+}
 
 // MARK: Retrieve
 extension PaygateManagerCore {
@@ -27,11 +29,10 @@ extension PaygateManagerCore {
             return .deferred { .just(paygate) }
         }
         
-        return SDKStorage.shared
-            .iapManager
+        return purchaseManager
             .obtainProducts(ids: paygate.productsIds)
             .map { products -> [ProductPrice] in
-                products.map { ProductPrice(product: $0.product) }
+                products.map { ProductPrice(product: $0.original) }
             }
             .map { PaygateMapper.parse(response: paygate.json, productsPrices: $0) }
     }
