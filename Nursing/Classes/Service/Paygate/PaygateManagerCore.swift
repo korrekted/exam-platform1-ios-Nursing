@@ -9,7 +9,7 @@
 import RxSwift
 
 final class PaygateManagerCore: PaygateManager {
-    private lazy var purchaseManager = PurchaseManager()
+    private lazy var iapManager = IAPManager()
 }
 
 // MARK: Retrieve
@@ -29,7 +29,7 @@ extension PaygateManagerCore {
             return .deferred { .just(paygate) }
         }
         
-        return purchaseManager
+        return iapManager
             .obtainProducts(ids: paygate.productsIds)
             .map { products -> [ProductPrice] in
                 products.map { ProductPrice(product: $0.original) }

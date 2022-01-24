@@ -284,10 +284,14 @@
 		DECE90F1279AA726009F9E74 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECE90F0279AA726009F9E74 /* LoginRequest.swift */; };
 		DECE90F3279AA7A2009F9E74 /* SyncTokensRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECE90F2279AA7A2009F9E74 /* SyncTokensRequest.swift */; };
 		DECE90F8279ACA43009F9E74 /* PurchaseValidationObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECE90F7279ACA43009F9E74 /* PurchaseValidationObserver.swift */; };
-		DECE90FA279ACDE2009F9E74 /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECE90F9279ACDE2009F9E74 /* PurchaseManager.swift */; };
 		DECE90FD279ACE0F009F9E74 /* IAPProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECE90FC279ACE0F009F9E74 /* IAPProduct.swift */; };
 		DECE90FF279AD4F9009F9E74 /* NumberLaunches.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECE90FE279AD4F9009F9E74 /* NumberLaunches.swift */; };
 		DECE9101279AD9DA009F9E74 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECE9100279AD9DA009F9E74 /* FirebaseManager.swift */; };
+		DECE9105279E7032009F9E74 /* IAPActionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECE9104279E7032009F9E74 /* IAPActionResult.swift */; };
+		DECE9107279E705A009F9E74 /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECE9106279E705A009F9E74 /* IAPManager.swift */; };
+		DECE910A279E7183009F9E74 /* IAPErrorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECE9109279E7183009F9E74 /* IAPErrorHelper.swift */; };
+		DECE910C279E7195009F9E74 /* IAPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECE910B279E7195009F9E74 /* IAPError.swift */; };
+		DECE910F279E728A009F9E74 /* PaygateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECE910E279E728A009F9E74 /* PaygateInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -594,10 +598,14 @@
 		DECE90F0279AA726009F9E74 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		DECE90F2279AA7A2009F9E74 /* SyncTokensRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncTokensRequest.swift; sourceTree = "<group>"; };
 		DECE90F7279ACA43009F9E74 /* PurchaseValidationObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseValidationObserver.swift; sourceTree = "<group>"; };
-		DECE90F9279ACDE2009F9E74 /* PurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseManager.swift; sourceTree = "<group>"; };
 		DECE90FC279ACE0F009F9E74 /* IAPProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPProduct.swift; sourceTree = "<group>"; };
 		DECE90FE279AD4F9009F9E74 /* NumberLaunches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberLaunches.swift; sourceTree = "<group>"; };
 		DECE9100279AD9DA009F9E74 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		DECE9104279E7032009F9E74 /* IAPActionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPActionResult.swift; sourceTree = "<group>"; };
+		DECE9106279E705A009F9E74 /* IAPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
+		DECE9109279E7183009F9E74 /* IAPErrorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPErrorHelper.swift; sourceTree = "<group>"; };
+		DECE910B279E7195009F9E74 /* IAPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPError.swift; sourceTree = "<group>"; };
+		DECE910E279E728A009F9E74 /* PaygateInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaygateInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1342,11 +1350,12 @@
 		96BF20B426ACA35E00AEF6D3 /* Paygate */ = {
 			isa = PBXGroup;
 			children = (
+				96BF20B926ACA35E00AEF6D3 /* Views */,
 				96BF20B526ACA35E00AEF6D3 /* PaygateViewModel.swift */,
 				96BF20B626ACA35E00AEF6D3 /* PaygateViewControllerDelegate.swift */,
 				96BF20B726ACA35E00AEF6D3 /* PaygateView.swift */,
 				96BF20B826ACA35E00AEF6D3 /* PaygateViewController.swift */,
-				96BF20B926ACA35E00AEF6D3 /* Views */,
+				DECE910E279E728A009F9E74 /* PaygateInteractor.swift */,
 			);
 			path = Paygate;
 			sourceTree = "<group>";
@@ -1765,9 +1774,10 @@
 		DECE90F4279ACA1C009F9E74 /* Purchase */ = {
 			isa = PBXGroup;
 			children = (
+				DECE9108279E717D009F9E74 /* Error */,
 				DECE90FB279ACE04009F9E74 /* Model */,
 				DECE90F7279ACA43009F9E74 /* PurchaseValidationObserver.swift */,
-				DECE90F9279ACDE2009F9E74 /* PurchaseManager.swift */,
+				DECE9106279E705A009F9E74 /* IAPManager.swift */,
 			);
 			path = Purchase;
 			sourceTree = "<group>";
@@ -1776,8 +1786,18 @@
 			isa = PBXGroup;
 			children = (
 				DECE90FC279ACE0F009F9E74 /* IAPProduct.swift */,
+				DECE9104279E7032009F9E74 /* IAPActionResult.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		DECE9108279E717D009F9E74 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				DECE9109279E7183009F9E74 /* IAPErrorHelper.swift */,
+				DECE910B279E7195009F9E74 /* IAPError.swift */,
+			);
+			path = Error;
 			sourceTree = "<group>";
 		};
 		EB008DA8A37A3DCE06338AE5 /* Frameworks */ = {
@@ -2010,14 +2030,15 @@
 				96BF216126ACA35E00AEF6D3 /* TestMode.swift in Sources */,
 				96BF21CC26ACA35E00AEF6D3 /* StatsViewController.swift in Sources */,
 				96BF21C826ACA35E00AEF6D3 /* CourseCollectionCell.swift in Sources */,
+				DECE9107279E705A009F9E74 /* IAPManager.swift in Sources */,
 				96BF21BB26ACA35E00AEF6D3 /* TestStatsAnswer.swift in Sources */,
 				96BF213F26ACA35E00AEF6D3 /* GetPaygateRequest.swift in Sources */,
 				96BF21D926ACA35E00AEF6D3 /* MainStatsView.swift in Sources */,
 				96BF21F226ACA35E00AEF6D3 /* OSlidePlanView.swift in Sources */,
-				DECE90FA279ACDE2009F9E74 /* PurchaseManager.swift in Sources */,
 				96BF219326ACA35E00AEF6D3 /* CourseViewCoordinator.swift in Sources */,
 				96BF21E526ACA35E00AEF6D3 /* WelcomeSlideIndicatorView.swift in Sources */,
 				96BF212D26ACA35E00AEF6D3 /* CircleView.swift in Sources */,
+				DECE910F279E728A009F9E74 /* PaygateInteractor.swift in Sources */,
 				96BF216826ACA35E00AEF6D3 /* ProfileMediator.swift in Sources */,
 				DECE90F1279AA726009F9E74 /* LoginRequest.swift in Sources */,
 				96BF21F126ACA35E00AEF6D3 /* OSlideWhenStudyView.swift in Sources */,
@@ -2058,7 +2079,9 @@
 				96BF217626ACA35E00AEF6D3 /* SettingsViewModel.swift in Sources */,
 				96BF214626ACA35E00AEF6D3 /* TestStatsManagerCore.swift in Sources */,
 				96BF21B426ACA35E00AEF6D3 /* PaygateSpecialOfferView.swift in Sources */,
+				DECE910A279E7183009F9E74 /* IAPErrorHelper.swift in Sources */,
 				96BF21A926ACA35E00AEF6D3 /* QuestionContentCollectionView.swift in Sources */,
+				DECE910C279E7195009F9E74 /* IAPError.swift in Sources */,
 				DECE9101279AD9DA009F9E74 /* FirebaseManager.swift in Sources */,
 				96BF219526ACA35E00AEF6D3 /* TabView.swift in Sources */,
 				96BF21B526ACA35E00AEF6D3 /* TestStatsViewController.swift in Sources */,
@@ -2129,6 +2152,7 @@
 				96BF214B26ACA35E00AEF6D3 /* GetTestConfigResponseMapper.swift in Sources */,
 				96BF216C26ACA35E00AEF6D3 /* GetBriefResponseMapper.swift in Sources */,
 				96BF213E26ACA35E00AEF6D3 /* PaygateSpecialOffer.swift in Sources */,
+				DECE9105279E7032009F9E74 /* IAPActionResult.swift in Sources */,
 				96BF217126ACA35E00AEF6D3 /* StatsShareManager.swift in Sources */,
 				96BF211E26ACA35E00AEF6D3 /* Scalable.swift in Sources */,
 				96BF212826ACA35E00AEF6D3 /* NursingNavigationControllerSettings.swift in Sources */,
