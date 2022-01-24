@@ -12,6 +12,8 @@ final class CoursesManagerCore: CoursesManager {
         static let selectedCourseCacheKey = "courses_manager_core_selected_course_cache_key"
         static let cachedReferencesKey = "courses_manager_core_cached_references_key"
     }
+    
+    private lazy var restAPITransport = RestAPITransport()
 }
 
 // MARK: API
@@ -34,7 +36,7 @@ extension CoursesManagerCore {
         
         let request = GetCourcesRequest(userToken: userToken)
         
-        return RestAPITransport()
+        return restAPITransport
             .callServerApi(requestBody: request)
             .map(GetCourcesResponseMapper.map(from:))
     }
@@ -46,7 +48,7 @@ extension CoursesManagerCore {
         
         let request = SetSelectCourseRequest(userToken: userToken, courseId: course.id)
         
-        return RestAPITransport()
+        return restAPITransport
             .callServerApi(requestBody: request)
             .map { _ in Void() }
             .do(onSuccess: {
@@ -77,7 +79,7 @@ extension CoursesManagerCore {
         
         let request = GetSelectedCourseRequest(userToken: userToken)
         
-        return RestAPITransport()
+        return restAPITransport
             .callServerApi(requestBody: request)
             .map { GetSelectedCourseResponse.map(from: $0) }
             .do(onSuccess: { course in
@@ -97,7 +99,7 @@ extension CoursesManagerCore {
             return getCachedReferenced()
         }
         
-        return RestAPITransport()
+        return restAPITransport
             .callServerApi(requestBody: GetReferencesRequest())
             .map(GetReferencesResponseMapper.map(from:))
             .flatMap { [weak self] references -> Single<[Reference]> in

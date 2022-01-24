@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = vc
         window?.makeKeyAndVisible()
         
+        IAPManager.initialize()
         FirebaseManager.shared.initialize()
         AmplitudeManager.shared.initialize()
         OtterScale.shared.initialize(host: "https://api.otterscale.com", apiKey: "oCrVwRgejQISV560")

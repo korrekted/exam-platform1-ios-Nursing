@@ -28,12 +28,16 @@ final class SettingsViewController: UIViewController {
         
         viewModel
             .sections
-            .drive(onNext: mainView.tableView.setup(sections:))
+            .drive(onNext: { [weak self] sections in
+                self?.mainView.tableView.setup(sections: sections)
+            })
             .disposed(by: disposeBag)
         
         mainView
             .tableView.tapped
-            .subscribe(onNext: tapped(_:))
+            .subscribe(onNext: { [weak self] value in
+                self?.tapped(value)
+            })
             .disposed(by: disposeBag)
     }
 }

@@ -23,8 +23,20 @@ final class SplashViewModel {
     
     func step() -> Driver<Step> {
         handleValidationComplete()
-            .andThen(library())
-            .andThen(makeStep())
+            .flatMap { [weak self] _ -> Single<Void> in
+                guard let self = self else {
+                    return .never()
+                }
+                
+                return self.library()
+            }
+            .flatMap { [weak self] _ -> Single<Step> in
+                guard let self = self else {
+                    return .never()
+                }
+                
+                return self.makeStep()
+            }
             .asDriver(onErrorDriveWith: .empty())
     }
     
@@ -44,7 +56,7 @@ final class SplashViewModel {
 
 // MARK: Private
 private extension SplashViewModel {
-    func handleValidationComplete() -> Completable {
+    func handleValidationComplete() -> Observable<Void> {
         validationComplete.flatMapLatest { [weak self] _ -> Single<Void> in
             guard let self = self else {
                 return .never()
@@ -75,23 +87,19 @@ private extension SplashViewModel {
                 return .deferred { .just(Void()) }
             }
         }
-        .asSingle()
-        .asCompletable()
     }
     
-    func library() -> Completable {
-        Completable
+    func library() -> Single<Void> {
+        Single
             .zip(
                 monetizationManager
                     .rxRetrieveMonetizationConfig(forceUpdate: true)
-                    .catchAndReturn(nil)
-                    .asCompletable(),
+                    .catchAndReturn(nil),
                 
                 coursesManager
                     .retrieveReferences(forceUpdate: true)
                     .catchAndReturn([])
-                    .asCompletable()
-            )
+            ) { _, _ in Void() }
     }
     
     func makeStep() -> Single<Step> {

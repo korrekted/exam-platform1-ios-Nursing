@@ -10,12 +10,13 @@ import RxSwift
 
 final class PaygateManagerCore: PaygateManager {
     private lazy var iapManager = IAPManager()
+    private lazy var restAPITransport = RestAPITransport()
 }
 
 // MARK: Retrieve
 extension PaygateManagerCore {
     func retrievePaygate() -> Single<PaygateMapper.PaygateResponse?> {
-        RestAPITransport()
+        restAPITransport
             .callServerApi(requestBody: GetPaygateRequest(userToken: SessionManagerCore().getSession()?.userToken,
                                                           version: UIDevice.appVersion ?? "1"))
             .map { PaygateMapper.parse(response: $0, productsPrices: nil) }

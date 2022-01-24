@@ -7,7 +7,9 @@
 
 import RxSwift
 
-final class ProfileManagerCore: ProfileManager {}
+final class ProfileManagerCore: ProfileManager {
+    private lazy var restAPITransport = RestAPITransport()
+}
 
 // MARK: Study
 extension ProfileManagerCore {
@@ -33,7 +35,7 @@ extension ProfileManagerCore {
                                  testWhen: testWhen,
                                  notificationKey: notificationKey)
         
-        return RestAPITransport()
+        return restAPITransport
             .callServerApi(requestBody: request)
             .flatMap { [weak self] _ -> Single<Void> in
                 guard let self = self else {
@@ -47,13 +49,13 @@ extension ProfileManagerCore {
     func syncTokens(oldToken: String, newToken: String) -> Single<Void> {
         let request = SyncTokensRequest(oldToken: oldToken, newToken: newToken)
         
-        return RestAPITransport()
+        return restAPITransport
             .callServerApi(requestBody: request)
             .map { _ in Void() }
     }
     
     func login(userToken: String) -> Single<Void> {
-        RestAPITransport()
+        restAPITransport
             .callServerApi(requestBody: LoginRequest(userToken: userToken))
             .map { _ in Void() }
     }
@@ -68,7 +70,7 @@ extension ProfileManagerCore {
         
         let request = GetTestModeRequest(userToken: userToken)
         
-        return RestAPITransport()
+        return restAPITransport
             .callServerApi(requestBody: request)
             .map(GetTestModeResponseMapper.map(from:))
     }

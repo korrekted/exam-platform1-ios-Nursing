@@ -13,6 +13,21 @@ final class IAPManager {}
 
 // MARK: Public
 extension IAPManager {
+    static func initialize() {
+        SwiftyStoreKit.completeTransactions { purchases in
+            for purchase in purchases {
+                let state = purchase.transaction.transactionState
+                if state == .purchased || state == .restored {
+                    SwiftyStoreKit.finishTransaction(purchase.transaction)
+                }
+            }
+        }
+        
+        SwiftyStoreKit.shouldAddStorePaymentHandler = { _, _ in
+            true
+        }
+    }
+    
     func obtainProducts(ids: [String]) -> Single<[IAPProduct]> {
         Single<[IAPProduct]>.create { event in
             SwiftyStoreKit.retrieveProductsInfo(Set(ids)) { result in
@@ -53,14 +68,14 @@ extension IAPManager {
             }
     }
     
-    func restorePurchases() -> Completable {
-        Completable
+    func restorePurchases() -> Single<Void> {
+        Single<Void>
             .create { event in
                 SwiftyStoreKit.restorePurchases { result in
                     if result.restoredPurchases.isEmpty {
-                        event(.error(IAPError(.cannotRestorePurchases)))
+                        event(.failure(IAPError(.cannotRestorePurchases)))
                     } else {
-                        event(.completed)
+                        event(.success(Void()))
                     }
                 }
                 

@@ -8,7 +8,7 @@
 import RxSwift
 
 final class TestStatsManagerCore: TestStatsManager {
-    
+    private lazy var restAPITransport = RestAPITransport()
 }
 
 
@@ -20,7 +20,7 @@ extension TestStatsManagerCore {
         
         let request = GetTestStatsRequest(userToken: userToken, userTestId: userTestId)
         
-        return RestAPITransport()
+        return restAPITransport
             .callServerApi(requestBody: request)
             .map(GetTestStatsResponseMapper.map(from:))
     }

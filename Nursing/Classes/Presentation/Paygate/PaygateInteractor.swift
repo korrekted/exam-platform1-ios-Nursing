@@ -20,87 +20,109 @@ final class PaygateInteractor {
         case completed(Bool)
     }
     
-    private let iapManager = IAPManager()
-    private let sessionManager = SessionManagerCore()
-    private let profileManager = ProfileManagerCore()
-    private let validationObserver = PurchaseValidationObserver.shared
+    private lazy var iapManager = IAPManager()
+    private lazy var sessionManager = SessionManagerCore()
+    private lazy var profileManager = ProfileManagerCore()
+    private lazy var validationObserver = PurchaseValidationObserver.shared
+    
+    private lazy var disposables = [Disposable]()
+    
+    private lazy var callback = PublishRelay<PurchaseActionResult>()
+    
+    deinit {
+        OtterScale.shared.remove(delegate: self)
+        
+        disposables.forEach { $0.dispose() }
+    }
 }
 
 // MARK: Public
 extension PaygateInteractor {
     func makeActiveSubscription(by action: Action) -> Single<PurchaseActionResult> {
-        let result: Single<PurchaseActionResult>
+        OtterScale.shared.remove(delegate: self)
+        OtterScale.shared.add(delegate: self)
         
+        disposables.forEach { $0.dispose() }
+        
+        let disposable: Disposable
         switch action {
         case .buy(let productId):
-            result = purchase(productId: productId)
+            disposable = purchase(productId: productId)
         case .restore:
-            result = restore()
+            disposable = restore()
         }
         
-        return result.flatMap { [weak self] result -> Single<PurchaseActionResult> in
+        disposables = [disposable]
+        
+        return Single<PurchaseActionResult>.create { [weak self] event in
             guard let self = self else {
-                return .never()
+                return Disposables.create()
             }
             
-            let otterScaleID = OtterScale.shared.getOtterScaleID()
+            let disposable = self.callback.subscribe(onNext: { result in
+                event(.success(result))
+            })
             
-            let complete: Single<Void>
-        
-            if let cachedToken = self.sessionManager.getSession()?.userToken {
-                if cachedToken != otterScaleID {
-                    complete = self.profileManager.syncTokens(oldToken: cachedToken, newToken: otterScaleID)
-                } else {
-                    complete = .deferred { .just(Void()) }
-                }
-            } else {
-                complete = self.profileManager.login(userToken: otterScaleID)
-            }
+            self.disposables.append(disposable)
             
-            return complete.flatMap { _ -> Single<PurchaseActionResult> in
-                let session = Session(userToken: otterScaleID)
-                self.sessionManager.store(session: session)
-        
-                return .deferred { .just(result) }
-            }
+            return Disposables.create()
         }
+    }
+}
+
+// MARK: OtterScaleReceiptValidationDelegate
+extension PaygateInteractor: OtterScaleReceiptValidationDelegate {
+    func otterScaleDidValidatedReceipt(with result: PaymentData?) {
+        OtterScale.shared.remove(delegate: self)
+        
+        let otterScaleID = OtterScale.shared.getOtterScaleID()
+        
+        let complete: Single<Void>
+        
+        if let cachedToken = self.sessionManager.getSession()?.userToken {
+            if cachedToken != otterScaleID {
+                complete = self.profileManager.syncTokens(oldToken: cachedToken, newToken: otterScaleID)
+            } else {
+                complete = .deferred { .just(Void()) }
+            }
+        } else {
+            complete = self.profileManager.login(userToken: otterScaleID)
+        }
+        
+        let disposable = complete.subscribe(onSuccess: { [weak self] in
+            guard let self = self else {
+                return
+            }
+            
+            let session = Session(userToken: otterScaleID)
+            self.sessionManager.store(session: session)
+            
+            let hasActiveSubscriptions = self.sessionManager.hasActiveSubscriptions()
+            let result = PurchaseActionResult.completed(hasActiveSubscriptions)
+            self.callback.accept(result)
+        })
+        
+        disposables.append(disposable)
     }
 }
 
 // MARK: Private
 private extension PaygateInteractor {
-    func purchase(productId: String) -> Single<PurchaseActionResult> {
-        iapManager.buyProduct(with: productId)
-            .flatMap { [weak self] result in
-                guard let self = self else {
-                    return .never()
+    func purchase(productId: String) -> Disposable {
+        iapManager
+            .buyProduct(with: productId)
+            .subscribe(onSuccess: { [weak self] result in
+                guard let self = self, case .cancelled = result else {
+                    return
                 }
                 
-                switch result {
-                case .cancelled:
-                    return .just(.cancelled)
-                case .completed:
-                    return self.validationObserver
-                        .didValidatedWithActiveSubscription
-                        .map {
-                            let hasActiveSubscriptions = self.sessionManager.hasActiveSubscriptions()
-                            return .completed(hasActiveSubscriptions)
-                        }
-                        .asObservable()
-                        .asSingle()
-                }
-            }
+                self.callback.accept(.cancelled)
+            })
     }
     
-    func restore() -> Single<PurchaseActionResult> {
-        iapManager.restorePurchases()
-            .andThen(validationObserver
-                        .didValidatedWithActiveSubscription
-                        .asObservable()
-                        .asSingle())
-            .map { [weak self] _ -> PurchaseActionResult in
-                let hasActiveSubscriptions = self?.sessionManager.hasActiveSubscriptions() ?? false
-                return .completed(hasActiveSubscriptions)
-            }
+    func restore() -> Disposable {
+        iapManager
+            .restorePurchases()
+            .subscribe()
     }
 }

@@ -36,19 +36,16 @@ extension SessionManagerCore {
     }
     
     func hasActiveSubscriptions() -> Bool {
-        // TODO
-        print(OtterScale.shared.getPaymentData())
-        
         guard let paymentData = OtterScale.shared.getPaymentData() else {
             return false
         }
-        
+
         let subscriptions = paymentData.subscriptions.appleAppStore + paymentData.subscriptions.googlePlay
         let nonConsumables = paymentData.nonConsumables.appleAppStore + paymentData.nonConsumables.googlePlay
-        
+
         let hasValidSubscription = subscriptions.contains(where: { $0.valid })
         let hasValidNonConsumable = nonConsumables.contains(where: { $0.valid })
-        
+
         return hasValidSubscription || hasValidNonConsumable
     }
 }
