@@ -173,7 +173,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   OtterScaleiOS:
-    :commit: 56875806606b9fdce05a27a994b92bef4727f039
+    :commit: 29ac7eeccdadfc41e03d45ff89f214cb620fe2ca
     :git: https://github.com/AgentChe/OtterScaleiOS.git
 
 SPEC CHECKSUMS:
