@@ -62,7 +62,7 @@ private extension SplashViewModel {
                 return .never()
             }
             
-            let otterScaleID = OtterScale.shared.getOtterScaleID()
+            let otterScaleID = OtterScale.shared.getInternalID()
             
             let complete: Single<Void>
             

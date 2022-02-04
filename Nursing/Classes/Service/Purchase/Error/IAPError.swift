@@ -1,8 +1,8 @@
 //
 //  IAPError.swift
-//  Nursing
+//  NCLEX
 //
-//  Created by Андрей Чернышев on 24.01.2022.
+//  Created by Андрей Чернышев on 03.02.2022.
 //
 
 struct IAPError: Error {

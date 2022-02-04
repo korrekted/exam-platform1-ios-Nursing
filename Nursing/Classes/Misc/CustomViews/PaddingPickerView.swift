@@ -5,7 +5,7 @@
 //  Created by Vitaliy Zagorodnov on 28.02.2021.
 //
 
-import UIKit
+import Foundation
 
 class PaddingPickerView: UIPickerView {
     var padding: UIEdgeInsets?

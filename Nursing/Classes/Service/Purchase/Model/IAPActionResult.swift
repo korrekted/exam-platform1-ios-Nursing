@@ -1,11 +1,11 @@
 //
 //  IAPActionResult.swift
-//  Nursing
+//  NCLEX
 //
-//  Created by Андрей Чернышев on 24.01.2022.
+//  Created by Андрей Чернышев on 03.02.2022.
 //
 
-public enum IAPActionResult {
+enum IAPActionResult {
     case cancelled
     case completed(String)
 }

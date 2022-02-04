@@ -8,7 +8,9 @@
 import Foundation
 import StoreKit
 
-final class RateManagerCore: RateManager {}
+final class RateManagerCore: RateManager {
+    
+}
 
 // MARK: API
 extension RateManagerCore {
@@ -18,7 +20,7 @@ extension RateManagerCore {
         guard !isFirstAfterPass else { return }
         
         AmplitudeManager.shared
-            .logEvent(name: "Rating Request ", parameters: [:])
+            .logEvent(name: "Rating Request", parameters: [:])
         
         SKStoreReviewController.requestReview()
         UserDefaults.standard.setValue(true, forKey: Constants.showFirstAfterPass)

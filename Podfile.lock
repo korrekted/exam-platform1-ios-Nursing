@@ -1,6 +1,16 @@
 PODS:
   - Alamofire (5.5.0)
   - Amplitude-iOS (4.10.0)
+  - AppsFlyerFramework (6.5.2):
+    - AppsFlyerFramework/Main (= 6.5.2)
+  - AppsFlyerFramework/Main (6.5.2)
+  - Branch (1.40.2)
+  - FBAEMKit (12.3.1):
+    - FBSDKCoreKit_Basics (= 12.3.1)
+  - FBSDKCoreKit (12.3.1):
+    - FBAEMKit (= 12.3.1)
+    - FBSDKCoreKit_Basics (= 12.3.1)
+  - FBSDKCoreKit_Basics (12.3.1)
   - Firebase/Analytics (8.11.0):
     - Firebase/Core
   - Firebase/Core (8.11.0):
@@ -116,8 +126,20 @@ PODS:
   - NotificationBannerSwift (3.0.6):
     - MarqueeLabel (~> 4.0.5)
     - SnapKit (~> 5.0.1)
-  - OtterScaleiOS (0.0.1)
+  - OtterScaleiOS (1.4)
   - PromisesObjC (2.0.0)
+  - RushSDK (2.8.9):
+    - Alamofire
+    - Amplitude-iOS
+    - AppsFlyerFramework
+    - Branch
+    - FBSDKCoreKit
+    - Firebase/Analytics
+    - Firebase/Crashlytics
+    - Firebase/Messaging
+    - RxCocoa
+    - RxSwift
+    - SwiftyStoreKit
   - RxCocoa (6.5.0):
     - RxRelay (= 6.5.0)
     - RxSwift (= 6.5.0)
@@ -128,23 +150,21 @@ PODS:
   - SwiftyStoreKit (0.16.1)
 
 DEPENDENCIES:
-  - Alamofire
-  - Amplitude-iOS
-  - Firebase/Analytics
-  - Firebase/Crashlytics
-  - Firebase/Messaging
   - Kingfisher
   - lottie-ios
   - NotificationBannerSwift
   - OtterScaleiOS (from `https://github.com/AgentChe/OtterScaleiOS.git`)
-  - RxCocoa
-  - RxSwift
-  - SwiftyStoreKit
+  - RushSDK (from `https://github.com/AgentChe/RushSDK.git`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - Amplitude-iOS
+    - AppsFlyerFramework
+    - Branch
+    - FBAEMKit
+    - FBSDKCoreKit
+    - FBSDKCoreKit_Basics
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -170,15 +190,25 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   OtterScaleiOS:
     :git: https://github.com/AgentChe/OtterScaleiOS.git
+  RushSDK:
+    :git: https://github.com/AgentChe/RushSDK.git
 
 CHECKOUT OPTIONS:
   OtterScaleiOS:
-    :commit: 29ac7eeccdadfc41e03d45ff89f214cb620fe2ca
+    :commit: f496400c6871b486136cc76284cfbd79316b2f6d
     :git: https://github.com/AgentChe/OtterScaleiOS.git
+  RushSDK:
+    :commit: b47164412815c38dfbceed55b9771a34147b482c
+    :git: https://github.com/AgentChe/RushSDK.git
 
 SPEC CHECKSUMS:
   Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
   Amplitude-iOS: 7d8cdc3408ba35c2e68368fc7c692cd104606b94
+  AppsFlyerFramework: 9f304d91cc80b6579b1206a59220383056b58b47
+  Branch: c1b244bf1170b0ea5c5eefa897648de8d14ff0d2
+  FBAEMKit: 98e4afc9f867c6db3d1c0e7e3727d94a630b5f59
+  FBSDKCoreKit: 4f348872eae956c922aca1a13771b9c2d4602088
+  FBSDKCoreKit_Basics: b832439de7a8262ee17495889264e75785af54de
   Firebase: 44dd9724c84df18b486639e874f31436eaa9a20c
   FirebaseAnalytics: 4e4b13031034e6561ed3bd1d47b6fdabbd6487c6
   FirebaseCore: 2f4f85b453cc8fea4bb2b37e370007d2bcafe3f0
@@ -194,14 +224,15 @@ SPEC CHECKSUMS:
   MarqueeLabel: 00cc0bcd087111dca575878b3531af980559707d
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   NotificationBannerSwift: 7021be2338f8f29cf424b0aca43da462bf9e2a1a
-  OtterScaleiOS: 08bf6264510531727528b49a4c881ffc5ef502fc
+  OtterScaleiOS: 5c7d6153df71cc25ccbfc47dea078d7997bbeb70
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
+  RushSDK: d752555cd3d7c97bda8db784128fec42134d13bc
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftyStoreKit: 6b9c08810269f030586dac1fae8e75871a82e84a
 
-PODFILE CHECKSUM: 8c83d6db242a5808ee24812f41037d4e55dbc538
+PODFILE CHECKSUM: 1418fc421b32fb33691101d243c76c6fd1a3586e
 
 COCOAPODS: 1.11.2

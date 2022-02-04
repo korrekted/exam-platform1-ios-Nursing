@@ -40,8 +40,12 @@ extension SessionManagerCore {
             return false
         }
 
-        let subscriptions = paymentData.subscriptions.appleAppStore + paymentData.subscriptions.googlePlay
-        let nonConsumables = paymentData.nonConsumables.appleAppStore + paymentData.nonConsumables.googlePlay
+        let subscriptions = paymentData.subscriptions.appleAppStore
+            + paymentData.subscriptions.googlePlay
+            + paymentData.subscriptions.stripe
+        let nonConsumables = paymentData.nonConsumables.appleAppStore
+            + paymentData.nonConsumables.googlePlay
+            + paymentData.nonConsumables.stripe
 
         let hasValidSubscription = subscriptions.contains(where: { $0.valid })
         let hasValidNonConsumable = nonConsumables.contains(where: { $0.valid })

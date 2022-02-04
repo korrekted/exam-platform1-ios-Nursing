@@ -1,8 +1,8 @@
 //
-//  ValidationObserver.swift
-//  Nursing
+//  PurchaseValidationObserver.swift
+//  NCLEX
 //
-//  Created by Андрей Чернышев on 21.01.2022.
+//  Created by Андрей Чернышев on 03.02.2022.
 //
 
 import OtterScaleiOS

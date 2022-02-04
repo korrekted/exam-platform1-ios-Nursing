@@ -7,9 +7,7 @@
 
 import RxSwift
 
-final class QuestionManagerCore: QuestionManager {
-    private lazy var restAPITransport = RestAPITransport()
-}
+final class QuestionManagerCore: QuestionManager {}
 
 extension QuestionManagerCore {
     func retrieve(courseId: Int, testId: Int?, activeSubscription: Bool) -> Single<Test?> {
@@ -24,7 +22,8 @@ extension QuestionManagerCore {
             activeSubscription: activeSubscription
         )
         
-        return restAPITransport
+        return SDKStorage.shared
+            .restApiTransport
             .callServerStringApi(requestBody: request)
             .map(GetTestResponseMapper.map(from:))
     }
@@ -38,7 +37,8 @@ extension QuestionManagerCore {
                                        courseId: courseId,
                                        activeSubscription: activeSubscription)
         
-        return restAPITransport
+        return SDKStorage.shared
+            .restApiTransport
             .callServerStringApi(requestBody: request)
             .map(GetTestResponseMapper.map(from:))
     }
@@ -52,7 +52,8 @@ extension QuestionManagerCore {
                                           courseId: courseId,
                                           activeSubscription: activeSubscription)
         
-        return restAPITransport
+        return SDKStorage.shared
+            .restApiTransport
             .callServerStringApi(requestBody: request)
             .map(GetTestResponseMapper.map(from:))
     }
@@ -66,7 +67,8 @@ extension QuestionManagerCore {
                                      courseId: courseId,
                                      activeSubscription: activeSubscription)
         
-        return restAPITransport
+        return SDKStorage.shared
+            .restApiTransport
             .callServerStringApi(requestBody: request)
             .map(GetTestResponseMapper.map(from:))
     }
@@ -80,7 +82,8 @@ extension QuestionManagerCore {
                                           courseId: courseId,
                                           activeSubscription: activeSubscription)
         
-        return restAPITransport
+        return SDKStorage.shared
+            .restApiTransport
             .callServerStringApi(requestBody: request)
             .map(GetTestResponseMapper.map(from:))
     }
@@ -97,7 +100,8 @@ extension QuestionManagerCore {
             answerIds: answerIds
         )
         
-        return restAPITransport
+        return SDKStorage.shared
+            .restApiTransport
             .callServerApi(requestBody: request)
             .map(SendAnswerResponseMapper.map(from:))
             .do(onSuccess: { isEndOfTest in
@@ -116,7 +120,8 @@ extension QuestionManagerCore {
         let request = GetTestConfigRequest(userToken: userToken,
                                                courseId: courseId)
         
-        return restAPITransport
+        return SDKStorage.shared
+            .restApiTransport
             .callServerStringApi(requestBody: request)
             .map(GetTestConfigResponseMapper.from(response:))
     }

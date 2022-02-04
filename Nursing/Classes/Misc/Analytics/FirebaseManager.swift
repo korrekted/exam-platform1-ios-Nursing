@@ -1,54 +1,77 @@
 //
 //  FirebaseManager.swift
-//  Nursing
+//  NCLEX
 //
-//  Created by Андрей Чернышев on 21.01.2022.
+//  Created by Андрей Чернышев on 03.02.2022.
 //
 
 import Firebase
 import OtterScaleiOS
+import StoreKit
 
-final class FirebaseManager {
+final class FirebaseManager: NSObject {
+    deinit {
+        SKPaymentQueue.default().remove(self)
+    }
+    
     static let shared = FirebaseManager()
     
-    private init() {}
-}
-
-// MARK: Public
-extension FirebaseManager {
-    @discardableResult
-    func initialize() -> Bool {
-        FirebaseApp.configure()
-        
-        OtterScale.shared.add(delegate: self)
-        
-        installFirstLaunchIfNeeded()
-        
-        return true
+    private override init() {
+        super.init()
     }
 }
 
 // MARK: OtterScaleReceiptValidationDelegate
 extension FirebaseManager: OtterScaleReceiptValidationDelegate {
     func otterScaleDidValidatedReceipt(with result: PaymentData?) {
-        logEvent(name: "start_trial")
+        let otterScaleID = OtterScale.shared.getInternalID()
+        set(userId: otterScaleID)
+        
+        logEvent(name: "[Client] User ID Synced")
+    }
+}
+
+// MARK: SKPaymentTransactionObserver
+extension FirebaseManager: SKPaymentTransactionObserver {
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        let purchased = transactions
+            .filter { $0.transactionState == .purchased }
+        
+        guard !purchased.isEmpty else {
+            return
+        }
+        
+        logEvent(name: "[Client] Subscription Or Purchase")
+    }
+}
+
+// MARK: Public
+extension FirebaseManager {
+    func initialize() {
+        FirebaseApp.configure()
+        
+        OtterScale.shared.add(delegate: self)
+        SKPaymentQueue.default().add(self)
+        
+        installFirstLaunchIfNeeded()
+    }
+    
+    func set(userId: String) {
+        Analytics.setUserID(userId)
+    }
+    
+    func logEvent(name: String, parameters: [String: Any] = [:]) {
+        Analytics.logEvent(name, parameters: parameters)
     }
 }
 
 // MARK: Private
 private extension FirebaseManager {
-    func logEvent(name: String, parameters: [String: Any] = [:]) {
-        var dictionary = parameters
-        dictionary["anonymous_id"] = OtterScale.shared.getOtterScaleID
-        
-        Analytics.logEvent(name, parameters: dictionary)
-    }
-    
     func installFirstLaunchIfNeeded() {
         guard NumberLaunches().isFirstLaunch() else {
             return
         }
         
-        logEvent(name: "install_app")
+        logEvent(name: "[Client] First Launch")
     }
 }

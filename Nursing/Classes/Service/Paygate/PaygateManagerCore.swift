@@ -8,15 +8,13 @@
 
 import RxSwift
 
-final class PaygateManagerCore: PaygateManager {
-    private lazy var iapManager = IAPManager()
-    private lazy var restAPITransport = RestAPITransport()
-}
+final class PaygateManagerCore: PaygateManager {}
 
 // MARK: Retrieve
 extension PaygateManagerCore {
     func retrievePaygate() -> Single<PaygateMapper.PaygateResponse?> {
-        restAPITransport
+        SDKStorage.shared
+            .restApiTransport
             .callServerApi(requestBody: GetPaygateRequest(userToken: SessionManagerCore().getSession()?.userToken,
                                                           version: UIDevice.appVersion ?? "1"))
             .map { PaygateMapper.parse(response: $0, productsPrices: nil) }
@@ -30,10 +28,11 @@ extension PaygateManagerCore {
             return .deferred { .just(paygate) }
         }
         
-        return iapManager
+        return SDKStorage.shared
+            .iapManager
             .obtainProducts(ids: paygate.productsIds)
             .map { products -> [ProductPrice] in
-                products.map { ProductPrice(product: $0.original) }
+                products.map { ProductPrice(product: $0.product) }
             }
             .map { PaygateMapper.parse(response: paygate.json, productsPrices: $0) }
     }

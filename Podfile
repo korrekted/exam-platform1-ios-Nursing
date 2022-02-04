@@ -8,18 +8,8 @@ target 'Nursing' do
   pod 'NotificationBannerSwift'
   pod 'lottie-ios'
   pod 'Kingfisher'
-  
-  pod 'Alamofire'
-  
-  pod 'RxSwift'
-  pod 'RxCocoa'
-  
-  pod 'SwiftyStoreKit'
-  
-  pod 'Firebase/Analytics'
-  pod 'Firebase/Crashlytics'
-  pod 'Firebase/Messaging'
-  pod 'Amplitude-iOS'
+
+  pod 'RushSDK', :git => "https://github.com/AgentChe/RushSDK.git"
   pod 'OtterScaleiOS', :git => "https://github.com/AgentChe/OtterScaleiOS.git"
 end
 

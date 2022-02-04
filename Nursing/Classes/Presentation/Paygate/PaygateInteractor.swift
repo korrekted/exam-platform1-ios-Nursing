@@ -1,8 +1,8 @@
 //
 //  PaygateInteractor.swift
-//  Nursing
+//  NCLEX
 //
-//  Created by Андрей Чернышев on 24.01.2022.
+//  Created by Андрей Чернышев on 03.02.2022.
 //
 
 import RxSwift
@@ -75,7 +75,7 @@ extension PaygateInteractor: OtterScaleReceiptValidationDelegate {
     func otterScaleDidValidatedReceipt(with result: PaymentData?) {
         OtterScale.shared.remove(delegate: self)
         
-        let otterScaleID = OtterScale.shared.getOtterScaleID()
+        let otterScaleID = OtterScale.shared.getInternalID()
         
         let complete: Single<Void>
         

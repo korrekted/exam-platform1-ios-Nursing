@@ -1,18 +1,14 @@
 //
 //  AmplitudeManager.swift
-//  Nursing
+//  NCLEX
 //
-//  Created by Андрей Чернышев on 21.01.2022.
+//  Created by Андрей Чернышев on 03.02.2022.
 //
 
 import Amplitude_iOS
 import OtterScaleiOS
 
 final class AmplitudeManager {
-    enum Constants {
-        static let userIdListKey = "amplitude_manager_core_user_id_list_key"
-    }
-    
     static let shared = AmplitudeManager()
     
     private init() {}
@@ -21,9 +17,10 @@ final class AmplitudeManager {
 // MARK: OtterScaleReceiptValidationDelegate
 extension AmplitudeManager: OtterScaleReceiptValidationDelegate {
     func otterScaleDidValidatedReceipt(with result: PaymentData?) {
-        let otterScaleID = OtterScale.shared.getOtterScaleID()
-        
+        let otterScaleID = OtterScale.shared.getInternalID()
         set(userId: otterScaleID)
+        
+        logEvent(name: "User ID Synced")
     }
 }
 
@@ -32,17 +29,18 @@ extension AmplitudeManager {
     func initialize() {
         Amplitude.instance().initializeApiKey(GlobalDefinitions.amplitudeApiKey)
         
+        OtterScale.shared.add(delegate: self)
+        
         installFirstLaunchIfNeeded()
     }
     
     func set(userId: String) {
-        let logTag = String(format: "%@_%@", GlobalDefinitions.applicationTag, userId)
-        
-        Amplitude.instance()?.setUserId(logTag)
+        Amplitude.instance()?.setUserId(userId)
     }
     
     func logEvent(name: String, parameters: [String: Any] = [:]) {
         var dictionary = parameters
+        dictionary["anonymous_id"] = OtterScale.shared.getAnonymousID()
         dictionary["app"] = GlobalDefinitions.applicationTag
         
         Amplitude.instance()?.logEvent(name, withEventProperties: dictionary)
@@ -58,16 +56,5 @@ private extension AmplitudeManager {
         
         logEvent(name: "First Launch")
     }
-    
-    func syncedUserIdIfNeeded(_ userId: Int) {
-        var userIdList = UserDefaults.standard.array(forKey: Constants.userIdListKey) as? [Int] ?? [Int]()
-        
-        if !userIdList.contains(userId) {
-            logEvent(name: "UserIDSynced")
-            
-            userIdList.append(userId)
-            
-            UserDefaults.standard.set(userIdList, forKey: Constants.userIdListKey)
-        }
-    }
 }
+

@@ -13,6 +13,12 @@ final class GlobalDefinitions {
 
     static let amplitudeApiKey = "b503251969f4b1d7901d2f7d1388d476"
     static let appsFlyerApiKey = "DCciCfYXjMQ8QnkdCg8qzk"
+    
+    static let sdkDomainUrl = "https://analytics.korrekted.com"
+    static let sdkApiKey = "aQLwZhaOVVV9gyJM"
+    
+    static let otterScaleHost = "https://api.korrekted.com"
+    static let otterScaleApiKey = "oCrVwRgejQISV560"
 
     static let appleAppID = "1550433302"
 

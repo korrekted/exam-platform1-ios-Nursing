@@ -36,7 +36,8 @@ final class OPushView: OSlideView {
     override func moveToThis() {
         super.moveToThis()
         
-        PushNotificationsManager.shared
+        SDKStorage.shared
+            .pushNotificationsManager
             .add(observer: self)
         
         AmplitudeManager.shared
@@ -47,7 +48,8 @@ final class OPushView: OSlideView {
 // MARK:
 extension OPushView: PushNotificationsManagerDelegate {
     func pushNotificationsManagerDidReceive(token: String?) {
-        PushNotificationsManager.shared
+        SDKStorage.shared
+            .pushNotificationsManager
             .remove(observer: self)
         
         guard let token = token else {
@@ -64,7 +66,8 @@ private extension OPushView {
     func initialize() {
         allowButton.rx.tap
             .subscribe(onNext: {
-                PushNotificationsManager.shared
+                SDKStorage.shared
+                    .pushNotificationsManager
                     .requestAuthorization()
             })
             .disposed(by: disposeBag)

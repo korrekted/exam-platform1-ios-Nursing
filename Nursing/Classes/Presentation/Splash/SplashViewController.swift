@@ -7,18 +7,29 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 import OtterScaleiOS
 
 final class SplashViewController: UIViewController {
-    deinit {
-        OtterScale.shared.remove(delegate: self)
-    }
-    
     lazy var mainView = SplashView()
     
     private lazy var disposeBag = DisposeBag()
     
     private lazy var viewModel = SplashViewModel()
+    
+    private let generateStep: Signal<Void>
+    
+    private lazy var validationObserver = SplashReceiptValidationObserver()
+    
+    private init(generateStep: Signal<Void>) {
+        self.generateStep = generateStep
+        
+        super.init(nibName: nil, bundle: .main)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         view = mainView
@@ -27,20 +38,37 @@ final class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        OtterScale.shared.add(delegate: self)
-        
         viewModel.step()
             .drive(onNext: { [weak self] step in
                 self?.step(step)
             })
+            .disposed(by: disposeBag)
+        
+        let validationObserve = Single<Void>
+            .create { [weak self] event in
+                guard let self = self else {
+                    return Disposables.create()
+                }
+                
+                self.validationObserver.observe {
+                    event(.success(Void()))
+                }
+                
+                return Disposables.create()
+            }
+            .asSignal(onErrorSignalWith: .empty())
+        
+        Signal.zip(validationObserve, generateStep)
+            .map { _, _ in Void() }
+            .emit(to: viewModel.validationComplete)
             .disposed(by: disposeBag)
     }
 }
 
 // MARK: Make
 extension SplashViewController {
-    static func make() -> SplashViewController {
-        SplashViewController()
+    static func make(generateStep: Signal<Void>) -> SplashViewController {
+        SplashViewController(generateStep: generateStep)
     }
 }
 
@@ -48,13 +76,6 @@ extension SplashViewController {
 extension SplashViewController: PaygateViewControllerDelegate {
     func paygateDidClosed(with result: PaygateViewControllerResult) {
         step(viewModel.stepAfterPaygateClosed())
-    }
-}
-
-// MARK: OtterScaleReceiptValidationDelegate
-extension SplashViewController: OtterScaleReceiptValidationDelegate {
-    func otterScaleDidValidatedReceipt(with result: PaymentData?) {
-        viewModel.validationComplete.accept(Void())
     }
 }
 
