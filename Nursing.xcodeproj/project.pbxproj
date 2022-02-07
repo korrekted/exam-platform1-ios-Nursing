@@ -286,6 +286,9 @@
 		DE9377AA27ACE9F80073F27C /* Scalable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93756427ACE9880073F27C /* Scalable.swift */; };
 		DE9377AB27ACEA020073F27C /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375E727ACE9880073F27C /* Stats.swift */; };
 		DE9377AC27ACEA090073F27C /* StatsShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375F127ACE9880073F27C /* StatsShareManager.swift */; };
+		DE9377F027B160430073F27C /* OSlideExperienceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9377EF27B160430073F27C /* OSlideExperienceView.swift */; };
+		DE9377F227B1621B0073F27C /* OExperienceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9377F127B1621B0073F27C /* OExperienceCell.swift */; };
+		DE9377F627B16C7E0073F27C /* SF-Pro-Rounded-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE9377F527B16C730073F27C /* SF-Pro-Rounded-Black.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -595,6 +598,9 @@
 		DE9376AC27ACE9880073F27C /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		DE9376AD27ACE9880073F27C /* OnboardingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		DE9377A827ACE9AC0073F27C /* Nursing-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nursing-Bridging-Header.h"; sourceTree = "<group>"; };
+		DE9377EF27B160430073F27C /* OSlideExperienceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlideExperienceView.swift; sourceTree = "<group>"; };
+		DE9377F127B1621B0073F27C /* OExperienceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OExperienceCell.swift; sourceTree = "<group>"; };
+		DE9377F527B16C730073F27C /* SF-Pro-Rounded-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Black.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -744,6 +750,7 @@
 		96D38B1925B3055E00EADC9A /* SFProRounded */ = {
 			isa = PBXGroup;
 			children = (
+				DE9377F527B16C730073F27C /* SF-Pro-Rounded-Black.otf */,
 				962AEA6E25B4F8090032E7C3 /* SF-Pro-Rounded-Bold.otf */,
 				962AEA6F25B4F8090032E7C3 /* SF-Pro-Rounded-Regular.otf */,
 				962AEA7025B4F8090032E7C3 /* SF-Pro-Rounded-Semibold.otf */,
@@ -1668,8 +1675,8 @@
 		DE93768827ACE9880073F27C /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				DE93768927ACE9880073F27C /* OnboardingViewController.swift */,
 				DE93768A27ACE9880073F27C /* Views */,
+				DE93768927ACE9880073F27C /* OnboardingViewController.swift */,
 				DE9376AC27ACE9880073F27C /* OnboardingView.swift */,
 				DE9376AD27ACE9880073F27C /* OnboardingViewModel.swift */,
 			);
@@ -1679,8 +1686,8 @@
 		DE93768A27ACE9880073F27C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				DE93768B27ACE9880073F27C /* OSlideWelcomeView.swift */,
 				DE93768C27ACE9880073F27C /* Atoms */,
+				DE93768B27ACE9880073F27C /* OSlideWelcomeView.swift */,
 				DE93769F27ACE9880073F27C /* OSlideReferencesView.swift */,
 				DE9376A027ACE9880073F27C /* OPushView.swift */,
 				DE9376A127ACE9880073F27C /* OSlideImproveView.swift */,
@@ -1694,6 +1701,7 @@
 				DE9376A927ACE9880073F27C /* OSlideWhenTakingView.swift */,
 				DE9376AA27ACE9880073F27C /* OSlideWidgetsView.swift */,
 				DE9376AB27ACE9880073F27C /* OSlideTimeView.swift */,
+				DE9377EF27B160430073F27C /* OSlideExperienceView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1701,17 +1709,18 @@
 		DE93768C27ACE9880073F27C /* Atoms */ = {
 			isa = PBXGroup;
 			children = (
+				DE93769727ACE9880073F27C /* Welcome */,
+				DE93769127ACE9880073F27C /* References */,
+				DE93769427ACE9880073F27C /* Source */,
 				DE93768D27ACE9880073F27C /* OStepView.swift */,
 				DE93768E27ACE9880073F27C /* OProgressView.swift */,
 				DE93768F27ACE9880073F27C /* OModeCell.swift */,
 				DE93769027ACE9880073F27C /* OImproveCell.swift */,
-				DE93769127ACE9880073F27C /* References */,
-				DE93769427ACE9880073F27C /* Source */,
 				DE93769627ACE9880073F27C /* OWhenStudyCell.swift */,
-				DE93769727ACE9880073F27C /* Welcome */,
 				DE93769C27ACE9880073F27C /* OSlidePlanCell.swift */,
 				DE93769D27ACE9880073F27C /* OSlideGoalCell.swift */,
 				DE93769E27ACE9880073F27C /* OTimeCell.swift */,
+				DE9377F127B1621B0073F27C /* OExperienceCell.swift */,
 			);
 			path = Atoms;
 			sourceTree = "<group>";
@@ -1846,6 +1855,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE9377F627B16C7E0073F27C /* SF-Pro-Rounded-Black.otf in Resources */,
 				DE93779027ACE9880073F27C /* Onboarding.Chart.json in Resources */,
 				96F4560426579AE800B63D53 /* GoogleService-Info.plist in Resources */,
 				96D38B2825B3073900EADC9A /* Localizable.strings in Resources */,
@@ -1974,6 +1984,7 @@
 				DE93777127ACE9880073F27C /* CoursesView.swift in Sources */,
 				DE93770C27ACE9880073F27C /* PurchaseValidationObserver.swift in Sources */,
 				DE93779827ACE9880073F27C /* OTimeCell.swift in Sources */,
+				DE9377F027B160430073F27C /* OSlideExperienceView.swift in Sources */,
 				DE9377A027ACE9880073F27C /* OSlidePlanView.swift in Sources */,
 				DE93770927ACE9880073F27C /* ProfileMediatorDelegate.swift in Sources */,
 				DE9376EB27ACE9880073F27C /* GetFailedSetRequest.swift in Sources */,
@@ -1993,6 +2004,7 @@
 				DE93777E27ACE9880073F27C /* StatsView.swift in Sources */,
 				DE9376F427ACE9880073F27C /* QuestionManagerDelagate.swift in Sources */,
 				DE93775C27ACE9880073F27C /* PaygateViewController.swift in Sources */,
+				DE9377F227B1621B0073F27C /* OExperienceCell.swift in Sources */,
 				DE9376D827ACE9880073F27C /* ProductPrice.swift in Sources */,
 				DE93777327ACE9880073F27C /* CoursesViewController.swift in Sources */,
 				DE93772327ACE9880073F27C /* STCourseCell.swift in Sources */,

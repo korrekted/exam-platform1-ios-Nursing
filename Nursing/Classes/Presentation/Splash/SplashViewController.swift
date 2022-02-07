@@ -82,15 +82,18 @@ extension SplashViewController: PaygateViewControllerDelegate {
 // MARK: Private
 private extension SplashViewController {
     func step(_ step: SplashViewModel.Step) {
-        switch step {
-        case .onboarding:
-            UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController = OnboardingViewController.make()
-        case .course:
-            UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController = CourseViewController.make()
-        case .paygate:
-            let vc = PaygateViewController.make()
-            vc.delegate = self
-            present(vc, animated: true)
-        }
+        // TODO
+        UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController = OnboardingViewController.make()
+        
+//        switch step {
+//        case .onboarding:
+//            UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController = OnboardingViewController.make()
+//        case .course:
+//            UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController = CourseViewController.make()
+//        case .paygate:
+//            let vc = PaygateViewController.make()
+//            vc.delegate = self
+//            present(vc, animated: true)
+//        }
     }
 }
