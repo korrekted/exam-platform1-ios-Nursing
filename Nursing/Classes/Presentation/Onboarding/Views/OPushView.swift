@@ -153,7 +153,7 @@ private extension OPushView {
     
     func makeSubtitleLabel() -> UILabel {
         let attrs = TextAttributes()
-            .textColor(UIColor(integralRed: 75, green: 81, blue: 102))
+            .textColor(Appearance.greyColor)
             .font(Fonts.SFProRounded.regular(size: 20.scale))
             .lineHeight(28.scale)
             .textAlignment(.center)

@@ -118,7 +118,7 @@ private extension OSlideImproveView {
             button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 26.scale),
             button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -26.scale),
             button.heightAnchor.constraint(equalToConstant: 60.scale),
-            button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: ScreenSize.isIphoneXFamily ? -70.scale : -30.scale)
+            button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: ScreenSize.isIphoneXFamily ? -70.scale : -20.scale)
         ])
     }
 }
@@ -127,7 +127,7 @@ private extension OSlideImproveView {
 private extension OSlideImproveView {
     func makeTitleLabel() -> UILabel {
         let attrs = TextAttributes()
-            .textColor(UIColor(integralRed: 19, green: 24, blue: 42))
+            .textColor(Appearance.blackColor)
             .font(Fonts.SFProRounded.bold(size: 25.scale))
             .lineHeight(29.scale)
             .textAlignment(.center)

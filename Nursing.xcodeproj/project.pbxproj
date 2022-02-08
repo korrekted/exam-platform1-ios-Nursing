@@ -289,6 +289,7 @@
 		DE9377F027B160430073F27C /* OSlideExperienceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9377EF27B160430073F27C /* OSlideExperienceView.swift */; };
 		DE9377F227B1621B0073F27C /* OExperienceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9377F127B1621B0073F27C /* OExperienceCell.swift */; };
 		DE9377F627B16C7E0073F27C /* SF-Pro-Rounded-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE9377F527B16C730073F27C /* SF-Pro-Rounded-Black.otf */; };
+		DE9377F827B2EA3A0073F27C /* WelcomeSlide3CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9377F727B2EA3A0073F27C /* WelcomeSlide3CellView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -601,6 +602,7 @@
 		DE9377EF27B160430073F27C /* OSlideExperienceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlideExperienceView.swift; sourceTree = "<group>"; };
 		DE9377F127B1621B0073F27C /* OExperienceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OExperienceCell.swift; sourceTree = "<group>"; };
 		DE9377F527B16C730073F27C /* SF-Pro-Rounded-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Black.otf"; sourceTree = "<group>"; };
+		DE9377F727B2EA3A0073F27C /* WelcomeSlide3CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSlide3CellView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1745,10 +1747,11 @@
 		DE93769727ACE9880073F27C /* Welcome */ = {
 			isa = PBXGroup;
 			children = (
-				DE93769827ACE9880073F27C /* WelcomeSlide1View.swift */,
 				DE93769927ACE9880073F27C /* WelcomeSlideIndicatorView.swift */,
-				DE93769A27ACE9880073F27C /* WelcomeSlide3View.swift */,
+				DE93769827ACE9880073F27C /* WelcomeSlide1View.swift */,
 				DE93769B27ACE9880073F27C /* WelcomeSlide2View.swift */,
+				DE93769A27ACE9880073F27C /* WelcomeSlide3View.swift */,
+				DE9377F727B2EA3A0073F27C /* WelcomeSlide3CellView.swift */,
 			);
 			path = Welcome;
 			sourceTree = "<group>";
@@ -2043,6 +2046,7 @@
 				DE9376B227ACE9880073F27C /* UIDeviceExtension.swift in Sources */,
 				DE93778C27ACE9880073F27C /* OModeCell.swift in Sources */,
 				DE93776327ACE9880073F27C /* TestStatsProgressCell.swift in Sources */,
+				DE9377F827B2EA3A0073F27C /* WelcomeSlide3CellView.swift in Sources */,
 				DE93773D27ACE9880073F27C /* TabItemView.swift in Sources */,
 				DE9376E327ACE9880073F27C /* TestStatsManagerCore.swift in Sources */,
 				DE93778B27ACE9880073F27C /* OProgressView.swift in Sources */,

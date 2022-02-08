@@ -38,8 +38,8 @@ extension TestStatsAnswerCell {
             : UIImage(named: "Question.Error")
         
         let color = element.isCorrect
-            ? UIColor(integralRed: 46, green: 190, blue: 161)
-            : UIColor(integralRed: 254, green: 105, blue: 88)
+            ? Appearance.successColor
+            : Appearance.errorColor
         
         iconView.tintColor = color
         

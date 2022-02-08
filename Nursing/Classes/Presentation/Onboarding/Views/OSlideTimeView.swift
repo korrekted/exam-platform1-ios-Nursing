@@ -162,7 +162,7 @@ private extension OSlideTimeView {
             button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 26.scale),
             button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -26.scale),
             button.heightAnchor.constraint(equalToConstant: 60.scale),
-            button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: ScreenSize.isIphoneXFamily ? -70.scale : -30.scale)
+            button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: ScreenSize.isIphoneXFamily ? -70.scale : -20.scale)
         ])
     }
 }

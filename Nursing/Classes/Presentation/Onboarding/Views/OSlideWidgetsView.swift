@@ -57,7 +57,7 @@ private extension OSlideWidgetsView {
             button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 26.scale),
             button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -26.scale),
             button.heightAnchor.constraint(equalToConstant: 60.scale),
-            button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: ScreenSize.isIphoneXFamily ? -70.scale : -30.scale)
+            button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: ScreenSize.isIphoneXFamily ? -70.scale : -20.scale)
         ])
     }
 }
@@ -75,7 +75,7 @@ private extension OSlideWidgetsView {
     
     func makeTitleLabel() -> UILabel {
         let attrs = TextAttributes()
-            .textColor(UIColor(integralRed: 19, green: 24, blue: 42))
+            .textColor(Appearance.blackColor)
             .font(Fonts.SFProRounded.bold(size: 30.scale))
             .lineHeight(35.scale)
             .textAlignment(.center)
@@ -90,7 +90,7 @@ private extension OSlideWidgetsView {
     
     func makeSubtitleLabel() -> UILabel {
         let attrs = TextAttributes()
-            .textColor(UIColor(integralRed: 75, green: 81, blue: 102))
+            .textColor(Appearance.greyColor)
             .font(Fonts.SFProRounded.semiBold(size: 20.scale))
             .lineHeight(28.scale)
             .textAlignment(.center)

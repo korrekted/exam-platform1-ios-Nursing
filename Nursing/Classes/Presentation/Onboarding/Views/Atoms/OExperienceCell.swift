@@ -17,7 +17,7 @@ final class OExperienceCell: UIButton {
     var title: String? {
         didSet {
             let attrs = TextAttributes()
-                .textColor(UIColor(integralRed: 19, green: 24, blue: 42))
+                .textColor(Appearance.blackColor)
                 .font(Fonts.SFProRounded.bold(size: 19.scale))
                 .lineHeight(22.8.scale)
             headerLabel.attributedText = title?.attributed(with: attrs)
@@ -27,7 +27,7 @@ final class OExperienceCell: UIButton {
     var subTitle: String? {
         didSet {
             let attrs = TextAttributes()
-                .textColor(UIColor(integralRed: 75, green: 81, blue: 102))
+                .textColor(Appearance.greyColor)
                 .font(Fonts.SFProRounded.regular(size: 17.scale))
                 .lineHeight(20.29.scale)
             subTitleLabel.attributedText = subTitle?.attributed(with: attrs)

@@ -83,7 +83,7 @@ private extension OSlideExperienceView {
 private extension OSlideExperienceView {
     func makeTitleLabel() -> UILabel {
         let attrs1 = TextAttributes()
-            .textColor(UIColor(integralRed: 19, green: 24, blue: 42))
+            .textColor(Appearance.blackColor)
             .font(Fonts.SFProRounded.black(size: 32.scale))
             .lineHeight(38.4.scale)
             .textAlignment(.center)
@@ -111,7 +111,7 @@ private extension OSlideExperienceView {
     
     func makeSubTitleLabel() -> UILabel {
         let attrs = TextAttributes()
-            .textColor(UIColor(integralRed: 75, green: 81, blue: 102))
+            .textColor(Appearance.greyColor)
             .font(Fonts.SFProRounded.regular(size: ScreenSize.isIphoneXFamily ? 19.scale : 16.scale))
             .lineHeight(ScreenSize.isIphoneXFamily ? 26.6.scale : 23.6.scale)
             .textAlignment(.center)
@@ -126,7 +126,7 @@ private extension OSlideExperienceView {
     
     func makeCellsTitleLabel() -> UILabel {
         let attrs = TextAttributes()
-            .textColor(UIColor(integralRed: 19, green: 24, blue: 42))
+            .textColor(Appearance.blackColor)
             .font(Fonts.SFProRounded.black(size: 24.scale))
             .lineHeight(28.8.scale)
             .textAlignment(.center)
