@@ -101,8 +101,11 @@
 "Onboarding.Improve.Cell6" = "Surgery";
 "Onboarding.Improve.Cell7" = "Anesthetist prep";
 "Onboarding.Improve.Cell8" = "Natal";
+"Onboarding.SlideCount.Title" = "How many tests would you\nwant to take daily?";
+"Onboarding.Amazing.Title" = "Amazing! Now a very quick\nassesment";
+"Onboarding.Amazing.SubTitle" = "Please answer a few questions so we can understand your current level a bit better.";
+"Onboarding.Amazing.Button" = "Ok, got it";
 "Onboarding.WhenTaking.Title" = "WHEN ARE YOU TAKING THE EXAM?";
-"Onboarding.SlideCount.Title" = "HOW MANY TESTS WOULD YOU WANT TO TAKE DAILY?";
 "Onboarding.SlidePreloader.Title" = "PREPARING YOUR\nINDIVIDUAL STUDY PLAN";
 "Onboarding.SlidePreloader.Preloader1" = "Analyzing your skill level...";
 "Onboarding.SlidePreloader.Preloader2" = "Analyzing your study preferences...";

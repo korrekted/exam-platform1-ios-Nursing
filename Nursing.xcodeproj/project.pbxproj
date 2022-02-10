@@ -293,6 +293,7 @@
 		DE9377FC27B4CE890073F27C /* OAgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9377FB27B4CE890073F27C /* OAgeButton.swift */; };
 		DE9377FE27B4CF4F0073F27C /* OSlideAgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9377FD27B4CF4F0073F27C /* OSlideAgeView.swift */; };
 		DE93780027B505990073F27C /* OSlideMotivationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9377FF27B505980073F27C /* OSlideMotivationView.swift */; };
+		DE93780227B530B00073F27C /* OSlideAmazingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93780127B530B00073F27C /* OSlideAmazingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -609,6 +610,7 @@
 		DE9377FB27B4CE890073F27C /* OAgeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAgeButton.swift; sourceTree = "<group>"; };
 		DE9377FD27B4CF4F0073F27C /* OSlideAgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlideAgeView.swift; sourceTree = "<group>"; };
 		DE9377FF27B505980073F27C /* OSlideMotivationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlideMotivationView.swift; sourceTree = "<group>"; };
+		DE93780127B530B00073F27C /* OSlideAmazingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlideAmazingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1705,12 +1707,13 @@
 				DE9376AB27ACE9880073F27C /* OSlideTimeView.swift */,
 				DE9377FF27B505980073F27C /* OSlideMotivationView.swift */,
 				DE9376A127ACE9880073F27C /* OSlideImproveView.swift */,
+				DE9376A727ACE9880073F27C /* OSlideCountView.swift */,
+				DE93780127B530B00073F27C /* OSlideAmazingView.swift */,
 				DE93769F27ACE9880073F27C /* OSlideReferencesView.swift */,
 				DE9376A027ACE9880073F27C /* OPushView.swift */,
 				DE9376A227ACE9880073F27C /* OSlideView.swift */,
 				DE9376A427ACE9880073F27C /* OSlidePreloaderView.swift */,
 				DE9376A627ACE9880073F27C /* OSlidePlanView.swift */,
-				DE9376A727ACE9880073F27C /* OSlideCountView.swift */,
 				DE9376A927ACE9880073F27C /* OSlideWhenTakingView.swift */,
 				DE9376AA27ACE9880073F27C /* OSlideWidgetsView.swift */,
 			);
@@ -1990,6 +1993,7 @@
 				DE93779227ACE9880073F27C /* WelcomeSlide1View.swift in Sources */,
 				DE9376EA27ACE9880073F27C /* GetTestConfigRequest.swift in Sources */,
 				DE93773027ACE9880073F27C /* SCTitleCell.swift in Sources */,
+				DE93780227B530B00073F27C /* OSlideAmazingView.swift in Sources */,
 				DE93771827ACE9880073F27C /* StatsManager.swift in Sources */,
 				DE93773927ACE9880073F27C /* StudyView.swift in Sources */,
 				DE9376B627ACE9880073F27C /* Scalable.swift in Sources */,

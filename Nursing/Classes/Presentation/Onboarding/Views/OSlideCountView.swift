@@ -99,9 +99,9 @@ private extension OSlideCountView {
 private extension OSlideCountView {
     func makeConstraints() {
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 17.scale),
-            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -17.scale),
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 134.scale : 70.scale)
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 117.scale : 70.scale)
         ])
         
         NSLayoutConstraint.activate([
@@ -130,9 +130,9 @@ private extension OSlideCountView {
 private extension OSlideCountView {
     func makeTitleLabel() -> UILabel {
         let attrs = TextAttributes()
-            .textColor(UIColor.black)
-            .font(Fonts.SFProRounded.bold(size: 27.scale))
-            .lineHeight(32.scale)
+            .textColor(Appearance.blackColor)
+            .font(Fonts.SFProRounded.black(size: 27.scale))
+            .lineHeight(32.4.scale)
             .textAlignment(.center)
         
         let view = UILabel()
@@ -154,8 +154,8 @@ private extension OSlideCountView {
     
     func makeValueLabel() -> UILabel {
         let view = UILabel()
-        view.textColor = UIColor.black
-        view.font = Fonts.SFProRounded.bold(size: 27.scale)
+        view.textColor = Appearance.blackColor
+        view.font = Fonts.SFProRounded.black(size: 27.scale)
         addSubview(view)
         return view
     }
@@ -182,7 +182,7 @@ private extension OSlideCountView {
         let view = UIButton()
         view.backgroundColor = Appearance.mainColor
         view.layer.cornerRadius = 30.scale
-        view.setAttributedTitle("Onboarding.Proceed".localized.attributed(with: attrs), for: .normal)
+        view.setAttributedTitle("Continue".localized.attributed(with: attrs), for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

@@ -73,56 +73,56 @@ private extension OSlideImproveView {
         NSLayoutConstraint.activate([
             tag1.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
             tag1.widthAnchor.constraint(equalToConstant: 165.scale),
-            tag1.heightAnchor.constraint(equalToConstant: 100.scale),
+            tag1.heightAnchor.constraint(equalToConstant: ScreenSize.isIphoneXFamily ? 100.scale : 80.scale),
             tag1.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30.scale)
         ])
         
         NSLayoutConstraint.activate([
             tag2.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 194.scale),
             tag2.widthAnchor.constraint(equalToConstant: 165.scale),
-            tag2.heightAnchor.constraint(equalToConstant: 100.scale),
+            tag2.heightAnchor.constraint(equalToConstant: ScreenSize.isIphoneXFamily ? 100.scale : 80.scale),
             tag2.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30.scale)
         ])
         
         NSLayoutConstraint.activate([
             tag3.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
             tag3.widthAnchor.constraint(equalToConstant: 165.scale),
-            tag3.heightAnchor.constraint(equalToConstant: 100.scale),
+            tag3.heightAnchor.constraint(equalToConstant: ScreenSize.isIphoneXFamily ? 100.scale : 80.scale),
             tag3.topAnchor.constraint(equalTo: tag1.bottomAnchor, constant: 12.scale)
         ])
         
         NSLayoutConstraint.activate([
             tag4.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 194.scale),
             tag4.widthAnchor.constraint(equalToConstant: 165.scale),
-            tag4.heightAnchor.constraint(equalToConstant: 100.scale),
+            tag4.heightAnchor.constraint(equalToConstant: ScreenSize.isIphoneXFamily ? 100.scale : 80.scale),
             tag4.topAnchor.constraint(equalTo: tag2.bottomAnchor, constant: 12.scale)
         ])
         
         NSLayoutConstraint.activate([
             tag5.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
             tag5.widthAnchor.constraint(equalToConstant: 165.scale),
-            tag5.heightAnchor.constraint(equalToConstant: 100.scale),
+            tag5.heightAnchor.constraint(equalToConstant: ScreenSize.isIphoneXFamily ? 100.scale : 80.scale),
             tag5.topAnchor.constraint(equalTo: tag3.bottomAnchor, constant: 12.scale)
         ])
         
         NSLayoutConstraint.activate([
             tag6.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 194.scale),
             tag6.widthAnchor.constraint(equalToConstant: 165.scale),
-            tag6.heightAnchor.constraint(equalToConstant: 100.scale),
+            tag6.heightAnchor.constraint(equalToConstant: ScreenSize.isIphoneXFamily ? 100.scale : 80.scale),
             tag6.topAnchor.constraint(equalTo: tag4.bottomAnchor, constant: 12.scale)
         ])
         
         NSLayoutConstraint.activate([
             tag7.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
             tag7.widthAnchor.constraint(equalToConstant: 165.scale),
-            tag7.heightAnchor.constraint(equalToConstant: 100.scale),
+            tag7.heightAnchor.constraint(equalToConstant: ScreenSize.isIphoneXFamily ? 100.scale : 80.scale),
             tag7.topAnchor.constraint(equalTo: tag5.bottomAnchor, constant: 12.scale)
         ])
         
         NSLayoutConstraint.activate([
             tag8.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 194.scale),
             tag8.widthAnchor.constraint(equalToConstant: 165.scale),
-            tag8.heightAnchor.constraint(equalToConstant: 100.scale),
+            tag8.heightAnchor.constraint(equalToConstant: ScreenSize.isIphoneXFamily ? 100.scale : 80.scale),
             tag8.topAnchor.constraint(equalTo: tag6.bottomAnchor, constant: 12.scale)
         ])
         
