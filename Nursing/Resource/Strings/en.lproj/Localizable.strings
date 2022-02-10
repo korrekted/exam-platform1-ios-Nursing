@@ -92,6 +92,15 @@
 "Onboarding.Motivation.SubTitle1" = "Keep it up! You'll be able to move";
 "Onboarding.Motivation.SubTitle2" = " much\nfaster ";
 "Onboarding.Motivation.SubTitle3" = "through the question bank!";
+"Onboarding.Improve.Title" = "Where would you want to\nimprove?";
+"Onboarding.Improve.Cell1" = "Adult-Gerontology\ncare";
+"Onboarding.Improve.Cell2" = "Pediatrics";
+"Onboarding.Improve.Cell3" = "Critical care";
+"Onboarding.Improve.Cell4" = "Diabetes care";
+"Onboarding.Improve.Cell5" = "Emergency prep";
+"Onboarding.Improve.Cell6" = "Surgery";
+"Onboarding.Improve.Cell7" = "Anesthetist prep";
+"Onboarding.Improve.Cell8" = "Natal";
 "Onboarding.WhenTaking.Title" = "WHEN ARE YOU TAKING THE EXAM?";
 "Onboarding.SlideCount.Title" = "HOW MANY TESTS WOULD YOU WANT TO TAKE DAILY?";
 "Onboarding.SlidePreloader.Title" = "PREPARING YOUR\nINDIVIDUAL STUDY PLAN";
@@ -109,15 +118,6 @@
 "Onboarding.Push.NotNow" = "Not now";
 "Onboarding.Widgets.Title" = "HANDY WIDGETS ON\nYOUR HOME SCREEN";
 "Onboarding.Widgets.Subtitle" = "Add widgets to your Home screen to track your pass rate and progress";
-"Onboarding.Improve.Title" = "WHERE DO YOU NEED TO\nIMPROVE THE MOST?";
-"Onboarding.Improve.Cell1" = "Adult-\nGerontology\nCare";
-"Onboarding.Improve.Cell2" = "Surgery";
-"Onboarding.Improve.Cell3" = "Pedi-\natrics";
-"Onboarding.Improve.Cell4" = "Critical\ncare";
-"Onboarding.Improve.Cell5" = "Diabetes\nCare";
-"Onboarding.Improve.Cell6" = "Emergency\nprep";
-"Onboarding.Improve.Cell7" = "Anesthetist\nprep";
-"Onboarding.Improve.Cell8" = "Natal";
 
 // MARK: Courses
 "Courses.Title" = "Where would you\nwant to improve?";
