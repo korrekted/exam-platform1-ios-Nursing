@@ -105,6 +105,14 @@
 "Onboarding.Amazing.Title" = "Amazing! Now a very quick\nassesment";
 "Onboarding.Amazing.SubTitle" = "Please answer a few questions so we can understand your current level a bit better.";
 "Onboarding.Amazing.Button" = "Ok, got it";
+"Onboarding.ThankYou.Title" = "Thank you! We've taken all\nyour answers into account";
+"Onboarding.ThankYou.SubTitle" = "Now we have almost all the data to\nprepare your personal study plan.";
+"Onboarding.ThankYou.Button" = "Ok, got it";
+"Onboarding.QuestionsCount.Title" = "8500+ up-to-date questions";
+"Onboarding.QuestionsCount.SubTitle1" = "We are compiling your study plan from a set of over";
+"Onboarding.QuestionsCount.SubTitle2" = " 8500+ exam-like questions ";
+"Onboarding.QuestionsCount.SubTitle3" = "which will help you to ace your exam from the first attempt.";
+"Onboarding.QuestionsCount.Button" = "Ok, got it";
 "Onboarding.WhenTaking.Title" = "WHEN ARE YOU TAKING THE EXAM?";
 "Onboarding.SlidePreloader.Title" = "PREPARING YOUR\nINDIVIDUAL STUDY PLAN";
 "Onboarding.SlidePreloader.Preloader1" = "Analyzing your skill level...";
