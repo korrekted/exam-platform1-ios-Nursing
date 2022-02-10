@@ -174,20 +174,20 @@ private extension OSlideModesView {
         ])
         
         NSLayoutConstraint.activate([
-            fullSupportCell.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
-            fullSupportCell.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
-            fullSupportCell.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 44.scale)
+            fullSupportCell.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 26.scale),
+            fullSupportCell.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -26.scale),
+            fullSupportCell.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: ScreenSize.isIphoneXFamily ? 40.scale : 20.scale)
         ])
         
         NSLayoutConstraint.activate([
-            withoutExplanationsCell.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
-            withoutExplanationsCell.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
+            withoutExplanationsCell.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 26.scale),
+            withoutExplanationsCell.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -26.scale),
             withoutExplanationsCell.topAnchor.constraint(equalTo: fullSupportCell.bottomAnchor, constant: 12.scale)
         ])
         
         NSLayoutConstraint.activate([
-            examStyleCell.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
-            examStyleCell.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
+            examStyleCell.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 26.scale),
+            examStyleCell.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -26.scale),
             examStyleCell.topAnchor.constraint(equalTo: withoutExplanationsCell.bottomAnchor, constant: 12.scale)
         ])
         
@@ -204,9 +204,9 @@ private extension OSlideModesView {
 private extension OSlideModesView {
     func makeTitleLabel() -> UILabel {
         let attrs = TextAttributes()
-            .textColor(UIColor.black)
+            .textColor(Appearance.blackColor)
             .font(Fonts.SFProRounded.bold(size: 27.scale))
-            .lineHeight(32.scale)
+            .lineHeight(32.4.scale)
             .textAlignment(.center)
         
         let view = UILabel()
@@ -245,7 +245,7 @@ private extension OSlideModesView {
         let view = UIButton()
         view.backgroundColor = Appearance.mainColor
         view.layer.cornerRadius = 30.scale
-        view.setAttributedTitle("Onboarding.Proceed".localized.attributed(with: attrs), for: .normal)
+        view.setAttributedTitle("Continue".localized.attributed(with: attrs), for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

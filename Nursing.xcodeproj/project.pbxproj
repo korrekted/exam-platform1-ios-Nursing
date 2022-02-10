@@ -265,7 +265,6 @@
 		DE93779427ACE9880073F27C /* WelcomeSlide3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93769A27ACE9880073F27C /* WelcomeSlide3View.swift */; };
 		DE93779527ACE9880073F27C /* WelcomeSlide2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93769B27ACE9880073F27C /* WelcomeSlide2View.swift */; };
 		DE93779627ACE9880073F27C /* OSlidePlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93769C27ACE9880073F27C /* OSlidePlanCell.swift */; };
-		DE93779727ACE9880073F27C /* OSlideGoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93769D27ACE9880073F27C /* OSlideGoalCell.swift */; };
 		DE93779827ACE9880073F27C /* OTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93769E27ACE9880073F27C /* OTimeCell.swift */; };
 		DE93779927ACE9880073F27C /* OSlideReferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93769F27ACE9880073F27C /* OSlideReferencesView.swift */; };
 		DE93779A27ACE9880073F27C /* OPushView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9376A027ACE9880073F27C /* OPushView.swift */; };
@@ -584,7 +583,6 @@
 		DE93769A27ACE9880073F27C /* WelcomeSlide3View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeSlide3View.swift; sourceTree = "<group>"; };
 		DE93769B27ACE9880073F27C /* WelcomeSlide2View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeSlide2View.swift; sourceTree = "<group>"; };
 		DE93769C27ACE9880073F27C /* OSlidePlanCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSlidePlanCell.swift; sourceTree = "<group>"; };
-		DE93769D27ACE9880073F27C /* OSlideGoalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSlideGoalCell.swift; sourceTree = "<group>"; };
 		DE93769E27ACE9880073F27C /* OTimeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTimeCell.swift; sourceTree = "<group>"; };
 		DE93769F27ACE9880073F27C /* OSlideReferencesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSlideReferencesView.swift; sourceTree = "<group>"; };
 		DE9376A027ACE9880073F27C /* OPushView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OPushView.swift; sourceTree = "<group>"; };
@@ -1699,19 +1697,19 @@
 				DE93768B27ACE9880073F27C /* OSlideWelcomeView.swift */,
 				DE9377F927B4CB110073F27C /* OSlideQuickQuestionsView.swift */,
 				DE9377FD27B4CF4F0073F27C /* OSlideAgeView.swift */,
+				DE9376A327ACE9880073F27C /* OSlideGoalsView.swift */,
+				DE9376A527ACE9880073F27C /* OSlideWhenStudyView.swift */,
+				DE9376A827ACE9880073F27C /* OSlideModesView.swift */,
+				DE9376AB27ACE9880073F27C /* OSlideTimeView.swift */,
 				DE93769F27ACE9880073F27C /* OSlideReferencesView.swift */,
 				DE9376A027ACE9880073F27C /* OPushView.swift */,
 				DE9376A127ACE9880073F27C /* OSlideImproveView.swift */,
 				DE9376A227ACE9880073F27C /* OSlideView.swift */,
-				DE9376A327ACE9880073F27C /* OSlideGoalsView.swift */,
 				DE9376A427ACE9880073F27C /* OSlidePreloaderView.swift */,
-				DE9376A527ACE9880073F27C /* OSlideWhenStudyView.swift */,
 				DE9376A627ACE9880073F27C /* OSlidePlanView.swift */,
 				DE9376A727ACE9880073F27C /* OSlideCountView.swift */,
-				DE9376A827ACE9880073F27C /* OSlideModesView.swift */,
 				DE9376A927ACE9880073F27C /* OSlideWhenTakingView.swift */,
 				DE9376AA27ACE9880073F27C /* OSlideWidgetsView.swift */,
-				DE9376AB27ACE9880073F27C /* OSlideTimeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1728,7 +1726,6 @@
 				DE93769027ACE9880073F27C /* OImproveCell.swift */,
 				DE93769627ACE9880073F27C /* OWhenStudyCell.swift */,
 				DE93769C27ACE9880073F27C /* OSlidePlanCell.swift */,
-				DE93769D27ACE9880073F27C /* OSlideGoalCell.swift */,
 				DE93769E27ACE9880073F27C /* OTimeCell.swift */,
 				DE9377F127B1621B0073F27C /* OExperienceCell.swift */,
 				DE9377FB27B4CE890073F27C /* OAgeButton.swift */,
@@ -2195,7 +2192,6 @@
 				DE93772427ACE9880073F27C /* STReferencesCell.swift in Sources */,
 				DE9376E227ACE9880073F27C /* GetTestStatsResponseMapper.swift in Sources */,
 				DE93772D27ACE9880073F27C /* SplashView.swift in Sources */,
-				DE93779727ACE9880073F27C /* OSlideGoalCell.swift in Sources */,
 				DE93771C27ACE9880073F27C /* SessionManager.swift in Sources */,
 				DE93776227ACE9880073F27C /* TestStatsDescriptioCell.swift in Sources */,
 				DE93775227ACE9880073F27C /* TestViewController.swift in Sources */,
