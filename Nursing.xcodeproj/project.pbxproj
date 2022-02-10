@@ -290,6 +290,7 @@
 		DE9377F227B1621B0073F27C /* OExperienceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9377F127B1621B0073F27C /* OExperienceCell.swift */; };
 		DE9377F627B16C7E0073F27C /* SF-Pro-Rounded-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE9377F527B16C730073F27C /* SF-Pro-Rounded-Black.otf */; };
 		DE9377F827B2EA3A0073F27C /* WelcomeSlide3CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9377F727B2EA3A0073F27C /* WelcomeSlide3CellView.swift */; };
+		DE9377FA27B4CB110073F27C /* OSlideQuickQuestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9377F927B4CB110073F27C /* OSlideQuickQuestionsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -603,6 +604,7 @@
 		DE9377F127B1621B0073F27C /* OExperienceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OExperienceCell.swift; sourceTree = "<group>"; };
 		DE9377F527B16C730073F27C /* SF-Pro-Rounded-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Black.otf"; sourceTree = "<group>"; };
 		DE9377F727B2EA3A0073F27C /* WelcomeSlide3CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSlide3CellView.swift; sourceTree = "<group>"; };
+		DE9377F927B4CB110073F27C /* OSlideQuickQuestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlideQuickQuestionsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1689,7 +1691,9 @@
 			isa = PBXGroup;
 			children = (
 				DE93768C27ACE9880073F27C /* Atoms */,
+				DE9377EF27B160430073F27C /* OSlideExperienceView.swift */,
 				DE93768B27ACE9880073F27C /* OSlideWelcomeView.swift */,
+				DE9377F927B4CB110073F27C /* OSlideQuickQuestionsView.swift */,
 				DE93769F27ACE9880073F27C /* OSlideReferencesView.swift */,
 				DE9376A027ACE9880073F27C /* OPushView.swift */,
 				DE9376A127ACE9880073F27C /* OSlideImproveView.swift */,
@@ -1703,7 +1707,6 @@
 				DE9376A927ACE9880073F27C /* OSlideWhenTakingView.swift */,
 				DE9376AA27ACE9880073F27C /* OSlideWidgetsView.swift */,
 				DE9376AB27ACE9880073F27C /* OSlideTimeView.swift */,
-				DE9377EF27B160430073F27C /* OSlideExperienceView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2106,6 +2109,7 @@
 				DE93778127ACE9880073F27C /* MainRateCell.swift in Sources */,
 				DE93779127ACE9880073F27C /* OWhenStudyCell.swift in Sources */,
 				DE93775027ACE9880073F27C /* TestElement.swift in Sources */,
+				DE9377FA27B4CB110073F27C /* OSlideQuickQuestionsView.swift in Sources */,
 				DE9376CE27ACE9880073F27C /* FirebaseManager.swift in Sources */,
 				DE93770227ACE9880073F27C /* ProfileManagerCore.swift in Sources */,
 				DE93778427ACE9880073F27C /* MainProgressView.swift in Sources */,

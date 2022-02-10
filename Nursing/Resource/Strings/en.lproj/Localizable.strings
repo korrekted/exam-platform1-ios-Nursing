@@ -49,6 +49,9 @@
 "Onboarding.Welcome.Cell3.Info1" = "8500+ up-to-date questions";
 "Onboarding.Welcome.Cell3.Info2" = "300+ exam sets";
 "Onboarding.Welcome.Cell3.Info3" = "5 exam modes";
+"Onboarding.QuickQuestions.Title" = "A few quick questions";
+"Onboarding.QuickQuestions.SubTitle" = "Your study plan relies on your personal traits. Please answer a few questions so we can prepare the plan.";
+"Onboarding.QuickQuestions.Button" = "Ok, got it";
 "Onboarding.Goals.Title" = "WHAT ARE YOUR GOALS?";
 "Onboarding.Goals.Cell1" = "Pass the exam";
 "Onboarding.Goals.Cell2" = "Become a better specialist";

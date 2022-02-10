@@ -42,7 +42,7 @@ final class OnboardingViewController: UIViewController {
             }
             
             if step == .welcome {
-                this.goToCourses()
+//                this.goToCourses()
             }
         }
         
