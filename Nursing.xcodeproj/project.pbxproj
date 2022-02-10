@@ -291,6 +291,8 @@
 		DE9377F627B16C7E0073F27C /* SF-Pro-Rounded-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE9377F527B16C730073F27C /* SF-Pro-Rounded-Black.otf */; };
 		DE9377F827B2EA3A0073F27C /* WelcomeSlide3CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9377F727B2EA3A0073F27C /* WelcomeSlide3CellView.swift */; };
 		DE9377FA27B4CB110073F27C /* OSlideQuickQuestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9377F927B4CB110073F27C /* OSlideQuickQuestionsView.swift */; };
+		DE9377FC27B4CE890073F27C /* OAgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9377FB27B4CE890073F27C /* OAgeButton.swift */; };
+		DE9377FE27B4CF4F0073F27C /* OSlideAgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9377FD27B4CF4F0073F27C /* OSlideAgeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -605,6 +607,8 @@
 		DE9377F527B16C730073F27C /* SF-Pro-Rounded-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Black.otf"; sourceTree = "<group>"; };
 		DE9377F727B2EA3A0073F27C /* WelcomeSlide3CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSlide3CellView.swift; sourceTree = "<group>"; };
 		DE9377F927B4CB110073F27C /* OSlideQuickQuestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlideQuickQuestionsView.swift; sourceTree = "<group>"; };
+		DE9377FB27B4CE890073F27C /* OAgeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAgeButton.swift; sourceTree = "<group>"; };
+		DE9377FD27B4CF4F0073F27C /* OSlideAgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlideAgeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1694,6 +1698,7 @@
 				DE9377EF27B160430073F27C /* OSlideExperienceView.swift */,
 				DE93768B27ACE9880073F27C /* OSlideWelcomeView.swift */,
 				DE9377F927B4CB110073F27C /* OSlideQuickQuestionsView.swift */,
+				DE9377FD27B4CF4F0073F27C /* OSlideAgeView.swift */,
 				DE93769F27ACE9880073F27C /* OSlideReferencesView.swift */,
 				DE9376A027ACE9880073F27C /* OPushView.swift */,
 				DE9376A127ACE9880073F27C /* OSlideImproveView.swift */,
@@ -1726,6 +1731,7 @@
 				DE93769D27ACE9880073F27C /* OSlideGoalCell.swift */,
 				DE93769E27ACE9880073F27C /* OTimeCell.swift */,
 				DE9377F127B1621B0073F27C /* OExperienceCell.swift */,
+				DE9377FB27B4CE890073F27C /* OAgeButton.swift */,
 			);
 			path = Atoms;
 			sourceTree = "<group>";
@@ -2033,6 +2039,7 @@
 				DE9376B427ACE9880073F27C /* StringExtension.swift in Sources */,
 				DE9376C027ACE9880073F27C /* NursingNavigationController.swift in Sources */,
 				DE93773827ACE9880073F27C /* StudyCollectionView.swift in Sources */,
+				DE9377FC27B4CE890073F27C /* OAgeButton.swift in Sources */,
 				DE9376F127ACE9880073F27C /* QuestionManager.swift in Sources */,
 				DE93775727ACE9880073F27C /* AVPlayerView.swift in Sources */,
 				DE93778627ACE9880073F27C /* MainStatsDescriptionView.swift in Sources */,
@@ -2102,6 +2109,7 @@
 				DE93774C27ACE9880073F27C /* TestingCellType.swift in Sources */,
 				DE93774327ACE9880073F27C /* QuestionCollectionCell.swift in Sources */,
 				DE93775527ACE9880073F27C /* AnswerView.swift in Sources */,
+				DE9377FE27B4CF4F0073F27C /* OSlideAgeView.swift in Sources */,
 				DE93771327ACE9880073F27C /* GetBriefRequest.swift in Sources */,
 				DE93776D27ACE9880073F27C /* TestStatsTableView.swift in Sources */,
 				DE93777727ACE9880073F27C /* PhotoViewController.swift in Sources */,

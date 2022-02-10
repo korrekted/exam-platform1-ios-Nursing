@@ -41,8 +41,8 @@ final class OnboardingViewController: UIViewController {
                 return
             }
             
-            if step == .welcome {
-//                this.goToCourses()
+            if step == .age {
+                this.goToCourses()
             }
         }
         

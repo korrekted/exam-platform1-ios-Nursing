@@ -30,7 +30,6 @@
 "Onboarding.Proceed" = "Proceed";
 "Onboarding.Yes" = "Yes";
 "Onboarding.No" = "No";
-"Onboarding.Next" = "Next";
 "Onboarding.Experience.Title.Part1" = "Personalized study\nplan for ";
 "Onboarding.Experience.Title.Part2" = "Nursing\nExams";
 "Onboarding.Experience.SubTitle" = "Ace your NCLEX, ATI TEAS, HESI A2 or USMLE exam with ease from the first attempt.";
@@ -52,6 +51,11 @@
 "Onboarding.QuickQuestions.Title" = "A few quick questions";
 "Onboarding.QuickQuestions.SubTitle" = "Your study plan relies on your personal traits. Please answer a few questions so we can prepare the plan.";
 "Onboarding.QuickQuestions.Button" = "Ok, got it";
+"Onboarding.Age.Title" = "What is your age?";
+"Onboarding.Age.18-24" = "18-24";
+"Onboarding.Age.25-34" = "25-34";
+"Onboarding.Age.35-44" = "35-44";
+"Onboarding.Age.45+" = "45+";
 "Onboarding.Goals.Title" = "WHAT ARE YOUR GOALS?";
 "Onboarding.Goals.Cell1" = "Pass the exam";
 "Onboarding.Goals.Cell2" = "Become a better specialist";
