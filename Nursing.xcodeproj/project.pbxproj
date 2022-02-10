@@ -292,6 +292,7 @@
 		DE9377FA27B4CB110073F27C /* OSlideQuickQuestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9377F927B4CB110073F27C /* OSlideQuickQuestionsView.swift */; };
 		DE9377FC27B4CE890073F27C /* OAgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9377FB27B4CE890073F27C /* OAgeButton.swift */; };
 		DE9377FE27B4CF4F0073F27C /* OSlideAgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9377FD27B4CF4F0073F27C /* OSlideAgeView.swift */; };
+		DE93780027B505990073F27C /* OSlideMotivationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9377FF27B505980073F27C /* OSlideMotivationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -607,6 +608,7 @@
 		DE9377F927B4CB110073F27C /* OSlideQuickQuestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlideQuickQuestionsView.swift; sourceTree = "<group>"; };
 		DE9377FB27B4CE890073F27C /* OAgeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAgeButton.swift; sourceTree = "<group>"; };
 		DE9377FD27B4CF4F0073F27C /* OSlideAgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlideAgeView.swift; sourceTree = "<group>"; };
+		DE9377FF27B505980073F27C /* OSlideMotivationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlideMotivationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1701,6 +1703,7 @@
 				DE9376A527ACE9880073F27C /* OSlideWhenStudyView.swift */,
 				DE9376A827ACE9880073F27C /* OSlideModesView.swift */,
 				DE9376AB27ACE9880073F27C /* OSlideTimeView.swift */,
+				DE9377FF27B505980073F27C /* OSlideMotivationView.swift */,
 				DE93769F27ACE9880073F27C /* OSlideReferencesView.swift */,
 				DE9376A027ACE9880073F27C /* OPushView.swift */,
 				DE9376A127ACE9880073F27C /* OSlideImproveView.swift */,
@@ -2157,6 +2160,7 @@
 				DE9376C227ACE9880073F27C /* TapAreaButton.swift in Sources */,
 				DE93772727ACE9880073F27C /* SettingsTableView.swift in Sources */,
 				DE93775127ACE9880073F27C /* TestView.swift in Sources */,
+				DE93780027B505990073F27C /* OSlideMotivationView.swift in Sources */,
 				DE93774827ACE9880073F27C /* QuestionsCollectionView.swift in Sources */,
 				DE93779927ACE9880073F27C /* OSlideReferencesView.swift in Sources */,
 				DE93774A27ACE9880073F27C /* TestViewModel.swift in Sources */,

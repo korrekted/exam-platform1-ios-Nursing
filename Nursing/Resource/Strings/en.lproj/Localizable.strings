@@ -83,6 +83,15 @@
 "Onboarding.Time.SeriousMin" = "15 min daily";
 "Onboarding.Time.IntenseTitle" = "Intense";
 "Onboarding.Time.IntenseMin" = "20 min daily";
+"Onboarding.Motivation.Percent" = "40%";
+"Onboarding.Motivation.PercentPlaceholder" = "your study motivation";
+"Onboarding.Motivation.Label" = "⬤ The average";
+"Onboarding.Motivation.Title1" = "That’s";
+"Onboarding.Motivation.Title2" = " 2x ";
+"Onboarding.Motivation.Title3" = "better than\naverage!";
+"Onboarding.Motivation.SubTitle1" = "Keep it up! You'll be able to move";
+"Onboarding.Motivation.SubTitle2" = " much\nfaster ";
+"Onboarding.Motivation.SubTitle3" = "through the question bank!";
 "Onboarding.WhenTaking.Title" = "WHEN ARE YOU TAKING THE EXAM?";
 "Onboarding.SlideCount.Title" = "HOW MANY TESTS WOULD YOU WANT TO TAKE DAILY?";
 "Onboarding.SlidePreloader.Title" = "PREPARING YOUR\nINDIVIDUAL STUDY PLAN";
