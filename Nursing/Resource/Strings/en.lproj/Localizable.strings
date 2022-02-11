@@ -114,9 +114,12 @@
 "Onboarding.QuestionsCount.Button" = "Ok, got it";
 "Onboarding.WhenTaking.Title" = "When are you taking the\nexam?";
 "Onboarding.WhenTaking.SkipButton" = "I don’t know";
-"Onboarding.SlidePreloader.Title" = "PREPARING YOUR\nINDIVIDUAL STUDY PLAN";
-"Onboarding.SlidePreloader.Preloader1" = "Analyzing your skill level...";
-"Onboarding.SlidePreloader.Preloader2" = "Analyzing your study preferences...";
+"Onboarding.SlidePreloader.Preloader" = "Analyzing your level and\nstudy preferences...";
+"Onboarding.SlidePreloader.Title" = "80,000 STUDENTS";
+"Onboarding.SlidePreloader.SubTitle" = "pass exam with QuantResearch";
+"Onboarding.SlidePreloader.Person1" = "Darrell Steward,\n";
+"Onboarding.SlidePreloader.Person2" = "passed the exam on 89%";
+"Onboarding.SlidePreloader.Feedback" = "“This is literally the Swiss Army Knife of Nursing. It's got it all and it is presented in a user-friendly and intuitive way. This is a great study tool that you can use and reference. A must have for everyone!”";
 "Onboarding.SlidePlan.Title" = "YOUR PERSONAL 98% PASS\nRATE STUDY PLAN";
 "Onboarding.SlidePlan.Cell1" = "Multiple sets of questions";
 "Onboarding.SlidePlan.Cell2" = "Consise explanation";
