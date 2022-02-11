@@ -1716,11 +1716,11 @@
 				DE93780127B530B00073F27C /* OSlideAmazingView.swift */,
 				DE93780327B535740073F27C /* OSlideThankYouView.swift */,
 				DE93780527B53BB80073F27C /* OSlideQuestionsCountView.swift */,
+				DE9376A927ACE9880073F27C /* OSlideWhenTakingView.swift */,
 				DE93769F27ACE9880073F27C /* OSlideReferencesView.swift */,
 				DE9376A027ACE9880073F27C /* OPushView.swift */,
 				DE9376A427ACE9880073F27C /* OSlidePreloaderView.swift */,
 				DE9376A627ACE9880073F27C /* OSlidePlanView.swift */,
-				DE9376A927ACE9880073F27C /* OSlideWhenTakingView.swift */,
 				DE9376AA27ACE9880073F27C /* OSlideWidgetsView.swift */,
 			);
 			path = Views;

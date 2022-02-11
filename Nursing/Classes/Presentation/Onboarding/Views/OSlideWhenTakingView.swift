@@ -88,17 +88,17 @@ private extension OSlideWhenTakingView {
         ])
         
         NSLayoutConstraint.activate([
-            button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 26.scale),
-            button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -26.scale),
-            button.heightAnchor.constraint(equalToConstant: 60.scale),
-            button.bottomAnchor.constraint(equalTo: skipButton.topAnchor, constant: -14.scale)
+            skipButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 26.scale),
+            skipButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -26.scale),
+            skipButton.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -15.scale),
+            skipButton.heightAnchor.constraint(equalToConstant: 25.scale)
         ])
         
         NSLayoutConstraint.activate([
-            skipButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 26.scale),
-            skipButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -26.scale),
-            skipButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -31.scale),
-            skipButton.heightAnchor.constraint(equalToConstant: 25.scale)
+            button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 26.scale),
+            button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -26.scale),
+            button.heightAnchor.constraint(equalToConstant: 60.scale),
+            button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: ScreenSize.isIphoneXFamily ? -70.scale : -20.scale)
         ])
     }
 }
@@ -107,9 +107,9 @@ private extension OSlideWhenTakingView {
 private extension OSlideWhenTakingView {
     func makeTitleLabel() -> UILabel {
         let attrs = TextAttributes()
-            .textColor(UIColor.black)
-            .font(Fonts.SFProRounded.bold(size: 27.scale))
-            .lineHeight(32.scale)
+            .textColor(Appearance.blackColor)
+            .font(Fonts.SFProRounded.black(size: 27.scale))
+            .lineHeight(32.4.scale)
             .textAlignment(.center)
         
         let view = UILabel()
@@ -151,7 +151,7 @@ private extension OSlideWhenTakingView {
         let view = UIButton()
         view.backgroundColor = Appearance.mainColor
         view.layer.cornerRadius = 30.scale
-        view.setAttributedTitle("Onboarding.Proceed".localized.attributed(with: attrs), for: .normal)
+        view.setAttributedTitle("Continue".localized.attributed(with: attrs), for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view
@@ -159,12 +159,12 @@ private extension OSlideWhenTakingView {
     
     func makeSkipButton() -> UIButton {
         let attrs = TextAttributes()
-            .textColor(UIColor.black)
-            .font(Fonts.SFProRounded.regular(size: 20.scale))
+            .textColor(Appearance.mainColor)
+            .font(Fonts.SFProRounded.bold(size: 19.scale))
             .textAlignment(.center)
         
         let view = UIButton()
-        view.setAttributedTitle("Onboarding.Skip".localized.attributed(with: attrs), for: .normal)
+        view.setAttributedTitle("Onboarding.WhenTaking.SkipButton".localized.attributed(with: attrs), for: .normal)
         view.addTarget(self, action: #selector(onNext), for: .touchUpInside)
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)

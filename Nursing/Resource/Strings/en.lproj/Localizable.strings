@@ -26,7 +26,6 @@
 
 // MARK: Onboarding
 "Onboarding.FailedToSave" = "Failed to save";
-"Onboarding.Skip" = "Skip";
 "Onboarding.Yes" = "Yes";
 "Onboarding.No" = "No";
 "Onboarding.Experience.Title.Part1" = "Personalized study\nplan for ";
@@ -113,7 +112,8 @@
 "Onboarding.QuestionsCount.SubTitle2" = " 8500+ exam-like questions ";
 "Onboarding.QuestionsCount.SubTitle3" = "which will help you to ace your exam from the first attempt.";
 "Onboarding.QuestionsCount.Button" = "Ok, got it";
-"Onboarding.WhenTaking.Title" = "WHEN ARE YOU TAKING THE EXAM?";
+"Onboarding.WhenTaking.Title" = "When are you taking the\nexam?";
+"Onboarding.WhenTaking.SkipButton" = "I don’t know";
 "Onboarding.SlidePreloader.Title" = "PREPARING YOUR\nINDIVIDUAL STUDY PLAN";
 "Onboarding.SlidePreloader.Preloader1" = "Analyzing your skill level...";
 "Onboarding.SlidePreloader.Preloader2" = "Analyzing your study preferences...";
