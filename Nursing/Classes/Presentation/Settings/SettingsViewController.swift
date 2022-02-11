@@ -86,7 +86,8 @@ private extension SettingsViewController {
         case .mode(let testMode):
             screenOpener.open(screen: .mode(testMode), from: self)
         case .references:
-            screenOpener.open(screen: .references, from: self)
+//            screenOpener.open(screen: .references, from: self)
+            break
         }
     }
     

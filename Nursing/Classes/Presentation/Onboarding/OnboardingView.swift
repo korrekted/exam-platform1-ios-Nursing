@@ -9,7 +9,7 @@ import UIKit
 
 final class OnboardingView: UIView {
     enum Step: Int {
-        case experience, welcome, quickQuestions, age, goals, whenStudy, modes, time, motivation, improve, count, amazing, thankYou, questionsCount, whenTaking, preloader, references, push, widgets, plan
+        case experience, welcome, quickQuestions, age, goals, whenStudy, modes, time, motivation, improve, count, amazing, thankYou, questionsCount, whenTaking, preloader, push
     }
     
     var didFinish: (() -> Void)?
@@ -44,10 +44,7 @@ final class OnboardingView: UIView {
             OSlideQuestionsCountView(step: .questionsCount),
             OSlideWhenTakingView(step: .whenTaking),
             OSlidePreloaderView(step: .preloader),
-            OSlideReferencesView(step: .references),
-            OPushView(step: .push),
-            OSlideWidgetsView(step: .widgets),
-            OSlidePlanView(step: .plan)
+            OPushView(step: .push)
         ]
     }()
     
@@ -136,7 +133,7 @@ private extension OnboardingView {
     
     func headerUpdate() {
         switch step {
-        case .experience, .welcome, .quickQuestions, .references, .push, .widgets, .preloader, .plan:
+        case .experience, .welcome, .quickQuestions, .push, .preloader:
             previousButton.isHidden = true
             progressView.isHidden = true
         default:
