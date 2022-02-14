@@ -9,7 +9,7 @@ import UIKit
 
 final class OnboardingView: UIView {
     enum Step: Int {
-        case experience, welcome, quickQuestions, age, goals, whenStudy, modes, time, motivation, improve, count, amazing, thankYou, questionsCount, whenTaking, preloader, push
+        case experience, welcome, quickQuestions, age, goals, whenStudy, modes, time, motivation, improve, count, amazing, testQuestion1, testQuestion2, testQuestion3, testQuestion4, testQuestion5, thankYou, questionsCount, whenTaking, preloader, push
     }
     
     var didFinish: (() -> Void)?
@@ -40,6 +40,11 @@ final class OnboardingView: UIView {
             OSlideImproveView(step: .improve),
             OSlideCountView(step: .count),
             OSlideAmazingView(step: .amazing),
+            OSlideTestQuestionView(step: .testQuestion1),
+            OSlideTestQuestionView(step: .testQuestion2),
+            OSlideTestQuestionView(step: .testQuestion3),
+            OSlideTestQuestionView(step: .testQuestion4),
+            OSlideTestQuestionView(step: .testQuestion5),
             OSlideThankYouView(step: .thankYou),
             OSlideQuestionsCountView(step: .questionsCount),
             OSlideWhenTakingView(step: .whenTaking),
@@ -61,7 +66,7 @@ final class OnboardingView: UIView {
     }
     
     private lazy var progressCases: [Step] = [
-        .age, .goals, .whenStudy, .modes, .time, .motivation, .improve, .count, .amazing, .thankYou, .questionsCount, .whenTaking
+        .age, .goals, .whenStudy, .modes, .time, .motivation, .improve, .count, .amazing, .testQuestion1, .testQuestion2, .testQuestion3, .testQuestion4, .testQuestion5, .thankYou, .questionsCount, .whenTaking
     ]
 }
 

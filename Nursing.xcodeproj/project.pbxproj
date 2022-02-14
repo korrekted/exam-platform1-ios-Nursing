@@ -293,6 +293,7 @@
 		DE93780227B530B00073F27C /* OSlideAmazingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93780127B530B00073F27C /* OSlideAmazingView.swift */; };
 		DE93780427B535740073F27C /* OSlideThankYouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93780327B535740073F27C /* OSlideThankYouView.swift */; };
 		DE93780627B53BB80073F27C /* OSlideQuestionsCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93780527B53BB80073F27C /* OSlideQuestionsCountView.swift */; };
+		DE93780827BA58AC0073F27C /* OSlideTestQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93780727BA58AC0073F27C /* OSlideTestQuestionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -609,6 +610,7 @@
 		DE93780127B530B00073F27C /* OSlideAmazingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlideAmazingView.swift; sourceTree = "<group>"; };
 		DE93780327B535740073F27C /* OSlideThankYouView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlideThankYouView.swift; sourceTree = "<group>"; };
 		DE93780527B53BB80073F27C /* OSlideQuestionsCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlideQuestionsCountView.swift; sourceTree = "<group>"; };
+		DE93780727BA58AC0073F27C /* OSlideTestQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlideTestQuestionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1708,6 +1710,7 @@
 				DE9376A127ACE9880073F27C /* OSlideImproveView.swift */,
 				DE9376A727ACE9880073F27C /* OSlideCountView.swift */,
 				DE93780127B530B00073F27C /* OSlideAmazingView.swift */,
+				DE93780727BA58AC0073F27C /* OSlideTestQuestionView.swift */,
 				DE93780327B535740073F27C /* OSlideThankYouView.swift */,
 				DE93780527B53BB80073F27C /* OSlideQuestionsCountView.swift */,
 				DE9376A927ACE9880073F27C /* OSlideWhenTakingView.swift */,
@@ -2044,6 +2047,7 @@
 				DE93778627ACE9880073F27C /* MainStatsDescriptionView.swift in Sources */,
 				DE9376CF27ACE9880073F27C /* FacebookManager.swift in Sources */,
 				DE93775427ACE9880073F27C /* QuestionContentCollectionView.swift in Sources */,
+				DE93780827BA58AC0073F27C /* OSlideTestQuestionView.swift in Sources */,
 				DE9376ED27ACE9880073F27C /* GetQotdRequest.swift in Sources */,
 				DE9376D527ACE9880073F27C /* GetMonetizationResponseMapper.swift in Sources */,
 				DE93771E27ACE9880073F27C /* SettingsViewModel.swift in Sources */,
