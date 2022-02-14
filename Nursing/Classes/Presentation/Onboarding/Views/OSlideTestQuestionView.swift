@@ -25,6 +25,13 @@ final class OSlideAmazingView: OSlideView {
 }
 
 // MARK: Make constraints
+extension OSlideAmazingView {
+    func setup(question: Question) {
+        
+    }
+}
+
+// MARK: Make constraints
 private extension OSlideAmazingView {
     func makeConstraints() {
         NSLayoutConstraint.activate([
