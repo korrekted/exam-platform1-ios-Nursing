@@ -7,7 +7,10 @@
 
 import UIKit
 
-final class OSlideTestQuestionView: OSlideView {
+final class OSlideAmazingView: OSlideView {
+    lazy var imageView = makeImageView()
+    lazy var titleLabel = makeTitleLabel()
+    lazy var subTitleLabel = makeSubTitleLabel()
     lazy var button = makeButton()
     
     override init(step: OnboardingView.Step) {
@@ -22,8 +25,26 @@ final class OSlideTestQuestionView: OSlideView {
 }
 
 // MARK: Make constraints
-private extension OSlideTestQuestionView {
+private extension OSlideAmazingView {
     func makeConstraints() {
+        NSLayoutConstraint.activate([
+            imageView.widthAnchor.constraint(equalToConstant: 169.scale),
+            imageView.heightAnchor.constraint(equalToConstant: 171.scale),
+            imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            imageView.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 233.scale : 120.scale)
+        ])
+        
+        NSLayoutConstraint.activate([
+            titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 16.scale)
+        ])
+        
+        NSLayoutConstraint.activate([
+            subTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32.scale),
+            subTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32.scale),
+            subTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20.scale)
+        ])
+        
         NSLayoutConstraint.activate([
             button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 26.scale),
             button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -26.scale),
@@ -34,7 +55,47 @@ private extension OSlideTestQuestionView {
 }
 
 // MARK: Lazy initialization
-private extension OSlideTestQuestionView {
+private extension OSlideAmazingView {
+    func makeImageView() -> UIImageView {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFit
+        view.image = UIImage(named: "Onboarding.Amazing")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
+    func makeTitleLabel() -> UILabel {
+        let attrs = TextAttributes()
+            .textColor(Appearance.blackColor)
+            .font(Fonts.SFProRounded.black(size: 24.scale))
+            .lineHeight(28.8.scale)
+            .textAlignment(.center)
+        
+        let view = UILabel()
+        view.attributedText = "Onboarding.Amazing.Title".localized.attributed(with: attrs)
+        view.numberOfLines = 0
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
+    func makeSubTitleLabel() -> UILabel {
+        let attrs = TextAttributes()
+            .textColor(Appearance.greyColor)
+            .font(Fonts.SFProRounded.semiBold(size: 19.scale))
+            .lineHeight(26.6.scale)
+            .textAlignment(.center)
+        
+        let view = UILabel()
+        view.alpha = 0.8
+        view.attributedText = "Onboarding.Amazing.SubTitle".localized.attributed(with: attrs)
+        view.numberOfLines = 0
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
     func makeButton() -> UIButton {
         let attrs = TextAttributes()
             .textColor(UIColor.white)
