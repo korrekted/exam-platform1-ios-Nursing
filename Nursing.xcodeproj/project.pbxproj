@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F0A49A327BC2C970011B534 /* OQuestionTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0A49A227BC2C970011B534 /* OQuestionTableView.swift */; };
+		0F0A49A827BC2DDE0011B534 /* OAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0A49A727BC2DDE0011B534 /* OAnswerCell.swift */; };
+		0F0A49AB27BC2F670011B534 /* OTestElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0A49AA27BC2F670011B534 /* OTestElement.swift */; };
+		0F17A18927BEC3720088A6F5 /* OQuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F17A18827BEC3720088A6F5 /* OQuestionCell.swift */; };
+		0F3B3B4227BD6C4A00F05935 /* OCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3B3B4127BD6C4A00F05935 /* OCommentCell.swift */; };
+		0F3B3B5827BEB63E00F05935 /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3B3B5727BEB63E00F05935 /* BubbleView.swift */; };
+		0F3B3B5A27BEB73300F05935 /* OExplanationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3B3B5927BEB73300F05935 /* OExplanationCell.swift */; };
 		95A0D10A3FF5DF8ADD207AAB /* Pods_Nursing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D58953997718D4A60C1FB4B /* Pods_Nursing.framework */; };
 		962AEA7125B4F8090032E7C3 /* SF-Pro-Rounded-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 962AEA6E25B4F8090032E7C3 /* SF-Pro-Rounded-Bold.otf */; };
 		962AEA7225B4F8090032E7C3 /* SF-Pro-Rounded-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 962AEA6F25B4F8090032E7C3 /* SF-Pro-Rounded-Regular.otf */; };
@@ -321,6 +328,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0F0A49A227BC2C970011B534 /* OQuestionTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OQuestionTableView.swift; sourceTree = "<group>"; };
+		0F0A49A727BC2DDE0011B534 /* OAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAnswerCell.swift; sourceTree = "<group>"; };
+		0F0A49AA27BC2F670011B534 /* OTestElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTestElement.swift; sourceTree = "<group>"; };
+		0F17A18827BEC3720088A6F5 /* OQuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OQuestionCell.swift; sourceTree = "<group>"; };
+		0F3B3B4127BD6C4A00F05935 /* OCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCommentCell.swift; sourceTree = "<group>"; };
+		0F3B3B5727BEB63E00F05935 /* BubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
+		0F3B3B5927BEB73300F05935 /* OExplanationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OExplanationCell.swift; sourceTree = "<group>"; };
 		6071E190F9A489E4A58040FD /* Pods-Nursing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nursing.debug.xcconfig"; path = "Target Support Files/Pods-Nursing/Pods-Nursing.debug.xcconfig"; sourceTree = "<group>"; };
 		8D58953997718D4A60C1FB4B /* Pods_Nursing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nursing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		962AEA6E25B4F8090032E7C3 /* SF-Pro-Rounded-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Bold.otf"; sourceTree = "<group>"; };
@@ -634,6 +648,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F0A49A127BC2C200011B534 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				0F3B3B5627BEB62100F05935 /* View */,
+				0F0A49A927BC2F590011B534 /* Models */,
+				0F0A49A427BC2CB20011B534 /* Cells */,
+				0F0A49A227BC2C970011B534 /* OQuestionTableView.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		0F0A49A427BC2CB20011B534 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				0F0A49A727BC2DDE0011B534 /* OAnswerCell.swift */,
+				0F3B3B4127BD6C4A00F05935 /* OCommentCell.swift */,
+				0F3B3B5927BEB73300F05935 /* OExplanationCell.swift */,
+				0F17A18827BEC3720088A6F5 /* OQuestionCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		0F0A49A927BC2F590011B534 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0F0A49AA27BC2F670011B534 /* OTestElement.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0F3B3B5627BEB62100F05935 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0F3B3B5727BEB63E00F05935 /* BubbleView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		7C02C294487E230745201187 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1696,6 +1748,7 @@
 		DE93768A27ACE9880073F27C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0F0A49A127BC2C200011B534 /* TableView */,
 				DE93768C27ACE9880073F27C /* Atoms */,
 				DE9376A227ACE9880073F27C /* OSlideView.swift */,
 				DE9377EF27B160430073F27C /* OSlideExperienceView.swift */,
@@ -2042,6 +2095,7 @@
 				DE9376C027ACE9880073F27C /* NursingNavigationController.swift in Sources */,
 				DE93773827ACE9880073F27C /* StudyCollectionView.swift in Sources */,
 				DE9377FC27B4CE890073F27C /* OAgeButton.swift in Sources */,
+				0F0A49AB27BC2F670011B534 /* OTestElement.swift in Sources */,
 				DE9376F127ACE9880073F27C /* QuestionManager.swift in Sources */,
 				DE93775727ACE9880073F27C /* AVPlayerView.swift in Sources */,
 				DE93778627ACE9880073F27C /* MainStatsDescriptionView.swift in Sources */,
@@ -2094,6 +2148,7 @@
 				DE93771B27ACE9880073F27C /* SessionManagerCore.swift in Sources */,
 				DE93779E27ACE9880073F27C /* OSlidePreloaderView.swift in Sources */,
 				DE93770127ACE9880073F27C /* TestMode.swift in Sources */,
+				0F0A49A327BC2C970011B534 /* OQuestionTableView.swift in Sources */,
 				DE93770B27ACE9880073F27C /* IAPManager.swift in Sources */,
 				DE9376F527ACE9880073F27C /* Reference.swift in Sources */,
 				DE93777027ACE9880073F27C /* TestStatsView.swift in Sources */,
@@ -2146,6 +2201,7 @@
 				DE93773327ACE9880073F27C /* SCUnlockQuestionsCell.swift in Sources */,
 				DE93770427ACE9880073F27C /* LoginRequest.swift in Sources */,
 				DE9376FD27ACE9880073F27C /* GetCourcesResponseMapper.swift in Sources */,
+				0F17A18927BEC3720088A6F5 /* OQuestionCell.swift in Sources */,
 				DE9376B027ACE9880073F27C /* RestApiTransportExtension.swift in Sources */,
 				DE9376FC27ACE9880073F27C /* GetSelectedCourseRequest.swift in Sources */,
 				DE93775A27ACE9880073F27C /* PaygateInteractor.swift in Sources */,
@@ -2154,6 +2210,7 @@
 				DE9376F327ACE9880073F27C /* QuestionManagerCore.swift in Sources */,
 				DE9376FA27ACE9880073F27C /* SetSelectCourseRequest.swift in Sources */,
 				DE9376E927ACE9880073F27C /* SendAnswerResponseMapper.swift in Sources */,
+				0F3B3B4227BD6C4A00F05935 /* OCommentCell.swift in Sources */,
 				DE93774F27ACE9880073F27C /* QuestionContentType.swift in Sources */,
 				DE9376B827ACE9880073F27C /* TextAttributes.swift in Sources */,
 				DE93773527ACE9880073F27C /* SCBriefDayView.swift in Sources */,
@@ -2198,6 +2255,8 @@
 				DE9376CB27ACE9880073F27C /* Appearance.swift in Sources */,
 				DE93770527ACE9880073F27C /* SyncTokensRequest.swift in Sources */,
 				DE93772427ACE9880073F27C /* STReferencesCell.swift in Sources */,
+				0F3B3B5827BEB63E00F05935 /* BubbleView.swift in Sources */,
+				0F3B3B5A27BEB73300F05935 /* OExplanationCell.swift in Sources */,
 				DE9376E227ACE9880073F27C /* GetTestStatsResponseMapper.swift in Sources */,
 				DE93772D27ACE9880073F27C /* SplashView.swift in Sources */,
 				DE93771C27ACE9880073F27C /* SessionManager.swift in Sources */,
@@ -2215,6 +2274,7 @@
 				DE9376EE27ACE9880073F27C /* SendAnswerRequest.swift in Sources */,
 				DE9376BD27ACE9880073F27C /* Weak.swift in Sources */,
 				DE93771D27ACE9880073F27C /* SettingsView.swift in Sources */,
+				0F0A49A827BC2DDE0011B534 /* OAnswerCell.swift in Sources */,
 				DE9376F627ACE9880073F27C /* Course.swift in Sources */,
 				DE93774527ACE9880073F27C /* AnswersCell.swift in Sources */,
 				DE93777C27ACE9880073F27C /* MainStatsElement.swift in Sources */,

@@ -122,6 +122,9 @@
 "Onboarding.SlidePreloader.Feedback" = "“This is literally the Swiss Army Knife of Nursing. It's got it all and it is presented in a user-friendly and intuitive way. This is a great study tool that you can use and reference. A must have for everyone!”";
 "Onboarding.Push.Title" = "Stay on track";
 "Onboarding.Push.SubTitle" = "To help you reach your goal we can send\nuseful reminders on a daily basis.";
+"Onboarding.OSlideTestQuestion.Great" = "Great!";
+"Onboarding.OSlideTestQuestion.CorrectAnswer" = "Correct answer:";
+"Onboarding.OSlideTestQuestion.Explanation" = "Explanation: ";
 
 // MARK: Courses
 "Courses.Title" = "Where would you\nwant to improve?";
