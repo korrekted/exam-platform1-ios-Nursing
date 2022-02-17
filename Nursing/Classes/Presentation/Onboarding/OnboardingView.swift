@@ -26,6 +26,12 @@ final class OnboardingView: UIView {
     lazy var progressView = makeProgressView()
     lazy var previousButton = makePreviousButton()
     
+    lazy var test1View = OSlideTestQuestionView(step: .testQuestion1)
+    lazy var test2View = OSlideTestQuestionView(step: .testQuestion2)
+    lazy var test3View = OSlideTestQuestionView(step: .testQuestion3)
+    lazy var test4View = OSlideTestQuestionView(step: .testQuestion4)
+    lazy var test5View = OSlideTestQuestionView(step: .testQuestion5)
+    
     private lazy var contentViews: [OSlideView] = {
         [
             OSlideExperienceView(step: .experience),
@@ -40,11 +46,11 @@ final class OnboardingView: UIView {
             OSlideImproveView(step: .improve),
             OSlideCountView(step: .count),
             OSlideAmazingView(step: .amazing),
-            OSlideTestQuestionView(step: .testQuestion1),
-            OSlideTestQuestionView(step: .testQuestion2),
-            OSlideTestQuestionView(step: .testQuestion3),
-            OSlideTestQuestionView(step: .testQuestion4),
-            OSlideTestQuestionView(step: .testQuestion5),
+            test1View,
+            test2View,
+            test3View,
+            test4View,
+            test5View,
             OSlideThankYouView(step: .thankYou),
             OSlideQuestionsCountView(step: .questionsCount),
             OSlideWhenTakingView(step: .whenTaking),
