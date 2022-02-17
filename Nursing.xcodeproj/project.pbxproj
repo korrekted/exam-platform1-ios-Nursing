@@ -301,6 +301,7 @@
 		DE93780427B535740073F27C /* OSlideThankYouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93780327B535740073F27C /* OSlideThankYouView.swift */; };
 		DE93780627B53BB80073F27C /* OSlideQuestionsCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93780527B53BB80073F27C /* OSlideQuestionsCountView.swift */; };
 		DE93780827BA58AC0073F27C /* OSlideTestQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93780727BA58AC0073F27C /* OSlideTestQuestionView.swift */; };
+		DE93781627BE52930073F27C /* GetOnboardingSetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93781527BE52930073F27C /* GetOnboardingSetRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -625,6 +626,7 @@
 		DE93780327B535740073F27C /* OSlideThankYouView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlideThankYouView.swift; sourceTree = "<group>"; };
 		DE93780527B53BB80073F27C /* OSlideQuestionsCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlideQuestionsCountView.swift; sourceTree = "<group>"; };
 		DE93780727BA58AC0073F27C /* OSlideTestQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlideTestQuestionView.swift; sourceTree = "<group>"; };
+		DE93781527BE52930073F27C /* GetOnboardingSetRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOnboardingSetRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1081,6 +1083,7 @@
 				DE9375AF27ACE9880073F27C /* SendAnswerRequest.swift */,
 				DE9375B027ACE9880073F27C /* GetTestRequest.swift */,
 				DE9375B127ACE9880073F27C /* GetTenSetRequest.swift */,
+				DE93781527BE52930073F27C /* GetOnboardingSetRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -2158,6 +2161,7 @@
 				DE93771227ACE9880073F27C /* Stats.swift in Sources */,
 				DE9377A127ACE9880073F27C /* OSlideCountView.swift in Sources */,
 				DE93776527ACE9880073F27C /* TestStatsFilterCell.swift in Sources */,
+				DE93781627BE52930073F27C /* GetOnboardingSetRequest.swift in Sources */,
 				DE9376C327ACE9880073F27C /* PaddingLabel.swift in Sources */,
 				DE93773A27ACE9880073F27C /* CourseViewController.swift in Sources */,
 				DE9376DA27ACE9880073F27C /* PaygateMainOffer.swift in Sources */,
