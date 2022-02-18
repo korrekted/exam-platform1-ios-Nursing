@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F0A49A327BC2C970011B534 /* OQuestionTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0A49A227BC2C970011B534 /* OQuestionTableView.swift */; };
+		0F0A49A827BC2DDE0011B534 /* OAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0A49A727BC2DDE0011B534 /* OAnswerCell.swift */; };
+		0F0A49AB27BC2F670011B534 /* OTestElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0A49AA27BC2F670011B534 /* OTestElement.swift */; };
+		0F17A18927BEC3720088A6F5 /* OQuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F17A18827BEC3720088A6F5 /* OQuestionCell.swift */; };
+		0F3B3B4227BD6C4A00F05935 /* OCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3B3B4127BD6C4A00F05935 /* OCommentCell.swift */; };
+		0F3B3B5827BEB63E00F05935 /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3B3B5727BEB63E00F05935 /* BubbleView.swift */; };
+		0F3B3B5A27BEB73300F05935 /* OExplanationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3B3B5927BEB73300F05935 /* OExplanationCell.swift */; };
 		95A0D10A3FF5DF8ADD207AAB /* Pods_Nursing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D58953997718D4A60C1FB4B /* Pods_Nursing.framework */; };
 		962AEA7125B4F8090032E7C3 /* SF-Pro-Rounded-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 962AEA6E25B4F8090032E7C3 /* SF-Pro-Rounded-Bold.otf */; };
 		962AEA7225B4F8090032E7C3 /* SF-Pro-Rounded-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 962AEA6F25B4F8090032E7C3 /* SF-Pro-Rounded-Regular.otf */; };
@@ -265,20 +272,16 @@
 		DE93779427ACE9880073F27C /* WelcomeSlide3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93769A27ACE9880073F27C /* WelcomeSlide3View.swift */; };
 		DE93779527ACE9880073F27C /* WelcomeSlide2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93769B27ACE9880073F27C /* WelcomeSlide2View.swift */; };
 		DE93779627ACE9880073F27C /* OSlidePlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93769C27ACE9880073F27C /* OSlidePlanCell.swift */; };
-		DE93779727ACE9880073F27C /* OSlideGoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93769D27ACE9880073F27C /* OSlideGoalCell.swift */; };
 		DE93779827ACE9880073F27C /* OTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93769E27ACE9880073F27C /* OTimeCell.swift */; };
-		DE93779927ACE9880073F27C /* OSlideReferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93769F27ACE9880073F27C /* OSlideReferencesView.swift */; };
 		DE93779A27ACE9880073F27C /* OPushView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9376A027ACE9880073F27C /* OPushView.swift */; };
 		DE93779B27ACE9880073F27C /* OSlideImproveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9376A127ACE9880073F27C /* OSlideImproveView.swift */; };
 		DE93779C27ACE9880073F27C /* OSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9376A227ACE9880073F27C /* OSlideView.swift */; };
 		DE93779D27ACE9880073F27C /* OSlideGoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9376A327ACE9880073F27C /* OSlideGoalsView.swift */; };
 		DE93779E27ACE9880073F27C /* OSlidePreloaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9376A427ACE9880073F27C /* OSlidePreloaderView.swift */; };
 		DE93779F27ACE9880073F27C /* OSlideWhenStudyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9376A527ACE9880073F27C /* OSlideWhenStudyView.swift */; };
-		DE9377A027ACE9880073F27C /* OSlidePlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9376A627ACE9880073F27C /* OSlidePlanView.swift */; };
 		DE9377A127ACE9880073F27C /* OSlideCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9376A727ACE9880073F27C /* OSlideCountView.swift */; };
 		DE9377A227ACE9880073F27C /* OSlideModesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9376A827ACE9880073F27C /* OSlideModesView.swift */; };
 		DE9377A327ACE9880073F27C /* OSlideWhenTakingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9376A927ACE9880073F27C /* OSlideWhenTakingView.swift */; };
-		DE9377A427ACE9880073F27C /* OSlideWidgetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9376AA27ACE9880073F27C /* OSlideWidgetsView.swift */; };
 		DE9377A527ACE9880073F27C /* OSlideTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9376AB27ACE9880073F27C /* OSlideTimeView.swift */; };
 		DE9377A627ACE9880073F27C /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9376AC27ACE9880073F27C /* OnboardingView.swift */; };
 		DE9377A727ACE9880073F27C /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9376AD27ACE9880073F27C /* OnboardingViewModel.swift */; };
@@ -286,6 +289,19 @@
 		DE9377AA27ACE9F80073F27C /* Scalable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93756427ACE9880073F27C /* Scalable.swift */; };
 		DE9377AB27ACEA020073F27C /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375E727ACE9880073F27C /* Stats.swift */; };
 		DE9377AC27ACEA090073F27C /* StatsShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375F127ACE9880073F27C /* StatsShareManager.swift */; };
+		DE9377F027B160430073F27C /* OSlideExperienceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9377EF27B160430073F27C /* OSlideExperienceView.swift */; };
+		DE9377F227B1621B0073F27C /* OExperienceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9377F127B1621B0073F27C /* OExperienceCell.swift */; };
+		DE9377F627B16C7E0073F27C /* SF-Pro-Rounded-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE9377F527B16C730073F27C /* SF-Pro-Rounded-Black.otf */; };
+		DE9377F827B2EA3A0073F27C /* WelcomeSlide3CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9377F727B2EA3A0073F27C /* WelcomeSlide3CellView.swift */; };
+		DE9377FA27B4CB110073F27C /* OSlideQuickQuestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9377F927B4CB110073F27C /* OSlideQuickQuestionsView.swift */; };
+		DE9377FC27B4CE890073F27C /* OAgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9377FB27B4CE890073F27C /* OAgeButton.swift */; };
+		DE9377FE27B4CF4F0073F27C /* OSlideAgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9377FD27B4CF4F0073F27C /* OSlideAgeView.swift */; };
+		DE93780027B505990073F27C /* OSlideMotivationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9377FF27B505980073F27C /* OSlideMotivationView.swift */; };
+		DE93780227B530B00073F27C /* OSlideAmazingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93780127B530B00073F27C /* OSlideAmazingView.swift */; };
+		DE93780427B535740073F27C /* OSlideThankYouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93780327B535740073F27C /* OSlideThankYouView.swift */; };
+		DE93780627B53BB80073F27C /* OSlideQuestionsCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93780527B53BB80073F27C /* OSlideQuestionsCountView.swift */; };
+		DE93780827BA58AC0073F27C /* OSlideTestQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93780727BA58AC0073F27C /* OSlideTestQuestionView.swift */; };
+		DE93781627BE52930073F27C /* GetOnboardingSetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93781527BE52930073F27C /* GetOnboardingSetRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -313,6 +329,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0F0A49A227BC2C970011B534 /* OQuestionTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OQuestionTableView.swift; sourceTree = "<group>"; };
+		0F0A49A727BC2DDE0011B534 /* OAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAnswerCell.swift; sourceTree = "<group>"; };
+		0F0A49AA27BC2F670011B534 /* OTestElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTestElement.swift; sourceTree = "<group>"; };
+		0F17A18827BEC3720088A6F5 /* OQuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OQuestionCell.swift; sourceTree = "<group>"; };
+		0F3B3B4127BD6C4A00F05935 /* OCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCommentCell.swift; sourceTree = "<group>"; };
+		0F3B3B5727BEB63E00F05935 /* BubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
+		0F3B3B5927BEB73300F05935 /* OExplanationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OExplanationCell.swift; sourceTree = "<group>"; };
 		6071E190F9A489E4A58040FD /* Pods-Nursing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nursing.debug.xcconfig"; path = "Target Support Files/Pods-Nursing/Pods-Nursing.debug.xcconfig"; sourceTree = "<group>"; };
 		8D58953997718D4A60C1FB4B /* Pods_Nursing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nursing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		962AEA6E25B4F8090032E7C3 /* SF-Pro-Rounded-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Bold.otf"; sourceTree = "<group>"; };
@@ -577,24 +600,33 @@
 		DE93769A27ACE9880073F27C /* WelcomeSlide3View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeSlide3View.swift; sourceTree = "<group>"; };
 		DE93769B27ACE9880073F27C /* WelcomeSlide2View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeSlide2View.swift; sourceTree = "<group>"; };
 		DE93769C27ACE9880073F27C /* OSlidePlanCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSlidePlanCell.swift; sourceTree = "<group>"; };
-		DE93769D27ACE9880073F27C /* OSlideGoalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSlideGoalCell.swift; sourceTree = "<group>"; };
 		DE93769E27ACE9880073F27C /* OTimeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTimeCell.swift; sourceTree = "<group>"; };
-		DE93769F27ACE9880073F27C /* OSlideReferencesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSlideReferencesView.swift; sourceTree = "<group>"; };
 		DE9376A027ACE9880073F27C /* OPushView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OPushView.swift; sourceTree = "<group>"; };
 		DE9376A127ACE9880073F27C /* OSlideImproveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSlideImproveView.swift; sourceTree = "<group>"; };
 		DE9376A227ACE9880073F27C /* OSlideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSlideView.swift; sourceTree = "<group>"; };
 		DE9376A327ACE9880073F27C /* OSlideGoalsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSlideGoalsView.swift; sourceTree = "<group>"; };
 		DE9376A427ACE9880073F27C /* OSlidePreloaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSlidePreloaderView.swift; sourceTree = "<group>"; };
 		DE9376A527ACE9880073F27C /* OSlideWhenStudyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSlideWhenStudyView.swift; sourceTree = "<group>"; };
-		DE9376A627ACE9880073F27C /* OSlidePlanView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSlidePlanView.swift; sourceTree = "<group>"; };
 		DE9376A727ACE9880073F27C /* OSlideCountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSlideCountView.swift; sourceTree = "<group>"; };
 		DE9376A827ACE9880073F27C /* OSlideModesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSlideModesView.swift; sourceTree = "<group>"; };
 		DE9376A927ACE9880073F27C /* OSlideWhenTakingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSlideWhenTakingView.swift; sourceTree = "<group>"; };
-		DE9376AA27ACE9880073F27C /* OSlideWidgetsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSlideWidgetsView.swift; sourceTree = "<group>"; };
 		DE9376AB27ACE9880073F27C /* OSlideTimeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSlideTimeView.swift; sourceTree = "<group>"; };
 		DE9376AC27ACE9880073F27C /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		DE9376AD27ACE9880073F27C /* OnboardingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		DE9377A827ACE9AC0073F27C /* Nursing-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nursing-Bridging-Header.h"; sourceTree = "<group>"; };
+		DE9377EF27B160430073F27C /* OSlideExperienceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlideExperienceView.swift; sourceTree = "<group>"; };
+		DE9377F127B1621B0073F27C /* OExperienceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OExperienceCell.swift; sourceTree = "<group>"; };
+		DE9377F527B16C730073F27C /* SF-Pro-Rounded-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Black.otf"; sourceTree = "<group>"; };
+		DE9377F727B2EA3A0073F27C /* WelcomeSlide3CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSlide3CellView.swift; sourceTree = "<group>"; };
+		DE9377F927B4CB110073F27C /* OSlideQuickQuestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlideQuickQuestionsView.swift; sourceTree = "<group>"; };
+		DE9377FB27B4CE890073F27C /* OAgeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAgeButton.swift; sourceTree = "<group>"; };
+		DE9377FD27B4CF4F0073F27C /* OSlideAgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlideAgeView.swift; sourceTree = "<group>"; };
+		DE9377FF27B505980073F27C /* OSlideMotivationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlideMotivationView.swift; sourceTree = "<group>"; };
+		DE93780127B530B00073F27C /* OSlideAmazingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlideAmazingView.swift; sourceTree = "<group>"; };
+		DE93780327B535740073F27C /* OSlideThankYouView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlideThankYouView.swift; sourceTree = "<group>"; };
+		DE93780527B53BB80073F27C /* OSlideQuestionsCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlideQuestionsCountView.swift; sourceTree = "<group>"; };
+		DE93780727BA58AC0073F27C /* OSlideTestQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlideTestQuestionView.swift; sourceTree = "<group>"; };
+		DE93781527BE52930073F27C /* GetOnboardingSetRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOnboardingSetRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -618,6 +650,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F0A49A127BC2C200011B534 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				0F3B3B5627BEB62100F05935 /* View */,
+				0F0A49A927BC2F590011B534 /* Models */,
+				0F0A49A427BC2CB20011B534 /* Cells */,
+				0F0A49A227BC2C970011B534 /* OQuestionTableView.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		0F0A49A427BC2CB20011B534 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				0F0A49A727BC2DDE0011B534 /* OAnswerCell.swift */,
+				0F3B3B4127BD6C4A00F05935 /* OCommentCell.swift */,
+				0F3B3B5927BEB73300F05935 /* OExplanationCell.swift */,
+				0F17A18827BEC3720088A6F5 /* OQuestionCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		0F0A49A927BC2F590011B534 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0F0A49AA27BC2F670011B534 /* OTestElement.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0F3B3B5627BEB62100F05935 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0F3B3B5727BEB63E00F05935 /* BubbleView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		7C02C294487E230745201187 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -744,6 +814,7 @@
 		96D38B1925B3055E00EADC9A /* SFProRounded */ = {
 			isa = PBXGroup;
 			children = (
+				DE9377F527B16C730073F27C /* SF-Pro-Rounded-Black.otf */,
 				962AEA6E25B4F8090032E7C3 /* SF-Pro-Rounded-Bold.otf */,
 				962AEA6F25B4F8090032E7C3 /* SF-Pro-Rounded-Regular.otf */,
 				962AEA7025B4F8090032E7C3 /* SF-Pro-Rounded-Semibold.otf */,
@@ -1012,6 +1083,7 @@
 				DE9375AF27ACE9880073F27C /* SendAnswerRequest.swift */,
 				DE9375B027ACE9880073F27C /* GetTestRequest.swift */,
 				DE9375B127ACE9880073F27C /* GetTenSetRequest.swift */,
+				DE93781527BE52930073F27C /* GetOnboardingSetRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -1668,8 +1740,8 @@
 		DE93768827ACE9880073F27C /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				DE93768927ACE9880073F27C /* OnboardingViewController.swift */,
 				DE93768A27ACE9880073F27C /* Views */,
+				DE93768927ACE9880073F27C /* OnboardingViewController.swift */,
 				DE9376AC27ACE9880073F27C /* OnboardingView.swift */,
 				DE9376AD27ACE9880073F27C /* OnboardingViewModel.swift */,
 			);
@@ -1679,21 +1751,27 @@
 		DE93768A27ACE9880073F27C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				DE93768B27ACE9880073F27C /* OSlideWelcomeView.swift */,
+				0F0A49A127BC2C200011B534 /* TableView */,
 				DE93768C27ACE9880073F27C /* Atoms */,
-				DE93769F27ACE9880073F27C /* OSlideReferencesView.swift */,
-				DE9376A027ACE9880073F27C /* OPushView.swift */,
-				DE9376A127ACE9880073F27C /* OSlideImproveView.swift */,
 				DE9376A227ACE9880073F27C /* OSlideView.swift */,
+				DE9377EF27B160430073F27C /* OSlideExperienceView.swift */,
+				DE93768B27ACE9880073F27C /* OSlideWelcomeView.swift */,
+				DE9377F927B4CB110073F27C /* OSlideQuickQuestionsView.swift */,
+				DE9377FD27B4CF4F0073F27C /* OSlideAgeView.swift */,
 				DE9376A327ACE9880073F27C /* OSlideGoalsView.swift */,
-				DE9376A427ACE9880073F27C /* OSlidePreloaderView.swift */,
 				DE9376A527ACE9880073F27C /* OSlideWhenStudyView.swift */,
-				DE9376A627ACE9880073F27C /* OSlidePlanView.swift */,
-				DE9376A727ACE9880073F27C /* OSlideCountView.swift */,
 				DE9376A827ACE9880073F27C /* OSlideModesView.swift */,
-				DE9376A927ACE9880073F27C /* OSlideWhenTakingView.swift */,
-				DE9376AA27ACE9880073F27C /* OSlideWidgetsView.swift */,
 				DE9376AB27ACE9880073F27C /* OSlideTimeView.swift */,
+				DE9377FF27B505980073F27C /* OSlideMotivationView.swift */,
+				DE9376A127ACE9880073F27C /* OSlideImproveView.swift */,
+				DE9376A727ACE9880073F27C /* OSlideCountView.swift */,
+				DE93780127B530B00073F27C /* OSlideAmazingView.swift */,
+				DE93780727BA58AC0073F27C /* OSlideTestQuestionView.swift */,
+				DE93780327B535740073F27C /* OSlideThankYouView.swift */,
+				DE93780527B53BB80073F27C /* OSlideQuestionsCountView.swift */,
+				DE9376A927ACE9880073F27C /* OSlideWhenTakingView.swift */,
+				DE9376A427ACE9880073F27C /* OSlidePreloaderView.swift */,
+				DE9376A027ACE9880073F27C /* OPushView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1701,17 +1779,18 @@
 		DE93768C27ACE9880073F27C /* Atoms */ = {
 			isa = PBXGroup;
 			children = (
+				DE93769727ACE9880073F27C /* Welcome */,
+				DE93769127ACE9880073F27C /* References */,
+				DE93769427ACE9880073F27C /* Source */,
 				DE93768D27ACE9880073F27C /* OStepView.swift */,
 				DE93768E27ACE9880073F27C /* OProgressView.swift */,
 				DE93768F27ACE9880073F27C /* OModeCell.swift */,
 				DE93769027ACE9880073F27C /* OImproveCell.swift */,
-				DE93769127ACE9880073F27C /* References */,
-				DE93769427ACE9880073F27C /* Source */,
 				DE93769627ACE9880073F27C /* OWhenStudyCell.swift */,
-				DE93769727ACE9880073F27C /* Welcome */,
 				DE93769C27ACE9880073F27C /* OSlidePlanCell.swift */,
-				DE93769D27ACE9880073F27C /* OSlideGoalCell.swift */,
 				DE93769E27ACE9880073F27C /* OTimeCell.swift */,
+				DE9377F127B1621B0073F27C /* OExperienceCell.swift */,
+				DE9377FB27B4CE890073F27C /* OAgeButton.swift */,
 			);
 			path = Atoms;
 			sourceTree = "<group>";
@@ -1736,10 +1815,11 @@
 		DE93769727ACE9880073F27C /* Welcome */ = {
 			isa = PBXGroup;
 			children = (
-				DE93769827ACE9880073F27C /* WelcomeSlide1View.swift */,
 				DE93769927ACE9880073F27C /* WelcomeSlideIndicatorView.swift */,
-				DE93769A27ACE9880073F27C /* WelcomeSlide3View.swift */,
+				DE93769827ACE9880073F27C /* WelcomeSlide1View.swift */,
 				DE93769B27ACE9880073F27C /* WelcomeSlide2View.swift */,
+				DE93769A27ACE9880073F27C /* WelcomeSlide3View.swift */,
+				DE9377F727B2EA3A0073F27C /* WelcomeSlide3CellView.swift */,
 			);
 			path = Welcome;
 			sourceTree = "<group>";
@@ -1846,6 +1926,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE9377F627B16C7E0073F27C /* SF-Pro-Rounded-Black.otf in Resources */,
 				DE93779027ACE9880073F27C /* Onboarding.Chart.json in Resources */,
 				96F4560426579AE800B63D53 /* GoogleService-Info.plist in Resources */,
 				96D38B2825B3073900EADC9A /* Localizable.strings in Resources */,
@@ -1968,13 +2049,14 @@
 				DE93779227ACE9880073F27C /* WelcomeSlide1View.swift in Sources */,
 				DE9376EA27ACE9880073F27C /* GetTestConfigRequest.swift in Sources */,
 				DE93773027ACE9880073F27C /* SCTitleCell.swift in Sources */,
+				DE93780227B530B00073F27C /* OSlideAmazingView.swift in Sources */,
 				DE93771827ACE9880073F27C /* StatsManager.swift in Sources */,
 				DE93773927ACE9880073F27C /* StudyView.swift in Sources */,
 				DE9376B627ACE9880073F27C /* Scalable.swift in Sources */,
 				DE93777127ACE9880073F27C /* CoursesView.swift in Sources */,
 				DE93770C27ACE9880073F27C /* PurchaseValidationObserver.swift in Sources */,
 				DE93779827ACE9880073F27C /* OTimeCell.swift in Sources */,
-				DE9377A027ACE9880073F27C /* OSlidePlanView.swift in Sources */,
+				DE9377F027B160430073F27C /* OSlideExperienceView.swift in Sources */,
 				DE93770927ACE9880073F27C /* ProfileMediatorDelegate.swift in Sources */,
 				DE9376EB27ACE9880073F27C /* GetFailedSetRequest.swift in Sources */,
 				DE9376C927ACE9880073F27C /* RxActivityIndicator.swift in Sources */,
@@ -1993,6 +2075,7 @@
 				DE93777E27ACE9880073F27C /* StatsView.swift in Sources */,
 				DE9376F427ACE9880073F27C /* QuestionManagerDelagate.swift in Sources */,
 				DE93775C27ACE9880073F27C /* PaygateViewController.swift in Sources */,
+				DE9377F227B1621B0073F27C /* OExperienceCell.swift in Sources */,
 				DE9376D827ACE9880073F27C /* ProductPrice.swift in Sources */,
 				DE93777327ACE9880073F27C /* CoursesViewController.swift in Sources */,
 				DE93772327ACE9880073F27C /* STCourseCell.swift in Sources */,
@@ -2000,7 +2083,6 @@
 				DE93770827ACE9880073F27C /* SetRequest.swift in Sources */,
 				DE93770627ACE9880073F27C /* GetTestModeResponseMapper.swift in Sources */,
 				DE93774E27ACE9880073F27C /* TestAnalytics.swift in Sources */,
-				DE9377A427ACE9880073F27C /* OSlideWidgetsView.swift in Sources */,
 				DE93779327ACE9880073F27C /* WelcomeSlideIndicatorView.swift in Sources */,
 				DE93771627ACE9880073F27C /* GetStatsRequest.swift in Sources */,
 				DE93770E27ACE9880073F27C /* IAPProduct.swift in Sources */,
@@ -2015,11 +2097,14 @@
 				DE9376B427ACE9880073F27C /* StringExtension.swift in Sources */,
 				DE9376C027ACE9880073F27C /* NursingNavigationController.swift in Sources */,
 				DE93773827ACE9880073F27C /* StudyCollectionView.swift in Sources */,
+				DE9377FC27B4CE890073F27C /* OAgeButton.swift in Sources */,
+				0F0A49AB27BC2F670011B534 /* OTestElement.swift in Sources */,
 				DE9376F127ACE9880073F27C /* QuestionManager.swift in Sources */,
 				DE93775727ACE9880073F27C /* AVPlayerView.swift in Sources */,
 				DE93778627ACE9880073F27C /* MainStatsDescriptionView.swift in Sources */,
 				DE9376CF27ACE9880073F27C /* FacebookManager.swift in Sources */,
 				DE93775427ACE9880073F27C /* QuestionContentCollectionView.swift in Sources */,
+				DE93780827BA58AC0073F27C /* OSlideTestQuestionView.swift in Sources */,
 				DE9376ED27ACE9880073F27C /* GetQotdRequest.swift in Sources */,
 				DE9376D527ACE9880073F27C /* GetMonetizationResponseMapper.swift in Sources */,
 				DE93771E27ACE9880073F27C /* SettingsViewModel.swift in Sources */,
@@ -2031,6 +2116,7 @@
 				DE9376B227ACE9880073F27C /* UIDeviceExtension.swift in Sources */,
 				DE93778C27ACE9880073F27C /* OModeCell.swift in Sources */,
 				DE93776327ACE9880073F27C /* TestStatsProgressCell.swift in Sources */,
+				DE9377F827B2EA3A0073F27C /* WelcomeSlide3CellView.swift in Sources */,
 				DE93773D27ACE9880073F27C /* TabItemView.swift in Sources */,
 				DE9376E327ACE9880073F27C /* TestStatsManagerCore.swift in Sources */,
 				DE93778B27ACE9880073F27C /* OProgressView.swift in Sources */,
@@ -2065,6 +2151,7 @@
 				DE93771B27ACE9880073F27C /* SessionManagerCore.swift in Sources */,
 				DE93779E27ACE9880073F27C /* OSlidePreloaderView.swift in Sources */,
 				DE93770127ACE9880073F27C /* TestMode.swift in Sources */,
+				0F0A49A327BC2C970011B534 /* OQuestionTableView.swift in Sources */,
 				DE93770B27ACE9880073F27C /* IAPManager.swift in Sources */,
 				DE9376F527ACE9880073F27C /* Reference.swift in Sources */,
 				DE93777027ACE9880073F27C /* TestStatsView.swift in Sources */,
@@ -2074,6 +2161,7 @@
 				DE93771227ACE9880073F27C /* Stats.swift in Sources */,
 				DE9377A127ACE9880073F27C /* OSlideCountView.swift in Sources */,
 				DE93776527ACE9880073F27C /* TestStatsFilterCell.swift in Sources */,
+				DE93781627BE52930073F27C /* GetOnboardingSetRequest.swift in Sources */,
 				DE9376C327ACE9880073F27C /* PaddingLabel.swift in Sources */,
 				DE93773A27ACE9880073F27C /* CourseViewController.swift in Sources */,
 				DE9376DA27ACE9880073F27C /* PaygateMainOffer.swift in Sources */,
@@ -2083,6 +2171,8 @@
 				DE93774C27ACE9880073F27C /* TestingCellType.swift in Sources */,
 				DE93774327ACE9880073F27C /* QuestionCollectionCell.swift in Sources */,
 				DE93775527ACE9880073F27C /* AnswerView.swift in Sources */,
+				DE93780627B53BB80073F27C /* OSlideQuestionsCountView.swift in Sources */,
+				DE9377FE27B4CF4F0073F27C /* OSlideAgeView.swift in Sources */,
 				DE93771327ACE9880073F27C /* GetBriefRequest.swift in Sources */,
 				DE93776D27ACE9880073F27C /* TestStatsTableView.swift in Sources */,
 				DE93777727ACE9880073F27C /* PhotoViewController.swift in Sources */,
@@ -2090,6 +2180,7 @@
 				DE93778127ACE9880073F27C /* MainRateCell.swift in Sources */,
 				DE93779127ACE9880073F27C /* OWhenStudyCell.swift in Sources */,
 				DE93775027ACE9880073F27C /* TestElement.swift in Sources */,
+				DE9377FA27B4CB110073F27C /* OSlideQuickQuestionsView.swift in Sources */,
 				DE9376CE27ACE9880073F27C /* FirebaseManager.swift in Sources */,
 				DE93770227ACE9880073F27C /* ProfileManagerCore.swift in Sources */,
 				DE93778427ACE9880073F27C /* MainProgressView.swift in Sources */,
@@ -2114,6 +2205,7 @@
 				DE93773327ACE9880073F27C /* SCUnlockQuestionsCell.swift in Sources */,
 				DE93770427ACE9880073F27C /* LoginRequest.swift in Sources */,
 				DE9376FD27ACE9880073F27C /* GetCourcesResponseMapper.swift in Sources */,
+				0F17A18927BEC3720088A6F5 /* OQuestionCell.swift in Sources */,
 				DE9376B027ACE9880073F27C /* RestApiTransportExtension.swift in Sources */,
 				DE9376FC27ACE9880073F27C /* GetSelectedCourseRequest.swift in Sources */,
 				DE93775A27ACE9880073F27C /* PaygateInteractor.swift in Sources */,
@@ -2122,6 +2214,7 @@
 				DE9376F327ACE9880073F27C /* QuestionManagerCore.swift in Sources */,
 				DE9376FA27ACE9880073F27C /* SetSelectCourseRequest.swift in Sources */,
 				DE9376E927ACE9880073F27C /* SendAnswerResponseMapper.swift in Sources */,
+				0F3B3B4227BD6C4A00F05935 /* OCommentCell.swift in Sources */,
 				DE93774F27ACE9880073F27C /* QuestionContentType.swift in Sources */,
 				DE9376B827ACE9880073F27C /* TextAttributes.swift in Sources */,
 				DE93773527ACE9880073F27C /* SCBriefDayView.swift in Sources */,
@@ -2132,8 +2225,8 @@
 				DE9376C227ACE9880073F27C /* TapAreaButton.swift in Sources */,
 				DE93772727ACE9880073F27C /* SettingsTableView.swift in Sources */,
 				DE93775127ACE9880073F27C /* TestView.swift in Sources */,
+				DE93780027B505990073F27C /* OSlideMotivationView.swift in Sources */,
 				DE93774827ACE9880073F27C /* QuestionsCollectionView.swift in Sources */,
-				DE93779927ACE9880073F27C /* OSlideReferencesView.swift in Sources */,
 				DE93774A27ACE9880073F27C /* TestViewModel.swift in Sources */,
 				DE93779B27ACE9880073F27C /* OSlideImproveView.swift in Sources */,
 				DE9376C427ACE9880073F27C /* PaddingPickerView.swift in Sources */,
@@ -2153,6 +2246,7 @@
 				DE93777827ACE9880073F27C /* ImageScrollView.swift in Sources */,
 				DE93776827ACE9880073F27C /* TestStatsCellType.swift in Sources */,
 				DE93777527ACE9880073F27C /* CoursesCollectionView.swift in Sources */,
+				DE93780427B535740073F27C /* OSlideThankYouView.swift in Sources */,
 				DE93776F27ACE9880073F27C /* TestStatsFilterView.swift in Sources */,
 				DE9376EF27ACE9880073F27C /* GetTestRequest.swift in Sources */,
 				DE93772C27ACE9880073F27C /* SplashViewModel.swift in Sources */,
@@ -2165,9 +2259,10 @@
 				DE9376CB27ACE9880073F27C /* Appearance.swift in Sources */,
 				DE93770527ACE9880073F27C /* SyncTokensRequest.swift in Sources */,
 				DE93772427ACE9880073F27C /* STReferencesCell.swift in Sources */,
+				0F3B3B5827BEB63E00F05935 /* BubbleView.swift in Sources */,
+				0F3B3B5A27BEB73300F05935 /* OExplanationCell.swift in Sources */,
 				DE9376E227ACE9880073F27C /* GetTestStatsResponseMapper.swift in Sources */,
 				DE93772D27ACE9880073F27C /* SplashView.swift in Sources */,
-				DE93779727ACE9880073F27C /* OSlideGoalCell.swift in Sources */,
 				DE93771C27ACE9880073F27C /* SessionManager.swift in Sources */,
 				DE93776227ACE9880073F27C /* TestStatsDescriptioCell.swift in Sources */,
 				DE93775227ACE9880073F27C /* TestViewController.swift in Sources */,
@@ -2183,6 +2278,7 @@
 				DE9376EE27ACE9880073F27C /* SendAnswerRequest.swift in Sources */,
 				DE9376BD27ACE9880073F27C /* Weak.swift in Sources */,
 				DE93771D27ACE9880073F27C /* SettingsView.swift in Sources */,
+				0F0A49A827BC2DDE0011B534 /* OAnswerCell.swift in Sources */,
 				DE9376F627ACE9880073F27C /* Course.swift in Sources */,
 				DE93774527ACE9880073F27C /* AnswersCell.swift in Sources */,
 				DE93777C27ACE9880073F27C /* MainStatsElement.swift in Sources */,

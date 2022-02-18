@@ -27,7 +27,7 @@ extension FirebaseManager: OtterScaleReceiptValidationDelegate {
         let otterScaleID = OtterScale.shared.getInternalID()
         set(userId: otterScaleID)
         
-        logEvent(name: "[Client] User ID Synced")
+        logEvent(name: "client_user_id_synced")
     }
 }
 
@@ -41,7 +41,7 @@ extension FirebaseManager: SKPaymentTransactionObserver {
             return
         }
         
-        logEvent(name: "[Client] Subscription Or Purchase")
+        logEvent(name: "client_subscription_or_purchase")
     }
 }
 
@@ -72,6 +72,6 @@ private extension FirebaseManager {
             return
         }
         
-        logEvent(name: "[Client] First Launch")
+        logEvent(name: "client_first_launch")
     }
 }

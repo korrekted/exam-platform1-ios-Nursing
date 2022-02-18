@@ -10,13 +10,14 @@ import UIKit
 final class WelcomeSlide3View: UIView {
     lazy var imageView = makeImageView()
     lazy var titleLabel = makeTitleLabel()
-    lazy var subtitleLabel = makeSubtitleLabel()
+    lazy var cell1 = makeCell(title: "Onboarding.Welcome.Cell3.Info1".localized)
+    lazy var cell2 = makeCell(title: "Onboarding.Welcome.Cell3.Info2".localized)
+    lazy var cell3 = makeCell(title: "Onboarding.Welcome.Cell3.Info3".localized)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         makeConstraints()
-        initialize()
     }
     
     required init?(coder: NSCoder) {
@@ -24,33 +25,41 @@ final class WelcomeSlide3View: UIView {
     }
 }
 
-// MARK: Private
-private extension WelcomeSlide3View {
-    func initialize() {
-        backgroundColor = UIColor.clear
-    }
-}
-
 // MARK: Make constraints
 private extension WelcomeSlide3View {
     func makeConstraints() {
         NSLayoutConstraint.activate([
-            imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            imageView.widthAnchor.constraint(equalToConstant: 343.scale),
-            imageView.heightAnchor.constraint(equalToConstant: 325.scale),
-            imageView.bottomAnchor.constraint(equalTo: titleLabel.topAnchor, constant: ScreenSize.isIphoneXFamily ? -65.scale : -30.scale)
+            imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 92.scale),
+            imageView.widthAnchor.constraint(equalToConstant: 136.scale),
+            imageView.heightAnchor.constraint(equalToConstant: 120.scale),
+            imageView.topAnchor.constraint(equalTo: topAnchor, constant: 48.scale)
         ])
         
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
-            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
-            titleLabel.bottomAnchor.constraint(equalTo: subtitleLabel.topAnchor, constant: -12.scale)
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24.scale),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24.scale),
+            titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 24.scale)
         ])
         
         NSLayoutConstraint.activate([
-            subtitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
-            subtitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
-            subtitleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: ScreenSize.isIphoneXFamily ? -195.scale : -155.scale)
+            cell1.leadingAnchor.constraint(equalTo: leadingAnchor),
+            cell1.trailingAnchor.constraint(equalTo: trailingAnchor),
+            cell1.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16.scale),
+            cell1.heightAnchor.constraint(equalToConstant: 26.scale)
+        ])
+        
+        NSLayoutConstraint.activate([
+            cell2.leadingAnchor.constraint(equalTo: leadingAnchor),
+            cell2.trailingAnchor.constraint(equalTo: trailingAnchor),
+            cell2.topAnchor.constraint(equalTo: cell1.bottomAnchor, constant: 17.scale),
+            cell2.heightAnchor.constraint(equalToConstant: 26.scale)
+        ])
+        
+        NSLayoutConstraint.activate([
+            cell3.leadingAnchor.constraint(equalTo: leadingAnchor),
+            cell3.trailingAnchor.constraint(equalTo: trailingAnchor),
+            cell3.topAnchor.constraint(equalTo: cell2.bottomAnchor, constant: 17.scale),
+            cell3.heightAnchor.constraint(equalToConstant: 26.scale)
         ])
     }
 }
@@ -68,29 +77,23 @@ private extension WelcomeSlide3View {
     
     func makeTitleLabel() -> UILabel {
         let attrs = TextAttributes()
-            .textColor(UIColor(integralRed: 19, green: 24, blue: 42))
-            .font(Fonts.SFProRounded.bold(size: 30.scale))
-            .lineHeight(36.scale)
+            .textColor(Appearance.blackColor)
+            .font(Fonts.SFProRounded.black(size: 24.scale))
+            .lineHeight(28.8.scale)
             .textAlignment(.center)
         
         let view = UILabel()
         view.numberOfLines = 0
-        view.attributedText = "Onboarding.Welcome.Title3".localized.attributed(with: attrs)
+        view.attributedText = "Onboarding.Welcome.Cell3.Title".localized.attributed(with: attrs)
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view
     }
     
-    func makeSubtitleLabel() -> UILabel {
-        let attrs = TextAttributes()
-            .textColor(UIColor(integralRed: 75, green: 81, blue: 102))
-            .font(Fonts.SFProRounded.semiBold(size: 20.scale))
-            .lineHeight(28.scale)
-            .textAlignment(.center)
-        
-        let view = UILabel()
-        view.numberOfLines = 0
-        view.attributedText = "Onboarding.Welcome.Subtitle3".localized.attributed(with: attrs)
+    func makeCell(title: String) -> WelcomeSlide3CellView {
+        let view = WelcomeSlide3CellView()
+        view.backgroundColor = UIColor.clear
+        view.title = title
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

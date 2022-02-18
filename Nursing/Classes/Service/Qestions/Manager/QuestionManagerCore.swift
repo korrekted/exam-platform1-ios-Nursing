@@ -88,6 +88,19 @@ extension QuestionManagerCore {
             .map(GetTestResponseMapper.map(from:))
     }
     
+    func retrieveOnboardingSet() -> Single<Test?> {
+        guard let userToken = SessionManagerCore().getSession()?.userToken else {
+            return .deferred { .just(nil) }
+        }
+        
+        let request = GetOnboardingSetRequest(userToken: userToken)
+        
+        return SDKStorage.shared
+            .restApiTransport
+            .callServerStringApi(requestBody: request)
+            .map(GetTestResponseMapper.map(from:))
+    }
+    
     func sendAnswer(questionId: Int, userTestId: Int, answerIds: [Int]) -> Single<Bool?> {
         guard let userToken = SessionManagerCore().getSession()?.userToken else {
             return .deferred { .just(nil) }
