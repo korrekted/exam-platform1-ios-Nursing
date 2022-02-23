@@ -77,7 +77,8 @@ extension CoursesManagerCore {
             return .error(SignError.tokenNotFound)
         }
         
-        let request = GetSelectedCourseRequest(userToken: userToken)
+        let extractedExpr = GetSelectedCourseRequest(userToken: userToken)
+        let request = extractedExpr
         
         return SDKStorage.shared
             .restApiTransport

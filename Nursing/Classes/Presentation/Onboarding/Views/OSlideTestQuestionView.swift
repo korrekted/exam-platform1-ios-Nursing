@@ -14,8 +14,10 @@ final class OSlideTestQuestionView: OSlideView {
     
     override init(step: OnboardingView.Step) {
         super.init(step: step)
+        
         setupNumber(for: step)
         makeConstraints()
+        change(enabled: false)
     }
     
     required init?(coder: NSCoder) {
@@ -40,7 +42,12 @@ extension OSlideTestQuestionView {
         )
         
         tableView.setup(question: questionElement) { [weak self] value in
-            guard let correctAnswer = question.answers.first(where: { $0.isCorrect }) else { return }
+            self?.change(enabled: true)
+            
+            guard let correctAnswer = question.answers.first(where: { $0.isCorrect }) else {
+                return
+            }
+            
             let isCorrect = correctAnswer.id == value.id
             let resultAnswer = OAnswerElement(
                 id: value.id,
@@ -99,6 +106,11 @@ private extension OSlideTestQuestionView {
         attributedText.append(NSAttributedString(string: firstNumber, attributes: firstAttr))
         attributedText.append(NSAttributedString(string: "/5", attributes: secondAttr))
         numberLabel.attributedText = attributedText
+    }
+    
+    func change(enabled: Bool) {
+        button.isEnabled = enabled
+        button.alpha = enabled ? 1 : 0.4
     }
 }
 

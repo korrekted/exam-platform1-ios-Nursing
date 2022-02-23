@@ -43,7 +43,7 @@ private extension OProgressView {
     func createCircularPath() {
         let circularPath = UIBezierPath(arcCenter: CGPoint(x: frame.size.width / 2,
                                                            y: frame.size.height / 2),
-                                        radius: 24.scale,
+                                        radius: 34.scale,
                                         startAngle: -.pi / 2,
                                         endAngle: 3 * .pi / 2,
                                         clockwise: true)

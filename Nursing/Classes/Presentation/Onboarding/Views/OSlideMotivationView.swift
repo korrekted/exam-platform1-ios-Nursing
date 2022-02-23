@@ -25,6 +25,12 @@ final class OSlideMotivationView: OSlideView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func moveToThis() {
+        super.moveToThis()
+        
+        progressView.set(progress: 0.4)
+    }
 }
 
 // MARK: Make constraints
@@ -73,10 +79,8 @@ private extension OSlideMotivationView {
 
 // MARK: Lazy initialization
 private extension OSlideMotivationView {
-    func makeProgressView() -> UIImageView {
-        let view = UIImageView()
-        view.contentMode = .scaleAspectFill
-        view.image = UIImage(named: "Onboarding.Motivation")
+    func makeProgressView() -> OMotivationProgressView {
+        let view = OMotivationProgressView()
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

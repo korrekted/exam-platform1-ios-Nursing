@@ -64,6 +64,8 @@ private extension OSlidePreloaderView {
     
     func finish() {
         timer = nil
+        
+        button.isHidden = false
     }
 }
 
@@ -71,9 +73,9 @@ private extension OSlidePreloaderView {
 private extension OSlidePreloaderView {
     func makeConstraints() {
         NSLayoutConstraint.activate([
-            progressView.widthAnchor.constraint(equalToConstant: 48.scale),
-            progressView.heightAnchor.constraint(equalToConstant: 48.scale),
-            progressView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 61.scale),
+            progressView.widthAnchor.constraint(equalToConstant: 68.scale),
+            progressView.heightAnchor.constraint(equalToConstant: 68.scale),
+            progressView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 51.scale),
             progressView.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 66.scale : 30.scale)
         ])
         
@@ -90,7 +92,7 @@ private extension OSlidePreloaderView {
     
         NSLayoutConstraint.activate([
             titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            titleLabel.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: ScreenSize.isIphoneXFamily ? 40.scale : 20.scale)
+            titleLabel.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: ScreenSize.isIphoneXFamily ? 30.scale : 10.scale)
         ])
         
         NSLayoutConstraint.activate([
@@ -245,6 +247,7 @@ private extension OSlidePreloaderView {
             .textAlignment(.center)
         
         let view = UIButton()
+        view.isHidden = true
         view.backgroundColor = Appearance.mainColor
         view.layer.cornerRadius = 30.scale
         view.setAttributedTitle("Continue".localized.attributed(with: attrs), for: .normal)
