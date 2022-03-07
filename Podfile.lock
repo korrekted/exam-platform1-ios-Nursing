@@ -1,16 +1,16 @@
 PODS:
   - Alamofire (5.5.0)
   - Amplitude-iOS (4.10.0)
-  - AppsFlyerFramework (6.5.2):
-    - AppsFlyerFramework/Main (= 6.5.2)
-  - AppsFlyerFramework/Main (6.5.2)
+  - AppsFlyerFramework (6.5.3):
+    - AppsFlyerFramework/Main (= 6.5.3)
+  - AppsFlyerFramework/Main (6.5.3)
   - Branch (1.41.0)
-  - FBAEMKit (12.3.2):
-    - FBSDKCoreKit_Basics (= 12.3.2)
-  - FBSDKCoreKit (12.3.2):
-    - FBAEMKit (= 12.3.2)
-    - FBSDKCoreKit_Basics (= 12.3.2)
-  - FBSDKCoreKit_Basics (12.3.2)
+  - FBAEMKit (13.0.0):
+    - FBSDKCoreKit_Basics (= 13.0.0)
+  - FBSDKCoreKit (13.0.0):
+    - FBAEMKit (= 13.0.0)
+    - FBSDKCoreKit_Basics (= 13.0.0)
+  - FBSDKCoreKit_Basics (13.0.0)
   - Firebase/Analytics (8.12.1):
     - Firebase/Core
   - Firebase/Core (8.12.1):
@@ -115,7 +115,7 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (7.7.0):
     - GoogleUtilities/Logger
-  - Kingfisher (7.1.2)
+  - Kingfisher (7.2.0)
   - lottie-ios (3.3.0)
   - MarqueeLabel (4.0.5)
   - nanopb (2.30908.0):
@@ -126,9 +126,9 @@ PODS:
   - NotificationBannerSwift (3.0.6):
     - MarqueeLabel (~> 4.0.5)
     - SnapKit (~> 5.0.1)
-  - OtterScaleiOS (1.5)
+  - OtterScaleiOS (1.6)
   - PromisesObjC (2.0.0)
-  - RushSDK (2.8.10):
+  - RushSDK (2.8.12):
     - Alamofire
     - Amplitude-iOS
     - AppsFlyerFramework
@@ -195,20 +195,20 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   OtterScaleiOS:
-    :commit: 15fc11a6396be5c75826d713186b93301167b9a9
+    :commit: 811e77118cd044fd84057106083e80227828d424
     :git: https://github.com/AgentChe/OtterScaleiOS.git
   RushSDK:
-    :commit: 45f4e1493c9f0fe82da7494d2c701c0157aa1e1c
+    :commit: 99bd635cee7a83df5b22046b1ed65a3be8bf884e
     :git: https://github.com/AgentChe/RushSDK.git
 
 SPEC CHECKSUMS:
   Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
   Amplitude-iOS: 7d8cdc3408ba35c2e68368fc7c692cd104606b94
-  AppsFlyerFramework: 9f304d91cc80b6579b1206a59220383056b58b47
+  AppsFlyerFramework: daff1a8ac502cef2c9408794bac68c852e3483d4
   Branch: bd6c472d6cab03206877ac86c1241327a3f217d1
-  FBAEMKit: 955ca52eba8219c20f90774e8c6ff8bc7b3192a3
-  FBSDKCoreKit: 678f64eda3f0ff25c189c2ebbfe87b1d96a85a6d
-  FBSDKCoreKit_Basics: 6bee7c1f0932432901781203fa5e587ec5099148
+  FBAEMKit: 11a0bcdc7a88e26ed764bcf56372afc6cbbbdcd9
+  FBSDKCoreKit: 00e1e751257e1005304fa29cb683d2dfe008f41a
+  FBSDKCoreKit_Basics: 96ec2ddb67a032e54f0754ea3d59db6f84f42389
   Firebase: 580d09e8edafc3073ebf09c03fd42e4d80d35fe9
   FirebaseAnalytics: bd10d7706ba8d6e01ea2816f8fe9e9b881cb0918
   FirebaseCore: 8138de860a90ca7eec5e324da5788fb0ebf1d93c
@@ -219,14 +219,14 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: ae033c3aad67e68294369373056b4d74cc8ae0d6
   GoogleDataTransport: 629c20a4d363167143f30ea78320d5a7eb8bd940
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
-  Kingfisher: 44ed6a8504763f27bab46163adfac83f5deb240c
+  Kingfisher: 3ac0b75b155cabc0e544877d1a4deea29feece92
   lottie-ios: 6ac74dcc09904798f59b18cb3075c089d76be9ae
   MarqueeLabel: 00cc0bcd087111dca575878b3531af980559707d
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   NotificationBannerSwift: 7021be2338f8f29cf424b0aca43da462bf9e2a1a
-  OtterScaleiOS: 95997e25ee20eac518b38cccecc38ac1104787fd
+  OtterScaleiOS: bd1d7f203a389dd94d3fdec8c88faf1f5bc1b79b
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
-  RushSDK: fff65c62943eaf17dea4dd6e450a5a924273dcb4
+  RushSDK: 5d5142c86f48f2ef12f3899691342de9bc880932
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
