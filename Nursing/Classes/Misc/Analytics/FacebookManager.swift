@@ -25,6 +25,11 @@ final class FacebookManager: NSObject {
 extension FacebookManager: OtterScaleReceiptValidationDelegate {
     func otterScaleDidValidatedReceipt(with result: PaymentData?) {
         let otterScaleID = OtterScale.shared.getInternalID()
+        
+        guard otterScaleID != OtterScale.shared.getAnonymousID() else {
+            return
+        }
+        
         set(userID: otterScaleID)
         
         logEvent(name: "client_user_id_synced")

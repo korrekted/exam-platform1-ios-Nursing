@@ -18,6 +18,11 @@ final class AmplitudeManager {
 extension AmplitudeManager: OtterScaleReceiptValidationDelegate {
     func otterScaleDidValidatedReceipt(with result: PaymentData?) {
         let otterScaleID = OtterScale.shared.getInternalID()
+        
+        guard otterScaleID != OtterScale.shared.getAnonymousID() else {
+            return
+        }
+        
         set(userId: otterScaleID)
         
         logEvent(name: "User ID Synced")
