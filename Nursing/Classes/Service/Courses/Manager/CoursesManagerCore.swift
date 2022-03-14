@@ -12,6 +12,8 @@ final class CoursesManagerCore: CoursesManager {
         static let selectedCourseCacheKey = "courses_manager_core_selected_course_cache_key"
         static let cachedReferencesKey = "courses_manager_core_cached_references_key"
     }
+    
+    private let defaultRequestWrapper = DefaultRequestWrapper()
 }
 
 // MARK: API
@@ -34,8 +36,7 @@ extension CoursesManagerCore {
         
         let request = GetCourcesRequest(userToken: userToken)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return defaultRequestWrapper
             .callServerApi(requestBody: request)
             .map(GetCourcesResponseMapper.map(from:))
     }
@@ -47,8 +48,7 @@ extension CoursesManagerCore {
         
         let request = SetSelectCourseRequest(userToken: userToken, courseId: course.id)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return defaultRequestWrapper
             .callServerApi(requestBody: request)
             .map { _ in Void() }
             .do(onSuccess: {
@@ -80,8 +80,7 @@ extension CoursesManagerCore {
         let extractedExpr = GetSelectedCourseRequest(userToken: userToken)
         let request = extractedExpr
         
-        return SDKStorage.shared
-            .restApiTransport
+        return defaultRequestWrapper
             .callServerApi(requestBody: request)
             .map { GetSelectedCourseResponse.map(from: $0) }
             .do(onSuccess: { course in
@@ -101,8 +100,7 @@ extension CoursesManagerCore {
             return getCachedReferenced()
         }
         
-        return SDKStorage.shared
-            .restApiTransport
+        return defaultRequestWrapper
             .callServerApi(requestBody: GetReferencesRequest())
             .map(GetReferencesResponseMapper.map(from:))
             .flatMap { [weak self] references -> Single<[Reference]> in

@@ -39,6 +39,8 @@
 		96D38AED25B3017D00EADC9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96D38AEB25B3017D00EADC9A /* LaunchScreen.storyboard */; };
 		96D38B2825B3073900EADC9A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96D38B2A25B3073900EADC9A /* Localizable.strings */; };
 		96F4560426579AE800B63D53 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96F4560326579AE800B63D53 /* GoogleService-Info.plist */; };
+		DE2B10E127DF6B41005280DB /* DefaultRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B10E027DF6B41005280DB /* DefaultRequestWrapper.swift */; };
+		DE2B10E427DF79E8005280DB /* XORRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B10E327DF79E8005280DB /* XORRequestWrapper.swift */; };
 		DE9376AE27ACE9880073F27C /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93755B27ACE9880073F27C /* UIColorExtension.swift */; };
 		DE9376AF27ACE9880073F27C /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93755C27ACE9880073F27C /* Collection+Extension.swift */; };
 		DE9376B027ACE9880073F27C /* RestApiTransportExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93755D27ACE9880073F27C /* RestApiTransportExtension.swift */; };
@@ -368,6 +370,8 @@
 		96D38B2925B3073900EADC9A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		96E686DC5654A1E4706B4192 /* Pods-Nursing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nursing.release.xcconfig"; path = "Target Support Files/Pods-Nursing/Pods-Nursing.release.xcconfig"; sourceTree = "<group>"; };
 		96F4560326579AE800B63D53 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DE2B10E027DF6B41005280DB /* DefaultRequestWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRequestWrapper.swift; sourceTree = "<group>"; };
+		DE2B10E327DF79E8005280DB /* XORRequestWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XORRequestWrapper.swift; sourceTree = "<group>"; };
 		DE93755B27ACE9880073F27C /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		DE93755C27ACE9880073F27C /* Collection+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
 		DE93755D27ACE9880073F27C /* RestApiTransportExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestApiTransportExtension.swift; sourceTree = "<group>"; };
@@ -832,6 +836,15 @@
 			path = Strings;
 			sourceTree = "<group>";
 		};
+		DE2B10E227DF79C3005280DB /* RequestWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				DE2B10E027DF6B41005280DB /* DefaultRequestWrapper.swift */,
+				DE2B10E327DF79E8005280DB /* XORRequestWrapper.swift */,
+			);
+			path = RequestWrapper;
+			sourceTree = "<group>";
+		};
 		DE93755827ACE9880073F27C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -898,6 +911,7 @@
 		DE93756D27ACE9880073F27C /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				DE2B10E227DF79C3005280DB /* RequestWrapper */,
 				DE93756E27ACE9880073F27C /* ImagePicker.swift */,
 				DE93756F27ACE9880073F27C /* Toast.swift */,
 			);
@@ -2129,6 +2143,7 @@
 				DE93779C27ACE9880073F27C /* OSlideView.swift in Sources */,
 				DE9376EC27ACE9880073F27C /* GetRandomSetRequest.swift in Sources */,
 				DE93773E27ACE9880073F27C /* TabView.swift in Sources */,
+				DE2B10E427DF79E8005280DB /* XORRequestWrapper.swift in Sources */,
 				DE9376BF27ACE9880073F27C /* Toast.swift in Sources */,
 				DE93779527ACE9880073F27C /* WelcomeSlide2View.swift in Sources */,
 				DE93778227ACE9880073F27C /* StatsTableView.swift in Sources */,
@@ -2255,6 +2270,7 @@
 				DE93772C27ACE9880073F27C /* SplashViewModel.swift in Sources */,
 				DE93772127ACE9880073F27C /* STLinkView.swift in Sources */,
 				DE93771927ACE9880073F27C /* StatsShareManager.swift in Sources */,
+				DE2B10E127DF6B41005280DB /* DefaultRequestWrapper.swift in Sources */,
 				DE9376B127ACE9880073F27C /* UITapGestureRecognizerExtension.swift in Sources */,
 				DE93775327ACE9880073F27C /* QuestionTableView.swift in Sources */,
 				DE93773227ACE9880073F27C /* SCTakeTestCell.swift in Sources */,
