@@ -36,17 +36,6 @@ private extension DefaultRequestWrapper {
             }
     }
     
-    func success(xor response: Any) -> Bool {
-        guard
-            let string = response as? String,
-            let json = XOREncryption.toJSON(string, key: GlobalDefinitions.apiKey)
-        else {
-            return false
-        }
-        
-        return success(response: json)
-    }
-    
     func success(response: Any) -> Bool {
         guard
             let json = response as? [String: Any],
