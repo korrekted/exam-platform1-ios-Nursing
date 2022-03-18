@@ -8,6 +8,7 @@
 import FBSDKCoreKit
 import OtterScaleiOS
 import StoreKit
+import RxSwift
 
 final class FacebookManager: NSObject {
     deinit {
@@ -16,6 +17,10 @@ final class FacebookManager: NSObject {
     
     static let shared = FacebookManager()
     
+    private lazy var iapManager = IAPManager()
+    
+    private lazy var disposeBag = DisposeBag()
+    
     private override init() {
         super.init()
     }
@@ -23,8 +28,10 @@ final class FacebookManager: NSObject {
 
 // MARK: OtterScaleReceiptValidationDelegate
 extension FacebookManager: OtterScaleReceiptValidationDelegate {
-    func otterScaleDidValidatedReceipt(with result: PaymentData?) {
-        let otterScaleID = OtterScale.shared.getInternalID()
+    func otterScaleDidValidatedReceipt(with result: AppStoreValidateResult?) {
+        guard let otterScaleID = result?.externalUserID ?? result?.internalUserID else {
+            return
+        }
         
         guard otterScaleID != OtterScale.shared.getAnonymousID() else {
             return
@@ -41,12 +48,22 @@ extension FacebookManager: SKPaymentTransactionObserver {
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         let purchased = transactions
             .filter { $0.transactionState == .purchased }
-
+        
         guard !purchased.isEmpty else {
             return
         }
-
-        logEvent(name: "client_subscription_or_purchase")
+        
+        let ids = purchased.map { $0.payment.productIdentifier }
+        
+        iapManager.obtainProducts(ids: ids)
+            .subscribe(onSuccess: { products in
+                products.forEach { product in
+                    let currency = product.original.priceLocale.currencyCode ?? "unknown"
+                    
+                    AppEvents.shared.logPurchase(amount: 0, currency: currency)
+                }
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -54,6 +71,8 @@ extension FacebookManager: SKPaymentTransactionObserver {
 extension FacebookManager {
     func initialize(app: UIApplication, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         ApplicationDelegate.shared.application(app, didFinishLaunchingWithOptions: launchOptions)
+        
+        Settings.shared.isAdvertiserTrackingEnabled = true
         
         AppEvents.shared.activateApp()
         

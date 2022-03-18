@@ -123,10 +123,10 @@ PODS:
     - nanopb/encode (= 2.30908.0)
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
-  - NotificationBannerSwift (3.0.6):
+  - NotificationBannerSwift (3.1.0):
     - MarqueeLabel (~> 4.0.5)
     - SnapKit (~> 5.0.1)
-  - OtterScaleiOS (1.7)
+  - OtterScaleiOS (1.9)
   - PromisesObjC (2.0.0)
   - RushSDK (2.9.2):
     - Alamofire
@@ -195,7 +195,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   OtterScaleiOS:
-    :commit: 848cc99b57bb01370432e669ebb391b1e01b0f75
+    :commit: 0c992594863744d659220de3395cd5770ff6f9e4
     :git: https://github.com/AgentChe/OtterScaleiOS.git
   RushSDK:
     :commit: e3d791617391ba0df9face7691f31058a20fe83e
@@ -223,8 +223,8 @@ SPEC CHECKSUMS:
   lottie-ios: 6ac74dcc09904798f59b18cb3075c089d76be9ae
   MarqueeLabel: 00cc0bcd087111dca575878b3531af980559707d
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
-  NotificationBannerSwift: 7021be2338f8f29cf424b0aca43da462bf9e2a1a
-  OtterScaleiOS: b4e1daa3798c53d49a77a16b5410ec203c7683ed
+  NotificationBannerSwift: 49912a48b37e2f55d1cef4e8a38f15394f66a70a
+  OtterScaleiOS: 959906cfe665062e4a33cca557d98cbb998f32f7
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   RushSDK: ec8407625d9cfae348b5530c8663961df46bed13
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b

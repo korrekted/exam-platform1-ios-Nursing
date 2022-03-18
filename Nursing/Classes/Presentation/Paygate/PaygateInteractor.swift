@@ -72,7 +72,7 @@ extension PaygateInteractor {
 
 // MARK: OtterScaleReceiptValidationDelegate
 extension PaygateInteractor: OtterScaleReceiptValidationDelegate {
-    func otterScaleDidValidatedReceipt(with result: PaymentData?) {
+    func otterScaleDidValidatedReceipt(with result: AppStoreValidateResult?) {
         OtterScale.shared.remove(delegate: self)
         
         let otterScaleID = OtterScale.shared.getInternalID()

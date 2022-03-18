@@ -23,8 +23,10 @@ final class FirebaseManager: NSObject {
 
 // MARK: OtterScaleReceiptValidationDelegate
 extension FirebaseManager: OtterScaleReceiptValidationDelegate {
-    func otterScaleDidValidatedReceipt(with result: PaymentData?) {
-        let otterScaleID = OtterScale.shared.getInternalID()
+    func otterScaleDidValidatedReceipt(with result: AppStoreValidateResult?) {
+        guard let otterScaleID = result?.externalUserID ?? result?.internalUserID else {
+            return
+        }
         
         guard otterScaleID != OtterScale.shared.getAnonymousID() else {
             return

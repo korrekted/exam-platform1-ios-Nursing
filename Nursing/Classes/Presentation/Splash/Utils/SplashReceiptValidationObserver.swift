@@ -60,7 +60,7 @@ private final class DefaultValidationObserver: OtterScaleReceiptValidationDelega
         OtterScale.shared.add(delegate: self)
     }
     
-    func otterScaleDidValidatedReceipt(with result: PaymentData?) {
+    func otterScaleDidValidatedReceipt(with result: AppStoreValidateResult?) {
         OtterScale.shared.remove(delegate: self)
         
         completion()
@@ -99,7 +99,7 @@ private final class ExtractInternalUserID: OtterScaleReceiptValidationDelegate {
         }
     }
     
-    func otterScaleDidValidatedReceipt(with result: PaymentData?) {
+    func otterScaleDidValidatedReceipt(with result: AppStoreValidateResult?) {
         OtterScale.shared.remove(delegate: self)
         
         completion()

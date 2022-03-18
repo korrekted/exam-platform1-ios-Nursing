@@ -23,7 +23,7 @@ final class PurchaseValidationObserver {
 
 // MARK: OtterScaleReceiptValidationDelegate
 extension PurchaseValidationObserver: OtterScaleReceiptValidationDelegate {
-    func otterScaleDidValidatedReceipt(with result: PaymentData?) {
+    func otterScaleDidValidatedReceipt(with result: AppStoreValidateResult?) {
         trigger.accept(Void())
     }
 }
