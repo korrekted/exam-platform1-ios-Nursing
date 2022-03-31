@@ -1,15 +1,15 @@
 //
-//  OSlideModesView.swift
-//  FNP
+//  SSlideModesView.swift
+//  Nursing
 //
-//  Created by Andrey Chernyshev on 10.07.2021.
+//  Created by Андрей Чернышев on 31.03.2022.
 //
 
 import UIKit
 import RxSwift
 import RxCocoa
 
-final class OSlideModesView: OSlideView {
+final class SSlideModesView: SSlideView {
     lazy var titleLabel = makeTitleLabel()
     lazy var fullSupportCell = makeCell(image: "Onboarding.Modes.Cell1",
                                         title: "Onboarding.Modes.Cell1.Title",
@@ -27,8 +27,10 @@ final class OSlideModesView: OSlideView {
     
     private lazy var disposeBag = DisposeBag()
     
-    override init(step: OnboardingView.Step, scope: OnboardingScope) {
-        super.init(step: step, scope: scope)
+    private lazy var profileManager = ProfileManagerCore()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
         makeConstraints()
         initialize()
@@ -48,7 +50,7 @@ final class OSlideModesView: OSlideView {
 }
 
 // MARK: Public
-extension OSlideModesView {
+extension SSlideModesView {
     func setup(mode: TestMode) {
         switch mode {
         case .fullComplect:
@@ -62,10 +64,10 @@ extension OSlideModesView {
 }
 
 // MARK: Private
-private extension OSlideModesView {
+private extension SSlideModesView {
     func initialize() {
         button.rx.tap
-            .flatMapLatest { [weak self] _ -> Single<Int> in
+            .flatMapLatest { [weak self] _ -> Single<Bool> in
                 guard let self = self else {
                     return .never()
                 }
@@ -80,17 +82,19 @@ private extension OSlideModesView {
                     return .never()
                 }
                 
-                return .just(mode)
+                return self.profileManager
+                    .set(testMode: mode)
+                    .map { true }
+                    .catchAndReturn(false)
             }
             .asDriver(onErrorDriveWith: .never())
-            .drive(onNext: { [weak self] testMode in
-                guard let self = self else {
+            .drive(onNext: { [weak self] success in
+                guard success else {
+                    Toast.notify(with: "Onboarding.FailedToSave".localized, style: .danger)
                     return
                 }
-                
-                self.scope.testMode = testMode
 
-                self.onNext()
+                self?.onNext()
             })
             .disposed(by: disposeBag)
         
@@ -161,7 +165,7 @@ private extension OSlideModesView {
 }
 
 // MARK: Make constraints
-private extension OSlideModesView {
+private extension SSlideModesView {
     func makeConstraints() {
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 17.scale),
@@ -197,7 +201,7 @@ private extension OSlideModesView {
 }
 
 // MARK: Lazy initialization
-private extension OSlideModesView {
+private extension SSlideModesView {
     func makeTitleLabel() -> UILabel {
         let attrs = TextAttributes()
             .textColor(Appearance.blackColor)

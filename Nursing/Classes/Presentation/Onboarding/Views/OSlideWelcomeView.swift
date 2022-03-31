@@ -17,8 +17,8 @@ final class OSlideWelcomeView: OSlideView {
     
     private lazy var slide1LeadingConstraint = NSLayoutConstraint()
     
-    override init(step: OnboardingView.Step) {
-        super.init(step: step)
+    override init(step: OnboardingView.Step, scope: OnboardingScope) {
+        super.init(step: step, scope: scope)
         
         makeConstraints()
         initialize()

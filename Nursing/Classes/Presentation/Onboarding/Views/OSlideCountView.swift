@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
 
 final class OSlideCountView: OSlideView {
     lazy var titleLabel = makeTitleLabel()
@@ -17,15 +15,10 @@ final class OSlideCountView: OSlideView {
     
     private lazy var valueLabel = makeValueLabel()
     
-    private lazy var disposeBag = DisposeBag()
-    
-    private lazy var profileManager = ProfileManagerCore()
-    
-    override init(step: OnboardingView.Step) {
-        super.init(step: step)
+    override init(step: OnboardingView.Step, scope: OnboardingScope) {
+        super.init(step: step, scope: scope)
         
         makeConstraints()
-        initialize()
     }
     
     required init?(coder: NSCoder) {
@@ -48,30 +41,13 @@ final class OSlideCountView: OSlideView {
 
 // MARK: Private
 private extension OSlideCountView {
-    func initialize() {
-        button.rx.tap
-            .flatMapLatest { [weak self] _ -> Single<Bool> in
-                guard let self = self else {
-                    return .never()
-                }
-
-                let count = Int(self.slider.value)
-                
-                return self.profileManager
-                    .set(testNumber: count)
-                    .map { true }
-                    .catchAndReturn(false)
-            }
-            .asDriver(onErrorDriveWith: .never())
-            .drive(onNext: { [weak self] success in
-                guard success else {
-                    Toast.notify(with: "Onboarding.FailedToSave".localized, style: .danger)
-                    return
-                }
-
-                self?.onNext()
-            })
-            .disposed(by: disposeBag)
+    @objc
+    func buttonTapped() {
+        let count = Int(self.slider.value)
+        
+        scope.testNumber = count
+        
+        onNext()
     }
     
     @objc
@@ -184,6 +160,7 @@ private extension OSlideCountView {
         view.layer.cornerRadius = 30.scale
         view.setAttributedTitle("Continue".localized.attributed(with: attrs), for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         addSubview(view)
         return view
     }
