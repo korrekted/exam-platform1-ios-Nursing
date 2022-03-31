@@ -80,8 +80,7 @@
 		DE9376CF27ACE9880073F27C /* FacebookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93758327ACE9880073F27C /* FacebookManager.swift */; };
 		DE9376D027ACE9880073F27C /* RateManagerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93758627ACE9880073F27C /* RateManagerCore.swift */; };
 		DE9376D127ACE9880073F27C /* RateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93758727ACE9880073F27C /* RateManager.swift */; };
-		DE9376D227ACE9880073F27C /* PaygateManagerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93758927ACE9880073F27C /* PaygateManagerCore.swift */; };
-		DE9376D327ACE9880073F27C /* MonetizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93758A27ACE9880073F27C /* MonetizationManager.swift */; };
+		DE9376D227ACE9880073F27C /* PaygateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93758927ACE9880073F27C /* PaygateManager.swift */; };
 		DE9376D427ACE9880073F27C /* PaygateMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93758C27ACE9880073F27C /* PaygateMapper.swift */; };
 		DE9376D527ACE9880073F27C /* GetMonetizationResponseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93758D27ACE9880073F27C /* GetMonetizationResponseMapper.swift */; };
 		DE9376D627ACE9880073F27C /* PaygateOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93758F27ACE9880073F27C /* PaygateOption.swift */; };
@@ -92,8 +91,7 @@
 		DE9376DB27ACE9880073F27C /* PaygateSpecialOffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93759427ACE9880073F27C /* PaygateSpecialOffer.swift */; };
 		DE9376DC27ACE9880073F27C /* GetPaygateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93759627ACE9880073F27C /* GetPaygateRequest.swift */; };
 		DE9376DD27ACE9880073F27C /* GetMonetizationConfigRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93759727ACE9880073F27C /* GetMonetizationConfigRequest.swift */; };
-		DE9376DE27ACE9880073F27C /* MonetizationManagerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93759827ACE9880073F27C /* MonetizationManagerCore.swift */; };
-		DE9376DF27ACE9880073F27C /* PaygateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93759927ACE9880073F27C /* PaygateManager.swift */; };
+		DE9376DE27ACE9880073F27C /* MonetizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93759827ACE9880073F27C /* MonetizationManager.swift */; };
 		DE9376E027ACE9880073F27C /* TestStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93759C27ACE9880073F27C /* TestStats.swift */; };
 		DE9376E127ACE9880073F27C /* GetTestStatsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93759E27ACE9880073F27C /* GetTestStatsRequest.swift */; };
 		DE9376E227ACE9880073F27C /* GetTestStatsResponseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93759F27ACE9880073F27C /* GetTestStatsResponseMapper.swift */; };
@@ -414,8 +412,7 @@
 		DE93758327ACE9880073F27C /* FacebookManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookManager.swift; sourceTree = "<group>"; };
 		DE93758627ACE9880073F27C /* RateManagerCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateManagerCore.swift; sourceTree = "<group>"; };
 		DE93758727ACE9880073F27C /* RateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateManager.swift; sourceTree = "<group>"; };
-		DE93758927ACE9880073F27C /* PaygateManagerCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaygateManagerCore.swift; sourceTree = "<group>"; };
-		DE93758A27ACE9880073F27C /* MonetizationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonetizationManager.swift; sourceTree = "<group>"; };
+		DE93758927ACE9880073F27C /* PaygateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaygateManager.swift; sourceTree = "<group>"; };
 		DE93758C27ACE9880073F27C /* PaygateMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaygateMapper.swift; sourceTree = "<group>"; };
 		DE93758D27ACE9880073F27C /* GetMonetizationResponseMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetMonetizationResponseMapper.swift; sourceTree = "<group>"; };
 		DE93758F27ACE9880073F27C /* PaygateOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaygateOption.swift; sourceTree = "<group>"; };
@@ -426,8 +423,7 @@
 		DE93759427ACE9880073F27C /* PaygateSpecialOffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaygateSpecialOffer.swift; sourceTree = "<group>"; };
 		DE93759627ACE9880073F27C /* GetPaygateRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPaygateRequest.swift; sourceTree = "<group>"; };
 		DE93759727ACE9880073F27C /* GetMonetizationConfigRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetMonetizationConfigRequest.swift; sourceTree = "<group>"; };
-		DE93759827ACE9880073F27C /* MonetizationManagerCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonetizationManagerCore.swift; sourceTree = "<group>"; };
-		DE93759927ACE9880073F27C /* PaygateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaygateManager.swift; sourceTree = "<group>"; };
+		DE93759827ACE9880073F27C /* MonetizationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonetizationManager.swift; sourceTree = "<group>"; };
 		DE93759C27ACE9880073F27C /* TestStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestStats.swift; sourceTree = "<group>"; };
 		DE93759E27ACE9880073F27C /* GetTestStatsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetTestStatsRequest.swift; sourceTree = "<group>"; };
 		DE93759F27ACE9880073F27C /* GetTestStatsResponseMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetTestStatsResponseMapper.swift; sourceTree = "<group>"; };
@@ -1005,13 +1001,11 @@
 		DE93758827ACE9880073F27C /* Paygate */ = {
 			isa = PBXGroup;
 			children = (
-				DE93758927ACE9880073F27C /* PaygateManagerCore.swift */,
-				DE93758A27ACE9880073F27C /* MonetizationManager.swift */,
 				DE93758B27ACE9880073F27C /* Mapper */,
 				DE93758E27ACE9880073F27C /* Models */,
 				DE93759527ACE9880073F27C /* Requests */,
-				DE93759827ACE9880073F27C /* MonetizationManagerCore.swift */,
-				DE93759927ACE9880073F27C /* PaygateManager.swift */,
+				DE93759827ACE9880073F27C /* MonetizationManager.swift */,
+				DE93758927ACE9880073F27C /* PaygateManager.swift */,
 			);
 			path = Paygate;
 			sourceTree = "<group>";
@@ -2065,9 +2059,7 @@
 			files = (
 				DE93772B27ACE9880073F27C /* SplashReceiptValidationObserver.swift in Sources */,
 				DE9376BB27ACE9880073F27C /* Fonts.swift in Sources */,
-				DE9376DF27ACE9880073F27C /* PaygateManager.swift in Sources */,
 				DE9376C527ACE9880073F27C /* GradientButton.swift in Sources */,
-				DE9376D327ACE9880073F27C /* MonetizationManager.swift in Sources */,
 				DE9376B327ACE9880073F27C /* UIEdgeInsets+Extension.swift in Sources */,
 				DE9376CC27ACE9880073F27C /* BranchManager.swift in Sources */,
 				DE9377A227ACE9880073F27C /* OSlideModesView.swift in Sources */,
@@ -2182,7 +2174,7 @@
 				DE9376E627ACE9880073F27C /* Test.swift in Sources */,
 				DE93775E27ACE9880073F27C /* PaygateMainInfoCell.swift in Sources */,
 				DE93772927ACE9880073F27C /* SettingsViewController.swift in Sources */,
-				DE9376DE27ACE9880073F27C /* MonetizationManagerCore.swift in Sources */,
+				DE9376DE27ACE9880073F27C /* MonetizationManager.swift in Sources */,
 				DE93770027ACE9880073F27C /* CoursesManagerMediator.swift in Sources */,
 				DE93776127ACE9880073F27C /* TestStatsViewController.swift in Sources */,
 				DE93771B27ACE9880073F27C /* SessionManagerCore.swift in Sources */,
@@ -2327,7 +2319,7 @@
 				DE93774027ACE9880073F27C /* QuestionReferenceCell.swift in Sources */,
 				DE93770327ACE9880073F27C /* ProfileManager.swift in Sources */,
 				DE9376B527ACE9880073F27C /* GlobalDefinitions.swift in Sources */,
-				DE9376D227ACE9880073F27C /* PaygateManagerCore.swift in Sources */,
+				DE9376D227ACE9880073F27C /* PaygateManager.swift in Sources */,
 				DE93773B27ACE9880073F27C /* CourseView.swift in Sources */,
 				DE93778527ACE9880073F27C /* CourseProgressView.swift in Sources */,
 				DE93777D27ACE9880073F27C /* CourseStatsElement.swift in Sources */,

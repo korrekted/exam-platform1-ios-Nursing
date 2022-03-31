@@ -17,9 +17,10 @@ final class SplashViewModel {
     lazy var validationComplete = PublishRelay<Void>()
     
     private lazy var coursesManager = CoursesManagerCore()
-    private lazy var monetizationManager = MonetizationManagerCore()
+    private lazy var monetizationManager = MonetizationManager()
     private lazy var sessionManager = SessionManagerCore()
     private lazy var profileManager = ProfileManagerCore()
+    private lazy var paygateManager = PaygateManager()
     
     func step() -> Driver<Step> {
         handleValidationComplete()
@@ -102,8 +103,12 @@ private extension SplashViewModel {
                 
                 coursesManager
                     .retrieveCourses(forceUpdate: true)
-                    .catchAndReturn([])
-            ) { _, _, _ in Void() }
+                    .catchAndReturn([]),
+                
+                paygateManager
+                    .retrievePaygate(forceUpdate: true)
+                    .catchAndReturn(nil)
+            ) { _, _, _, _ in Void() }
     }
     
     func makeStep() -> Single<Step> {
