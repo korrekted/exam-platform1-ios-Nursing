@@ -98,8 +98,12 @@ private extension SplashViewModel {
                 
                 coursesManager
                     .retrieveReferences(forceUpdate: true)
+                    .catchAndReturn([]),
+                
+                coursesManager
+                    .retrieveCourses(forceUpdate: true)
                     .catchAndReturn([])
-            ) { _, _ in Void() }
+            ) { _, _, _ in Void() }
     }
     
     func makeStep() -> Single<Step> {

@@ -43,6 +43,7 @@
 		DE2B10E427DF79E8005280DB /* XORRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B10E327DF79E8005280DB /* XORRequestWrapper.swift */; };
 		DE8030F727F5DBF600F69A8E /* TryAgainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8030F627F5DBF600F69A8E /* TryAgainViewController.swift */; };
 		DE8030FB27F5DC1300F69A8E /* TryAgainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8030FA27F5DC1300F69A8E /* TryAgainView.swift */; };
+		DE8030FD27F5FCD000F69A8E /* ContentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8030FC27F5FCD000F69A8E /* ContentError.swift */; };
 		DE9376AE27ACE9880073F27C /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93755B27ACE9880073F27C /* UIColorExtension.swift */; };
 		DE9376AF27ACE9880073F27C /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93755C27ACE9880073F27C /* Collection+Extension.swift */; };
 		DE9376B027ACE9880073F27C /* RestApiTransportExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93755D27ACE9880073F27C /* RestApiTransportExtension.swift */; };
@@ -376,6 +377,7 @@
 		DE2B10E327DF79E8005280DB /* XORRequestWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XORRequestWrapper.swift; sourceTree = "<group>"; };
 		DE8030F627F5DBF600F69A8E /* TryAgainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryAgainViewController.swift; sourceTree = "<group>"; };
 		DE8030FA27F5DC1300F69A8E /* TryAgainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryAgainView.swift; sourceTree = "<group>"; };
+		DE8030FC27F5FCD000F69A8E /* ContentError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentError.swift; sourceTree = "<group>"; };
 		DE93755B27ACE9880073F27C /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		DE93755C27ACE9880073F27C /* Collection+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
 		DE93755D27ACE9880073F27C /* RestApiTransportExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestApiTransportExtension.swift; sourceTree = "<group>"; };
@@ -917,6 +919,7 @@
 			isa = PBXGroup;
 			children = (
 				DE93756B27ACE9880073F27C /* SignError.swift */,
+				DE8030FC27F5FCD000F69A8E /* ContentError.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -2098,6 +2101,7 @@
 				DE9376F227ACE9880073F27C /* QuestionManagerMediator.swift in Sources */,
 				DE9376F727ACE9880073F27C /* GetCourcesRequest.swift in Sources */,
 				DE93778D27ACE9880073F27C /* OImproveCell.swift in Sources */,
+				DE8030FD27F5FCD000F69A8E /* ContentError.swift in Sources */,
 				DE93778F27ACE9880073F27C /* ReferencesTableView.swift in Sources */,
 				DE93779627ACE9880073F27C /* OSlidePlanCell.swift in Sources */,
 				DE93772027ACE9880073F27C /* SettingsOpener.swift in Sources */,

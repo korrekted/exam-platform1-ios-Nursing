@@ -6,11 +6,14 @@
 //
 
 import RxSwift
+import SnapKit
+import Darwin
 
 final class CoursesManagerCore: CoursesManager {
     enum Constants {
         static let selectedCourseCacheKey = "courses_manager_core_selected_course_cache_key"
         static let cachedReferencesKey = "courses_manager_core_cached_references_key"
+        static let coursesKey = "courses_manager_core_cached_courses_key"
     }
     
     private let defaultRequestWrapper = DefaultRequestWrapper()
@@ -29,16 +32,8 @@ extension CoursesManagerCore {
 
 // MARK: API(Rx)
 extension CoursesManagerCore {
-    func retrieveCourses() -> Single<[Course]> {
-        guard let userToken = SessionManagerCore().getSession()?.userToken else {
-            return .deferred { .just([]) }
-        }
-        
-        let request = GetCourcesRequest(userToken: userToken)
-        
-        return defaultRequestWrapper
-            .callServerApi(requestBody: request)
-            .map(GetCourcesResponseMapper.map(from:))
+    func retrieveCourses(forceUpdate: Bool) -> Single<[Course]> {
+        forceUpdate ? downloadAndCacheCourses() : cachedCourses()
     }
     
     func rxSelect(course: Course) -> Single<Void> {
@@ -140,6 +135,45 @@ extension CoursesManagerCore {
                 }
                 
                 event(.success(references))
+                
+                return Disposables.create()
+            }
+    }
+}
+
+// MARK: Private
+private extension CoursesManagerCore {
+    func downloadAndCacheCourses() -> Single<[Course]> {
+        guard let userToken = SessionManagerCore().getSession()?.userToken else {
+            return .error(SignError.tokenNotFound)
+        }
+        
+        let request = GetCourcesRequest(userToken: userToken)
+        
+        return defaultRequestWrapper
+            .callServerApi(requestBody: request)
+            .map { GetCourcesResponseMapper.map(from: $0) }
+            .do(onSuccess: { courses in
+                guard let data = try? JSONEncoder().encode(courses) else {
+                    return
+                }
+                
+                UserDefaults.standard.set(data, forKey: Constants.coursesKey)
+            })
+    }
+    
+    func cachedCourses() -> Single<[Course]> {
+        Single<[Course]>
+            .create { event in
+                guard
+                    let data = UserDefaults.standard.data(forKey: Constants.coursesKey),
+                    let courses = try? JSONDecoder().decode([Course].self, from: data)
+                else {
+                    event(.success([]))
+                    return Disposables.create()
+                }
+                
+                event(.success(courses))
                 
                 return Disposables.create()
             }
