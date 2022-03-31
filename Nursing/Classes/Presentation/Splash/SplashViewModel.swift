@@ -21,6 +21,7 @@ final class SplashViewModel {
     private lazy var sessionManager = SessionManagerCore()
     private lazy var profileManager = ProfileManagerCore()
     private lazy var paygateManager = PaygateManager()
+    private lazy var questionManager = QuestionManagerCore()
     
     func step() -> Driver<Step> {
         handleValidationComplete()
@@ -39,19 +40,6 @@ final class SplashViewModel {
                 return self.makeStep()
             }
             .asDriver(onErrorDriveWith: .empty())
-    }
-    
-    /// Вызывается в методе делегата PaygateViewControllerDelegate для определения, какой экран открыть после закрытия пейгейта. Отличается от makeStep тем, что не учитывает повторное открытие пейгейта.
-    func stepAfterPaygateClosed() -> Step {
-        guard OnboardingViewController.wasViewed() else {
-            return .onboarding
-        }
-        
-        if coursesManager.getSelectedCourse() != nil {
-            return .course
-        }
-        
-        return .course
     }
 }
 
@@ -107,8 +95,14 @@ private extension SplashViewModel {
                 
                 paygateManager
                     .retrievePaygate(forceUpdate: true)
+                    .catchAndReturn(nil),
+                
+                // TODO: вынести отдельно и проверять необходимость
+                questionManager
+                    .retrieveOnboardingSet(forceUpdate: true)
                     .catchAndReturn(nil)
-            ) { _, _, _, _ in Void() }
+            )
+            .map { _ in Void() }
     }
     
     func makeStep() -> Single<Step> {

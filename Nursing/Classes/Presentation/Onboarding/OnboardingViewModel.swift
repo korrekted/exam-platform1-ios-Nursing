@@ -45,7 +45,7 @@ final class OnboardingViewModel {
     
     func questions() -> Driver<[Question]> {
         questionManager
-            .retrieveOnboardingSet()
+            .retrieveOnboardingSet(forceUpdate: false)
             .map { $0?.questions ?? [] }
             .asDriver(onErrorJustReturn: [])
     }

@@ -87,7 +87,7 @@ extension SplashViewController {
 // MARK: PaygateViewControllerDelegate
 extension SplashViewController: PaygateViewControllerDelegate {
     func paygateDidClosed(with result: PaygateViewControllerResult) {
-        step(viewModel.stepAfterPaygateClosed())
+        step(.course)
     }
 }
 
