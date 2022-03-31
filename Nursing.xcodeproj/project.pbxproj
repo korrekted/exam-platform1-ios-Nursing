@@ -41,6 +41,8 @@
 		96F4560426579AE800B63D53 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96F4560326579AE800B63D53 /* GoogleService-Info.plist */; };
 		DE2B10E127DF6B41005280DB /* DefaultRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B10E027DF6B41005280DB /* DefaultRequestWrapper.swift */; };
 		DE2B10E427DF79E8005280DB /* XORRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B10E327DF79E8005280DB /* XORRequestWrapper.swift */; };
+		DE8030F727F5DBF600F69A8E /* TryAgainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8030F627F5DBF600F69A8E /* TryAgainViewController.swift */; };
+		DE8030FB27F5DC1300F69A8E /* TryAgainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8030FA27F5DC1300F69A8E /* TryAgainView.swift */; };
 		DE9376AE27ACE9880073F27C /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93755B27ACE9880073F27C /* UIColorExtension.swift */; };
 		DE9376AF27ACE9880073F27C /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93755C27ACE9880073F27C /* Collection+Extension.swift */; };
 		DE9376B027ACE9880073F27C /* RestApiTransportExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93755D27ACE9880073F27C /* RestApiTransportExtension.swift */; };
@@ -372,6 +374,8 @@
 		96F4560326579AE800B63D53 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DE2B10E027DF6B41005280DB /* DefaultRequestWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRequestWrapper.swift; sourceTree = "<group>"; };
 		DE2B10E327DF79E8005280DB /* XORRequestWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XORRequestWrapper.swift; sourceTree = "<group>"; };
+		DE8030F627F5DBF600F69A8E /* TryAgainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryAgainViewController.swift; sourceTree = "<group>"; };
+		DE8030FA27F5DC1300F69A8E /* TryAgainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryAgainView.swift; sourceTree = "<group>"; };
 		DE93755B27ACE9880073F27C /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		DE93755C27ACE9880073F27C /* Collection+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
 		DE93755D27ACE9880073F27C /* RestApiTransportExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestApiTransportExtension.swift; sourceTree = "<group>"; };
@@ -843,6 +847,15 @@
 				DE2B10E327DF79E8005280DB /* XORRequestWrapper.swift */,
 			);
 			path = RequestWrapper;
+			sourceTree = "<group>";
+		};
+		DE8030F527F5DBE900F69A8E /* TryAgain */ = {
+			isa = PBXGroup;
+			children = (
+				DE8030F627F5DBF600F69A8E /* TryAgainViewController.swift */,
+				DE8030FA27F5DC1300F69A8E /* TryAgainView.swift */,
+			);
+			path = TryAgain;
 			sourceTree = "<group>";
 		};
 		DE93755827ACE9880073F27C /* Classes */ = {
@@ -1353,6 +1366,7 @@
 		DE9375F827ACE9880073F27C /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				DE8030F527F5DBE900F69A8E /* TryAgain */,
 				DE9375F927ACE9880073F27C /* Settings */,
 				DE93760A27ACE9880073F27C /* Splash */,
 				DE93761027ACE9880073F27C /* Study */,
@@ -1415,8 +1429,8 @@
 		DE93760A27ACE9880073F27C /* Splash */ = {
 			isa = PBXGroup;
 			children = (
-				DE93760B27ACE9880073F27C /* SplashViewController.swift */,
 				DE93760C27ACE9880073F27C /* Utils */,
+				DE93760B27ACE9880073F27C /* SplashViewController.swift */,
 				DE93760E27ACE9880073F27C /* SplashViewModel.swift */,
 				DE93760F27ACE9880073F27C /* SplashView.swift */,
 			);
@@ -2075,6 +2089,7 @@
 				DE93779827ACE9880073F27C /* OTimeCell.swift in Sources */,
 				DE9377F027B160430073F27C /* OSlideExperienceView.swift in Sources */,
 				DE93770927ACE9880073F27C /* ProfileMediatorDelegate.swift in Sources */,
+				DE8030FB27F5DC1300F69A8E /* TryAgainView.swift in Sources */,
 				DE9376EB27ACE9880073F27C /* GetFailedSetRequest.swift in Sources */,
 				DE9376C927ACE9880073F27C /* RxActivityIndicator.swift in Sources */,
 				DE93774B27ACE9880073F27C /* TestBottomButtonState.swift in Sources */,
@@ -2247,6 +2262,7 @@
 				DE93774827ACE9880073F27C /* QuestionsCollectionView.swift in Sources */,
 				DE93774A27ACE9880073F27C /* TestViewModel.swift in Sources */,
 				DE93779B27ACE9880073F27C /* OSlideImproveView.swift in Sources */,
+				DE8030F727F5DBF600F69A8E /* TryAgainViewController.swift in Sources */,
 				DE9376C427ACE9880073F27C /* PaddingPickerView.swift in Sources */,
 				DE93778E27ACE9880073F27C /* ReferencesTableCell.swift in Sources */,
 				DE93772227ACE9880073F27C /* STLinksCell.swift in Sources */,

@@ -212,3 +212,8 @@
 "Widgets.Medium.Description" = "Watch your pass rate progress and how many tests and questions you have taken";
 "Widgets.Large.Name" = "Full Stats";
 "Widgets.Large.Description" = "Watch your pass rate progress and how far are you from completing the question bank";
+
+// MARK: TryAgain
+"TryAgain.Title" = "Something went wrong";
+"TryAgain.SubTitle" = "We are working on fixing the problem.\nPlease try again";
+"TryAgain.Button" = "Try again";

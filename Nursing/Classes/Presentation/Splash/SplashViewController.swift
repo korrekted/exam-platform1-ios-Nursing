@@ -11,17 +11,19 @@ import RxCocoa
 import OtterScaleiOS
 
 final class SplashViewController: UIViewController {
+    var tryAgain: (() -> Void)?
+    
     lazy var mainView = SplashView()
     
     private lazy var disposeBag = DisposeBag()
     
     private lazy var viewModel = SplashViewModel()
     
-    private let generateStep: Signal<Void>
+    private let generateStep: Signal<Bool>
     
     private lazy var validationObserver = SplashReceiptValidationObserver()
     
-    private init(generateStep: Signal<Void>) {
+    private init(generateStep: Signal<Bool>) {
         self.generateStep = generateStep
         
         super.init(nibName: nil, bundle: .main)
@@ -58,16 +60,26 @@ final class SplashViewController: UIViewController {
             }
             .asSignal(onErrorSignalWith: .empty())
         
-        Signal.zip(validationObserve, generateStep)
-            .map { _, _ in Void() }
-            .emit(to: viewModel.validationComplete)
+        Signal.combineLatest(validationObserve, generateStep)
+            .map { $1 }
+            .emit(onNext: { [weak self] successInitializeSDK in
+                guard let self = self else {
+                    return
+                }
+                
+                if successInitializeSDK {
+                    self.viewModel.validationComplete.accept(Void())
+                } else {
+                    self.openErrorScreen()
+                }
+            })
             .disposed(by: disposeBag)
     }
 }
 
 // MARK: Make
 extension SplashViewController {
-    static func make(generateStep: Signal<Void>) -> SplashViewController {
+    static func make(generateStep: Signal<Bool>) -> SplashViewController {
         SplashViewController(generateStep: generateStep)
     }
 }
@@ -92,5 +104,16 @@ private extension SplashViewController {
             vc.delegate = self
             present(vc, animated: true)
         }
+    }
+    
+    func openErrorScreen() {
+        let vc = TryAgainViewController.make { [weak self] in
+            guard let self = self else {
+                return
+            }
+            
+            self.tryAgain?()
+        }
+        present(vc, animated: true)
     }
 }
