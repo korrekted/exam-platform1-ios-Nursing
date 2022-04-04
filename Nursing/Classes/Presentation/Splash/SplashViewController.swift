@@ -91,6 +91,13 @@ extension SplashViewController: PaygateViewControllerDelegate {
     }
 }
 
+// MARK: CoursesViewControllerDelegate
+extension SplashViewController: CoursesViewControllerDelegate {
+    func coursesViewControllerDismissed() {
+        viewModel.courseSelected.accept(Void())
+    }
+}
+
 // MARK: Private
 private extension SplashViewController {
     func step(_ step: SplashViewModel.Step) {
@@ -101,6 +108,10 @@ private extension SplashViewController {
             UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController = CourseViewController.make()
         case .paygate:
             let vc = PaygateViewController.make()
+            vc.delegate = self
+            present(vc, animated: true)
+        case .courses:
+            let vc = CoursesViewController.make(howOpen: .present)
             vc.delegate = self
             present(vc, animated: true)
         }

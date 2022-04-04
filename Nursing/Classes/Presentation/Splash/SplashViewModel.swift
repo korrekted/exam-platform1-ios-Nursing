@@ -11,10 +11,11 @@ import OtterScaleiOS
 
 final class SplashViewModel {
     enum Step {
-        case onboarding, course, paygate
+        case onboarding, course, paygate, courses
     }
     
     lazy var validationComplete = PublishRelay<Void>()
+    lazy var courseSelected = PublishRelay<Void>()
     
     private lazy var coursesManager = CoursesManagerCore()
     private lazy var monetizationManager = MonetizationManager()
@@ -24,7 +25,7 @@ final class SplashViewModel {
     private lazy var questionManager = QuestionManagerCore()
     
     func step() -> Driver<Step> {
-        handleValidationComplete()
+        let initial = handleValidationComplete()
             .flatMap { [weak self] _ -> Single<Void> in
                 guard let self = self else {
                     return .never()
@@ -37,9 +38,21 @@ final class SplashViewModel {
                     return .never()
                 }
                 
-                return self.makeStep()
+                return self.makeInitialStep()
             }
             .asDriver(onErrorDriveWith: .empty())
+        
+        let afterCourseSelected = courseSelected
+            .compactMap { [weak self] _ -> Step? in
+                guard let self = self else {
+                    return nil
+                }
+                
+                return self.needPayment() ? .paygate : .course
+            }
+            .asDriver(onErrorDriveWith: .empty())
+        
+        return Driver.merge(initial, afterCourseSelected)
     }
 }
 
@@ -105,7 +118,7 @@ private extension SplashViewModel {
             .map { _ in Void() }
     }
     
-    func makeStep() -> Single<Step> {
+    func makeInitialStep() -> Single<Step> {
         coursesManager
             .retrieveSelectedCourse(forceUpdate: true)
             .catchAndReturn(nil)
@@ -114,19 +127,18 @@ private extension SplashViewModel {
                     return .onboarding
                 }
                 
+                // Если у пользователя есть выбранный курс, значит он уже проходил онбординг (в вебе или андроиде, например). Смотрим, есть ли платный доступ и открываем либо пейгейт, либо главный экран.
                 if selectedCourse != nil {
-                    return .course
+                    return self.needPayment() ? .paygate : .course
                 }
                 
-                guard OnboardingViewController.wasViewed() else {
+                // Если пользователь не выбирал курс и не проходил онбординг, отправляем его на онбординг.
+                if !OnboardingViewController.wasViewed() {
                     return .onboarding
                 }
                 
-                if self.needPayment() {
-                    return .paygate
-                }
-                
-                return .course
+                // Если пользователь проходил онбординг, но не имеет выбранный курс, открываем экран для выбора курса.
+                return .courses
             }
     }
     

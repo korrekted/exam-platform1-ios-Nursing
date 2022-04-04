@@ -8,10 +8,16 @@
 import UIKit
 import RxSwift
 
+protocol CoursesViewControllerDelegate: AnyObject {
+    func coursesViewControllerDismissed()
+}
+
 final class CoursesViewController: UIViewController {
     enum HowOpen {
         case root, present
     }
+    
+    weak var delegate: CoursesViewControllerDelegate?
     
     lazy var mainView = CoursesView()
     
@@ -84,7 +90,13 @@ private extension CoursesViewController {
         case .root:
             UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController = CourseViewController.make()
         case .present:
-            dismiss(animated: true)
+            dismiss(animated: true) { [weak self] in
+                guard let self = self else {
+                    return
+                }
+                
+                self.delegate?.coursesViewControllerDismissed()
+            }
         }
     }
     
