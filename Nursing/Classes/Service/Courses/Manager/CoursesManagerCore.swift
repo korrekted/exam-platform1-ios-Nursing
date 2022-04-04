@@ -90,21 +90,23 @@ extension CoursesManagerCore {
 
 // MARK: References
 extension CoursesManagerCore {
+    // С 42 билда всегда пустой массив
     func retrieveReferences(forceUpdate: Bool) -> Single<[Reference]> {
-        guard forceUpdate else {
-            return getCachedReferenced()
-        }
-        
-        return defaultRequestWrapper
-            .callServerApi(requestBody: GetReferencesRequest())
-            .map(GetReferencesResponseMapper.map(from:))
-            .flatMap { [weak self] references -> Single<[Reference]> in
-                guard let self = self else {
-                    return .never()
-                }
-                
-                return self.write(references: references)
-            }
+        .deferred { .just([]) }
+//        guard forceUpdate else {
+//            return getCachedReferenced()
+//        }
+//
+//        return defaultRequestWrapper
+//            .callServerApi(requestBody: GetReferencesRequest())
+//            .map(GetReferencesResponseMapper.map(from:))
+//            .flatMap { [weak self] references -> Single<[Reference]> in
+//                guard let self = self else {
+//                    return .never()
+//                }
+//
+//                return self.write(references: references)
+//            }
     }
     
     private func write(references: [Reference]) -> Single<[Reference]> {

@@ -20,31 +20,32 @@ final class MonetizationManager: MonetizationManagerProtocol {
     private let defaultRequestWrapper = DefaultRequestWrapper()
 }
 
-// MARK: API
+// MARK: Public
 extension MonetizationManager {
+    // С 42 билда монетизация всегда suggest
     func getMonetizationConfig() -> MonetizationConfig? {
-        guard let rawValue = UserDefaults.standard.string(forKey: Constants.cachedMonetizationConfig) else {
-            return nil
-        }
-        
-        return MonetizationConfig(rawValue: rawValue)
+        .suggest
+//        guard let rawValue = UserDefaults.standard.string(forKey: Constants.cachedMonetizationConfig) else {
+//            return nil
+//        }
+//
+//        return MonetizationConfig(rawValue: rawValue)
     }
-}
-
-// MARK: API(Rx)
-extension MonetizationManager {
+    
+    // С 42 билда монетизация всегда suggest
     func rxRetrieveMonetizationConfig(forceUpdate: Bool) -> Single<MonetizationConfig?> {
-        if forceUpdate {
-            return loadConfig()
-        } else {
-            return .deferred { [weak self] in
-                guard let this = self else {
-                    return .never()
-                }
-                
-                return .just(this.getMonetizationConfig())
-            }
-        }
+        .deferred { .just(.suggest) }
+//        if forceUpdate {
+//            return loadConfig()
+//        } else {
+//            return .deferred { [weak self] in
+//                guard let this = self else {
+//                    return .never()
+//                }
+//
+//                return .just(this.getMonetizationConfig())
+//            }
+//        }
     }
 }
 
