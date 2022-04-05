@@ -34,7 +34,7 @@ extension PaygateManager {
             .map { products -> [ProductPrice] in
                 products.map { ProductPrice(product: $0.product) }
             }
-            .map { PaygateMapper.parse(response: paygate.json, productsPrices: $0) }
+            .map { try PaygateMapper.parse(response: paygate.json, productsPrices: $0) }
     }
 }
 
@@ -44,7 +44,7 @@ private extension PaygateManager {
         defaultRequestWrapper
             .callServerApi(requestBody: GetPaygateRequest(userToken: SessionManagerCore().getSession()?.userToken,
                                                           version: UIDevice.appVersion ?? "1"))
-            .map { PaygateMapper.parse(response: $0, productsPrices: nil) }
+            .map { try PaygateMapper.parse(response: $0, productsPrices: nil) }
             .do(onSuccess: { data in
                 PaygateStorage.shared.paygateResponse = data
             })

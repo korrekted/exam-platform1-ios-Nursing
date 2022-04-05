@@ -65,6 +65,14 @@ final class SplashViewController: UIViewController {
                 self.step(step)
             })
             .disposed(by: disposeBag)
+        
+        viewModel.tryAgain = { [weak self] error -> Observable<Void> in
+            guard let self = self else {
+                return .never()
+            }
+            
+            return self.openError()
+        }
     }
 }
 
@@ -130,5 +138,22 @@ private extension SplashViewController {
             .lineHeight(23.8.scale)
             .textAlignment(.center)
         mainView.preloaderLabel.attributedText = state.text.attributed(with: attrs)
+    }
+    
+    func openError() -> Observable<Void> {
+        Observable<Void>
+            .create { [weak self] observe in
+                guard let self = self else {
+                    return Disposables.create()
+                }
+                
+                let vc = TryAgainViewController.make {
+                    observe.onNext(())
+                }
+                self.present(vc, animated: true)
+                
+                return Disposables.create()
+            }
+        
     }
 }

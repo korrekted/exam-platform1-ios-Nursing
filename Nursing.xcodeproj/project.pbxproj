@@ -51,6 +51,7 @@
 		DE80310A27FC41D200F69A8E /* SplashActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE80310927FC41D200F69A8E /* SplashActivity.swift */; };
 		DE80310C27FC56F700F69A8E /* SplashOnboardingNavigate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE80310B27FC56F700F69A8E /* SplashOnboardingNavigate.swift */; };
 		DE80310E27FC662000F69A8E /* SplashSDKInitialize.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE80310D27FC662000F69A8E /* SplashSDKInitialize.swift */; };
+		DE80311027FC852E00F69A8E /* ObservableRetrySingle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE80310F27FC852E00F69A8E /* ObservableRetrySingle.swift */; };
 		DE9376AE27ACE9880073F27C /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93755B27ACE9880073F27C /* UIColorExtension.swift */; };
 		DE9376AF27ACE9880073F27C /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93755C27ACE9880073F27C /* Collection+Extension.swift */; };
 		DE9376B027ACE9880073F27C /* RestApiTransportExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93755D27ACE9880073F27C /* RestApiTransportExtension.swift */; };
@@ -390,6 +391,7 @@
 		DE80310927FC41D200F69A8E /* SplashActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashActivity.swift; sourceTree = "<group>"; };
 		DE80310B27FC56F700F69A8E /* SplashOnboardingNavigate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashOnboardingNavigate.swift; sourceTree = "<group>"; };
 		DE80310D27FC662000F69A8E /* SplashSDKInitialize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashSDKInitialize.swift; sourceTree = "<group>"; };
+		DE80310F27FC852E00F69A8E /* ObservableRetrySingle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableRetrySingle.swift; sourceTree = "<group>"; };
 		DE93755B27ACE9880073F27C /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		DE93755C27ACE9880073F27C /* Collection+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
 		DE93755D27ACE9880073F27C /* RestApiTransportExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestApiTransportExtension.swift; sourceTree = "<group>"; };
@@ -907,7 +909,6 @@
 				DE93756D27ACE9880073F27C /* Components */,
 				DE93757027ACE9880073F27C /* CustomViews */,
 				DE93757A27ACE9880073F27C /* AppDelegate.swift */,
-				DE93757B27ACE9880073F27C /* Rx */,
 				DE93757E27ACE9880073F27C /* Appearance.swift */,
 				DE93757F27ACE9880073F27C /* Analytics */,
 			);
@@ -924,6 +925,7 @@
 				DE93755F27ACE9880073F27C /* UIDeviceExtension.swift */,
 				DE93756027ACE9880073F27C /* UIEdgeInsets+Extension.swift */,
 				DE93756127ACE9880073F27C /* StringExtension.swift */,
+				DE93757D27ACE9880073F27C /* UIViewRxExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -933,6 +935,7 @@
 			children = (
 				DE93756427ACE9880073F27C /* Scalable.swift */,
 				DE93756527ACE9880073F27C /* NumberLaunches.swift */,
+				DE80310F27FC852E00F69A8E /* ObservableRetrySingle.swift */,
 				DE93756627ACE9880073F27C /* TextAttributes.swift */,
 				DE93756727ACE9880073F27C /* ScreenSize.swift */,
 				DE93756827ACE9880073F27C /* XOREncryption.swift */,
@@ -958,6 +961,7 @@
 				DE2B10E227DF79C3005280DB /* RequestWrapper */,
 				DE93756E27ACE9880073F27C /* ImagePicker.swift */,
 				DE93756F27ACE9880073F27C /* Toast.swift */,
+				DE93757C27ACE9880073F27C /* RxActivityIndicator.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -984,15 +988,6 @@
 				DE93757327ACE9880073F27C /* NursingNavigationControllerSettings.swift */,
 			);
 			path = NavigationController;
-			sourceTree = "<group>";
-		};
-		DE93757B27ACE9880073F27C /* Rx */ = {
-			isa = PBXGroup;
-			children = (
-				DE93757C27ACE9880073F27C /* RxActivityIndicator.swift */,
-				DE93757D27ACE9880073F27C /* UIViewRxExtension.swift */,
-			);
-			path = Rx;
 			sourceTree = "<group>";
 		};
 		DE93757F27ACE9880073F27C /* Analytics */ = {
@@ -2249,6 +2244,7 @@
 				DE9376E727ACE9880073F27C /* GetTestResponseMapper.swift in Sources */,
 				DE93778127ACE9880073F27C /* MainRateCell.swift in Sources */,
 				DE93779127ACE9880073F27C /* OWhenStudyCell.swift in Sources */,
+				DE80311027FC852E00F69A8E /* ObservableRetrySingle.swift in Sources */,
 				DE93775027ACE9880073F27C /* TestElement.swift in Sources */,
 				DE9377FA27B4CB110073F27C /* OSlideQuickQuestionsView.swift in Sources */,
 				DE9376CE27ACE9880073F27C /* FirebaseManager.swift in Sources */,

@@ -17,6 +17,8 @@ final class SplashViewModel {
     lazy var validationComplete = PublishRelay<Void>()
     lazy var courseSelected = PublishRelay<Void>()
     
+    var tryAgain: ((Error) -> (Observable<Void>))?
+    
     private lazy var coursesManager = CoursesManagerCore()
     private lazy var monetizationManager = MonetizationManager()
     private lazy var sessionManager = SessionManagerCore()
@@ -24,9 +26,11 @@ final class SplashViewModel {
     private lazy var paygateManager = PaygateManager()
     private lazy var questionManager = QuestionManagerCore()
     
+    private lazy var observableRetrySingle = ObservableRetrySingle()
+    
     func step() -> Driver<Step> {
         let initial = handleValidationComplete()
-            .flatMap { [weak self] _ -> Single<Void> in
+            .flatMap { [weak self] _ -> Observable<Void> in
                 guard let self = self else {
                     return .never()
                 }
@@ -97,26 +101,36 @@ private extension SplashViewModel {
         }
     }
     
-    func library() -> Single<Void> {
-        Single
-            .zip(
-                monetizationManager
-                    .rxRetrieveMonetizationConfig(forceUpdate: true)
-                    .catchAndReturn(nil),
-                
-                coursesManager
-                    .retrieveReferences(forceUpdate: true)
-                    .catchAndReturn([]),
-                
-                coursesManager
-                    .retrieveCourses(forceUpdate: true)
-                    .catchAndReturn([]),
-                
-                paygateManager
-                    .retrievePaygate(forceUpdate: true)
-                    .catchAndReturn(nil)
-            )
-            .map { _ in Void() }
+    func library() -> Observable<Void> {
+        func source() -> Single<Void> {
+            Single
+                .zip(
+                    monetizationManager
+                        .rxRetrieveMonetizationConfig(forceUpdate: true),
+                    
+                    coursesManager
+                        .retrieveReferences(forceUpdate: true),
+                    
+                    coursesManager
+                        .retrieveCourses(forceUpdate: true),
+                    
+                    paygateManager
+                        .retrievePaygate(forceUpdate: true)
+                )
+                .map { _ in Void() }
+        }
+        
+        func trigger(error: Error) -> Observable<Void> {
+            guard let tryAgain = tryAgain?(error) else {
+                return .empty()
+            }
+            
+            return tryAgain
+        }
+        
+        return observableRetrySingle
+            .retry(source: { source() },
+                   trigger: { trigger(error: $0) })
     }
     
     func makeInitialStep() -> Single<Step> {
