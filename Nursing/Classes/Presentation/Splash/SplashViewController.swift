@@ -22,6 +22,7 @@ final class SplashViewController: UIViewController {
     private let generateStep: Signal<Bool>
     
     private lazy var validationObserver = SplashReceiptValidationObserver()
+    private lazy var onboardingNavigate = SplashOnboardingNavigate(vc: self, viewModel: viewModel)
     
     private init(generateStep: Signal<Bool>) {
         self.generateStep = generateStep
@@ -41,17 +42,6 @@ final class SplashViewController: UIViewController {
         super.viewDidLoad()
         
         activity(state: .sdkInitialize)
-        
-        viewModel.step()
-            .drive(onNext: { [weak self] step in
-                guard let self = self else {
-                    return
-                }
-                
-                self.activity(state: step == .onboarding ? .prepareOnboarding : .none)
-                self.step(step)
-            })
-            .disposed(by: disposeBag)
         
         let validationObserve = Single<Void>
             .create { [weak self] event in
@@ -83,6 +73,17 @@ final class SplashViewController: UIViewController {
                 }
             })
             .disposed(by: disposeBag)
+        
+        viewModel.step()
+            .drive(onNext: { [weak self] step in
+                guard let self = self else {
+                    return
+                }
+                
+                self.activity(state: step == .onboarding ? .prepareOnboarding : .none)
+                self.step(step)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -112,17 +113,20 @@ private extension SplashViewController {
     func step(_ step: SplashViewModel.Step) {
         switch step {
         case .onboarding:
-            viewModel.obtainOnboardingSet()
-                .drive(onNext: { [weak self] test in
-                    guard let self = self else {
-                        return
-                    }
-                    
+            onboardingNavigate.navigate { [weak self] progress in
+                guard let self = self else {
+                    return
+                }
+                
+                switch progress {
+                case .error:
                     self.activity(state: .none)
-                    
+                case .downloading:
+                    self.activity(state: .prepareOnboarding)
+                case .complete:
                     UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController = OnboardingViewController.make()
-                })
-                .disposed(by: disposeBag)
+                }
+            }
         case .course:
             UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController = CourseViewController.make()
         case .paygate:
