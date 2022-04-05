@@ -33,6 +33,7 @@ final class OnboardingView: UIView {
     lazy var test3View = OSlideTestQuestionView(step: .testQuestion3, scope: scope)
     lazy var test4View = OSlideTestQuestionView(step: .testQuestion4, scope: scope)
     lazy var test5View = OSlideTestQuestionView(step: .testQuestion5, scope: scope)
+    lazy var pushView = OPushView(step: .push, scope: scope)
     
     private lazy var contentViews: [OSlideView] = {
         [
@@ -57,7 +58,7 @@ final class OnboardingView: UIView {
             OSlideQuestionsCountView(step: .questionsCount, scope: scope),
             OSlideWhenTakingView(step: .whenTaking, scope: scope),
             OSlidePreloaderView(step: .preloader, scope: scope),
-            OPushView(step: .push, scope: scope)
+            pushView
         ]
     }()
     

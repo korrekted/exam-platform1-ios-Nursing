@@ -10,6 +10,8 @@ import RxSwift
 import RxCocoa
 
 final class OPushView: OSlideView {
+    weak var vc: UIViewController?
+    
     lazy var titleLabel = makeTitleLabel()
     lazy var subtitleLabel = makeSubtitleLabel()
     lazy var imageView = makeImageView()
@@ -81,19 +83,29 @@ private extension OPushView {
                          testNumber: self.scope.testNumber,
                          testWhen: self.scope.testWhen,
                          notificationKey: self.scope.notificationKey)
-                    .map { true }
+                    .map { true } 
                     .catchAndReturn(false)
             }
             .asDriver(onErrorJustReturn: false)
             .drive(onNext: { [weak self] success in
-                guard success else {
-                    Toast.notify(with: "Onboarding.FailedToSave".localized, style: .danger)
+                guard let self = self else {
                     return
                 }
                 
-                self?.onNext()
+                success ? self.onNext() : self.openError()
             })
             .disposed(by: disposeBag)
+    }
+    
+    func openError() {
+        let tryAgainVC = TryAgainViewController.make { [weak self] in
+            guard let self = self else {
+                return
+            }
+            
+            self.tokenReceived.accept(Void())
+        }
+        vc?.present(tryAgainVC, animated: true)
     }
 }
 

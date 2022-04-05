@@ -53,6 +53,7 @@ final class OnboardingViewController: UIViewController {
         }
         
         addPreviousAction()
+        mainView.pushView.vc = self
     }
 }
 
