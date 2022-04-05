@@ -48,8 +48,8 @@ final class SplashViewController: UIViewController {
                     return
                 }
                 
+                self.activity(state: step == .onboarding ? .prepareOnboarding : .none)
                 self.step(step)
-                self.activity(state: .none)
             })
             .disposed(by: disposeBag)
         
@@ -112,7 +112,17 @@ private extension SplashViewController {
     func step(_ step: SplashViewModel.Step) {
         switch step {
         case .onboarding:
-            UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController = OnboardingViewController.make()
+            viewModel.obtainOnboardingSet()
+                .drive(onNext: { [weak self] test in
+                    guard let self = self else {
+                        return
+                    }
+                    
+                    self.activity(state: .none)
+                    
+                    UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController = OnboardingViewController.make()
+                })
+                .disposed(by: disposeBag)
         case .course:
             UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController = CourseViewController.make()
         case .paygate:

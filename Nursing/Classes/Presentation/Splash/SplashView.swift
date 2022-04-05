@@ -38,14 +38,14 @@ private extension SplashView {
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8.scale),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8.scale),
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 131.scale : 30.scale)
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 131.scale : 50.scale)
         ])
         
         NSLayoutConstraint.activate([
             preloaderView.widthAnchor.constraint(equalToConstant: 32.scale),
             preloaderView.heightAnchor.constraint(equalToConstant: 32.scale),
             preloaderView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            preloaderView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 42.scale)
+            preloaderView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: ScreenSize.isIphoneXFamily ? 42.scale : 22.scale)
         ])
         
         NSLayoutConstraint.activate([
@@ -91,7 +91,7 @@ private extension SplashView {
     }
     
     func makePreloader() -> Spinner {
-        let view = Spinner(size: CGSize(width: 40.scale, height: 40.scale))
+        let view = Spinner(size: CGSize(width: 32.scale, height: 32.scale))
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

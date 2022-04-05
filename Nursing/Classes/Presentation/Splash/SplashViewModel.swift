@@ -54,6 +54,12 @@ final class SplashViewModel {
         
         return Driver.merge(initial, afterCourseSelected)
     }
+    
+    func obtainOnboardingSet() -> Driver<Test?> {
+        questionManager
+            .retrieveOnboardingSet(forceUpdate: true)
+            .asDriver(onErrorJustReturn: nil)
+    }
 }
 
 // MARK: Private
@@ -108,11 +114,6 @@ private extension SplashViewModel {
                 
                 paygateManager
                     .retrievePaygate(forceUpdate: true)
-                    .catchAndReturn(nil),
-                
-                // TODO: вынести отдельно и проверять необходимость
-                questionManager
-                    .retrieveOnboardingSet(forceUpdate: true)
                     .catchAndReturn(nil)
             )
             .map { _ in Void() }
