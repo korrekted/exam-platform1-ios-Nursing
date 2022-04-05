@@ -27,6 +27,8 @@ final class TestViewModel {
     lazy var errorMessage = makeErrorMessage()
     lazy var needPayment = makeNeedPayment()
     
+    lazy var activityIndicator = RxActivityIndicator()
+    
     private lazy var questionManager = QuestionManagerCore()
     private lazy var courseManager = CoursesManagerCore()
     private lazy var profileManager = ProfileManagerCore()
@@ -108,6 +110,7 @@ private extension TestViewModel {
                 return test
                     .compactMap { $0 }
                     .asObservable()
+                    .trackActivity(self.activityIndicator)
                     .materialize()
                     .filter {
                         guard case .completed = $0 else { return true }

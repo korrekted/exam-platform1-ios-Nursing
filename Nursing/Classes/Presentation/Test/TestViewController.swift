@@ -29,6 +29,17 @@ final class TestViewController: UIViewController {
         
         let courseName = viewModel.courseName
         
+        viewModel.activityIndicator
+            .drive(onNext: { [weak self] activity in
+                guard let self = self else {
+                    return
+                }
+                
+                self.mainView.tableView.isHidden = activity
+                activity ? self.mainView.activityView.startAnimating() : self.mainView.activityView.stopAnimating()
+            })
+            .disposed(by: disposeBag)
+        
         viewModel.question
             .drive(Binder(self) { base, element in
                 base.mainView.tableView.setup(question: element)

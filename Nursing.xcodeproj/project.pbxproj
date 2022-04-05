@@ -47,6 +47,7 @@
 		DE80310127F60FEB00F69A8E /* OnboardingScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE80310027F60FEB00F69A8E /* OnboardingScope.swift */; };
 		DE80310427F611CE00F69A8E /* SSlideModesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE80310327F611CE00F69A8E /* SSlideModesView.swift */; };
 		DE80310627F611FD00F69A8E /* SSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE80310527F611FD00F69A8E /* SSlideView.swift */; };
+		DE80310827FB4E5900F69A8E /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE80310727FB4E5900F69A8E /* Spinner.swift */; };
 		DE9376AE27ACE9880073F27C /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93755B27ACE9880073F27C /* UIColorExtension.swift */; };
 		DE9376AF27ACE9880073F27C /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93755C27ACE9880073F27C /* Collection+Extension.swift */; };
 		DE9376B027ACE9880073F27C /* RestApiTransportExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93755D27ACE9880073F27C /* RestApiTransportExtension.swift */; };
@@ -382,6 +383,7 @@
 		DE80310027F60FEB00F69A8E /* OnboardingScope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScope.swift; sourceTree = "<group>"; };
 		DE80310327F611CE00F69A8E /* SSlideModesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSlideModesView.swift; sourceTree = "<group>"; };
 		DE80310527F611FD00F69A8E /* SSlideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSlideView.swift; sourceTree = "<group>"; };
+		DE80310727FB4E5900F69A8E /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
 		DE93755B27ACE9880073F27C /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		DE93755C27ACE9880073F27C /* Collection+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
 		DE93755D27ACE9880073F27C /* RestApiTransportExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestApiTransportExtension.swift; sourceTree = "<group>"; };
@@ -964,6 +966,7 @@
 				DE93757727ACE9880073F27C /* GradientButton.swift */,
 				DE93757827ACE9880073F27C /* CircleView.swift */,
 				DE93757927ACE9880073F27C /* GradientView.swift */,
+				DE80310727FB4E5900F69A8E /* Spinner.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -1548,10 +1551,10 @@
 		DE93762927ACE9880073F27C /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				DE93763827ACE9880073F27C /* Models */,
 				DE93762A27ACE9880073F27C /* Cells */,
 				DE93763427ACE9880073F27C /* Test */,
 				DE93763727ACE9880073F27C /* TestViewModel.swift */,
-				DE93763827ACE9880073F27C /* Models */,
 				DE93763F27ACE9880073F27C /* TestView.swift */,
 				DE93764027ACE9880073F27C /* TestViewController.swift */,
 				DE93764127ACE9880073F27C /* Views */,
@@ -2217,6 +2220,7 @@
 				DE93771227ACE9880073F27C /* Stats.swift in Sources */,
 				DE9377A127ACE9880073F27C /* OSlideCountView.swift in Sources */,
 				DE93776527ACE9880073F27C /* TestStatsFilterCell.swift in Sources */,
+				DE80310827FB4E5900F69A8E /* Spinner.swift in Sources */,
 				DE93781627BE52930073F27C /* GetOnboardingSetRequest.swift in Sources */,
 				DE9376C327ACE9880073F27C /* PaddingLabel.swift in Sources */,
 				DE93773A27ACE9880073F27C /* CourseViewController.swift in Sources */,
