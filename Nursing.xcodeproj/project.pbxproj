@@ -1736,11 +1736,11 @@
 		DE93767327ACE9880073F27C /* Stats */ = {
 			isa = PBXGroup;
 			children = (
+				DE93767B27ACE9880073F27C /* Views */,
+				DE93767627ACE9880073F27C /* Models */,
 				DE93767427ACE9880073F27C /* StatsViewModel.swift */,
 				DE93767527ACE9880073F27C /* StatsViewController.swift */,
-				DE93767627ACE9880073F27C /* Models */,
 				DE93767A27ACE9880073F27C /* StatsView.swift */,
-				DE93767B27ACE9880073F27C /* Views */,
 			);
 			path = Stats;
 			sourceTree = "<group>";
