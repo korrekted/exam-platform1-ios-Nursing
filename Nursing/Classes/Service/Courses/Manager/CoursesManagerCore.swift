@@ -77,7 +77,7 @@ extension CoursesManagerCore {
         
         return defaultRequestWrapper
             .callServerApi(requestBody: request)
-            .map { GetSelectedCourseResponse.map(from: $0) }
+            .map { try GetSelectedCourseResponse.map(from: $0) }
             .do(onSuccess: { course in
                 guard let data = try? JSONEncoder().encode(course) else {
                     return

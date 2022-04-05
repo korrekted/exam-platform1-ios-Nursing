@@ -1476,9 +1476,9 @@
 		DE93761027ACE9880073F27C /* Study */ = {
 			isa = PBXGroup;
 			children = (
+				DE93761327ACE9880073F27C /* Views */,
 				DE93761127ACE9880073F27C /* StudyViewModel.swift */,
 				DE93761227ACE9880073F27C /* StudyViewController.swift */,
-				DE93761327ACE9880073F27C /* Views */,
 				DE93762127ACE9880073F27C /* StudyView.swift */,
 			);
 			path = Study;
