@@ -50,6 +50,7 @@
 		DE80310827FB4E5900F69A8E /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE80310727FB4E5900F69A8E /* Spinner.swift */; };
 		DE80310A27FC41D200F69A8E /* SplashActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE80310927FC41D200F69A8E /* SplashActivity.swift */; };
 		DE80310C27FC56F700F69A8E /* SplashOnboardingNavigate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE80310B27FC56F700F69A8E /* SplashOnboardingNavigate.swift */; };
+		DE80310E27FC662000F69A8E /* SplashSDKInitialize.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE80310D27FC662000F69A8E /* SplashSDKInitialize.swift */; };
 		DE9376AE27ACE9880073F27C /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93755B27ACE9880073F27C /* UIColorExtension.swift */; };
 		DE9376AF27ACE9880073F27C /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93755C27ACE9880073F27C /* Collection+Extension.swift */; };
 		DE9376B027ACE9880073F27C /* RestApiTransportExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93755D27ACE9880073F27C /* RestApiTransportExtension.swift */; };
@@ -388,6 +389,7 @@
 		DE80310727FB4E5900F69A8E /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
 		DE80310927FC41D200F69A8E /* SplashActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashActivity.swift; sourceTree = "<group>"; };
 		DE80310B27FC56F700F69A8E /* SplashOnboardingNavigate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashOnboardingNavigate.swift; sourceTree = "<group>"; };
+		DE80310D27FC662000F69A8E /* SplashSDKInitialize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashSDKInitialize.swift; sourceTree = "<group>"; };
 		DE93755B27ACE9880073F27C /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		DE93755C27ACE9880073F27C /* Collection+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
 		DE93755D27ACE9880073F27C /* RestApiTransportExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestApiTransportExtension.swift; sourceTree = "<group>"; };
@@ -1471,6 +1473,7 @@
 				DE93760D27ACE9880073F27C /* SplashReceiptValidationObserver.swift */,
 				DE80310927FC41D200F69A8E /* SplashActivity.swift */,
 				DE80310B27FC56F700F69A8E /* SplashOnboardingNavigate.swift */,
+				DE80310D27FC662000F69A8E /* SplashSDKInitialize.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -2106,6 +2109,7 @@
 				DE93772A27ACE9880073F27C /* SplashViewController.swift in Sources */,
 				DE93775D27ACE9880073F27C /* PaygateMainView.swift in Sources */,
 				DE93774D27ACE9880073F27C /* TestType.swift in Sources */,
+				DE80310E27FC662000F69A8E /* SplashSDKInitialize.swift in Sources */,
 				DE93779227ACE9880073F27C /* WelcomeSlide1View.swift in Sources */,
 				DE9376EA27ACE9880073F27C /* GetTestConfigRequest.swift in Sources */,
 				DE93773027ACE9880073F27C /* SCTitleCell.swift in Sources */,

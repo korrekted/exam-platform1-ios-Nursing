@@ -11,8 +11,6 @@ import RxCocoa
 import OtterScaleiOS
 
 final class SplashViewController: UIViewController {
-    var tryAgain: (() -> Void)?
-    
     lazy var mainView = SplashView()
     
     private lazy var disposeBag = DisposeBag()
@@ -21,7 +19,7 @@ final class SplashViewController: UIViewController {
     
     private let generateStep: Signal<Bool>
     
-    private lazy var validationObserver = SplashReceiptValidationObserver()
+    private lazy var sdkInitialize = SplashSDKInitialize(vc: self, rushSDKSignal: generateStep)
     private lazy var onboardingNavigate = SplashOnboardingNavigate(vc: self, viewModel: viewModel)
     
     private init(generateStep: Signal<Bool>) {
@@ -41,38 +39,21 @@ final class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        activity(state: .sdkInitialize)
-        
-        let validationObserve = Single<Void>
-            .create { [weak self] event in
-                guard let self = self else {
-                    return Disposables.create()
-                }
-                
-                self.validationObserver.observe {
-                    event(.success(Void()))
-                }
-                
-                return Disposables.create()
+        sdkInitialize.initialize { [weak self] progress in
+            guard let self = self else {
+                return
             }
-            .asSignal(onErrorSignalWith: .empty())
-        
-        Signal.combineLatest(validationObserve, generateStep)
-            .map { $1 }
-            .emit(onNext: { [weak self] successInitializeSDK in
-                guard let self = self else {
-                    return
-                }
-                
-                if successInitializeSDK {
-                    self.activity(state: .library)
-                    self.viewModel.validationComplete.accept(Void())
-                } else {
-                    self.activity(state: .none)
-                    self.openErrorScreen()
-                }
-            })
-            .disposed(by: disposeBag)
+            
+            switch progress {
+            case .error:
+                self.activity(state: .none)
+            case .initializing:
+                self.activity(state: .sdkInitialize)
+            case .complete:
+                self.activity(state: .library)
+                self.viewModel.validationComplete.accept(Void())
+            }
+        }
         
         viewModel.step()
             .drive(onNext: { [weak self] step in
@@ -138,18 +119,6 @@ private extension SplashViewController {
             vc.delegate = self
             present(vc, animated: true)
         }
-    }
-    
-    func openErrorScreen() {
-        let vc = TryAgainViewController.make { [weak self] in
-            guard let self = self else {
-                return
-            }
-            
-            self.tryAgain?()
-            self.activity(state: .sdkInitialize)
-        }
-        present(vc, animated: true)
     }
     
     func activity(state: SplashActivity) {

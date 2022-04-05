@@ -13,9 +13,9 @@ import OtterScaleiOS
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
-    private lazy var generateStepInSplash = PublishRelay<Bool>()
+    lazy var sdkProvider = SDKProvider()
     
-    private lazy var sdkProvider = SDKProvider()
+    private lazy var generateStepInSplash = PublishRelay<Bool>()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -23,11 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NumberLaunches().launch()
         
         let vc = SplashViewController.make(generateStep: generateStepInSplash.asSignal())
-        vc.tryAgain = { [weak self] in
-            guard let self = self else { return }
-            
-            self.refreshProvider()
-        }
         window?.rootViewController = vc
         window?.makeKeyAndVisible()
         
@@ -101,12 +96,6 @@ private extension AppDelegate {
                                    appleAppID: GlobalDefinitions.appleAppID)
         
         sdkProvider.initialize(settings: settings) { [weak self] success in
-            self?.generateStepInSplash.accept(success)
-        }
-    }
-    
-    func refreshProvider() {
-        sdkProvider.refreshInstallUserToken { [weak self] success in
             self?.generateStepInSplash.accept(success)
         }
     }
