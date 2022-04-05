@@ -1555,13 +1555,13 @@
 		DE93762927ACE9880073F27C /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				DE93764127ACE9880073F27C /* Views */,
 				DE93763827ACE9880073F27C /* Models */,
 				DE93762A27ACE9880073F27C /* Cells */,
 				DE93763427ACE9880073F27C /* Test */,
 				DE93763727ACE9880073F27C /* TestViewModel.swift */,
 				DE93763F27ACE9880073F27C /* TestView.swift */,
 				DE93764027ACE9880073F27C /* TestViewController.swift */,
-				DE93764127ACE9880073F27C /* Views */,
 			);
 			path = Test;
 			sourceTree = "<group>";
