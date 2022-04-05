@@ -40,9 +40,16 @@ final class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        activity(state: .sdkInitialize)
+        
         viewModel.step()
             .drive(onNext: { [weak self] step in
-                self?.step(step)
+                guard let self = self else {
+                    return
+                }
+                
+                self.step(step)
+                self.activity(state: .none)
             })
             .disposed(by: disposeBag)
         
@@ -68,8 +75,10 @@ final class SplashViewController: UIViewController {
                 }
                 
                 if successInitializeSDK {
+                    self.activity(state: .library)
                     self.viewModel.validationComplete.accept(Void())
                 } else {
+                    self.activity(state: .none)
                     self.openErrorScreen()
                 }
             })
@@ -124,7 +133,19 @@ private extension SplashViewController {
             }
             
             self.tryAgain?()
+            self.activity(state: .sdkInitialize)
         }
         present(vc, animated: true)
+    }
+    
+    func activity(state: SplashActivity) {
+        state == .none ? mainView.preloaderView.stopAnimating() : mainView.preloaderView.startAnimating()
+        
+        let attrs = TextAttributes()
+            .textColor(Appearance.greyColor)
+            .font(Fonts.SFProRounded.regular(size: 17.scale))
+            .lineHeight(23.8.scale)
+            .textAlignment(.center)
+        mainView.preloaderLabel.attributedText = state.text.attributed(with: attrs)
     }
 }

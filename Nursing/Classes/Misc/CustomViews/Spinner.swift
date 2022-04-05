@@ -8,20 +8,23 @@
 import UIKit
 
 final class Spinner: UIView {
+    private let animationKey = "spinner_rotation_key"
+    
     private lazy var imageView: UIImageView = {
         let view = UIImageView()
-        view.frame.size = CGSize(width: 40.scale, height: 40.scale)
+        view.frame.size = size
         view.image = UIImage(named: "Spinner")
         view.contentMode = .scaleAspectFit
         addSubview(view)
         return view
     }()
     
-    private lazy var behavior = UIDynamicItemBehavior(items: [imageView])
-    private lazy var animator = UIDynamicAnimator(referenceView: self)
+    private let size: CGSize
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(size: CGSize) {
+        self.size = size
+        
+        super.init(frame: .zero)
         
         initialize()
     }
@@ -36,18 +39,24 @@ extension Spinner {
     func startAnimating() {
         isHidden = false
         
-        guard !animator.behaviors.contains(behavior) else {
+        guard imageView.layer.animation(forKey: animationKey) == nil else {
             return
         }
         
-        behavior.addAngularVelocity(5, for: imageView)
-        animator.addBehavior(behavior)
+        let animation = CABasicAnimation(keyPath: "transform.rotation.z")
+        animation.toValue = Float.pi * 2
+        animation.fromValue = 0
+        animation.isCumulative = true
+        animation.repeatCount = HUGE
+        animation.duration = 2.5
+        
+        imageView.layer.add(animation, forKey: animationKey)
     }
     
     func stopAnimating() {
         isHidden = true
         
-        animator.removeAllBehaviors()
+        imageView.layer.removeAnimation(forKey: animationKey)
     }
 }
 

@@ -108,7 +108,7 @@ private extension TestView {
     }
     
     func makeActivityView() -> Spinner {
-        let view = Spinner(frame: .zero)
+        let view = Spinner(size: CGSize(width: 32.scale, height: 32.scale))
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

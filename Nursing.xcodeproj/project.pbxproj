@@ -48,6 +48,7 @@
 		DE80310427F611CE00F69A8E /* SSlideModesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE80310327F611CE00F69A8E /* SSlideModesView.swift */; };
 		DE80310627F611FD00F69A8E /* SSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE80310527F611FD00F69A8E /* SSlideView.swift */; };
 		DE80310827FB4E5900F69A8E /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE80310727FB4E5900F69A8E /* Spinner.swift */; };
+		DE80310A27FC41D200F69A8E /* SplashActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE80310927FC41D200F69A8E /* SplashActivity.swift */; };
 		DE9376AE27ACE9880073F27C /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93755B27ACE9880073F27C /* UIColorExtension.swift */; };
 		DE9376AF27ACE9880073F27C /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93755C27ACE9880073F27C /* Collection+Extension.swift */; };
 		DE9376B027ACE9880073F27C /* RestApiTransportExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93755D27ACE9880073F27C /* RestApiTransportExtension.swift */; };
@@ -384,6 +385,7 @@
 		DE80310327F611CE00F69A8E /* SSlideModesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSlideModesView.swift; sourceTree = "<group>"; };
 		DE80310527F611FD00F69A8E /* SSlideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSlideView.swift; sourceTree = "<group>"; };
 		DE80310727FB4E5900F69A8E /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
+		DE80310927FC41D200F69A8E /* SplashActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashActivity.swift; sourceTree = "<group>"; };
 		DE93755B27ACE9880073F27C /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		DE93755C27ACE9880073F27C /* Collection+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
 		DE93755D27ACE9880073F27C /* RestApiTransportExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestApiTransportExtension.swift; sourceTree = "<group>"; };
@@ -1465,6 +1467,7 @@
 			isa = PBXGroup;
 			children = (
 				DE93760D27ACE9880073F27C /* SplashReceiptValidationObserver.swift */,
+				DE80310927FC41D200F69A8E /* SplashActivity.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -2250,6 +2253,7 @@
 				DE93778A27ACE9880073F27C /* OStepView.swift in Sources */,
 				DE9376D627ACE9880073F27C /* PaygateOption.swift in Sources */,
 				DE93775627ACE9880073F27C /* BottomView.swift in Sources */,
+				DE80310A27FC41D200F69A8E /* SplashActivity.swift in Sources */,
 				DE93778827ACE9880073F27C /* OnboardingViewController.swift in Sources */,
 				DE93771027ACE9880073F27C /* IAPErrorHelper.swift in Sources */,
 				DE93771427ACE9880073F27C /* GetBriefResponseMapper.swift in Sources */,
