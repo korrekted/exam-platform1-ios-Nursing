@@ -10,6 +10,8 @@ import UIKit
 final class Spinner: UIView {
     private let animationKey = "spinner_rotation_key"
     
+    private lazy var isAnimating = false
+    
     private lazy var imageView: UIImageView = {
         let view = UIImageView()
         view.frame.size = size
@@ -32,12 +34,22 @@ final class Spinner: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        if isAnimating {
+            stopAnimating()
+            startAnimating()
+        }
+    }
 }
 
 // MARK: Public
 extension Spinner {
     func startAnimating() {
         isHidden = false
+        isAnimating = true
         
         guard imageView.layer.animation(forKey: animationKey) == nil else {
             return
@@ -55,6 +67,7 @@ extension Spinner {
     
     func stopAnimating() {
         isHidden = true
+        isAnimating = false
         
         imageView.layer.removeAnimation(forKey: animationKey)
     }
