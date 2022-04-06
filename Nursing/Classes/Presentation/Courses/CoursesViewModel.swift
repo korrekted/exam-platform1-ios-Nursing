@@ -27,7 +27,7 @@ private extension CoursesViewModel {
             .startWith(-1)
         
         let courses = coursesManager
-            .retrieveCourses()
+            .retrieveCourses(forceUpdate: false)
             .map {
                 $0.sorted(by: { $0.sort < $1.sort })
                 

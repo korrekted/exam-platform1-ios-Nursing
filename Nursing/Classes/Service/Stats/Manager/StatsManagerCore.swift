@@ -41,7 +41,7 @@ extension StatsManagerCore {
         
         return defaultRequestWrapper
             .callServerApi(requestBody: request)
-            .map(GetBriefResponseMapper.from(response:))
+            .map { try GetBriefResponseMapper.from(response: $0) }
     }
 }
 

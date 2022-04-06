@@ -23,6 +23,9 @@
 "Splash.Title.Part1" = "Prepared by\n";
 "Splash.Title.Part2" = "CERTIFIED\n";
 "Splash.Title.Part3" = "experts";
+"Splash.Preloader1" = "Checking your account...";
+"Splash.Preloader2" = "Syncing the question bank...";
+"Splash.Preloader3" = "Setting up the onboarding...";
 
 // MARK: Onboarding
 "Onboarding.FailedToSave" = "Failed to save";
@@ -212,3 +215,8 @@
 "Widgets.Medium.Description" = "Watch your pass rate progress and how many tests and questions you have taken";
 "Widgets.Large.Name" = "Full Stats";
 "Widgets.Large.Description" = "Watch your pass rate progress and how far are you from completing the question bank";
+
+// MARK: TryAgain
+"TryAgain.Title" = "Something went wrong";
+"TryAgain.SubTitle" = "We are working on fixing the problem.\nPlease try again";
+"TryAgain.Button" = "Try again";

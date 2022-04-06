@@ -20,8 +20,8 @@ final class OSlidePreloaderView: OSlideView {
     
     private var timer: Timer?
     
-    override init(step: OnboardingView.Step) {
-        super.init(step: step)
+    override init(step: OnboardingView.Step, scope: OnboardingScope) {
+        super.init(step: step, scope: scope)
         
         makeConstraints()
     }
@@ -35,7 +35,7 @@ final class OSlidePreloaderView: OSlideView {
         calculatePercent()
         
         AmplitudeManager.shared
-            .logEvent(name: "Plan Preparing Screen", parameters: [:])
+            .logEvent(name: "Onboarding Screen 7", parameters: [:])
     }
 }
 

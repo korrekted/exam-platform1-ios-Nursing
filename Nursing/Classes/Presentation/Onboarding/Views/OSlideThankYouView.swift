@@ -13,14 +13,21 @@ final class OSlideThankYouView: OSlideView {
     lazy var subTitleLabel = makeSubTitleLabel()
     lazy var button = makeButton()
     
-    override init(step: OnboardingView.Step) {
-        super.init(step: step)
+    override init(step: OnboardingView.Step, scope: OnboardingScope) {
+        super.init(step: step, scope: scope)
         
         makeConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func moveToThis() {
+        super.moveToThis()
+        
+        AmplitudeManager.shared
+            .logEvent(name: "Onboarding Screen 5", parameters: [:])
     }
 }
 

@@ -17,8 +17,8 @@ final class OSlideExperienceView: OSlideView {
     
     private lazy var disposeBag = DisposeBag()
     
-    override init(step: OnboardingView.Step) {
-        super.init(step: step)
+    override init(step: OnboardingView.Step, scope: OnboardingScope) {
+        super.init(step: step, scope: scope)
         
         makeConstraints()
         initialize()
@@ -41,6 +41,9 @@ private extension OSlideExperienceView {
                 self?.onNext()
             })
             .disposed(by: disposeBag)
+        
+        AmplitudeManager.shared
+            .logEvent(name: "Welcome Screen", parameters: [:])
     }
 }
 

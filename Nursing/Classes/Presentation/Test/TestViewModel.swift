@@ -27,6 +27,12 @@ final class TestViewModel {
     lazy var errorMessage = makeErrorMessage()
     lazy var needPayment = makeNeedPayment()
     
+    lazy var activityIndicator = RxActivityIndicator()
+    
+    var tryAgain: ((Error) -> (Observable<Void>))?
+    
+    private lazy var observableRetrySingle = ObservableRetrySingle()
+    
     private lazy var questionManager = QuestionManagerCore()
     private lazy var courseManager = CoursesManagerCore()
     private lazy var profileManager = ProfileManagerCore()
@@ -60,9 +66,10 @@ private extension TestViewModel {
         let questions = testElement
             .compactMap { $0.element?.questions }
         
+        let mode = testMode.asObservable()
+        
         let dataSource = Observable
-            .combineLatest(questions, selectedAnswers)
-            .withLatestFrom(testMode) { ($0.0, $0.1, $1) }
+            .combineLatest(questions, selectedAnswers, mode) { ($0, $1, $2) }
             .scan([], accumulator: questionAccumulator)
         
         return dataSource
@@ -77,6 +84,14 @@ private extension TestViewModel {
     func loadTest() -> Observable<Event<Test>> {
         guard let courseId = courseManager.getSelectedCourse()?.id else {
             return .empty()
+        }
+        
+        func trigger(error: Error) -> Observable<Void> {
+            guard let tryAgain = self.tryAgain?(error) else {
+                return .empty()
+            }
+            
+            return tryAgain
         }
         
         return testType
@@ -108,6 +123,12 @@ private extension TestViewModel {
                 return test
                     .compactMap { $0 }
                     .asObservable()
+                    .trackActivity(self.activityIndicator)
+                    .retry(when: { errorObs in
+                        errorObs.flatMap { error in
+                            trigger(error: error)
+                        }
+                    })
                     .materialize()
                     .filter {
                         guard case .completed = $0 else { return true }
@@ -148,16 +169,35 @@ private extension TestViewModel {
                 ($0, $1.element?.userTestId)
                 
             }
-            .flatMapLatest { [questionManager] element, userTestId -> Observable<Bool> in
-                guard let userTestId = userTestId else { return .just(false) }
+            .flatMapLatest { [weak self] element, userTestId -> Observable<Bool> in
+                guard let self = self else {
+                    return .never()
+                }
                 
-                return questionManager
-                    .sendAnswer(
-                        questionId: element.questionId,
-                        userTestId: userTestId,
-                        answerIds: element.answerIds
-                    )
-                    .catchAndReturn(nil)
+                guard let userTestId = userTestId else {
+                    return .just(false)
+                }
+                
+                func source() -> Single<Bool?> {
+                    self.questionManager
+                        .sendAnswer(
+                            questionId: element.questionId,
+                            userTestId: userTestId,
+                            answerIds: element.answerIds
+                        )
+                }
+                
+                func trigger(error: Error) -> Observable<Void> {
+                    guard let tryAgain = self.tryAgain?(error) else {
+                        return .empty()
+                    }
+                    
+                    return tryAgain
+                }
+                
+                return self.observableRetrySingle
+                    .retry(source: { source() },
+                           trigger: { trigger(error: $0) })
                     .compactMap { $0 }
                     .asObservable()
             }
@@ -188,8 +228,22 @@ private extension TestViewModel {
     }
     
     func makeTestMode() -> Driver<TestMode?> {
-        profileManager
-            .obtainTestMode()
+        func source() -> Single<TestMode?> {
+            profileManager
+                .obtainTestMode()
+        }
+        
+        func trigger(error: Error) -> Observable<Void> {
+            guard let tryAgain = self.tryAgain?(error) else {
+                return .empty()
+            }
+            
+            return tryAgain
+        }
+        
+        return self.observableRetrySingle
+            .retry(source: { source() },
+                   trigger: { trigger(error: $0) })
             .asDriver(onErrorJustReturn: nil)
     }
 }

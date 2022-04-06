@@ -17,8 +17,8 @@ final class OSlideWelcomeView: OSlideView {
     
     private lazy var slide1LeadingConstraint = NSLayoutConstraint()
     
-    override init(step: OnboardingView.Step) {
-        super.init(step: step)
+    override init(step: OnboardingView.Step, scope: OnboardingScope) {
+        super.init(step: step, scope: scope)
         
         makeConstraints()
         initialize()
@@ -27,15 +27,19 @@ final class OSlideWelcomeView: OSlideView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func moveToThis() {
+        super.moveToThis()
+        
+        AmplitudeManager.shared
+            .logEvent(name: "Onboarding Screen 1", parameters: ["number": 1])
+    }
 }
 
 // MARK: Private
 private extension OSlideWelcomeView {
     func initialize() {
         indicatorView.index = 1
-        
-        AmplitudeManager.shared
-            .logEvent(name: "Welcome Screen", parameters: ["number": 1])
     }
     
     @objc
@@ -48,7 +52,7 @@ private extension OSlideWelcomeView {
         }
         
         AmplitudeManager.shared
-            .logEvent(name: "Welcome Screen", parameters: ["number": indicatorView.index])
+            .logEvent(name: "Onboarding Screen 1", parameters: ["number": indicatorView.index])
         
         scroll()
     }

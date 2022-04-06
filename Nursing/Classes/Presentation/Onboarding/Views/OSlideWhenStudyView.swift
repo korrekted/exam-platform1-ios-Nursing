@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
 
 final class OWhenStudyView: OSlideView {
     lazy var titleLabel = makeTitleLabel()
@@ -28,15 +26,10 @@ final class OWhenStudyView: OSlideView {
                               tag: 4)
     lazy var button = makeButton()
     
-    private lazy var manager = ProfileManagerCore()
-    
-    private lazy var disposeBag = DisposeBag()
-    
-    override init(step: OnboardingView.Step) {
-        super.init(step: step)
+    override init(step: OnboardingView.Step, scope: OnboardingScope) {
+        super.init(step: step, scope: scope)
         
         makeConstraints()
-        initialize()
         changeEnabled()
     }
     
@@ -54,34 +47,17 @@ final class OWhenStudyView: OSlideView {
 
 // MARK: Private
 private extension OWhenStudyView {
-    func initialize() {
-        button.rx.tap
-            .flatMapLatest { [weak self] _ -> Single<Bool> in
-                guard let self = self else {
-                    return .never()
-                }
-                
-                let selected = [
-                    self.cell1, self.cell2, self.cell3, self.cell4, self.cell5
-                ]
-                .filter { $0.isSelected }
-                .map { $0.tag }
-                
-                return self.manager
-                    .set(testWhen: selected)
-                    .map { true }
-                    .catchAndReturn(false)
-            }
-            .asDriver(onErrorDriveWith: .never())
-            .drive(onNext: { [weak self] success in
-                guard success else {
-                    Toast.notify(with: "Onboarding.FailedToSave".localized, style: .danger)
-                    return
-                }
-                
-                self?.onNext()
-            })
-            .disposed(by: disposeBag)
+    @objc
+    func buttonTapped() {
+        let selected = [
+            cell1, cell2, cell3, cell4, cell5
+        ]
+        .filter { $0.isSelected }
+        .map { $0.tag }
+        
+        scope.testWhen = selected
+        
+        onNext()
     }
     
     @objc
@@ -198,6 +174,7 @@ private extension OWhenStudyView {
         view.layer.cornerRadius = 30.scale
         view.setAttributedTitle("Continue".localized.attributed(with: attrs), for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         addSubview(view)
         return view
     }

@@ -22,40 +22,43 @@ final class OnboardingView: UIView {
         }
     }
     
+    private lazy var scope = OnboardingScope()
+    
     lazy var scrollView = makeScrollView()
     lazy var progressView = makeProgressView()
     lazy var previousButton = makePreviousButton()
     
-    lazy var test1View = OSlideTestQuestionView(step: .testQuestion1)
-    lazy var test2View = OSlideTestQuestionView(step: .testQuestion2)
-    lazy var test3View = OSlideTestQuestionView(step: .testQuestion3)
-    lazy var test4View = OSlideTestQuestionView(step: .testQuestion4)
-    lazy var test5View = OSlideTestQuestionView(step: .testQuestion5)
+    lazy var test1View = OSlideTestQuestionView(step: .testQuestion1, scope: scope)
+    lazy var test2View = OSlideTestQuestionView(step: .testQuestion2, scope: scope)
+    lazy var test3View = OSlideTestQuestionView(step: .testQuestion3, scope: scope)
+    lazy var test4View = OSlideTestQuestionView(step: .testQuestion4, scope: scope)
+    lazy var test5View = OSlideTestQuestionView(step: .testQuestion5, scope: scope)
+    lazy var pushView = OPushView(step: .push, scope: scope)
     
     private lazy var contentViews: [OSlideView] = {
         [
-            OSlideExperienceView(step: .experience),
-            OSlideWelcomeView(step: .welcome),
-            OSlideQuickQuestionsView(step:. quickQuestions),
-            OSlideAgeView(step: .age),
-            OSlideGoalsView(step: .goals),
-            OWhenStudyView(step: .whenStudy),
-            OSlideModesView(step: .modes),
-            OSlideTimeView(step: .time),
-            OSlideMotivationView(step: .motivation),
-            OSlideImproveView(step: .improve),
-            OSlideCountView(step: .count),
-            OSlideAmazingView(step: .amazing),
+            OSlideExperienceView(step: .experience, scope: scope),
+            OSlideWelcomeView(step: .welcome, scope: scope),
+            OSlideQuickQuestionsView(step:. quickQuestions, scope: scope),
+            OSlideAgeView(step: .age, scope: scope),
+            OSlideGoalsView(step: .goals, scope: scope),
+            OWhenStudyView(step: .whenStudy, scope: scope),
+            OSlideModesView(step: .modes, scope: scope),
+            OSlideTimeView(step: .time, scope: scope),
+            OSlideMotivationView(step: .motivation, scope: scope),
+            OSlideImproveView(step: .improve, scope: scope),
+            OSlideCountView(step: .count, scope: scope),
+            OSlideAmazingView(step: .amazing, scope: scope),
             test1View,
             test2View,
             test3View,
             test4View,
             test5View,
-            OSlideThankYouView(step: .thankYou),
-            OSlideQuestionsCountView(step: .questionsCount),
-            OSlideWhenTakingView(step: .whenTaking),
-            OSlidePreloaderView(step: .preloader),
-            OPushView(step: .push)
+            OSlideThankYouView(step: .thankYou, scope: scope),
+            OSlideQuestionsCountView(step: .questionsCount, scope: scope),
+            OSlideWhenTakingView(step: .whenTaking, scope: scope),
+            OSlidePreloaderView(step: .preloader, scope: scope),
+            pushView
         ]
     }()
     

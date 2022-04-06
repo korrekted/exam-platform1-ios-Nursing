@@ -36,6 +36,14 @@ final class StatsViewController: UIViewController {
                 mainView.tableView.setup(elements: elements)
             })
             .disposed(by: disposeBag)
+        
+        viewModel.tryAgain = { [weak self] error -> Observable<Void> in
+            guard let self = self else {
+                return .never()
+            }
+            
+            return self.openError()
+        }
     }
 }
 
@@ -43,5 +51,25 @@ final class StatsViewController: UIViewController {
 extension StatsViewController {
     static func make() -> StatsViewController {
         StatsViewController()
+    }
+}
+
+// MARK: Private
+private extension StatsViewController {
+    func openError() -> Observable<Void> {
+        Observable<Void>
+            .create { [weak self] observe in
+                guard let self = self else {
+                    return Disposables.create()
+                }
+                
+                let vc = TryAgainViewController.make {
+                    observe.onNext(())
+                }
+                self.present(vc, animated: true)
+                
+                return Disposables.create()
+            }
+        
     }
 }

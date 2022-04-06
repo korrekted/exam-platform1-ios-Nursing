@@ -15,8 +15,8 @@ final class OSlideAgeView: OSlideView {
     lazy var age45Button = makeAgeButton(age: "Onboarding.Age.45+".localized)
     lazy var button = makeButton()
     
-    override init(step: OnboardingView.Step) {
-        super.init(step: step)
+    override init(step: OnboardingView.Step, scope: OnboardingScope) {
+        super.init(step: step, scope: scope)
         
         makeConstraints()
         changeEnabled()
@@ -24,6 +24,13 @@ final class OSlideAgeView: OSlideView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func moveToThis() {
+        super.moveToThis()
+        
+        AmplitudeManager.shared
+            .logEvent(name: "Age Screen", parameters: [:])
     }
 }
 

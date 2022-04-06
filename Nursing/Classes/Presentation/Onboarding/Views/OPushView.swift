@@ -10,19 +10,21 @@ import RxSwift
 import RxCocoa
 
 final class OPushView: OSlideView {
+    weak var vc: UIViewController?
+    
     lazy var titleLabel = makeTitleLabel()
     lazy var subtitleLabel = makeSubtitleLabel()
     lazy var imageView = makeImageView()
     lazy var allowButton = makeAllowButton()
     
-    private lazy var sendToken = PublishRelay<String>()
+    private lazy var profileManager = ProfileManagerCore()
     
-    private lazy var manager = ProfileManagerCore()
+    private lazy var tokenReceived = PublishRelay<Void>()
     
     private lazy var disposeBag = DisposeBag()
     
-    override init(step: OnboardingView.Step) {
-        super.init(step: step)
+    override init(step: OnboardingView.Step, scope: OnboardingScope) {
+        super.init(step: step, scope: scope)
         
         makeConstraints()
         initialize()
@@ -51,12 +53,9 @@ extension OPushView: PushNotificationsManagerDelegate {
             .pushNotificationsManager
             .remove(observer: self)
         
-        guard let token = token else {
-            onNext()
-            return
-        }
+        scope.notificationKey = token
         
-        sendToken.accept(token)
+        tokenReceived.accept(Void())
     }
 }
 
@@ -71,27 +70,42 @@ private extension OPushView {
             })
             .disposed(by: disposeBag)
         
-        sendToken
-            .flatMapLatest { [weak self] token -> Single<Bool> in
+        tokenReceived
+            .flatMapLatest { [weak self] _ -> Single<Bool> in
                 guard let self = self else {
                     return .never()
                 }
                 
-                return self.manager
-                    .set(notificationKey: token)
-                    .map { true }
+                return self.profileManager
+                    .set(testMode: self.scope.testMode,
+                         examDate: self.scope.examDate,
+                         testMinutes: self.scope.testMinutes,
+                         testNumber: self.scope.testNumber,
+                         testWhen: self.scope.testWhen,
+                         notificationKey: self.scope.notificationKey)
+                    .map { true } 
                     .catchAndReturn(false)
             }
-            .asDriver(onErrorDriveWith: .never())
+            .asDriver(onErrorJustReturn: false)
             .drive(onNext: { [weak self] success in
-                guard success else {
-                    Toast.notify(with: "Onboarding.FailedToSave".localized, style: .danger)
+                guard let self = self else {
                     return
                 }
                 
-                self?.onNext()
+                success ? self.onNext() : self.openError()
             })
             .disposed(by: disposeBag)
+    }
+    
+    func openError() {
+        let tryAgainVC = TryAgainViewController.make { [weak self] in
+            guard let self = self else {
+                return
+            }
+            
+            self.tokenReceived.accept(Void())
+        }
+        vc?.present(tryAgainVC, animated: true)
     }
 }
 
