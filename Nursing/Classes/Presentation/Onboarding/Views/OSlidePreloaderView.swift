@@ -35,7 +35,7 @@ final class OSlidePreloaderView: OSlideView {
         calculatePercent()
         
         AmplitudeManager.shared
-            .logEvent(name: "Plan Preparing Screen", parameters: [:])
+            .logEvent(name: "Onboarding Screen 7", parameters: [:])
     }
 }
 

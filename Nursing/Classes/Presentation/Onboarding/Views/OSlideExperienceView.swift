@@ -41,6 +41,9 @@ private extension OSlideExperienceView {
                 self?.onNext()
             })
             .disposed(by: disposeBag)
+        
+        AmplitudeManager.shared
+            .logEvent(name: "Welcome Screen", parameters: [:])
     }
 }
 

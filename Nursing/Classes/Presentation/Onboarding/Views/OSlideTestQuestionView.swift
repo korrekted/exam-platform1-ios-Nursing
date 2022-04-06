@@ -12,6 +12,8 @@ final class OSlideTestQuestionView: OSlideView {
     private lazy var tableView = makeQuestionTable()
     private lazy var numberLabel = makeNumberLabel()
     
+    private lazy var courseManager = CoursesManagerCore()
+    
     override init(step: OnboardingView.Step, scope: OnboardingScope) {
         super.init(step: step, scope: scope)
         
@@ -22,6 +24,22 @@ final class OSlideTestQuestionView: OSlideView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func moveToThis() {
+        super.moveToThis()
+        
+        guard let course = courseManager.getSelectedCourse() else {
+            return
+        }
+        
+        AmplitudeManager.shared
+            .logEvent(name: "Onboarding Screen 4",
+                      parameters: [
+                        "course": course.name,
+                        "mode": "onboarding",
+                        "step": number(for: step)
+                      ])
     }
 }
 
@@ -66,29 +84,34 @@ extension OSlideTestQuestionView {
                 isResult: true
             )
             
+            self?.logAnswerInAnalytics(isCorrect: isCorrect)
+            
             self?.tableView.setup(question: questionElement)
         }
     }
 }
 
+// MARK: Private
 private extension OSlideTestQuestionView {
-    func setupNumber(for step: OnboardingView.Step) {
-        let firstNumber: String
-        
+    func number(for step: OnboardingView.Step) -> String {
         switch step {
         case .testQuestion1:
-            firstNumber = "1"
+            return "1"
         case .testQuestion2:
-            firstNumber = "2"
+            return "2"
         case .testQuestion3:
-            firstNumber = "3"
+            return "3"
         case .testQuestion4:
-            firstNumber = "4"
+            return "4"
         case .testQuestion5:
-            firstNumber = "5"
+            return "5"
         default:
-            firstNumber = ""
+            return ""
         }
+    }
+    
+    func setupNumber(for step: OnboardingView.Step) {
+        let firstNumber = number(for: step)
         
         guard !firstNumber.isEmpty else { return }
         
@@ -111,6 +134,20 @@ private extension OSlideTestQuestionView {
     func change(enabled: Bool) {
         button.isEnabled = enabled
         button.alpha = enabled ? 1 : 0.4
+    }
+    
+    func logAnswerInAnalytics(isCorrect: Bool) {
+        guard let course = courseManager.getSelectedCourse() else {
+            return
+        }
+        
+        let name = isCorrect ? "Question Answered Correctly" : "Question Answered Incorrectly"
+        AmplitudeManager.shared
+            .logEvent(name: name,
+                      parameters: [
+                        "course": course.name,
+                        "mode": "onboarding"
+                      ])
     }
 }
 

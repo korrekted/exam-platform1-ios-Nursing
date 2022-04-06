@@ -30,6 +30,9 @@ final class OSlideMotivationView: OSlideView {
         super.moveToThis()
         
         progressView.set(progress: 0.4)
+        
+        AmplitudeManager.shared
+            .logEvent(name: "Onboarding Screen 3", parameters: [:])
     }
 }
 

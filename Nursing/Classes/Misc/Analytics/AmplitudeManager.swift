@@ -64,4 +64,3 @@ private extension AmplitudeManager {
         logEvent(name: "First Launch")
     }
 }
-
