@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RushSDK
 
 final class OSlideTestQuestionView: OSlideView {
     lazy var button = makeButton()
@@ -93,25 +94,25 @@ extension OSlideTestQuestionView {
 
 // MARK: Private
 private extension OSlideTestQuestionView {
-    func number(for step: OnboardingView.Step) -> String {
+    func number(for step: OnboardingView.Step) -> Int {
         switch step {
         case .testQuestion1:
-            return "1"
+            return 1
         case .testQuestion2:
-            return "2"
+            return 2
         case .testQuestion3:
-            return "3"
+            return 3
         case .testQuestion4:
-            return "4"
+            return 4
         case .testQuestion5:
-            return "5"
+            return 5
         default:
-            return ""
+            return 0
         }
     }
     
     func setupNumber(for step: OnboardingView.Step) {
-        let firstNumber = number(for: step)
+        let firstNumber = String(number(for: step))
         
         guard !firstNumber.isEmpty else { return }
         
@@ -148,6 +149,15 @@ private extension OSlideTestQuestionView {
                         "course": course.name,
                         "mode": "onboarding"
                       ])
+    }
+    
+    @objc
+    func buttonTapped() {
+        if number(for: step) == 5 {
+            FirebaseManager.shared.logEvent(name: "client_onboarding_test_finished")
+        }
+        
+        onNext()
     }
 }
 
@@ -187,7 +197,7 @@ private extension OSlideTestQuestionView {
         view.setAttributedTitle("Continue".localized.attributed(with: attrs), for: .normal)
         view.backgroundColor = Appearance.mainColor
         view.layer.cornerRadius = 30.scale
-        view.addTarget(self, action: #selector(onNext), for: .touchUpInside)
+        view.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

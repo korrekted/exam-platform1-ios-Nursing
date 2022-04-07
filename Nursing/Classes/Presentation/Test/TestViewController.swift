@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 import AVFoundation
 import AVKit
+import RushSDK
 
 final class TestViewController: UIViewController {
     lazy var mainView = TestView()
@@ -85,6 +86,7 @@ final class TestViewController: UIViewController {
             .filter { $0 == .back }
             .bind(to: Binder(self) { base, _ in
                 base.dismiss(animated: true)
+                FirebaseManager.shared.logEvent(name: "client_test_finished")
             })
             .disposed(by: disposeBag)
         

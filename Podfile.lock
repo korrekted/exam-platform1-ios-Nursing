@@ -127,8 +127,8 @@ PODS:
     - MarqueeLabel (~> 4.0.5)
     - SnapKit (~> 5.0.1)
   - OtterScaleiOS (1.11)
-  - PromisesObjC (2.0.0)
-  - RushSDK (2.10.2):
+  - PromisesObjC (2.1.0)
+  - RushSDK (2.11.1):
     - Alamofire
     - Amplitude-iOS
     - AppsFlyerFramework
@@ -198,7 +198,7 @@ CHECKOUT OPTIONS:
     :commit: d4ee9c3d596340ddd1fe3037344f72611dd9a678
     :git: https://github.com/AgentChe/OtterScaleiOS.git
   RushSDK:
-    :commit: 3c088890ef89c98736d1244d4d47ce6836be018c
+    :commit: 8094d19f48ef416ccd8b668cdc76e232af0be8a1
     :git: https://github.com/AgentChe/RushSDK.git
 
 SPEC CHECKSUMS:
@@ -225,8 +225,8 @@ SPEC CHECKSUMS:
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   NotificationBannerSwift: 49912a48b37e2f55d1cef4e8a38f15394f66a70a
   OtterScaleiOS: 0ca5b4ee1a6808153a44e740f0771df421b87d3d
-  PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
-  RushSDK: 3f33c4e198f91673b372dd0e8f9355b0009bfeb4
+  PromisesObjC: 99b6f43f9e1044bd87a95a60beff28c2c44ddb72
+  RushSDK: e658eb551dd84095223171f050897bff0d6e6d3b
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8

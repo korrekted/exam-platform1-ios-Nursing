@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RushSDK
 
 final class PaygateViewController: UIViewController {
     private enum Scene {
@@ -40,6 +41,8 @@ final class PaygateViewController: UIViewController {
         
         AmplitudeManager.shared
             .logEvent(name: "Paygate Screen", parameters: [:])
+        FirebaseManager.shared
+            .logEvent(name: "client_paygate_screen")
         
         addMainOptionsSelection()
         
