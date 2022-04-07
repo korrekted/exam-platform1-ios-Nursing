@@ -63,6 +63,16 @@ final class StudyViewController: UIViewController {
             
             return self.openError()
         }
+        
+        viewModel.activityIndicator
+            .drive(onNext: { [weak self] activity in
+                guard let self = self else {
+                    return
+                }
+                
+                self.activity(activity)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -156,6 +166,13 @@ private extension StudyViewController {
                 
                 return Disposables.create()
             }
+    }
+    
+    func activity(_ activity: Bool) {
+        let empty = mainView.collectionView.sections.isEmpty
         
+        let inProgress = empty && activity
+        
+        inProgress ? mainView.preloader.startAnimating() : mainView.preloader.stopAnimating()
     }
 }

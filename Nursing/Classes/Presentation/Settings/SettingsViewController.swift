@@ -39,6 +39,16 @@ final class SettingsViewController: UIViewController {
                 self?.tapped(value)
             })
             .disposed(by: disposeBag)
+        
+        viewModel.activityIndicator
+            .drive(onNext: { [weak self] activity in
+                guard let self = self else {
+                    return
+                }
+                
+                self.activity(activity)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -97,5 +107,13 @@ private extension SettingsViewController {
         }
         
         UIApplication.shared.open(url, options: [:])
+    }
+    
+    func activity(_ activity: Bool) {
+        let empty = mainView.tableView.sections.isEmpty
+        
+        let inProgress = empty && activity
+        
+        inProgress ? mainView.preloader.startAnimating() : mainView.preloader.stopAnimating()
     }
 }

@@ -44,6 +44,16 @@ final class StatsViewController: UIViewController {
             
             return self.openError()
         }
+        
+        viewModel.activityIndicator
+            .drive(onNext: { [weak self] activity in
+                guard let self = self else {
+                    return
+                }
+                
+                self.activity(activity)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -70,6 +80,13 @@ private extension StatsViewController {
                 
                 return Disposables.create()
             }
+    }
+    
+    func activity(_ activity: Bool) {
+        let empty = mainView.tableView.elements.isEmpty
         
+        let inProgress = empty && activity
+        
+        inProgress ? mainView.preloader.startAnimating() : mainView.preloader.stopAnimating()
     }
 }

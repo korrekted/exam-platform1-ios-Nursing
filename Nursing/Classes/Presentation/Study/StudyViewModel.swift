@@ -17,6 +17,8 @@ final class StudyViewModel {
     lazy var activeSubscription = makeActiveSubscription()
     lazy var courseName = makeCourseName()
     
+    lazy var activityIndicator = RxActivityIndicator()
+    
     var tryAgain: ((Error) -> (Observable<Void>))?
     
     private lazy var observableRetrySingle = ObservableRetrySingle()
@@ -80,6 +82,7 @@ private extension StudyViewModel {
                 return self.observableRetrySingle
                     .retry(source: { source() },
                            trigger: { trigger(error: $0) })
+                    .trackActivity(self.activityIndicator)
             }
             .map { stub -> StudyCollectionSection in
                 let (course, brief) = stub

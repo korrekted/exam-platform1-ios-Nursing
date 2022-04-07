@@ -15,6 +15,8 @@ final class StatsViewModel {
     lazy var courseName = makeCourseName()
     lazy var elements = makeElements()
     
+    lazy var activityIndicator = RxActivityIndicator()
+    
     var tryAgain: ((Error) -> (Observable<Void>))?
     
     private lazy var observableRetrySingle = ObservableRetrySingle()
@@ -58,6 +60,7 @@ private extension StatsViewModel {
                 return self.observableRetrySingle
                     .retry(source: { source() },
                            trigger: { trigger(error: $0) })
+                    .trackActivity(self.activityIndicator)
             }
             .map { stats -> [StatsCellType] in
                 guard let stats = stats else { return [] }
