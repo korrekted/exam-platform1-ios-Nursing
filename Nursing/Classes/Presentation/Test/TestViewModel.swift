@@ -27,7 +27,8 @@ final class TestViewModel {
     lazy var errorMessage = makeErrorMessage()
     lazy var needPayment = makeNeedPayment()
     
-    lazy var activityIndicator = RxActivityIndicator()
+    lazy var loadTestActivityIndicator = RxActivityIndicator()
+    lazy var sendAnswerActivityIndicator = RxActivityIndicator()
     
     var tryAgain: ((Error) -> (Observable<Void>))?
     
@@ -123,7 +124,7 @@ private extension TestViewModel {
                 return test
                     .compactMap { $0 }
                     .asObservable()
-                    .trackActivity(self.activityIndicator)
+                    .trackActivity(self.loadTestActivityIndicator)
                     .retry(when: { errorObs in
                         errorObs.flatMap { error in
                             trigger(error: error)
@@ -198,6 +199,7 @@ private extension TestViewModel {
                 return self.observableRetrySingle
                     .retry(source: { source() },
                            trigger: { trigger(error: $0) })
+                    .trackActivity(self.sendAnswerActivityIndicator)
                     .compactMap { $0 }
                     .asObservable()
             }

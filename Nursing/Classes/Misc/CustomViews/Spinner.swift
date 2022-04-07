@@ -8,6 +8,10 @@
 import UIKit
 
 final class Spinner: UIView {
+    enum Style {
+        case blue, white
+    }
+    
     private let animationKey = "spinner_rotation_key"
     
     private lazy var isAnimating = false
@@ -15,16 +19,18 @@ final class Spinner: UIView {
     private lazy var imageView: UIImageView = {
         let view = UIImageView()
         view.frame.size = size
-        view.image = UIImage(named: "Spinner")
+        view.image = UIImage(named: imageName())
         view.contentMode = .scaleAspectFit
         addSubview(view)
         return view
     }()
     
     private let size: CGSize
+    private let style: Style
     
-    init(size: CGSize) {
+    init(size: CGSize, style: Style = .blue) {
         self.size = size
+        self.style = style
         
         super.init(frame: .zero)
         
@@ -77,5 +83,14 @@ extension Spinner {
 private extension Spinner {
     func initialize() {
         backgroundColor = UIColor.clear
+    }
+    
+    func imageName() -> String {
+        switch style {
+        case .blue:
+            return "Spinner.Blue"
+        case .white:
+            return "Spinner.White"
+        }
     }
 }

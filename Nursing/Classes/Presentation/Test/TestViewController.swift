@@ -29,7 +29,7 @@ final class TestViewController: UIViewController {
         
         let courseName = viewModel.courseName
         
-        viewModel.activityIndicator
+        viewModel.loadTestActivityIndicator
             .drive(onNext: { [weak self] activity in
                 guard let self = self else {
                     return
@@ -37,6 +37,16 @@ final class TestViewController: UIViewController {
                 
                 self.mainView.tableView.isHidden = activity
                 activity ? self.mainView.activityView.startAnimating() : self.mainView.activityView.stopAnimating()
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.sendAnswerActivityIndicator
+            .drive(onNext: { [weak self] activity in
+                guard let self = self else {
+                    return
+                }
+                
+                activity ? self.mainView.bottomView.preloader.start() : self.mainView.bottomView.preloader.stop()
             })
             .disposed(by: disposeBag)
         
