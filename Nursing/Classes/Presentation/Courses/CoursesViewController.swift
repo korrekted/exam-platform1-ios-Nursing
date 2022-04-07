@@ -71,6 +71,16 @@ final class CoursesViewController: UIViewController {
                 self?.goToNext()
             })
             .disposed(by: disposeBag)
+        
+        viewModel.activityIndicator
+            .drive(onNext: { [weak self] activity in
+                guard let self = self else {
+                    return
+                }
+                
+                self.activity(activity)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -105,5 +115,11 @@ private extension CoursesViewController {
         
         AmplitudeManager.shared
             .logEvent(name: "Exam Tap", parameters: ["what":name])
+    }
+    
+    func activity(_ activity: Bool) {
+        activity ? mainView.preloader.startAnimating() : mainView.preloader.stopAnimating()
+        
+        mainView.buttonTitle(hidden: activity)
     }
 }

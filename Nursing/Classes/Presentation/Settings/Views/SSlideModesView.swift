@@ -24,6 +24,9 @@ final class SSlideModesView: SSlideView {
                                       subtitle: "Onboarding.Modes.Cell3.Subtitle",
                                       tag: 2)
     lazy var button = makeButton()
+    lazy var preloader = makePreloader()
+    
+    private lazy var activityIndicator = RxActivityIndicator()
     
     private lazy var disposeBag = DisposeBag()
     
@@ -35,6 +38,7 @@ final class SSlideModesView: SSlideView {
         makeConstraints()
         initialize()
         changeEnabled()
+        setup(buttonTitle: "Continue".localized)
     }
     
     required init?(coder: NSCoder) {
@@ -67,7 +71,7 @@ extension SSlideModesView {
 private extension SSlideModesView {
     func initialize() {
         button.rx.tap
-            .flatMapLatest { [weak self] _ -> Single<Bool> in
+            .flatMapLatest { [weak self] _ -> Observable<Bool> in
                 guard let self = self else {
                     return .never()
                 }
@@ -84,6 +88,7 @@ private extension SSlideModesView {
                 
                 return self.profileManager
                     .set(testMode: mode)
+                    .trackActivity(self.activityIndicator)
                     .map { true }
                     .catchAndReturn(false)
             }
@@ -127,6 +132,16 @@ private extension SSlideModesView {
                 }
             })
             .disposed(by: disposeBag)
+        
+        activityIndicator
+            .drive(onNext: { [weak self] activity in
+                guard let self = self else {
+                    return
+                }
+                
+                self.activity(activity)
+            })
+            .disposed(by: disposeBag)
     }
     
     @objc
@@ -162,6 +177,21 @@ private extension SSlideModesView {
         button.isEnabled = !isEmpty
         button.alpha = isEmpty ? 0.4 : 1
     }
+    
+    func activity(_ activity: Bool) {
+        let title = activity ? "" : "Continue".localized
+        setup(buttonTitle: title)
+        
+        activity ? preloader.startAnimating() : preloader.stopAnimating()
+    }
+    
+    func setup(buttonTitle: String) {
+        let attrs = TextAttributes()
+            .textColor(UIColor.white)
+            .font(Fonts.SFProRounded.semiBold(size: 20.scale))
+            .textAlignment(.center)
+        button.setAttributedTitle(buttonTitle.attributed(with: attrs), for: .normal)
+    }
 }
 
 // MARK: Make constraints
@@ -196,6 +226,13 @@ private extension SSlideModesView {
             button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -26.scale),
             button.heightAnchor.constraint(equalToConstant: 60.scale),
             button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: ScreenSize.isIphoneXFamily ? -70.scale : -20.scale)
+        ])
+        
+        NSLayoutConstraint.activate([
+            preloader.widthAnchor.constraint(equalToConstant: 24.scale),
+            preloader.heightAnchor.constraint(equalToConstant: 24.scale),
+            preloader.centerXAnchor.constraint(equalTo: button.centerXAnchor),
+            preloader.centerYAnchor.constraint(equalTo: button.centerYAnchor)
         ])
     }
 }
@@ -237,15 +274,16 @@ private extension SSlideModesView {
     }
     
     func makeButton() -> UIButton {
-        let attrs = TextAttributes()
-            .textColor(UIColor.white)
-            .font(Fonts.SFProRounded.semiBold(size: 20.scale))
-            .textAlignment(.center)
-        
         let view = UIButton()
         view.backgroundColor = Appearance.mainColor
         view.layer.cornerRadius = 30.scale
-        view.setAttributedTitle("Continue".localized.attributed(with: attrs), for: .normal)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
+    func makePreloader() -> Spinner {
+        let view = Spinner(size: CGSize(width: 24.scale, height: 24.scale), style: .white)
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

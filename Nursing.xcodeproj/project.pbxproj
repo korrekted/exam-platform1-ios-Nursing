@@ -1693,10 +1693,10 @@
 		DE93766627ACE9880073F27C /* Courses */ = {
 			isa = PBXGroup;
 			children = (
+				DE93766A27ACE9880073F27C /* Views */,
 				DE93766727ACE9880073F27C /* CoursesView.swift */,
 				DE93766827ACE9880073F27C /* CoursesViewModel.swift */,
 				DE93766927ACE9880073F27C /* CoursesViewController.swift */,
-				DE93766A27ACE9880073F27C /* Views */,
 			);
 			path = Courses;
 			sourceTree = "<group>";
