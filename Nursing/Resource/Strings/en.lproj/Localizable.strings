@@ -26,6 +26,7 @@
 "Splash.Preloader1" = "Checking your account...";
 "Splash.Preloader2" = "Syncing the question bank...";
 "Splash.Preloader3" = "Setting up the onboarding...";
+"Splash.Preloader4" = "Setting up your account...";
 
 // MARK: Onboarding
 "Onboarding.FailedToSave" = "Failed to save";
@@ -217,6 +218,7 @@
 "Widgets.Large.Description" = "Watch your pass rate progress and how far are you from completing the question bank";
 
 // MARK: TryAgain
-"TryAgain.Title" = "Something went wrong";
-"TryAgain.SubTitle" = "We are working on fixing the problem.\nPlease try again";
+"TryAgain.Title" = "The app failed to perform a\nrequest";
+"TryAgain.SubTitle" = "If there’s a connection issue on your side please try one more time. If the connection is fine and the error keeps on repeating please get in touch with the support";
 "TryAgain.Button" = "Try again";
+"TryAgain.Contact" = "Contact the support";

@@ -12,6 +12,7 @@ final class TryAgainView: UIView {
     lazy var titleLabel = makeTitleLabel()
     lazy var subTitleLabel = makeSubTitleLabel()
     lazy var tryAgainButton = makeButton()
+    lazy var contactButton = makeContactButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,7 +40,7 @@ private extension TryAgainView {
             imageView.widthAnchor.constraint(equalToConstant: 180.scale),
             imageView.heightAnchor.constraint(equalToConstant: 202.scale),
             imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            imageView.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 160.scale : 80.scale)
+            imageView.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 110.scale : 30.scale)
         ])
         
         NSLayoutConstraint.activate([
@@ -58,7 +59,14 @@ private extension TryAgainView {
             tryAgainButton.widthAnchor.constraint(equalToConstant: 323.scale),
             tryAgainButton.heightAnchor.constraint(equalToConstant: 60.scale),
             tryAgainButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            tryAgainButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: ScreenSize.isIphoneXFamily ? -70.scale : -30.scale)
+            tryAgainButton.bottomAnchor.constraint(equalTo: contactButton.topAnchor, constant: -15.scale)
+        ])
+        
+        NSLayoutConstraint.activate([
+            contactButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
+            contactButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
+            contactButton.heightAnchor.constraint(equalToConstant: 24.scale),
+            contactButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: ScreenSize.isIphoneXFamily ? -60.scale : -30.scale)
         ])
     }
 }
@@ -77,11 +85,12 @@ private extension TryAgainView {
     func makeTitleLabel() -> UILabel {
         let attrs = TextAttributes()
             .textColor(Appearance.blackColor)
-            .font(Fonts.SFProRounded.black(size: 24.scale))
+            .font(Fonts.SFProRounded.bold(size: 24.scale))
             .lineHeight(28.8.scale)
             .textAlignment(.center)
         
         let view = UILabel()
+        view.numberOfLines = 0
         view.attributedText = "TryAgain.Title".localized.attributed(with: attrs)
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
@@ -91,7 +100,7 @@ private extension TryAgainView {
     func makeSubTitleLabel() -> UILabel {
         let attrs = TextAttributes()
             .textColor(Appearance.greyColor)
-            .font(Fonts.SFProRounded.semiBold(size: 19.scale))
+            .font(Fonts.SFProRounded.regular(size: 19.scale))
             .lineHeight(26.6.scale)
             .textAlignment(.center)
         
@@ -112,6 +121,19 @@ private extension TryAgainView {
         view.setAttributedTitle("TryAgain.Button".localized.attributed(with: attrs), for: .normal)
         view.layer.cornerRadius = 30.scale
         view.backgroundColor = Appearance.mainColor
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
+    func makeContactButton() -> TapAreaButton {
+        let attrs = TextAttributes()
+            .textColor(Appearance.mainColor)
+            .font(Fonts.SFProRounded.semiBold(size: 20.scale))
+        
+        let view = TapAreaButton()
+        view.setAttributedTitle("TryAgain.Contact".localized.attributed(with: attrs), for: .normal)
+        view.backgroundColor = UIColor.clear
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

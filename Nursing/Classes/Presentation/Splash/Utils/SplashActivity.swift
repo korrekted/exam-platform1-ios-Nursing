@@ -13,7 +13,8 @@ enum SplashActivity {
         case .none:
             return ""
         case .sdkInitialize:
-            return "Splash.Preloader1".localized
+            let isFirstLaunch = NumberLaunches().isFirstLaunch()
+            return isFirstLaunch ? "Splash.Preloader4".localized : "Splash.Preloader1".localized
         case .library:
             return "Splash.Preloader2".localized
         case .prepareOnboarding:
