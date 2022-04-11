@@ -6,7 +6,7 @@
 	<string>development</string>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.nursing.widgets</string>
+		<string>group.nursing.widget</string>
 	</array>
 </dict>
 </plist>
