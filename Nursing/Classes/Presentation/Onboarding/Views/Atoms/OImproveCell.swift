@@ -7,18 +7,7 @@
 
 import UIKit
 
-final class OImproveCell: UIView {
-    var title: String? {
-        didSet {
-            let attrs = TextAttributes()
-                .textColor(Appearance.blackColor)
-                .font(Fonts.SFProRounded.semiBold(size: 17.scale))
-                .lineHeight(20.29.scale)
-                .textAlignment(.center)
-            label.attributedText = title?.attributed(with: attrs)
-        }
-    }
-    
+final class OImproveCell: CircleView {
     lazy var label = makeLabel()
     
     var isSelected = false {
@@ -41,8 +30,8 @@ final class OImproveCell: UIView {
 // MARK: Private
 private extension OImproveCell {
     func update() {
-        layer.borderColor = isSelected ? Appearance.mainColor.cgColor : UIColor.clear.cgColor
-        layer.borderWidth = isSelected ? 4.scale : 0
+        backgroundColor = isSelected ? Appearance.mainColor : UIColor.white
+        label.textColor = isSelected ? UIColor.white : Appearance.blackColor
     }
 }
 
@@ -50,7 +39,8 @@ private extension OImproveCell {
 private extension OImproveCell {
     func makeConstraints() {
         NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: centerXAnchor),
+            label.leadingAnchor.constraint(equalTo: leadingAnchor),
+            label.trailingAnchor.constraint(equalTo: trailingAnchor),
             label.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
@@ -61,6 +51,9 @@ private extension OImproveCell {
     func makeLabel() -> UILabel {
         let view = UILabel()
         view.numberOfLines = 0
+        view.font = Fonts.SFProRounded.semiBold(size: 17.scale)
+        view.textColor = Appearance.blackColor
+        view.textAlignment = .center
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

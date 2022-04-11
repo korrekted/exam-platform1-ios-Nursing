@@ -9,7 +9,7 @@ import UIKit
 
 final class OnboardingView: UIView {
     enum Step: Int {
-        case experience, welcome, quickQuestions, age, goals, whenStudy, modes, time, motivation, improve, count, amazing, testQuestion1, testQuestion2, testQuestion3, testQuestion4, testQuestion5, thankYou, questionsCount, whenTaking, preloader, push
+        case welcome, references, whenTaking, goals, improve, modes, time, count, whenStudy, push, widgets, preloader, plan
     }
     
     var didFinish: (() -> Void)?
@@ -22,45 +22,30 @@ final class OnboardingView: UIView {
         }
     }
     
-    private lazy var scope = OnboardingScope()
-    
     lazy var scrollView = makeScrollView()
     lazy var progressView = makeProgressView()
     lazy var previousButton = makePreviousButton()
     
-    lazy var test1View = OSlideTestQuestionView(step: .testQuestion1, scope: scope)
-    lazy var test2View = OSlideTestQuestionView(step: .testQuestion2, scope: scope)
-    lazy var test3View = OSlideTestQuestionView(step: .testQuestion3, scope: scope)
-    lazy var test4View = OSlideTestQuestionView(step: .testQuestion4, scope: scope)
-    lazy var test5View = OSlideTestQuestionView(step: .testQuestion5, scope: scope)
-    lazy var pushView = OPushView(step: .push, scope: scope)
-    
+    lazy var planView = OSlidePlanView(step: .plan, scope: scope)
     private lazy var contentViews: [OSlideView] = {
         [
-            OSlideExperienceView(step: .experience, scope: scope),
             OSlideWelcomeView(step: .welcome, scope: scope),
-            OSlideQuickQuestionsView(step:. quickQuestions, scope: scope),
-            OSlideAgeView(step: .age, scope: scope),
+            OSlideReferencesView(step: .references, scope: scope),
+            OSlideWhenTakingView(step: .whenTaking, scope: scope),
             OSlideGoalsView(step: .goals, scope: scope),
-            OWhenStudyView(step: .whenStudy, scope: scope),
+            OSlideImproveView(step: .improve, scope: scope),
             OSlideModesView(step: .modes, scope: scope),
             OSlideTimeView(step: .time, scope: scope),
-            OSlideMotivationView(step: .motivation, scope: scope),
-            OSlideImproveView(step: .improve, scope: scope),
             OSlideCountView(step: .count, scope: scope),
-            OSlideAmazingView(step: .amazing, scope: scope),
-            test1View,
-            test2View,
-            test3View,
-            test4View,
-            test5View,
-            OSlideThankYouView(step: .thankYou, scope: scope),
-            OSlideQuestionsCountView(step: .questionsCount, scope: scope),
-            OSlideWhenTakingView(step: .whenTaking, scope: scope),
+            OWhenStudyView(step: .whenStudy, scope: scope),
+            OPushView(step: .push, scope: scope),
+            OSlideWidgetsView(step: .widgets, scope: scope),
             OSlidePreloaderView(step: .preloader, scope: scope),
-            pushView
+            planView
         ]
     }()
+    
+    private lazy var scope = OnboardingScope()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -75,7 +60,7 @@ final class OnboardingView: UIView {
     }
     
     private lazy var progressCases: [Step] = [
-        .age, .goals, .whenStudy, .modes, .time, .motivation, .improve, .count, .amazing, .testQuestion1, .testQuestion2, .testQuestion3, .testQuestion4, .testQuestion5, .thankYou, .questionsCount, .whenTaking
+        .whenTaking, .goals, .improve, .modes, .time, .count, .whenStudy
     ]
 }
 
@@ -147,7 +132,7 @@ private extension OnboardingView {
     
     func headerUpdate() {
         switch step {
-        case .experience, .welcome, .quickQuestions, .push, .preloader:
+        case .welcome, .references, .push, .widgets, .preloader, .plan:
             previousButton.isHidden = true
             progressView.isHidden = true
         default:

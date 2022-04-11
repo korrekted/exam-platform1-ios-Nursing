@@ -41,7 +41,8 @@ final class OSlideTimeView: OSlideView {
     override func moveToThis() {
         super.moveToThis()
         
-        AmplitudeManager.shared
+        SDKStorage.shared
+            .amplitudeManager
             .logEvent(name: "Test Time Screen", parameters: [:])
     }
 }
@@ -51,10 +52,10 @@ private extension OSlideTimeView {
     @objc
     func buttonTapped() {
         guard let tag = [
-            casualCell,
-            regularCell,
-            seriousCell,
-            intenseCell
+            self.casualCell,
+            self.regularCell,
+            self.seriousCell,
+            self.intenseCell
         ]
         .first(where: { $0.isSelected })?
         .tag else {
@@ -113,7 +114,7 @@ private extension OSlideTimeView {
         NSLayoutConstraint.activate([
             casualCell.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
             casualCell.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
-            casualCell.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: ScreenSize.isIphoneXFamily ? 40.scale : 20.scale)
+            casualCell.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: ScreenSize.isIphoneXFamily ? 44.scale : 24.scale)
         ])
         
         NSLayoutConstraint.activate([
@@ -138,7 +139,7 @@ private extension OSlideTimeView {
             button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 26.scale),
             button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -26.scale),
             button.heightAnchor.constraint(equalToConstant: 60.scale),
-            button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: ScreenSize.isIphoneXFamily ? -70.scale : -20.scale)
+            button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: ScreenSize.isIphoneXFamily ? -70.scale : -30.scale)
         ])
     }
 }
@@ -148,8 +149,8 @@ private extension OSlideTimeView {
     func makeTitleLabel() -> UILabel {
         let attrs = TextAttributes()
             .textColor(Appearance.blackColor)
-            .font(Fonts.SFProRounded.black(size: 27.scale))
-            .lineHeight(32.4.scale)
+            .font(Fonts.SFProRounded.bold(size: 27.scale))
+            .lineHeight(32.scale)
             .textAlignment(.center)
         
         let view = UILabel()
@@ -188,9 +189,9 @@ private extension OSlideTimeView {
         let view = UIButton()
         view.backgroundColor = Appearance.mainColor
         view.layer.cornerRadius = 30.scale
-        view.setAttributedTitle("Continue".localized.attributed(with: attrs), for: .normal)
-        view.translatesAutoresizingMaskIntoConstraints = false
+        view.setAttributedTitle("Onboarding.Next".localized.attributed(with: attrs), for: .normal)
         view.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view
     }

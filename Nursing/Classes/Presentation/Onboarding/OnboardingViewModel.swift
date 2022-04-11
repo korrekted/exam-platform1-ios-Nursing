@@ -18,7 +18,6 @@ final class OnboardingViewModel {
     private lazy var coursesManager = CoursesManagerCore()
     private lazy var sessionManager = SessionManagerCore()
     private lazy var monetizationManager = MonetizationManager()
-    private lazy var questionManager = QuestionManagerCore()
     
     var hasSelectedCourse: Bool {
         coursesManager.getSelectedCourse() != nil
@@ -41,12 +40,5 @@ final class OnboardingViewModel {
         case .suggest:
             return .paygateSuggest
         }
-    }
-    
-    func questions() -> Driver<[Question]> {
-        questionManager
-            .retrieveOnboardingSet(forceUpdate: false)
-            .map { $0?.questions ?? [] }
-            .asDriver(onErrorJustReturn: [])
     }
 }

@@ -16,10 +16,18 @@ final class WelcomeSlide1View: UIView {
         super.init(frame: frame)
         
         makeConstraints()
+        initialize()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+// MARK: Private
+private extension WelcomeSlide1View {
+    func initialize() {
+        backgroundColor = UIColor.clear
     }
 }
 
@@ -28,21 +36,21 @@ private extension WelcomeSlide1View {
     func makeConstraints() {
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            imageView.widthAnchor.constraint(equalToConstant: 251.scale),
-            imageView.heightAnchor.constraint(equalToConstant: 120.scale),
-            imageView.topAnchor.constraint(equalTo: topAnchor, constant: 26.scale)
+            imageView.widthAnchor.constraint(equalToConstant: 343.scale),
+            imageView.heightAnchor.constraint(equalToConstant: 325.scale),
+            imageView.bottomAnchor.constraint(equalTo: titleLabel.topAnchor, constant: ScreenSize.isIphoneXFamily ? -65.scale : -30.scale)
         ])
         
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24.scale),
-            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24.scale),
-            titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 24.scale)
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
+            titleLabel.bottomAnchor.constraint(equalTo: subtitleLabel.topAnchor, constant: -12.scale)
         ])
         
         NSLayoutConstraint.activate([
-            subtitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8.scale),
-            subtitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8.scale),
-            subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8.scale)
+            subtitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
+            subtitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
+            subtitleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: ScreenSize.isIphoneXFamily ? -195.scale : -155.scale)
         ])
     }
 }
@@ -61,13 +69,13 @@ private extension WelcomeSlide1View {
     func makeTitleLabel() -> UILabel {
         let attrs = TextAttributes()
             .textColor(Appearance.blackColor)
-            .font(Fonts.SFProRounded.black(size: 24.scale))
-            .lineHeight(28.64.scale)
+            .font(Fonts.SFProRounded.bold(size: 30.scale))
+            .lineHeight(35.scale)
             .textAlignment(.center)
         
         let view = UILabel()
         view.numberOfLines = 0
-        view.attributedText = "Onboarding.Welcome.Cell1.Title".localized.attributed(with: attrs)
+        view.attributedText = "Onboarding.Welcome.Title1".localized.attributed(with: attrs)
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view
@@ -76,14 +84,13 @@ private extension WelcomeSlide1View {
     func makeSubtitleLabel() -> UILabel {
         let attrs = TextAttributes()
             .textColor(Appearance.greyColor)
-            .font(Fonts.SFProRounded.semiBold(size: 19.scale))
-            .lineHeight(26.6.scale)
+            .font(Fonts.SFProRounded.semiBold(size: 20.scale))
+            .lineHeight(28.scale)
             .textAlignment(.center)
         
         let view = UILabel()
-        view.alpha = 0.8
         view.numberOfLines = 0
-        view.attributedText = "Onboarding.Welcome.Cell1.SubTitle".localized.attributed(with: attrs)
+        view.attributedText = "Onboarding.Welcome.Subtitle1".localized.attributed(with: attrs)
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

@@ -23,8 +23,8 @@ final class OModeCell: UIView {
         didSet {
             let attrs = TextAttributes()
                 .textColor(Appearance.blackColor)
-                .font(Fonts.SFProRounded.bold(size: 19.scale))
-                .lineHeight(22.8.scale)
+                .font(Fonts.SFProRounded.semiBold(size: 20.scale))
+                .lineHeight(28.scale)
             titleLabel.attributedText = title.attributed(with: attrs)
         }
     }
@@ -32,7 +32,7 @@ final class OModeCell: UIView {
     var subtitle: String = "" {
         didSet {
             let attrs = TextAttributes()
-                .textColor(Appearance.greyColor.withAlphaComponent(0.8))
+                .textColor(Appearance.greyColor)
                 .font(Fonts.SFProRounded.regular(size: 15.scale))
                 .lineHeight(21.scale)
             subtitleLabel.attributedText = subtitle.attributed(with: attrs)
@@ -65,23 +65,23 @@ private extension OModeCell {
 private extension OModeCell {
     func makeConstraints() {
         NSLayoutConstraint.activate([
-            imageView.widthAnchor.constraint(equalToConstant: 51.scale),
+            imageView.widthAnchor.constraint(equalToConstant: 56.scale),
             imageView.heightAnchor.constraint(equalToConstant: 48.scale),
             imageView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20.scale)
+            imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15.scale)
         ])
         
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 89.scale),
-            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -21.scale),
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20.scale)
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 86.scale),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 15.scale)
         ])
         
         NSLayoutConstraint.activate([
-            subtitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 89.scale),
-            subtitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -21.scale),
+            subtitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 86.scale),
+            subtitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
             subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5.scale),
-            subtitleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20.scale)
+            subtitleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15.scale)
         ])
     }
 }

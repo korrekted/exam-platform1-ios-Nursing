@@ -26,12 +26,6 @@ final class OnboardingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.questions()
-            .drive(onNext: { [weak self] questions in
-                self?.fill(questions: questions)
-            })
-            .disposed(by: disposeBag)
-        
         mainView.didFinish = { [weak self] in
             guard let this = self else {
                 return
@@ -47,13 +41,14 @@ final class OnboardingViewController: UIViewController {
                 return
             }
             
-            if step == .age {
+            if step == .welcome {
                 this.goToCourses()
             }
         }
         
         addPreviousAction()
-        mainView.pushView.vc = self
+        
+        mainView.planView.vc = self
     }
 }
 
@@ -82,28 +77,6 @@ extension OnboardingViewController: PaygateViewControllerDelegate {
 private extension OnboardingViewController {
     func markAsViewed() {
         UserDefaults.standard.setValue(true, forKey: Constants.wasViewedKey)
-    }
-    
-    func fill(questions: [Question]) {
-        if questions.indices.contains(0) {
-            mainView.test1View.setup(question: questions[0])
-        }
-        
-        if questions.indices.contains(1) {
-            mainView.test2View.setup(question: questions[1])
-        }
-        
-        if questions.indices.contains(2) {
-            mainView.test3View.setup(question: questions[2])
-        }
-        
-        if questions.indices.contains(3) {
-            mainView.test4View.setup(question: questions[4])
-        }
-        
-        if questions.indices.contains(4) {
-            mainView.test5View.setup(question: questions[4])
-        }
     }
     
     func goToNext() {
@@ -142,6 +115,6 @@ private extension OnboardingViewController {
     }
     
     func goToCourse() {
-        UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController = CourseViewController.make()
+        UIApplication.shared.keyWindow?.rootViewController = CourseViewController.make()
     }
 }

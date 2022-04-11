@@ -27,6 +27,8 @@ final class OSlideModesView: OSlideView {
     
     private lazy var disposeBag = DisposeBag()
     
+    private lazy var profileManager = ProfileManagerCore()
+    
     override init(step: OnboardingView.Step, scope: OnboardingScope) {
         super.init(step: step, scope: scope)
         
@@ -42,7 +44,8 @@ final class OSlideModesView: OSlideView {
     override func moveToThis() {
         super.moveToThis()
         
-        AmplitudeManager.shared
+        SDKStorage.shared
+            .amplitudeManager
             .logEvent(name: "Exam Mode Screen", parameters: [:])
     }
 }
@@ -65,11 +68,11 @@ extension OSlideModesView {
 private extension OSlideModesView {
     func initialize() {
         button.rx.tap
-            .flatMapLatest { [weak self] _ -> Single<Int> in
+            .subscribe(onNext: { [weak self] in
                 guard let self = self else {
-                    return .never()
+                    return
                 }
-
+                
                 guard let mode = [
                     self.fullSupportCell,
                     self.withoutExplanationsCell,
@@ -77,19 +80,11 @@ private extension OSlideModesView {
                 ]
                 .first(where: { $0.isSelected })?
                 .tag else {
-                    return .never()
-                }
-                
-                return .just(mode)
-            }
-            .asDriver(onErrorDriveWith: .never())
-            .drive(onNext: { [weak self] testMode in
-                guard let self = self else {
                     return
                 }
                 
-                self.scope.testMode = testMode
-
+                self.scope.testMode = mode
+                
                 self.onNext()
             })
             .disposed(by: disposeBag)
@@ -110,13 +105,16 @@ private extension OSlideModesView {
                 
                 switch mode {
                 case 0:
-                    AmplitudeManager.shared
+                    SDKStorage.shared
+                        .amplitudeManager
                         .logEvent(name: "Exam Mode Tap", parameters: ["what": "full support"])
                 case 1:
-                    AmplitudeManager.shared
+                    SDKStorage.shared
+                        .amplitudeManager
                         .logEvent(name: "Exam Mode Tap", parameters: ["what": "without explanations"])
                 case 2:
-                    AmplitudeManager.shared
+                    SDKStorage.shared
+                        .amplitudeManager
                         .logEvent(name: "Exam Mode Tap", parameters: ["what": "exam style"])
                 default:
                     break
@@ -170,20 +168,20 @@ private extension OSlideModesView {
         ])
         
         NSLayoutConstraint.activate([
-            fullSupportCell.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 26.scale),
-            fullSupportCell.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -26.scale),
-            fullSupportCell.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: ScreenSize.isIphoneXFamily ? 40.scale : 20.scale)
+            fullSupportCell.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
+            fullSupportCell.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
+            fullSupportCell.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 44.scale)
         ])
         
         NSLayoutConstraint.activate([
-            withoutExplanationsCell.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 26.scale),
-            withoutExplanationsCell.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -26.scale),
+            withoutExplanationsCell.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
+            withoutExplanationsCell.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
             withoutExplanationsCell.topAnchor.constraint(equalTo: fullSupportCell.bottomAnchor, constant: 12.scale)
         ])
         
         NSLayoutConstraint.activate([
-            examStyleCell.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 26.scale),
-            examStyleCell.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -26.scale),
+            examStyleCell.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
+            examStyleCell.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
             examStyleCell.topAnchor.constraint(equalTo: withoutExplanationsCell.bottomAnchor, constant: 12.scale)
         ])
         
@@ -191,7 +189,7 @@ private extension OSlideModesView {
             button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 26.scale),
             button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -26.scale),
             button.heightAnchor.constraint(equalToConstant: 60.scale),
-            button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: ScreenSize.isIphoneXFamily ? -70.scale : -20.scale)
+            button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: ScreenSize.isIphoneXFamily ? -70.scale : -30.scale)
         ])
     }
 }
@@ -202,7 +200,7 @@ private extension OSlideModesView {
         let attrs = TextAttributes()
             .textColor(Appearance.blackColor)
             .font(Fonts.SFProRounded.bold(size: 27.scale))
-            .lineHeight(32.4.scale)
+            .lineHeight(32.scale)
             .textAlignment(.center)
         
         let view = UILabel()
@@ -241,7 +239,7 @@ private extension OSlideModesView {
         let view = UIButton()
         view.backgroundColor = Appearance.mainColor
         view.layer.cornerRadius = 30.scale
-        view.setAttributedTitle("Continue".localized.attributed(with: attrs), for: .normal)
+        view.setAttributedTitle("Onboarding.Proceed".localized.attributed(with: attrs), for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

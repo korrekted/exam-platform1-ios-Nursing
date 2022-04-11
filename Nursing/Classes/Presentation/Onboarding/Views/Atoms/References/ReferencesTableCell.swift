@@ -30,7 +30,7 @@ extension ReferencesTableCell {
         titleLabel.attributedText = reference
             .title
             .attributed(with: TextAttributes()
-                            .textColor(UIColor.black.withAlphaComponent(0.9))
+                            .textColor(Appearance.blackColor.withAlphaComponent(0.9))
                             .font(Fonts.SFProRounded.bold(size: 19.scale))
                             .lineHeight(22.scale))
         

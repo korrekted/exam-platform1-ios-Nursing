@@ -40,7 +40,8 @@ final class OWhenStudyView: OSlideView {
     override func moveToThis() {
         super.moveToThis()
         
-        AmplitudeManager.shared
+        SDKStorage.shared
+            .amplitudeManager
             .logEvent(name: "When Study Screen", parameters: [:])
     }
 }
@@ -50,7 +51,7 @@ private extension OWhenStudyView {
     @objc
     func buttonTapped() {
         let selected = [
-            cell1, cell2, cell3, cell4, cell5
+            self.cell1, self.cell2, self.cell3, self.cell4, self.cell5
         ]
         .filter { $0.isSelected }
         .map { $0.tag }
@@ -95,7 +96,7 @@ private extension OWhenStudyView {
         NSLayoutConstraint.activate([
             cell1.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
             cell1.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
-            cell1.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: ScreenSize.isIphoneXFamily ? 40.scale : 20.scale)
+            cell1.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 40.scale)
         ])
         
         NSLayoutConstraint.activate([
@@ -126,7 +127,7 @@ private extension OWhenStudyView {
             button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 26.scale),
             button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -26.scale),
             button.heightAnchor.constraint(equalToConstant: 60.scale),
-            button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: ScreenSize.isIphoneXFamily ? -70.scale : -20.scale)
+            button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: ScreenSize.isIphoneXFamily ? -70.scale : -40.scale)
         ])
     }
 }
@@ -136,8 +137,8 @@ private extension OWhenStudyView {
     func makeTitleLabel() -> UILabel {
         let attrs = TextAttributes()
             .textColor(Appearance.blackColor)
-            .font(Fonts.SFProRounded.black(size: 27.scale))
-            .lineHeight(32.4.scale)
+            .font(Fonts.SFProRounded.bold(size: 27.scale))
+            .lineHeight(32.scale)
             .textAlignment(.center)
         
         let view = UILabel()
@@ -172,9 +173,9 @@ private extension OWhenStudyView {
         let view = UIButton()
         view.backgroundColor = Appearance.mainColor
         view.layer.cornerRadius = 30.scale
-        view.setAttributedTitle("Continue".localized.attributed(with: attrs), for: .normal)
-        view.translatesAutoresizingMaskIntoConstraints = false
+        view.setAttributedTitle("Onboarding.Proceed".localized.attributed(with: attrs), for: .normal)
         view.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view
     }

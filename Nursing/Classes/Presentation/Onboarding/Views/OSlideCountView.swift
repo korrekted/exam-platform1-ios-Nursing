@@ -34,7 +34,8 @@ final class OSlideCountView: OSlideView {
     override func moveToThis() {
         super.moveToThis()
         
-        AmplitudeManager.shared
+        SDKStorage.shared
+            .amplitudeManager
             .logEvent(name: "Tests Number Screen", parameters: [:])
     }
 }
@@ -44,7 +45,6 @@ private extension OSlideCountView {
     @objc
     func buttonTapped() {
         let count = Int(self.slider.value)
-        
         scope.testNumber = count
         
         onNext()
@@ -75,16 +75,16 @@ private extension OSlideCountView {
 private extension OSlideCountView {
     func makeConstraints() {
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
-            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 117.scale : 70.scale)
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 17.scale),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -17.scale),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 134.scale : 70.scale)
         ])
         
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            imageView.heightAnchor.constraint(equalToConstant: 300.scale),
-            imageView.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 270.scale : 165.scale),
-            imageView.widthAnchor.constraint(equalToConstant: 375.scale)
+            imageView.heightAnchor.constraint(equalToConstant: 285.scale),
+            imageView.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 270.scale : 185.scale),
+            imageView.widthAnchor.constraint(equalToConstant: 225.scale)
         ])
         
         NSLayoutConstraint.activate([
@@ -97,7 +97,7 @@ private extension OSlideCountView {
             button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 26.scale),
             button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -26.scale),
             button.heightAnchor.constraint(equalToConstant: 60.scale),
-            button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: ScreenSize.isIphoneXFamily ? -70.scale : -20.scale)
+            button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: ScreenSize.isIphoneXFamily ? -70.scale : -30.scale)
         ])
     }
 }
@@ -107,8 +107,8 @@ private extension OSlideCountView {
     func makeTitleLabel() -> UILabel {
         let attrs = TextAttributes()
             .textColor(Appearance.blackColor)
-            .font(Fonts.SFProRounded.black(size: 27.scale))
-            .lineHeight(32.4.scale)
+            .font(Fonts.SFProRounded.bold(size: 27.scale))
+            .lineHeight(32.scale)
             .textAlignment(.center)
         
         let view = UILabel()
@@ -131,7 +131,7 @@ private extension OSlideCountView {
     func makeValueLabel() -> UILabel {
         let view = UILabel()
         view.textColor = Appearance.blackColor
-        view.font = Fonts.SFProRounded.black(size: 27.scale)
+        view.font = Fonts.SFProRounded.bold(size: 27.scale)
         addSubview(view)
         return view
     }
@@ -158,9 +158,9 @@ private extension OSlideCountView {
         let view = UIButton()
         view.backgroundColor = Appearance.mainColor
         view.layer.cornerRadius = 30.scale
-        view.setAttributedTitle("Continue".localized.attributed(with: attrs), for: .normal)
-        view.translatesAutoresizingMaskIntoConstraints = false
+        view.setAttributedTitle("Onboarding.Proceed".localized.attributed(with: attrs), for: .normal)
         view.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view
     }

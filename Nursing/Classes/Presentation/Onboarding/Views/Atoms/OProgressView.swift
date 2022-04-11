@@ -43,20 +43,20 @@ private extension OProgressView {
     func createCircularPath() {
         let circularPath = UIBezierPath(arcCenter: CGPoint(x: frame.size.width / 2,
                                                            y: frame.size.height / 2),
-                                        radius: 34.scale,
+                                        radius: 105.scale,
                                         startAngle: -.pi / 2,
                                         endAngle: 3 * .pi / 2,
                                         clockwise: true)
         circleLayer.path = circularPath.cgPath
         circleLayer.fillColor = UIColor.clear.cgColor
         circleLayer.lineCap = .round
-        circleLayer.lineWidth = 4.scale
+        circleLayer.lineWidth = 15.scale
         circleLayer.strokeColor = Appearance.mainColorAlpha.cgColor
         
         progressLayer.path = circularPath.cgPath
         progressLayer.fillColor = UIColor.clear.cgColor
         progressLayer.lineCap = .round
-        progressLayer.lineWidth = 4.scale
+        progressLayer.lineWidth = 15.scale
         progressLayer.strokeEnd = 0
         progressLayer.strokeColor = Appearance.mainColor.cgColor
 

@@ -23,8 +23,8 @@ final class OTimeCell: UIView {
         didSet {
             let attrs = TextAttributes()
                 .textColor(Appearance.blackColor)
-                .font(Fonts.SFProRounded.bold(size: 19.scale))
-                .lineHeight(22.8.scale)
+                .font(Fonts.SFProRounded.semiBold(size: 20.scale))
+                .lineHeight(28.scale)
             titleLabel.attributedText = title.attributed(with: attrs)
         }
     }
@@ -32,9 +32,9 @@ final class OTimeCell: UIView {
     var subtitle: String = "" {
         didSet {
             let attrs = TextAttributes()
-                .textColor(Appearance.greyColor.withAlphaComponent(0.8))
-                .font(Fonts.SFProRounded.regular(size: 17.scale))
-                .lineHeight(23.8.scale)
+                .textColor(Appearance.blackColor)
+                .font(Fonts.SFProRounded.regular(size: 15.scale))
+                .lineHeight(21.scale)
             subtitleLabel.attributedText = subtitle.attributed(with: attrs)
         }
     }
@@ -72,15 +72,15 @@ private extension OTimeCell {
         ])
         
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 78.scale),
-            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -18.scale),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 86.scale),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
             titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20.scale)
         ])
         
         NSLayoutConstraint.activate([
-            subtitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 78.scale),
-            subtitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -18.scale),
-            subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5.scale),
+            subtitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 86.scale),
+            subtitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
+            subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4.scale),
             subtitleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20.scale)
         ])
     }
