@@ -917,14 +917,14 @@
 		DE93755927ACE9880073F27C /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				DE93757F27ACE9880073F27C /* Analytics */,
 				DE93755A27ACE9880073F27C /* Extension */,
-				DE93756227ACE9880073F27C /* GlobalDefinitions.swift */,
 				DE93756327ACE9880073F27C /* Utils */,
 				DE93756D27ACE9880073F27C /* Components */,
 				DE93757027ACE9880073F27C /* CustomViews */,
 				DE93757A27ACE9880073F27C /* AppDelegate.swift */,
+				DE93756227ACE9880073F27C /* GlobalDefinitions.swift */,
 				DE93757E27ACE9880073F27C /* Appearance.swift */,
-				DE93757F27ACE9880073F27C /* Analytics */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -1658,11 +1658,11 @@
 		DE93765227ACE9880073F27C /* TestStats */ = {
 			isa = PBXGroup;
 			children = (
-				DE93765327ACE9880073F27C /* TestStatsViewController.swift */,
 				DE93765427ACE9880073F27C /* Cells */,
 				DE93765927ACE9880073F27C /* Models */,
-				DE93765F27ACE9880073F27C /* TestStatsViewModel.swift */,
 				DE93766027ACE9880073F27C /* Views */,
+				DE93765327ACE9880073F27C /* TestStatsViewController.swift */,
+				DE93765F27ACE9880073F27C /* TestStatsViewModel.swift */,
 				DE93766527ACE9880073F27C /* TestStatsView.swift */,
 			);
 			path = TestStats;
@@ -2318,7 +2318,7 @@
 				CODE_SIGN_ENTITLEMENTS = StatsManagerExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 46;
+				CURRENT_PROJECT_VERSION = 47;
 				DEVELOPMENT_TEAM = ZY9AXRCYBM;
 				INFOPLIST_FILE = StatsManager/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -2327,7 +2327,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.5.5;
+				MARKETING_VERSION = 2.5.6;
 				PRODUCT_BUNDLE_IDENTIFIER = exam.nursing.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Nursing Widget Prod";
@@ -2345,7 +2345,7 @@
 				CODE_SIGN_ENTITLEMENTS = StatsManagerExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 46;
+				CURRENT_PROJECT_VERSION = 47;
 				DEVELOPMENT_TEAM = ZY9AXRCYBM;
 				INFOPLIST_FILE = StatsManager/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -2354,7 +2354,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.5.5;
+				MARKETING_VERSION = 2.5.6;
 				PRODUCT_BUNDLE_IDENTIFIER = exam.nursing.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Nursing Widget Prod";
@@ -2490,7 +2490,7 @@
 				CODE_SIGN_ENTITLEMENTS = Nursing/Nursing.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 46;
+				CURRENT_PROJECT_VERSION = 47;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = ZY9AXRCYBM;
 				INFOPLIST_FILE = "$(SRCROOT)/Nursing/Resource/Info.plist";
@@ -2499,7 +2499,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.5.5;
+				MARKETING_VERSION = 2.5.6;
 				PRODUCT_BUNDLE_IDENTIFIER = exam.nursing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Nursing Prod";
@@ -2519,7 +2519,7 @@
 				CODE_SIGN_ENTITLEMENTS = Nursing/Nursing.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 46;
+				CURRENT_PROJECT_VERSION = 47;
 				DEVELOPMENT_TEAM = ZY9AXRCYBM;
 				INFOPLIST_FILE = "$(SRCROOT)/Nursing/Resource/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2527,7 +2527,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.5.5;
+				MARKETING_VERSION = 2.5.6;
 				PRODUCT_BUNDLE_IDENTIFIER = exam.nursing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Nursing Prod";

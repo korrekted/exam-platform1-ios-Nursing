@@ -6,19 +6,22 @@
 //
 
 import Branch
+import StoreKit
 
-final class BranchManager {
+final class BranchManager: NSObject {
     static let shared = BranchManager()
     
     private let installRefParams = InstallRefParams()
     
-    private init() {}
+    private override init() {}
 }
 
 // MARK: Public
 extension BranchManager {
     func initialize(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         Branch.getInstance().initSession(launchOptions: launchOptions)
+        
+        SKPaymentQueue.default().add(self)
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) {
@@ -31,6 +34,14 @@ extension BranchManager {
     
     func retrieveInternalUserID(completion: @escaping ((String?) -> Void)) {
         installRefParams.retrieveInternalUserID(completion: completion)
+    }
+}
+
+// MARK: SKPaymentTransactionObserver
+extension BranchManager: SKPaymentTransactionObserver {
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        BranchEvent(name: "CLIENT_SUBSCRIBE_OR_PURCHASE")
+            .logEvent()
     }
 }
 
