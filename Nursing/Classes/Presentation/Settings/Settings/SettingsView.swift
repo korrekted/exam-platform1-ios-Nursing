@@ -10,7 +10,6 @@ import UIKit
 final class SettingsView: UIView {
     lazy var titleLabel = makeTitleLabel()
     lazy var tableView = makeTableView()
-    lazy var preloader = makePreloader()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,16 +41,9 @@ private extension SettingsView {
         
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            tableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20.scale),
+            tableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 2.scale),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
-        
-        NSLayoutConstraint.activate([
-            preloader.centerXAnchor.constraint(equalTo: centerXAnchor),
-            preloader.centerYAnchor.constraint(equalTo: centerYAnchor),
-            preloader.widthAnchor.constraint(equalToConstant: 45.scale),
-            preloader.heightAnchor.constraint(equalToConstant: 45.scale)
         ])
     }
 }
@@ -74,17 +66,13 @@ private extension SettingsView {
     
     func makeTableView() -> SettingsTableView {
         let view = SettingsTableView()
+        view.contentInset = UIEdgeInsets(top: 17.scale, left: 0, bottom: 17.scale, right: 0)
+        if #available(iOS 15.0, *) {
+            view.sectionHeaderTopPadding = 0.0
+        }
         view.showsVerticalScrollIndicator = false
         view.backgroundColor = UIColor.clear
-        view.allowsSelection = false
         view.separatorStyle = .none
-        view.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(view)
-        return view
-    }
-    
-    func makePreloader() -> Spinner {
-        let view = Spinner(size: CGSize(width: 45.scale, height: 45.scale))
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

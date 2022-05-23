@@ -6,16 +6,27 @@
 //
 
 import UIKit
-import RxCocoa
+
+protocol SettingsTableDelegate: AnyObject {
+    func settingsTableDidTappedUnlockPremium()
+    func settingsTableDidTappedCourse()
+    func settingsTableDidTappedExamDate()
+    func settingsTableDidTappedResetProgress()
+    func settingsTableDidTappedTestMode()
+    func settingsTableDidChanged(vibration: Bool)
+    func settingsTableDidTappedTextSize()
+    func settingsTableDidTappedRateUs()
+    func settingsTableDidTappedJoinTheCommunity()
+    func settingsTableDidTappedShareWithFriend()
+    func settingsTableDidTappedContactUs()
+    func settingsTableDidTappedTermsOfUse()
+    func settingsTableDidTappedPrivacyPolicy()
+}
 
 final class SettingsTableView: UITableView {
-    enum Tapped {
-        case unlock, course, rateUs, contactUs, termsOfUse, privacyPoliicy, mode(TestMode), references
-    }
+    weak var mainDelegate: SettingsTableDelegate?
     
-    lazy var tapped = PublishRelay<Tapped>()
-    
-    lazy var sections = [SettingsTableSection]()
+    lazy var elements = [SettingsTableElement]()
     
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
@@ -30,8 +41,8 @@ final class SettingsTableView: UITableView {
 
 // MARK: API
 extension SettingsTableView {
-    func setup(sections: [SettingsTableSection]) {
-        self.sections = sections
+    func setup(elements: [SettingsTableElement]) {
+        self.elements = elements
         
         reloadData()
     }
@@ -39,47 +50,43 @@ extension SettingsTableView {
 
 // MARK: UITableViewDataSource
 extension SettingsTableView: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        sections.count
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        elements.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch sections[indexPath.section] {
+        switch elements[indexPath.row] {
+        case .offset:
+            let cell = dequeueReusableCell(withIdentifier: String(describing: UITableViewCell.self))!
+            cell.backgroundColor = UIColor.clear
+            cell.contentView.backgroundColor = UIColor.clear
+            cell.selectionStyle = .none
+            return cell
         case .unlockPremium:
-            let cell = dequeueReusableCell(withIdentifier: String(describing: STUnlockCell.self), for: indexPath) as! STUnlockCell
-            cell.tapped = { [weak self] in
-                self?.tapped.accept(.unlock)
-            }
+            let cell = dequeueReusableCell(withIdentifier: String(describing: SettingsUnlockPremiumCell.self)) as! SettingsUnlockPremiumCell
+            cell.tableDelegate = mainDelegate
             return cell
-        case .selectedCourse(let course):
-            let cell = dequeueReusableCell(withIdentifier: String(describing: STCourseCell.self), for: indexPath) as! STCourseCell
-            cell.setup(course: course)
-            cell.tapped = { [weak self] in
-                self?.tapped.accept(.course)
-            }
+        case .premium(let element):
+            let cell = dequeueReusableCell(withIdentifier: String(describing: SettingsPremiumCell.self)) as! SettingsPremiumCell
+            cell.setup(element: element)
             return cell
-        case .links:
-            let cell = dequeueReusableCell(withIdentifier: String(describing: STLinksCell.self), for: indexPath) as! STLinksCell
-            cell.tapped = { [weak self] value in
-                self?.tapped.accept(value)
-            }
+        case .exam(let element):
+            let cell = dequeueReusableCell(withIdentifier: String(describing: SettingsExamCell.self)) as! SettingsExamCell
+            cell.tableDelegate = mainDelegate
+            cell.setup(element: element)
             return cell
-        case .mode(let mode):
-            let cell = dequeueReusableCell(withIdentifier: String(describing: STModeCell.self), for: indexPath) as! STModeCell
-            cell.setup(mode: mode)
-            cell.tapped = { [weak self] mode in
-                self?.tapped.accept(.mode(mode))
-            }
+        case .study(let element):
+            let cell = dequeueReusableCell(withIdentifier: String(describing: SettingsStudyCell.self)) as! SettingsStudyCell
+            cell.tableDelegate = mainDelegate
+            cell.setup(element: element)
             return cell
-        case .references:
-            let cell = dequeueReusableCell(withIdentifier: String(describing: STReferencesCell.self), for: indexPath) as! STReferencesCell
-            cell.tapped = { [weak self] in
-                self?.tapped.accept(.references)
-            }
+        case .community:
+            let cell = dequeueReusableCell(withIdentifier: String(describing: SettingsCommunityCell.self)) as! SettingsCommunityCell
+            cell.tableDelegate = mainDelegate
+            return cell
+        case .support:
+            let cell = dequeueReusableCell(withIdentifier: String(describing: SettingsSupportCell.self)) as! SettingsSupportCell
+            cell.tableDelegate = mainDelegate
             return cell
         }
     }
@@ -87,10 +94,6 @@ extension SettingsTableView: UITableViewDataSource {
 
 // MARK: UITableViewDelegate
 extension SettingsTableView: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        20.scale
-    }
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
         view.backgroundColor = UIColor.clear
@@ -98,17 +101,17 @@ extension SettingsTableView: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch sections[indexPath.section] {
+        switch elements[indexPath.row] {
+        case .offset(let offset):
+            return offset
         case .unlockPremium:
             return 93.scale
-        case .selectedCourse:
-            return 75.scale
-        case .links:
-            return 200.scale
-        case .mode:
-            return 51.scale
-        case .references:
-            return 51.scale
+        case .premium:
+            return 135.scale
+        case .exam, .study, .support:
+            return 185.scale
+        case .community:
+            return 257.scale
         }
     }
 }
@@ -116,11 +119,13 @@ extension SettingsTableView: UITableViewDelegate {
 // MARK: Private
 private extension SettingsTableView {
     func initialize() {
-        register(STUnlockCell.self, forCellReuseIdentifier: String(describing: STUnlockCell.self))
-        register(STCourseCell.self, forCellReuseIdentifier: String(describing: STCourseCell.self))
-        register(STLinksCell.self, forCellReuseIdentifier: String(describing: STLinksCell.self))
-        register(STModeCell.self, forCellReuseIdentifier: String(describing: STModeCell.self))
-        register(STReferencesCell.self, forCellReuseIdentifier: String(describing: STReferencesCell.self))
+        register(UITableViewCell.self, forCellReuseIdentifier: String(describing: UITableViewCell.self))
+        register(SettingsUnlockPremiumCell.self, forCellReuseIdentifier: String(describing: SettingsUnlockPremiumCell.self))
+        register(SettingsPremiumCell.self, forCellReuseIdentifier: String(describing: SettingsPremiumCell.self))
+        register(SettingsExamCell.self, forCellReuseIdentifier: String(describing: SettingsExamCell.self))
+        register(SettingsStudyCell.self, forCellReuseIdentifier: String(describing: SettingsStudyCell.self))
+        register(SettingsCommunityCell.self, forCellReuseIdentifier: String(describing: SettingsCommunityCell.self))
+        register(SettingsSupportCell.self, forCellReuseIdentifier: String(describing: SettingsSupportCell.self))
         
         dataSource = self
         delegate = self

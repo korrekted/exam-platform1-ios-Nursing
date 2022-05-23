@@ -9,7 +9,7 @@ import RxSwift
 
 protocol CoursesManager: AnyObject {
     // MARK: API
-    func getSelectedCourse() -> Course?
+    func getSelectedCourse() -> Course? // TODO: удалить
     
     // MARK: API(Rx)
     func retrieveCourses(forceUpdate: Bool) -> Single<[Course]>

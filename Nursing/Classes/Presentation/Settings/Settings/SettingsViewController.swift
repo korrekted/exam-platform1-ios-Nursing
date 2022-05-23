@@ -26,97 +26,121 @@ final class SettingsViewController: UIViewController {
         AmplitudeManager.shared
             .logEvent(name: "Settings Screen", parameters: [:])
         
-        viewModel
-            .sections
-            .drive(onNext: { [weak self] sections in
-                self?.mainView.tableView.setup(sections: sections)
+        viewModel.elements
+            .drive(onNext: { [weak self] elements in
+                self?.mainView.tableView.setup(elements: elements)
             })
             .disposed(by: disposeBag)
         
-        mainView
-            .tableView.tapped
-            .subscribe(onNext: { [weak self] value in
-                self?.tapped(value)
-            })
-            .disposed(by: disposeBag)
-        
-        viewModel.activityIndicator
-            .drive(onNext: { [weak self] activity in
-                guard let self = self else {
-                    return
-                }
-                
-                self.activity(activity)
-            })
-            .disposed(by: disposeBag)
+        mainView.tableView.mainDelegate = self
     }
 }
 
 // MARK: Make
 extension SettingsViewController {
     static func make() -> SettingsViewController {
-        SettingsViewController()
+        let vc = SettingsViewController()
+        vc.navigationItem.backButtonTitle = " "
+        return vc
+    }
+}
+
+// MARK: SettingsTableDelegate
+extension SettingsViewController: SettingsTableDelegate {
+    func settingsTableDidTappedUnlockPremium() {
+        AmplitudeManager.shared
+            .logEvent(name: "Settings Tap", parameters: ["what": "unlock premium"])
+        
+        guard let rootViewController = UIApplication.shared.windows.filter({$0.isKeyWindow}).first?.rootViewController else {
+            return
+        }
+        
+        rootViewController.present(PaygateViewController.make(), animated: true)
+    }
+    
+    func settingsTableDidTappedCourse() {
+        AmplitudeManager.shared
+            .logEvent(name: "Settings Tap", parameters: ["what": "select exam"])
+        
+        guard let window = UIApplication.shared.windows.filter({$0.isKeyWindow}).first else {
+            return
+        }
+        
+        // TODO: презентовать
+        window.rootViewController = CoursesViewController.make(howOpen: .root)
+    }
+    
+    func settingsTableDidTappedExamDate() {
+        
+    }
+    
+    func settingsTableDidTappedResetProgress() {
+        
+    }
+    
+    func settingsTableDidTappedTestMode() {
+        guard let rootViewController = UIApplication.shared.windows.filter({$0.isKeyWindow}).first?.rootViewController else {
+            return
+        }
+        
+        let vc = ChangeTestModeViewController.make()
+        rootViewController.present(vc, animated: true)
+    }
+    
+    func settingsTableDidChanged(vibration: Bool) {
+        
+    }
+    
+    func settingsTableDidTappedTextSize() {
+        
+    }
+    
+    func settingsTableDidTappedRateUs() {
+        AmplitudeManager.shared
+            .logEvent(name: "Rating Request ", parameters: [:])
+        AmplitudeManager.shared
+            .logEvent(name: "Settings Tap", parameters: ["what": "rate us"])
+        
+        SKStoreReviewController.requestReview()
+    }
+    
+    func settingsTableDidTappedJoinTheCommunity() {
+        
+    }
+    
+    func settingsTableDidTappedShareWithFriend() {
+        
+    }
+    
+    func settingsTableDidTappedContactUs() {
+        AmplitudeManager.shared
+            .logEvent(name: "Settings Tap", parameters: ["what": "contact us"])
+        
+        open(path: GlobalDefinitions.contactUsUrl)
+    }
+    
+    func settingsTableDidTappedTermsOfUse() {
+        AmplitudeManager.shared
+            .logEvent(name: "Settings Tap", parameters: ["what": "terms of use"])
+        
+        open(path: GlobalDefinitions.termsOfServiceUrl)
+    }
+    
+    func settingsTableDidTappedPrivacyPolicy() {
+        AmplitudeManager.shared
+            .logEvent(name: "Settings Tap", parameters: ["what": "privacy policy"])
+        
+        open(path: GlobalDefinitions.privacyPolicyUrl)
     }
 }
 
 // MARK: Private
 private extension SettingsViewController {
-    func tapped(_ tapped: SettingsTableView.Tapped) {
-        switch tapped {
-        case .unlock:
-            UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController?.present(PaygateViewController.make(), animated: true)
-            
-            AmplitudeManager.shared
-                .logEvent(name: "Settings Tap", parameters: ["what": "unlock premium"])
-        case .course:
-            UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController = CoursesViewController.make(howOpen: .root)
-            
-            AmplitudeManager.shared
-                .logEvent(name: "Settings Tap", parameters: ["what": "select exam"])
-        case .rateUs:
-            SKStoreReviewController.requestReview()
-            
-            AmplitudeManager.shared
-                .logEvent(name: "Rating Request ", parameters: [:])
-            AmplitudeManager.shared
-                .logEvent(name: "Settings Tap", parameters: ["what": "rate us"])
-        case .contactUs:
-            open(path: GlobalDefinitions.contactUsUrl)
-            
-            AmplitudeManager.shared
-                .logEvent(name: "Settings Tap", parameters: ["what": "contact us"])
-        case .termsOfUse:
-            open(path: GlobalDefinitions.termsOfServiceUrl)
-            
-            AmplitudeManager.shared
-                .logEvent(name: "Settings Tap", parameters: ["what": "terms of use"])
-        case .privacyPoliicy:
-            open(path: GlobalDefinitions.privacyPolicyUrl)
-            
-            AmplitudeManager.shared
-                .logEvent(name: "Settings Tap", parameters: ["what": "privacy policy"])
-        case .mode:
-            let vc = ChangeTestModeViewController.make()
-            present(vc, animated: true)
-        case .references:
-//            screenOpener.open(screen: .references, from: self)
-            break
-        }
-    }
-    
     func open(path: String) {
         guard let url = URL(string: path) else {
             return
         }
         
         UIApplication.shared.open(url, options: [:])
-    }
-    
-    func activity(_ activity: Bool) {
-        let empty = mainView.tableView.sections.isEmpty
-        
-        let inProgress = empty && activity
-        
-        inProgress ? mainView.preloader.startAnimating() : mainView.preloader.stopAnimating()
     }
 }

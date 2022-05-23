@@ -12,6 +12,7 @@ protocol CoursesViewControllerDelegate: AnyObject {
     func coursesViewControllerDismissed()
 }
 
+// TODO: сделать начальное выделение текущего
 final class CoursesViewController: UIViewController {
     enum HowOpen {
         case root, present

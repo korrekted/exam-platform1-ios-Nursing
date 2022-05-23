@@ -1,0 +1,34 @@
+//
+//  SettingsTableElement.swift
+//  Nursing
+//
+//  Created by Andrey Chernyshev on 25.01.2021.
+//
+
+import Foundation
+
+enum SettingsTableElement {
+    case offset(CGFloat)
+    case unlockPremium
+    case premium(SettingsPremium)
+    case exam(SettingsExam)
+    case study(SettingsStudy)
+    case community
+    case support
+}
+
+struct SettingsPremium {
+    let title: String
+    let memberSince: String
+    let validTill: String
+}
+
+struct SettingsExam {
+    let course: Course?
+    let examDate: Date?
+}
+
+struct SettingsStudy {
+    let testMode: TestMode?
+    let vibration: Bool
+}

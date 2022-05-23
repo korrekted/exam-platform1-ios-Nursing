@@ -7,113 +7,140 @@
 
 import RxSwift
 import RxCocoa
+import OtterScaleiOS
 
 final class SettingsViewModel {
-    private lazy var coursesManager = CoursesManagerCore()
+    lazy var elements = makeElements()
+    
+    private lazy var activeSubscription = makeActiveSubscription()
+    
     private lazy var sessionManager = SessionManager()
+    private lazy var coursesManager = CoursesManagerCore()
     private lazy var profileManager = ProfileManager()
-    
-    lazy var sections = makeSections()
-    lazy var activityIndicator = makeActivityIndicator()
-    
-    private lazy var courseActivityIndicator = RxActivityIndicator()
-    private lazy var modeActivityIndicator = RxActivityIndicator()
-    private lazy var referencesActivityIndicator = RxActivityIndicator()
 }
 
 // MARK: Private
 private extension SettingsViewModel {
-    func makeSections() -> Driver<[SettingsTableSection]> {
-        let activeSubscription = self.activeSubscription()
-        let course = self.course()
-        let mode = self.mode()
-        let references = self.makeReferencesSection()
+    func makeElements() -> Driver<[SettingsTableElement]> {
+        let subscription = makeSubscriptionElement()
+        let exam = makeExamElement()
+        let study = makeStudyElement()
         
         return Driver
-            .combineLatest(activeSubscription, course, mode, references) { activeSubscription, course, mode, references -> [SettingsTableSection] in
-                var sections = [SettingsTableSection]()
+            .combineLatest(subscription, exam, study) { subscription, exam, study -> [SettingsTableElement] in
+                var elements = [SettingsTableElement]()
                 
-                if !activeSubscription {
-                    sections.append(.unlockPremium)
-                }
-                
-                sections.append(contentsOf: [
-                    .selectedCourse(course),
-                    .mode(mode)
+                elements.append(contentsOf: [
+                    subscription,
+                    .offset(30.scale),
+                    exam,
+                    .offset(30.scale),
+                    study,
+                    .offset(30.scale),
+                    .community,
+                    .offset(30.scale),
+                    .support,
+                    .offset(30.scale)
                 ])
                 
-                if let ref = references {
-                    sections.append(ref)
-                }
-                
-                sections.append(.links)
-                
-                return sections
+                return elements
             }
     }
     
-    func activeSubscription() -> Driver<Bool> {
-        let updated = PurchaseValidationObserver.shared
-            .didValidatedWithActiveSubscription
-            .map { SessionManager().hasActiveSubscriptions() }
-            .asDriver(onErrorJustReturn: false)
-        
-        let initial = Driver<Bool>
-            .deferred { [weak self] in
-                guard let this = self else {
-                    return .never()
+    func makeSubscriptionElement() -> Driver<SettingsTableElement> {
+        activeSubscription
+            .map { activeSubscription -> SettingsTableElement in
+                if activeSubscription {
+                    // TODO: доработать OtterScale и вытаскивать из него данные
+                    let element = SettingsPremium(title: "Settings.Premium.Title1".localized,
+                                                  memberSince: "21 Apr 2022",
+                                                  validTill: "21 May 2022")
+                    return .premium(element)
+                } else {
+                    return .unlockPremium
                 }
-                
-                let activeSubscription = this.sessionManager.hasActiveSubscriptions()
-                
-                return .just(activeSubscription)
             }
+    }
+    
+    func makeExamElement() -> Driver<SettingsTableElement> {
+        let course = makeCourse()
+        let examDate = makeExamDate()
         
-        return Driver
-            .merge(initial, updated)
+        return Driver.combineLatest(course, examDate) { course, examDate -> SettingsTableElement in
+            let element = SettingsExam(course: course,
+                                       examDate: examDate)
+            return .exam(element)
+        }
     }
     
-    func course() -> Driver<Course> {
-        coursesManager
-            .retrieveSelectedCourse()
-            .trackActivity(courseActivityIndicator)
-            .compactMap { $0 }
-            .asDriver(onErrorDriveWith: .empty())
+    // TODO: не обвноляется после изменения
+    func makeCourse() -> Driver<Course?> {
+        let initial = profileManager
+            .obtainSelectedCourse(forceUpdate: false)
+            .asDriver(onErrorJustReturn: nil)
+        
+        let updated = ProfileMediator.shared
+            .changedCourse
+            .map { course -> Course? in
+                course
+            }
+            .asDriver(onErrorJustReturn: nil)
+        
+        return Driver.merge(initial, updated)
     }
     
-    func mode() -> Driver<TestMode> {
+    func makeExamDate() -> Driver<Date?> {
+        let initial = profileManager
+            .obtainDateOfExam(forceUpdate: false)
+            .asDriver(onErrorJustReturn: nil)
+        
+        let updated = ProfileMediator.shared
+            .changedDateOfExam
+            .map { examDate -> Date? in
+                examDate
+            }
+            .asDriver(onErrorJustReturn: nil)
+        
+        return Driver.merge(initial, updated)
+    }
+    
+    func makeStudyElement() -> Driver<SettingsTableElement> {
+        let testMode = makeTestMode()
+        let vibration = makeVibration()
+        
+        return Driver.combineLatest(testMode, vibration) { testMode, vibration -> SettingsTableElement in
+            let element = SettingsStudy(testMode: testMode,
+                                        vibration: vibration)
+            return .study(element)
+        }
+    }
+    
+    func makeTestMode() -> Driver<TestMode?> {
         let initial = profileManager
             .obtainTestMode(forceUpdate: false)
-            .trackActivity(modeActivityIndicator)
-            .compactMap { $0 }
-            .asDriver(onErrorDriveWith: .empty())
+            .asDriver(onErrorJustReturn: nil)
         
         let updated = ProfileMediator.shared
             .changedTestMode
-            .asDriver(onErrorDriveWith: .never())
-        
-        return Driver
-            .merge(
-                initial, updated
-            )
-    }
-    
-    func makeReferencesSection() -> Driver<SettingsTableSection?> {
-        coursesManager
-            .retrieveReferences(forceUpdate: false)
-            .map { references -> SettingsTableSection? in
-                references.isEmpty ? nil : .references
+            .map { testMode -> TestMode? in
+                testMode
             }
-            .trackActivity(referencesActivityIndicator)
             .asDriver(onErrorJustReturn: nil)
+        
+        return Driver.merge(initial, updated)
     }
     
-    func makeActivityIndicator() -> Driver<Bool> {
-        Driver
-            .combineLatest(
-                courseActivityIndicator,
-                modeActivityIndicator,
-                referencesActivityIndicator
-            ) { $0 || $1 || $2 }
+    func makeVibration() -> Driver<Bool> {
+        // TODO: реализовать
+        
+        return .deferred { .just(true) }
+    }
+    
+    func makeActiveSubscription() -> Driver<Bool> {
+        PurchaseValidationObserver.shared
+            .didValidatedWithActiveSubscription
+            .map { SessionManager().hasActiveSubscriptions() }
+            .asDriver(onErrorJustReturn: false)
+            .startWith(SessionManager().hasActiveSubscriptions())
     }
 }

@@ -1,14 +1,14 @@
 //
-//  STUnlockCell.swift
+//  SettingsUnlockPremiumCell.swift
 //  Nursing
 //
-//  Created by Andrey Chernyshev on 25.01.2021.
+//  Created by Андрей Чернышев on 23.05.2022.
 //
 
 import UIKit
 
-final class STUnlockCell: UITableViewCell {
-    var tapped: (() -> Void)?
+final class SettingsUnlockPremiumCell: UITableViewCell {
+    weak var tableDelegate: SettingsTableDelegate?
     
     lazy var container = makeContainer()
     lazy var titleLabel = makeTitleLabel()
@@ -27,24 +27,22 @@ final class STUnlockCell: UITableViewCell {
 }
 
 // MARK: Private
-private extension STUnlockCell {
+private extension SettingsUnlockPremiumCell {
     func initialize() {
         backgroundColor = UIColor.clear
         contentView.backgroundColor = UIColor.clear
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTap))
-        container.isUserInteractionEnabled = true
-        container.addGestureRecognizer(tapGesture)
+        selectionStyle = .none
     }
     
     @objc
-    func didTap() {
-        tapped?()
+    func tapped() {
+        tableDelegate?.settingsTableDidTappedUnlockPremium()
     }
 }
 
 // MARK: Make constraints
-private extension STUnlockCell {
+private extension SettingsUnlockPremiumCell {
     func makeConstraints() {
         NSLayoutConstraint.activate([
             container.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.scale),
@@ -54,27 +52,25 @@ private extension STUnlockCell {
         ])
         
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 25.scale),
-            titleLabel.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -25.scale),
+            titleLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 15.scale),
             titleLabel.topAnchor.constraint(equalTo: container.topAnchor, constant: 20.scale)
         ])
         
         NSLayoutConstraint.activate([
-            subTitleLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 25.scale),
-            subTitleLabel.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -25.scale),
-            subTitleLabel.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -20.scale)
+            subTitleLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 15.scale),
+            subTitleLabel.topAnchor.constraint(equalTo: container.topAnchor, constant: 44.scale)
         ])
     }
 }
 
 // MARK: Lazy initialization
-private extension STUnlockCell {
-    func makeContainer() -> UIView {
-        let view = UIView()
+private extension SettingsUnlockPremiumCell {
+    func makeContainer() -> UIButton {
+        let view = UIButton()
+        view.layer.cornerRadius = 16.scale
         view.backgroundColor = Appearance.mainColor
-        view.layer.cornerRadius = 15.scale
-        view.layer.masksToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.addTarget(self, action: #selector(tapped), for: .touchUpInside)
         contentView.addSubview(view)
         return view
     }
@@ -82,12 +78,12 @@ private extension STUnlockCell {
     func makeTitleLabel() -> UILabel {
         let attrs = TextAttributes()
             .textColor(UIColor.white)
-            .font(Fonts.SFProRounded.bold(size: 17.scale))
-            .lineHeight(20.scale)
+            .font(Fonts.SFProRounded.black(size: 17.scale))
+            .lineHeight(20.29.scale)
             .letterSpacing(-0.24.scale)
         
         let view = UILabel()
-        view.attributedText = "Settings.Unlock".localized.attributed(with: attrs)
+        view.attributedText = "Settings.UnlockPremium.Title".localized.attributed(with: attrs)
         view.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(view)
         return view
@@ -96,12 +92,12 @@ private extension STUnlockCell {
     func makeSubTitleLabel() -> UILabel {
         let attrs = TextAttributes()
             .textColor(UIColor.white)
-            .font(Fonts.SFProRounded.bold(size: 25.scale))
-            .lineHeight(29.scale)
+            .font(Fonts.SFProRounded.black(size: 25.scale))
+            .lineHeight(29.83.scale)
             .letterSpacing(-0.24.scale)
         
         let view = UILabel()
-        view.attributedText = "Settings.Premium".localized.attributed(with: attrs)
+        view.attributedText = "Settings.UnlockPremium.SubTitle".localized.attributed(with: attrs)
         view.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(view)
         return view

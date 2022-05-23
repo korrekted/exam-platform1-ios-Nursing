@@ -118,15 +118,33 @@
 
 // MARK: Settings
 "Settings.Title" = "Settings";
-"Settings.Unlock" = "Unlock";
-"Settings.Premium" = "PREMIUM";
-"Settings.SelectedExam" = "Selected Exam";
-"Settings.RateUs" = "Rate Us";
-"Settings.ContactUs" = "Contact Us";
-"Settings.TermsOfUse" = "Terms of Use";
-"Settings.PrivacyPolicy" = "Privacy Policy";
-"Settings.ExamMode" = "Exam mode";
-"Settings.References" = "References";
+"Settings.UnlockPremium.Title" = "Unlock";
+"Settings.UnlockPremium.SubTitle" = "PREMIUM";
+"Settings.Premium.Title1" = "Premium";
+"Settings.Premium.Title2" = "Lifetime";
+"Settings.Premium.MemberSince" = "Member since";
+"Settings.Premium.ValidTill" = "Valid till";
+"Settings.Exam" = "Exam";
+"Settings.Exam.ExamDateTitle" = "Exam date";
+"Settings.Exam.ResetProgress" = "Reset progress";
+"Settings.Study" = "Study";
+"Settings.Study.ExamMode" = "Exam mode";
+"Settings.Study.ExamMode.FullSupport" = "Full support";
+"Settings.Study.ExamMode.WithoutExplanations" = "Without explanations";
+"Settings.Study.ExamMode.ExamStyle" = "Exam-style";
+"Settings.Study.Vibration" = "Vibration";
+"Settings.Study.TextSize" = "Text size";
+"Settings.Community" = "Community";
+"Settings.Community.RateUs.Title" = "Rate us";
+"Settings.Community.RateUs.SubTitle" = "Your rating hepls us a lot";
+"Settings.Community.JoinTheCommunity.Title" = "Join the community";
+"Settings.Community.JoinTheCommunity.SubTitle" = "Connect with students on Facebook";
+"Settings.Community.ShareWithFriend.Title" = "Share with a friend";
+"Settings.Community.ShareWithFriend.SubTitle" = "Link to App Store";
+"Settings.Support" = "Support";
+"Settings.Support.ContactUs" = "Contact us";
+"Settings.Support.TermsOfUse" = "Terms of use";
+"Settings.Support.PrivacyPolicy" = "Privacy Policy";
 
 // MARK: Stats
 "Stats.PassRate.Title" = " Current pass rate";

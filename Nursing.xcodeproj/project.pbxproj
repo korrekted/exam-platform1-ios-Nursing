@@ -40,6 +40,14 @@
 		DE275BD7283BB6A30024D62E /* ChangeTestModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BD6283BB6A30024D62E /* ChangeTestModeViewController.swift */; };
 		DE275BD9283BB6AC0024D62E /* ChangeTestModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BD8283BB6AC0024D62E /* ChangeTestModeView.swift */; };
 		DE275BDB283BB70A0024D62E /* ChangeTestModeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BDA283BB70A0024D62E /* ChangeTestModeViewModel.swift */; };
+		DE275BDD283BD1F50024D62E /* SettingsUnlockPremiumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BDC283BD1F50024D62E /* SettingsUnlockPremiumCell.swift */; };
+		DE275BDF283BD2050024D62E /* SettingsExamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BDE283BD2050024D62E /* SettingsExamCell.swift */; };
+		DE275BE1283BD20F0024D62E /* SettingsStudyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BE0283BD20F0024D62E /* SettingsStudyCell.swift */; };
+		DE275BE3283BD21F0024D62E /* SettingsCommunityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BE2283BD21F0024D62E /* SettingsCommunityCell.swift */; };
+		DE275BE5283BD2290024D62E /* SettingsSupportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BE4283BD2290024D62E /* SettingsSupportCell.swift */; };
+		DE275BE7283BD2420024D62E /* SettingsPremiumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BE6283BD2420024D62E /* SettingsPremiumCell.swift */; };
+		DE275BEA283BE5A80024D62E /* SettingsArrowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BE9283BE5A80024D62E /* SettingsArrowButton.swift */; };
+		DE275BED283BF4C70024D62E /* SettingsVibrationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BEC283BF4C70024D62E /* SettingsVibrationButton.swift */; };
 		DE2B10E127DF6B41005280DB /* DefaultRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B10E027DF6B41005280DB /* DefaultRequestWrapper.swift */; };
 		DE2B10E427DF79E8005280DB /* XORRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B10E327DF79E8005280DB /* XORRequestWrapper.swift */; };
 		DE4EA4E327FF0B9C00DCEB92 /* TestBottomSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4EA4E227FF0B9C00DCEB92 /* TestBottomSpinner.swift */; };
@@ -189,14 +197,8 @@
 		DE93771B27ACE9880073F27C /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375F627ACE9880073F27C /* SessionManager.swift */; };
 		DE93771D27ACE9880073F27C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375FA27ACE9880073F27C /* SettingsView.swift */; };
 		DE93771E27ACE9880073F27C /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375FB27ACE9880073F27C /* SettingsViewModel.swift */; };
-		DE93772127ACE9880073F27C /* STLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93760127ACE9880073F27C /* STLinkView.swift */; };
-		DE93772227ACE9880073F27C /* STLinksCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93760227ACE9880073F27C /* STLinksCell.swift */; };
-		DE93772327ACE9880073F27C /* STCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93760327ACE9880073F27C /* STCourseCell.swift */; };
-		DE93772427ACE9880073F27C /* STReferencesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93760427ACE9880073F27C /* STReferencesCell.swift */; };
-		DE93772527ACE9880073F27C /* STUnlockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93760527ACE9880073F27C /* STUnlockCell.swift */; };
-		DE93772627ACE9880073F27C /* STModeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93760627ACE9880073F27C /* STModeCell.swift */; };
 		DE93772727ACE9880073F27C /* SettingsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93760727ACE9880073F27C /* SettingsTableView.swift */; };
-		DE93772827ACE9880073F27C /* SettingsTableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93760827ACE9880073F27C /* SettingsTableSection.swift */; };
+		DE93772827ACE9880073F27C /* SettingsTableElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93760827ACE9880073F27C /* SettingsTableElement.swift */; };
 		DE93772927ACE9880073F27C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93760927ACE9880073F27C /* SettingsViewController.swift */; };
 		DE93772A27ACE9880073F27C /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93760B27ACE9880073F27C /* SplashViewController.swift */; };
 		DE93772B27ACE9880073F27C /* SplashReceiptValidationObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93760D27ACE9880073F27C /* SplashReceiptValidationObserver.swift */; };
@@ -365,6 +367,14 @@
 		DE275BD6283BB6A30024D62E /* ChangeTestModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTestModeViewController.swift; sourceTree = "<group>"; };
 		DE275BD8283BB6AC0024D62E /* ChangeTestModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTestModeView.swift; sourceTree = "<group>"; };
 		DE275BDA283BB70A0024D62E /* ChangeTestModeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTestModeViewModel.swift; sourceTree = "<group>"; };
+		DE275BDC283BD1F50024D62E /* SettingsUnlockPremiumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUnlockPremiumCell.swift; sourceTree = "<group>"; };
+		DE275BDE283BD2050024D62E /* SettingsExamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsExamCell.swift; sourceTree = "<group>"; };
+		DE275BE0283BD20F0024D62E /* SettingsStudyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStudyCell.swift; sourceTree = "<group>"; };
+		DE275BE2283BD21F0024D62E /* SettingsCommunityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCommunityCell.swift; sourceTree = "<group>"; };
+		DE275BE4283BD2290024D62E /* SettingsSupportCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSupportCell.swift; sourceTree = "<group>"; };
+		DE275BE6283BD2420024D62E /* SettingsPremiumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPremiumCell.swift; sourceTree = "<group>"; };
+		DE275BE9283BE5A80024D62E /* SettingsArrowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsArrowButton.swift; sourceTree = "<group>"; };
+		DE275BEC283BF4C70024D62E /* SettingsVibrationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVibrationButton.swift; sourceTree = "<group>"; };
 		DE2B10E027DF6B41005280DB /* DefaultRequestWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRequestWrapper.swift; sourceTree = "<group>"; };
 		DE2B10E327DF79E8005280DB /* XORRequestWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XORRequestWrapper.swift; sourceTree = "<group>"; };
 		DE4EA4E227FF0B9C00DCEB92 /* TestBottomSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestBottomSpinner.swift; sourceTree = "<group>"; };
@@ -514,14 +524,8 @@
 		DE9375F627ACE9880073F27C /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		DE9375FA27ACE9880073F27C /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		DE9375FB27ACE9880073F27C /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
-		DE93760127ACE9880073F27C /* STLinkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STLinkView.swift; sourceTree = "<group>"; };
-		DE93760227ACE9880073F27C /* STLinksCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STLinksCell.swift; sourceTree = "<group>"; };
-		DE93760327ACE9880073F27C /* STCourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STCourseCell.swift; sourceTree = "<group>"; };
-		DE93760427ACE9880073F27C /* STReferencesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STReferencesCell.swift; sourceTree = "<group>"; };
-		DE93760527ACE9880073F27C /* STUnlockCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STUnlockCell.swift; sourceTree = "<group>"; };
-		DE93760627ACE9880073F27C /* STModeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STModeCell.swift; sourceTree = "<group>"; };
 		DE93760727ACE9880073F27C /* SettingsTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableView.swift; sourceTree = "<group>"; };
-		DE93760827ACE9880073F27C /* SettingsTableSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableSection.swift; sourceTree = "<group>"; };
+		DE93760827ACE9880073F27C /* SettingsTableElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableElement.swift; sourceTree = "<group>"; };
 		DE93760927ACE9880073F27C /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		DE93760B27ACE9880073F27C /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		DE93760D27ACE9880073F27C /* SplashReceiptValidationObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashReceiptValidationObserver.swift; sourceTree = "<group>"; };
@@ -816,6 +820,15 @@
 			path = ChangeTestMode;
 			sourceTree = "<group>";
 		};
+		DE275BEB283BE65C0024D62E /* Atoms */ = {
+			isa = PBXGroup;
+			children = (
+				DE275BE9283BE5A80024D62E /* SettingsArrowButton.swift */,
+				DE275BEC283BF4C70024D62E /* SettingsVibrationButton.swift */,
+			);
+			path = Atoms;
+			sourceTree = "<group>";
+		};
 		DE2B10E227DF79C3005280DB /* RequestWrapper */ = {
 			isa = PBXGroup;
 			children = (
@@ -926,7 +939,7 @@
 			isa = PBXGroup;
 			children = (
 				DE93760027ACE9880073F27C /* Cells */,
-				DE93760827ACE9880073F27C /* SettingsTableSection.swift */,
+				DE93760827ACE9880073F27C /* SettingsTableElement.swift */,
 				DE93760727ACE9880073F27C /* SettingsTableView.swift */,
 			);
 			path = TableView;
@@ -1436,12 +1449,13 @@
 		DE93760027ACE9880073F27C /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				DE93760127ACE9880073F27C /* STLinkView.swift */,
-				DE93760227ACE9880073F27C /* STLinksCell.swift */,
-				DE93760327ACE9880073F27C /* STCourseCell.swift */,
-				DE93760427ACE9880073F27C /* STReferencesCell.swift */,
-				DE93760527ACE9880073F27C /* STUnlockCell.swift */,
-				DE93760627ACE9880073F27C /* STModeCell.swift */,
+				DE275BEB283BE65C0024D62E /* Atoms */,
+				DE275BDC283BD1F50024D62E /* SettingsUnlockPremiumCell.swift */,
+				DE275BE6283BD2420024D62E /* SettingsPremiumCell.swift */,
+				DE275BDE283BD2050024D62E /* SettingsExamCell.swift */,
+				DE275BE0283BD20F0024D62E /* SettingsStudyCell.swift */,
+				DE275BE2283BD21F0024D62E /* SettingsCommunityCell.swift */,
+				DE275BE4283BD2290024D62E /* SettingsSupportCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -2006,7 +2020,6 @@
 				DE93770D27ACE9880073F27C /* IAPActionResult.swift in Sources */,
 				DE93777427ACE9880073F27C /* CourseCollectionCell.swift in Sources */,
 				DE4EB1A428047AED00DCEB92 /* OSlideGoalsView.swift in Sources */,
-				DE93772627ACE9880073F27C /* STModeCell.swift in Sources */,
 				DE93772A27ACE9880073F27C /* SplashViewController.swift in Sources */,
 				DE93775D27ACE9880073F27C /* PaygateMainView.swift in Sources */,
 				DE93774D27ACE9880073F27C /* TestType.swift in Sources */,
@@ -2025,7 +2038,6 @@
 				DE93774B27ACE9880073F27C /* TestBottomButtonState.swift in Sources */,
 				DE93771127ACE9880073F27C /* Brief.swift in Sources */,
 				DE4EA4E327FF0B9C00DCEB92 /* TestBottomSpinner.swift in Sources */,
-				DE93772527ACE9880073F27C /* STUnlockCell.swift in Sources */,
 				DE9376F227ACE9880073F27C /* QuestionManagerMediator.swift in Sources */,
 				DE9376F727ACE9880073F27C /* GetCourcesRequest.swift in Sources */,
 				DE8030FD27F5FCD000F69A8E /* ContentError.swift in Sources */,
@@ -2039,7 +2051,6 @@
 				DE93775C27ACE9880073F27C /* PaygateViewController.swift in Sources */,
 				DE9376D827ACE9880073F27C /* ProductPrice.swift in Sources */,
 				DE93777327ACE9880073F27C /* CoursesViewController.swift in Sources */,
-				DE93772327ACE9880073F27C /* STCourseCell.swift in Sources */,
 				DE4EB19628047AED00DCEB92 /* ReferencesTableView.swift in Sources */,
 				DE4EB19328047AED00DCEB92 /* OModeCell.swift in Sources */,
 				DE93777227ACE9880073F27C /* CoursesViewModel.swift in Sources */,
@@ -2053,12 +2064,13 @@
 				DE93777927ACE9880073F27C /* StatsViewModel.swift in Sources */,
 				DE93778327ACE9880073F27C /* MainStatsDescriptionLineView.swift in Sources */,
 				DE93776427ACE9880073F27C /* TestStatsAnswerCell.swift in Sources */,
-				DE93772827ACE9880073F27C /* SettingsTableSection.swift in Sources */,
+				DE93772827ACE9880073F27C /* SettingsTableElement.swift in Sources */,
 				DE93774227ACE9880073F27C /* QuestionsProgressCell.swift in Sources */,
 				DE9376B427ACE9880073F27C /* StringExtension.swift in Sources */,
 				DE9376C027ACE9880073F27C /* NursingNavigationController.swift in Sources */,
 				DE93773827ACE9880073F27C /* StudyCollectionView.swift in Sources */,
 				DE9376F127ACE9880073F27C /* QuestionManager.swift in Sources */,
+				DE275BE1283BD20F0024D62E /* SettingsStudyCell.swift in Sources */,
 				DE93775727ACE9880073F27C /* AVPlayerView.swift in Sources */,
 				DE93778627ACE9880073F27C /* MainStatsDescriptionView.swift in Sources */,
 				DE9376CF27ACE9880073F27C /* FacebookManager.swift in Sources */,
@@ -2125,6 +2137,7 @@
 				DE9376FB27ACE9880073F27C /* GetSelectedCourseResponse.swift in Sources */,
 				DE93778027ACE9880073F27C /* CourseProgressCell.swift in Sources */,
 				DE93774C27ACE9880073F27C /* TestingCellType.swift in Sources */,
+				DE275BED283BF4C70024D62E /* SettingsVibrationButton.swift in Sources */,
 				DE93774327ACE9880073F27C /* QuestionCollectionCell.swift in Sources */,
 				DE93775527ACE9880073F27C /* AnswerView.swift in Sources */,
 				DE93771327ACE9880073F27C /* GetBriefRequest.swift in Sources */,
@@ -2136,11 +2149,13 @@
 				DE80311027FC852E00F69A8E /* ObservableRetrySingle.swift in Sources */,
 				DE93775027ACE9880073F27C /* TestElement.swift in Sources */,
 				DE9376CE27ACE9880073F27C /* FirebaseManager.swift in Sources */,
+				DE275BE3283BD21F0024D62E /* SettingsCommunityCell.swift in Sources */,
 				DE93778427ACE9880073F27C /* MainProgressView.swift in Sources */,
 				DE93772F27ACE9880073F27C /* StudyViewController.swift in Sources */,
 				DE9376CA27ACE9880073F27C /* UIViewRxExtension.swift in Sources */,
 				DE275BD3283B97CA0024D62E /* GetProfileResponseMapper.swift in Sources */,
 				DE9376D127ACE9880073F27C /* RateManager.swift in Sources */,
+				DE275BE7283BD2420024D62E /* SettingsPremiumCell.swift in Sources */,
 				DE9376D627ACE9880073F27C /* PaygateOption.swift in Sources */,
 				DE93775627ACE9880073F27C /* BottomView.swift in Sources */,
 				DE80310A27FC41D200F69A8E /* SplashActivity.swift in Sources */,
@@ -2149,6 +2164,7 @@
 				DE93771427ACE9880073F27C /* GetBriefResponseMapper.swift in Sources */,
 				DE4EB19528047AED00DCEB92 /* ReferencesTableCell.swift in Sources */,
 				DE275BD1283B97C50024D62E /* GetProfileRequest.swift in Sources */,
+				DE275BDD283BD1F50024D62E /* SettingsUnlockPremiumCell.swift in Sources */,
 				DE93776627ACE9880073F27C /* TestStatsProgressElement.swift in Sources */,
 				DE93777B27ACE9880073F27C /* StatsCellType.swift in Sources */,
 				DE9376B927ACE9880073F27C /* ScreenSize.swift in Sources */,
@@ -2157,6 +2173,7 @@
 				DE9376F827ACE9880073F27C /* GetReferencesResponseMapper.swift in Sources */,
 				DE93776A27ACE9880073F27C /* TestStatsFilter.swift in Sources */,
 				DE93773327ACE9880073F27C /* SCUnlockQuestionsCell.swift in Sources */,
+				DE275BDF283BD2050024D62E /* SettingsExamCell.swift in Sources */,
 				DE93770427ACE9880073F27C /* LoginRequest.swift in Sources */,
 				DE9376FD27ACE9880073F27C /* GetCourcesResponseMapper.swift in Sources */,
 				DE9376B027ACE9880073F27C /* RestApiTransportExtension.swift in Sources */,
@@ -2189,7 +2206,6 @@
 				DE93774A27ACE9880073F27C /* TestViewModel.swift in Sources */,
 				DE8030F727F5DBF600F69A8E /* TryAgainViewController.swift in Sources */,
 				DE9376C427ACE9880073F27C /* PaddingPickerView.swift in Sources */,
-				DE93772227ACE9880073F27C /* STLinksCell.swift in Sources */,
 				DE9376E527ACE9880073F27C /* TestConfig.swift in Sources */,
 				DE93771527ACE9880073F27C /* GetStatsResponseMapper.swift in Sources */,
 				DE93775F27ACE9880073F27C /* PaygateOptionView.swift in Sources */,
@@ -2209,10 +2225,10 @@
 				DE4EB18F28047AED00DCEB92 /* OnboardingViewController.swift in Sources */,
 				DE93776827ACE9880073F27C /* TestStatsCellType.swift in Sources */,
 				DE93777527ACE9880073F27C /* CoursesCollectionView.swift in Sources */,
+				DE275BEA283BE5A80024D62E /* SettingsArrowButton.swift in Sources */,
 				DE93776F27ACE9880073F27C /* TestStatsFilterView.swift in Sources */,
 				DE9376EF27ACE9880073F27C /* GetTestRequest.swift in Sources */,
 				DE93772C27ACE9880073F27C /* SplashViewModel.swift in Sources */,
-				DE93772127ACE9880073F27C /* STLinkView.swift in Sources */,
 				DE93771927ACE9880073F27C /* StatsShareManager.swift in Sources */,
 				DE2B10E127DF6B41005280DB /* DefaultRequestWrapper.swift in Sources */,
 				DE9376B127ACE9880073F27C /* UITapGestureRecognizerExtension.swift in Sources */,
@@ -2223,7 +2239,6 @@
 				DE9376CB27ACE9880073F27C /* Appearance.swift in Sources */,
 				DE93770527ACE9880073F27C /* SyncTokensRequest.swift in Sources */,
 				DE4EB19028047AED00DCEB92 /* OSlideWelcomeView.swift in Sources */,
-				DE93772427ACE9880073F27C /* STReferencesCell.swift in Sources */,
 				DE4EB19C28047AED00DCEB92 /* WelcomeSlide2View.swift in Sources */,
 				DE9376E227ACE9880073F27C /* GetTestStatsResponseMapper.swift in Sources */,
 				DE93772D27ACE9880073F27C /* SplashView.swift in Sources */,
@@ -2248,6 +2263,7 @@
 				DE93773727ACE9880073F27C /* StudyCollectionElement.swift in Sources */,
 				DE93774027ACE9880073F27C /* QuestionReferenceCell.swift in Sources */,
 				DE93770327ACE9880073F27C /* ProfileManager.swift in Sources */,
+				DE275BE5283BD2290024D62E /* SettingsSupportCell.swift in Sources */,
 				DE9376B527ACE9880073F27C /* GlobalDefinitions.swift in Sources */,
 				DE4EB19228047AED00DCEB92 /* OProgressView.swift in Sources */,
 				DE9376D227ACE9880073F27C /* PaygateManager.swift in Sources */,
