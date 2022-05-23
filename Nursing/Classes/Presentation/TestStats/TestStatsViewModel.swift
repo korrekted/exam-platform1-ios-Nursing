@@ -18,14 +18,14 @@ final class TestStatsViewModel {
     lazy var testName = makeTestName()
     
     private lazy var testStatsManager = TestStatsManagerCore()
-    private lazy var courseManager = CoursesManagerCore()
+    private lazy var profileManager = ProfileManager()
 }
 
 // MARK: Private
 private extension TestStatsViewModel {
     func makeCourseName() -> Driver<String> {
-        courseManager
-            .retrieveSelectedCourse()
+        profileManager
+            .obtainSelectedCourse(forceUpdate: false)
             .compactMap { $0?.name }
             .asDriver(onErrorDriveWith: .empty())
     }

@@ -49,6 +49,7 @@
 		DE275BEA283BE5A80024D62E /* SettingsArrowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BE9283BE5A80024D62E /* SettingsArrowButton.swift */; };
 		DE275BED283BF4C70024D62E /* SettingsVibrationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BEC283BF4C70024D62E /* SettingsVibrationButton.swift */; };
 		DE275BEF283C100A0024D62E /* SettingsCommunityButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BEE283C100A0024D62E /* SettingsCommunityButton.swift */; };
+		DE275BF1283C18FF0024D62E /* Reference.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BF0283C18FF0024D62E /* Reference.swift */; };
 		DE2B10E127DF6B41005280DB /* DefaultRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B10E027DF6B41005280DB /* DefaultRequestWrapper.swift */; };
 		DE2B10E427DF79E8005280DB /* XORRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B10E327DF79E8005280DB /* XORRequestWrapper.swift */; };
 		DE4EA4E327FF0B9C00DCEB92 /* TestBottomSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4EA4E227FF0B9C00DCEB92 /* TestBottomSpinner.swift */; };
@@ -161,7 +162,6 @@
 		DE9376F227ACE9880073F27C /* QuestionManagerMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375B427ACE9880073F27C /* QuestionManagerMediator.swift */; };
 		DE9376F327ACE9880073F27C /* QuestionManagerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375B527ACE9880073F27C /* QuestionManagerCore.swift */; };
 		DE9376F427ACE9880073F27C /* QuestionManagerDelagate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375B627ACE9880073F27C /* QuestionManagerDelagate.swift */; };
-		DE9376F527ACE9880073F27C /* Reference.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375B927ACE9880073F27C /* Reference.swift */; };
 		DE9376F627ACE9880073F27C /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375BA27ACE9880073F27C /* Course.swift */; };
 		DE9376F727ACE9880073F27C /* GetCourcesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375BC27ACE9880073F27C /* GetCourcesRequest.swift */; };
 		DE9376F827ACE9880073F27C /* GetReferencesResponseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375BE27ACE9880073F27C /* GetReferencesResponseMapper.swift */; };
@@ -170,9 +170,7 @@
 		DE9376FB27ACE9880073F27C /* GetSelectedCourseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375C327ACE9880073F27C /* GetSelectedCourseResponse.swift */; };
 		DE9376FC27ACE9880073F27C /* GetSelectedCourseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375C427ACE9880073F27C /* GetSelectedCourseRequest.swift */; };
 		DE9376FD27ACE9880073F27C /* GetCourcesResponseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375C527ACE9880073F27C /* GetCourcesResponseMapper.swift */; };
-		DE9376FE27ACE9880073F27C /* CoursesManagerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375C727ACE9880073F27C /* CoursesManagerCore.swift */; };
-		DE9376FF27ACE9880073F27C /* CoursesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375C827ACE9880073F27C /* CoursesManager.swift */; };
-		DE93770027ACE9880073F27C /* CoursesManagerMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375CA27ACE9880073F27C /* CoursesManagerMediator.swift */; };
+		DE9376FE27ACE9880073F27C /* CoursesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375C727ACE9880073F27C /* CoursesManager.swift */; };
 		DE93770127ACE9880073F27C /* TestMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375CD27ACE9880073F27C /* TestMode.swift */; };
 		DE93770327ACE9880073F27C /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375D027ACE9880073F27C /* ProfileManager.swift */; };
 		DE93770427ACE9880073F27C /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375D227ACE9880073F27C /* LoginRequest.swift */; };
@@ -377,6 +375,7 @@
 		DE275BE9283BE5A80024D62E /* SettingsArrowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsArrowButton.swift; sourceTree = "<group>"; };
 		DE275BEC283BF4C70024D62E /* SettingsVibrationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVibrationButton.swift; sourceTree = "<group>"; };
 		DE275BEE283C100A0024D62E /* SettingsCommunityButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCommunityButton.swift; sourceTree = "<group>"; };
+		DE275BF0283C18FF0024D62E /* Reference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reference.swift; sourceTree = "<group>"; };
 		DE2B10E027DF6B41005280DB /* DefaultRequestWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRequestWrapper.swift; sourceTree = "<group>"; };
 		DE2B10E327DF79E8005280DB /* XORRequestWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XORRequestWrapper.swift; sourceTree = "<group>"; };
 		DE4EA4E227FF0B9C00DCEB92 /* TestBottomSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestBottomSpinner.swift; sourceTree = "<group>"; };
@@ -489,7 +488,6 @@
 		DE9375B427ACE9880073F27C /* QuestionManagerMediator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionManagerMediator.swift; sourceTree = "<group>"; };
 		DE9375B527ACE9880073F27C /* QuestionManagerCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionManagerCore.swift; sourceTree = "<group>"; };
 		DE9375B627ACE9880073F27C /* QuestionManagerDelagate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionManagerDelagate.swift; sourceTree = "<group>"; };
-		DE9375B927ACE9880073F27C /* Reference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reference.swift; sourceTree = "<group>"; };
 		DE9375BA27ACE9880073F27C /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		DE9375BC27ACE9880073F27C /* GetCourcesRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCourcesRequest.swift; sourceTree = "<group>"; };
 		DE9375BE27ACE9880073F27C /* GetReferencesResponseMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetReferencesResponseMapper.swift; sourceTree = "<group>"; };
@@ -498,9 +496,7 @@
 		DE9375C327ACE9880073F27C /* GetSelectedCourseResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetSelectedCourseResponse.swift; sourceTree = "<group>"; };
 		DE9375C427ACE9880073F27C /* GetSelectedCourseRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetSelectedCourseRequest.swift; sourceTree = "<group>"; };
 		DE9375C527ACE9880073F27C /* GetCourcesResponseMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCourcesResponseMapper.swift; sourceTree = "<group>"; };
-		DE9375C727ACE9880073F27C /* CoursesManagerCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesManagerCore.swift; sourceTree = "<group>"; };
-		DE9375C827ACE9880073F27C /* CoursesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesManager.swift; sourceTree = "<group>"; };
-		DE9375CA27ACE9880073F27C /* CoursesManagerMediator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesManagerMediator.swift; sourceTree = "<group>"; };
+		DE9375C727ACE9880073F27C /* CoursesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesManager.swift; sourceTree = "<group>"; };
 		DE9375CD27ACE9880073F27C /* TestMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestMode.swift; sourceTree = "<group>"; };
 		DE9375D027ACE9880073F27C /* ProfileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
 		DE9375D227ACE9880073F27C /* LoginRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
@@ -1218,8 +1214,7 @@
 			children = (
 				DE9375B827ACE9880073F27C /* Models */,
 				DE9375BB27ACE9880073F27C /* Requests */,
-				DE9375C627ACE9880073F27C /* Manager */,
-				DE9375C927ACE9880073F27C /* Mediator */,
+				DE9375C727ACE9880073F27C /* CoursesManager.swift */,
 			);
 			path = Courses;
 			sourceTree = "<group>";
@@ -1227,7 +1222,7 @@
 		DE9375B827ACE9880073F27C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				DE9375B927ACE9880073F27C /* Reference.swift */,
+				DE275BF0283C18FF0024D62E /* Reference.swift */,
 				DE9375BA27ACE9880073F27C /* Course.swift */,
 			);
 			path = Models;
@@ -1269,23 +1264,6 @@
 				DE9375C427ACE9880073F27C /* GetSelectedCourseRequest.swift */,
 			);
 			path = GetSelectedCourse;
-			sourceTree = "<group>";
-		};
-		DE9375C627ACE9880073F27C /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				DE9375C727ACE9880073F27C /* CoursesManagerCore.swift */,
-				DE9375C827ACE9880073F27C /* CoursesManager.swift */,
-			);
-			path = Manager;
-			sourceTree = "<group>";
-		};
-		DE9375C927ACE9880073F27C /* Mediator */ = {
-			isa = PBXGroup;
-			children = (
-				DE9375CA27ACE9880073F27C /* CoursesManagerMediator.swift */,
-			);
-			path = Mediator;
 			sourceTree = "<group>";
 		};
 		DE9375CB27ACE9880073F27C /* Profile */ = {
@@ -2018,7 +1996,6 @@
 				DE9376C527ACE9880073F27C /* GradientButton.swift in Sources */,
 				DE9376B327ACE9880073F27C /* UIEdgeInsets+Extension.swift in Sources */,
 				DE9376CC27ACE9880073F27C /* BranchManager.swift in Sources */,
-				DE9376FF27ACE9880073F27C /* CoursesManager.swift in Sources */,
 				DE93776B27ACE9880073F27C /* TestStatsViewModel.swift in Sources */,
 				DE93770D27ACE9880073F27C /* IAPActionResult.swift in Sources */,
 				DE93777427ACE9880073F27C /* CourseCollectionCell.swift in Sources */,
@@ -2092,7 +2069,7 @@
 				DE4EB19128047AED00DCEB92 /* OStepView.swift in Sources */,
 				DE9376E327ACE9880073F27C /* TestStatsManagerCore.swift in Sources */,
 				DE4EB1A828047AED00DCEB92 /* OSlideCountView.swift in Sources */,
-				DE9376FE27ACE9880073F27C /* CoursesManagerCore.swift in Sources */,
+				DE9376FE27ACE9880073F27C /* CoursesManager.swift in Sources */,
 				DE9376AE27ACE9880073F27C /* UIColorExtension.swift in Sources */,
 				DE93777627ACE9880073F27C /* CoursesCollectionElement.swift in Sources */,
 				DE9376EC27ACE9880073F27C /* GetRandomSetRequest.swift in Sources */,
@@ -2105,6 +2082,7 @@
 				DE9376E027ACE9880073F27C /* TestStats.swift in Sources */,
 				DE9376C727ACE9880073F27C /* GradientView.swift in Sources */,
 				DE9376E827ACE9880073F27C /* GetTestConfigResponseMapper.swift in Sources */,
+				DE275BF1283C18FF0024D62E /* Reference.swift in Sources */,
 				DE9376D027ACE9880073F27C /* RateManagerCore.swift in Sources */,
 				DE9376AF27ACE9880073F27C /* Collection+Extension.swift in Sources */,
 				DE93775827ACE9880073F27C /* PaygateViewModel.swift in Sources */,
@@ -2118,12 +2096,10 @@
 				DE93775E27ACE9880073F27C /* PaygateMainInfoCell.swift in Sources */,
 				DE93772927ACE9880073F27C /* SettingsViewController.swift in Sources */,
 				DE9376DE27ACE9880073F27C /* MonetizationManager.swift in Sources */,
-				DE93770027ACE9880073F27C /* CoursesManagerMediator.swift in Sources */,
 				DE93776127ACE9880073F27C /* TestStatsViewController.swift in Sources */,
 				DE93771B27ACE9880073F27C /* SessionManager.swift in Sources */,
 				DE93770127ACE9880073F27C /* TestMode.swift in Sources */,
 				DE93770B27ACE9880073F27C /* IAPManager.swift in Sources */,
-				DE9376F527ACE9880073F27C /* Reference.swift in Sources */,
 				DE93777027ACE9880073F27C /* TestStatsView.swift in Sources */,
 				DE9376DB27ACE9880073F27C /* PaygateSpecialOffer.swift in Sources */,
 				DE93772E27ACE9880073F27C /* StudyViewModel.swift in Sources */,

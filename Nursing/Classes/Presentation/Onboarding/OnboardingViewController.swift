@@ -69,7 +69,7 @@ extension OnboardingViewController {
 // MARK: PaygateViewControllerDelegate
 extension OnboardingViewController: PaygateViewControllerDelegate {
     func paygateDidClosed(with result: PaygateViewControllerResult) {
-        goToCourseOrCourses()
+        goToCourse()
     }
 }
 
@@ -89,7 +89,7 @@ private extension OnboardingViewController {
             vc.delegate = self
             present(vc, animated: true)
         case .nextScreen:
-            goToCourseOrCourses()
+            goToCourse()
         }
     }
     
@@ -103,10 +103,6 @@ private extension OnboardingViewController {
                 self.mainView.slideViewMoveToPrevious(from: self.mainView.step)
             })
             .disposed(by: disposeBag)
-    }
-    
-    func goToCourseOrCourses() {
-        viewModel.hasSelectedCourse ? goToCourse() : goToCourses()
     }
     
     func goToCourses() {

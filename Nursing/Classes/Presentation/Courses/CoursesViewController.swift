@@ -73,7 +73,7 @@ final class CoursesViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        viewModel.activityIndicator
+        viewModel.activity
             .drive(onNext: { [weak self] activity in
                 guard let self = self else {
                     return

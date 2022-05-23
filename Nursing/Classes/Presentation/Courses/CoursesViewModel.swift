@@ -12,9 +12,10 @@ final class CoursesViewModel {
     lazy var selected = PublishRelay<CoursesCollectionElement>()
     lazy var store = PublishRelay<Void>()
     
-    lazy var activityIndicator = RxActivityIndicator()
+    lazy var activity = RxActivityIndicator()
     
-    private lazy var coursesManager = CoursesManagerCore()
+    private lazy var coursesManager = CoursesManager()
+    private lazy var profileManager = ProfileManager()
     
     lazy var elements = makeElements()
     lazy var stored = makeStored()
@@ -44,6 +45,7 @@ private extension CoursesViewModel {
             }
     }
     
+    // TODO: обработка ошибки
     func makeStored() -> Driver<Void> {
         store
             .withLatestFrom(selected)
@@ -52,9 +54,9 @@ private extension CoursesViewModel {
                     return .empty()
                 }
                 
-                return self.coursesManager
-                    .rxSelect(course: element.course)
-                    .trackActivity(self.activityIndicator)
+                return self.profileManager
+                    .set(course: element.course)
+                    .trackActivity(self.activity)
                     .asDriver(onErrorDriveWith: .empty())
             }
             .asDriver(onErrorDriveWith: .empty())

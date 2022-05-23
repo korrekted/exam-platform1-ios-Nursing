@@ -16,7 +16,7 @@ final class OSlideReferencesView: OSlideView {
     
     private lazy var disposeBag = DisposeBag()
     
-    private lazy var coursesManager = CoursesManagerCore()
+    private lazy var coursesManager = CoursesManager()
     
     override init(step: OnboardingView.Step, scope: OnboardingScope) {
         super.init(step: step, scope: scope)

@@ -14,8 +14,7 @@ final class SettingsViewModel {
     
     private lazy var activeSubscription = makeActiveSubscription()
     
-    private lazy var sessionManager = SessionManager()
-    private lazy var coursesManager = CoursesManagerCore()
+    private lazy var coursesManager = CoursesManager()
     private lazy var profileManager = ProfileManager()
 }
 

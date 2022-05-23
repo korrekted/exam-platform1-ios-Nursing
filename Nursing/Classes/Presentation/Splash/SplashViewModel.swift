@@ -19,7 +19,7 @@ final class SplashViewModel {
     
     var tryAgain: ((Error) -> (Observable<Void>))?
     
-    private lazy var coursesManager = CoursesManagerCore()
+    private lazy var coursesManager = CoursesManager()
     private lazy var monetizationManager = MonetizationManager()
     private lazy var sessionManager = SessionManager()
     private lazy var profileManager = ProfileManager()
@@ -138,8 +138,8 @@ private extension SplashViewModel {
     
     func makeInitialStep() -> Observable<Step> {
         func source() -> Single<Step> {
-            coursesManager
-                .retrieveSelectedCourse(forceUpdate: true)
+            profileManager
+                .obtainSelectedCourse(forceUpdate: false)
                 .map { [weak self] selectedCourse -> Step in
                     guard let self = self else {
                         return .onboarding

@@ -24,6 +24,7 @@ final class TestViewModel {
     lazy var userTestId = makeUserTestId()
     lazy var bottomViewState = makeBottomState()
     lazy var testMode = makeTestMode()
+    lazy var course = makeCourse()
     lazy var errorMessage = makeErrorMessage()
     lazy var needPayment = makeNeedPayment()
     
@@ -35,7 +36,6 @@ final class TestViewModel {
     private lazy var observableRetrySingle = ObservableRetrySingle()
     
     private lazy var questionManager = QuestionManagerCore()
-    private lazy var courseManager = CoursesManagerCore()
     private lazy var profileManager = ProfileManager()
     
     private lazy var testElement = loadTest().share(replay: 1, scope: .forever)
@@ -46,9 +46,8 @@ final class TestViewModel {
 // MARK: Private
 private extension TestViewModel {
     func makeCourseName() -> Driver<String> {
-        courseManager
-            .retrieveSelectedCourse()
-            .compactMap { $0?.name }
+        course
+            .map { $0?.name ?? "" }
             .asDriver(onErrorDriveWith: .empty())
     }
     
@@ -68,9 +67,10 @@ private extension TestViewModel {
             .compactMap { $0.element?.questions }
         
         let mode = testMode.asObservable()
+        let courseName = courseName.asObservable()
         
         let dataSource = Observable
-            .combineLatest(questions, selectedAnswers, mode) { ($0, $1, $2) }
+            .combineLatest(questions, selectedAnswers, mode, courseName) { ($0, $1, $2, $3) }
             .scan([], accumulator: questionAccumulator)
         
         return dataSource
@@ -83,10 +83,6 @@ private extension TestViewModel {
     }
     
     func loadTest() -> Observable<Event<Test>> {
-        guard let courseId = courseManager.getSelectedCourse()?.id else {
-            return .empty()
-        }
-        
         func trigger(error: Error) -> Observable<Void> {
             guard let tryAgain = self.tryAgain?(error) else {
                 return .empty()
@@ -95,10 +91,19 @@ private extension TestViewModel {
             return tryAgain
         }
         
-        return testType
+        let courseId = course
+            .compactMap { $0?.id }
+            .asObservable()
+        let type = testType
             .compactMap { $0 }
-            .flatMapLatest { [weak self] type -> Observable<Event<Test>> in
-                guard let self = self else { return .empty() }
+            .asObservable()
+        
+        return Observable
+            .combineLatest(courseId, type)
+            .flatMapLatest { [weak self] courseId, type -> Observable<Event<Test>> in
+                guard let self = self else {
+                    return .empty()
+                }
                 
                 let test: Single<Test?>
                 
@@ -234,6 +239,21 @@ private extension TestViewModel {
             .obtainTestMode(forceUpdate: false)
             .asDriver(onErrorJustReturn: nil)
     }
+    
+    func makeCourse() -> Driver<Course?> {
+        let initial = profileManager
+            .obtainSelectedCourse(forceUpdate: false)
+            .asDriver(onErrorJustReturn: nil)
+        
+        let updated = ProfileMediator.shared
+            .changedCourse
+            .map { course -> Course? in
+                course
+            }
+            .asDriver(onErrorJustReturn: nil)
+        
+        return Driver.merge(initial, updated)
+    }
 }
 
 // MARK: Additional
@@ -244,9 +264,9 @@ private extension TestViewModel {
         case elements([QuestionElement])
     }
     
-    var questionAccumulator: ([QuestionElement], ([Question], AnswerElement?, TestMode?)) -> [QuestionElement] {
+    var questionAccumulator: ([QuestionElement], ([Question], AnswerElement?, TestMode?, String)) -> [QuestionElement] {
         return { [weak self] (old, args) -> [QuestionElement] in
-            let (questions, answers, testMode) = args
+            let (questions, answers, testMode, courseName) = args
             guard !old.isEmpty else {
                 return questions.enumerated().map { index, question in
                     let answers = question.answers.map { PossibleAnswerElement(id: $0.id,
@@ -316,10 +336,10 @@ private extension TestViewModel {
                 
                 if currentQuestion.multiple {
                     let isCorrect = !result.contains(where: { $0.state == .warning || $0.state == .error })
-                    self?.logAnswerAnalitycs(isCorrect: isCorrect)
+                    self?.logAnswerAnalitycs(isCorrect: isCorrect, courseName: courseName)
                 } else {
                     let isCorrect = result.contains(where: { $0.state == .correct })
-                    self?.logAnswerAnalitycs(isCorrect: isCorrect)
+                    self?.logAnswerAnalitycs(isCorrect: isCorrect, courseName: courseName)
                 }
                 
                 return .result(result)
@@ -392,8 +412,8 @@ private extension TestViewModel {
 
 private extension TestViewModel {
     
-    func logAnswerAnalitycs(isCorrect: Bool) {
-        guard let type = testType.value, let courseName = courseManager.getSelectedCourse()?.name else {
+    func logAnswerAnalitycs(isCorrect: Bool, courseName: String) {
+        guard let type = testType.value else {
             return
         }
         let name = isCorrect ? "Question Answered Correctly" : "Question Answered Incorrectly"

@@ -9,9 +9,13 @@ import RxSwift
 import SnapKit
 import Darwin
 
-final class CoursesManagerCore: CoursesManager {
+protocol CoursesManagerProtocol: AnyObject {
+    func retrieveCourses(forceUpdate: Bool) -> Single<[Course]>
+    func retrieveReferences(forceUpdate: Bool) -> Single<[Reference]>
+}
+
+final class CoursesManager: CoursesManagerProtocol {
     enum Constants {
-        static let selectedCourseCacheKey = "courses_manager_core_selected_course_cache_key"
         static let cachedReferencesKey = "courses_manager_core_cached_references_key"
         static let coursesKey = "courses_manager_core_cached_courses_key"
     }
@@ -19,77 +23,15 @@ final class CoursesManagerCore: CoursesManager {
     private let defaultRequestWrapper = DefaultRequestWrapper()
 }
 
-// MARK: API
-extension CoursesManagerCore {
-    func getSelectedCourse() -> Course? {
-        guard let data = UserDefaults.standard.data(forKey: Constants.selectedCourseCacheKey) else {
-            return nil
-        }
-
-        return try? JSONDecoder().decode(Course.self, from: data)
-    }
-}
-
-// MARK: API(Rx)
-extension CoursesManagerCore {
+// MARK: Public
+extension CoursesManager {
     func retrieveCourses(forceUpdate: Bool) -> Single<[Course]> {
         forceUpdate ? downloadAndCacheCourses() : cachedCourses()
-    }
-    
-    func rxSelect(course: Course) -> Single<Void> {
-        guard let userToken = SessionManager().getSession()?.userToken else {
-            return .error(SignError.tokenNotFound)
-        }
-        
-        let request = SetSelectCourseRequest(userToken: userToken, courseId: course.id)
-        
-        return defaultRequestWrapper
-            .callServerApi(requestBody: request)
-            .map { _ in Void() }
-            .do(onSuccess: {
-                guard let data = try? JSONEncoder().encode(course) else {
-                    return
-                }
-        
-                UserDefaults.standard.set(data, forKey: Constants.selectedCourseCacheKey)
-            })
-    }
-    
-    func retrieveSelectedCourse(forceUpdate: Bool = false) -> Single<Course?> {
-        guard forceUpdate else {
-            return .deferred { [weak self] in
-                guard let self = self else {
-                    return .never()
-                }
-                
-                let course = self.getSelectedCourse()
-                
-                return .just(course)
-            }
-        }
-        
-        guard let userToken = SessionManager().getSession()?.userToken else {
-            return .error(SignError.tokenNotFound)
-        }
-        
-        let extractedExpr = GetSelectedCourseRequest(userToken: userToken)
-        let request = extractedExpr
-        
-        return defaultRequestWrapper
-            .callServerApi(requestBody: request)
-            .map { try GetSelectedCourseResponse.map(from: $0) }
-            .do(onSuccess: { course in
-                guard let data = try? JSONEncoder().encode(course) else {
-                    return
-                }
-
-                UserDefaults.standard.set(data, forKey: Constants.selectedCourseCacheKey)
-            })
     }
 }
 
 // MARK: References
-extension CoursesManagerCore {
+extension CoursesManager {
     // С 42 билда всегда пустой массив
     func retrieveReferences(forceUpdate: Bool) -> Single<[Reference]> {
         .deferred { .just([]) }
@@ -144,7 +86,7 @@ extension CoursesManagerCore {
 }
 
 // MARK: Private
-private extension CoursesManagerCore {
+private extension CoursesManager {
     func downloadAndCacheCourses() -> Single<[Course]> {
         guard let userToken = SessionManager().getSession()?.userToken else {
             return .error(SignError.tokenNotFound)

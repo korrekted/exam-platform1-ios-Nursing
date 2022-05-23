@@ -9,10 +9,6 @@ import RxSwift
 import RxCocoa
 
 final class StudyViewModel {
-    private lazy var courseManager = CoursesManagerCore()
-    private lazy var sessionManager = SessionManager()
-    private lazy var statsManager = StatsManagerCore()
-    
     lazy var sections = makeSections()
     lazy var activeSubscription = makeActiveSubscription()
     lazy var courseName = makeCourseName()
@@ -21,14 +17,18 @@ final class StudyViewModel {
     
     var tryAgain: ((Error) -> (Observable<Void>))?
     
+    private lazy var course = makeCourse()
+    
+    private lazy var statsManager = StatsManagerCore()
+    private lazy var profileManager = ProfileManager()
+    
     private lazy var observableRetrySingle = ObservableRetrySingle()
 }
 
 // MARK: Private
 private extension StudyViewModel {
     func makeCourseName() -> Driver<String> {
-        courseManager
-            .retrieveSelectedCourse()
+        course
             .compactMap { $0?.name }
             .asDriver(onErrorDriveWith: .empty())
     }
@@ -57,11 +57,16 @@ private extension StudyViewModel {
     }
     
     func makeBrief() -> Driver<StudyCollectionSection> {
-        QuestionManagerMediator.shared.rxTestPassed
-            .asObservable()
+        let trigger = QuestionManagerMediator.shared.rxTestPassed
+            .asDriver(onErrorDriveWith: .never())
             .startWith(())
-            .flatMap { [weak self] _ -> Observable<(Course, Brief?)> in
-                guard let self = self, let course = self.courseManager.getSelectedCourse() else {
+        
+        return Driver
+            .combineLatest(trigger, course) { $1 }
+            .compactMap { $0 }
+            .asObservable()
+            .flatMap { [weak self] course -> Observable<(Course, Brief?)> in
+                guard let self = self else {
                     return .never()
                 }
                 
@@ -166,24 +171,26 @@ private extension StudyViewModel {
             }
     }
     
+    func makeCourse() -> Driver<Course?> {
+        let initial = profileManager
+            .obtainSelectedCourse(forceUpdate: false)
+            .asDriver(onErrorJustReturn: nil)
+        
+        let updated = ProfileMediator.shared
+            .changedCourse
+            .map { course -> Course? in
+                course
+            }
+            .asDriver(onErrorJustReturn: nil)
+        
+        return Driver.merge(initial, updated)
+    }
+    
     func makeActiveSubscription() -> Driver<Bool> {
-        let updated = PurchaseValidationObserver.shared
+        PurchaseValidationObserver.shared
             .didValidatedWithActiveSubscription
             .map { SessionManager().hasActiveSubscriptions() }
             .asDriver(onErrorJustReturn: false)
-        
-        let initial = Driver<Bool>
-            .deferred { [weak self] in
-                guard let this = self else {
-                    return .never()
-                }
-                
-                let activeSubscription = this.sessionManager.hasActiveSubscriptions()
-                
-                return .just(activeSubscription)
-            }
-        
-        return Driver
-            .merge(initial, updated)
+            .startWith(SessionManager().hasActiveSubscriptions())
     }
 }
