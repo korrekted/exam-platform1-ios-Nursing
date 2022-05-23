@@ -127,7 +127,7 @@
 "Settings.Exam" = "Exam";
 "Settings.Exam.ExamDateTitle" = "Exam date";
 "Settings.Exam.ResetProgress" = "Reset progress";
-"Settings.Study" = "Study";
+"Settings.Study" = "Study Settings";
 "Settings.Study.ExamMode" = "Exam mode";
 "Settings.Study.ExamMode.FullSupport" = "Full support";
 "Settings.Study.ExamMode.WithoutExplanations" = "Without explanations";
