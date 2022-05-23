@@ -10,7 +10,7 @@ import RxCocoa
 
 final class StudyViewModel {
     private lazy var courseManager = CoursesManagerCore()
-    private lazy var sessionManager = SessionManagerCore()
+    private lazy var sessionManager = SessionManager()
     private lazy var statsManager = StatsManagerCore()
     
     lazy var sections = makeSections()
@@ -169,7 +169,7 @@ private extension StudyViewModel {
     func makeActiveSubscription() -> Driver<Bool> {
         let updated = PurchaseValidationObserver.shared
             .didValidatedWithActiveSubscription
-            .map { SessionManagerCore().hasActiveSubscriptions() }
+            .map { SessionManager().hasActiveSubscriptions() }
             .asDriver(onErrorJustReturn: false)
         
         let initial = Driver<Bool>

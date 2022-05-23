@@ -87,7 +87,7 @@ private extension AppDelegate {
                                    branchActive: false,
                                    firebaseActive: false,
                                    applicationTag: GlobalDefinitions.applicationTag,
-                                   userToken: SessionManagerCore().getSession()?.userToken,
+                                   userToken: SessionManager().getSession()?.userToken,
                                    userId: nil,
                                    view: view,
                                    shouldAddStorePayment: true,

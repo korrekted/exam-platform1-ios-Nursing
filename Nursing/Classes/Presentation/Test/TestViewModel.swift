@@ -36,7 +36,7 @@ final class TestViewModel {
     
     private lazy var questionManager = QuestionManagerCore()
     private lazy var courseManager = CoursesManagerCore()
-    private lazy var profileManager = ProfileManagerCore()
+    private lazy var profileManager = ProfileManager()
     
     private lazy var testElement = loadTest().share(replay: 1, scope: .forever)
     private lazy var selectedAnswers = makeSelectedAnswers().share(replay: 1, scope: .forever)
@@ -230,22 +230,8 @@ private extension TestViewModel {
     }
     
     func makeTestMode() -> Driver<TestMode?> {
-        func source() -> Single<TestMode?> {
-            profileManager
-                .obtainTestMode()
-        }
-        
-        func trigger(error: Error) -> Observable<Void> {
-            guard let tryAgain = self.tryAgain?(error) else {
-                return .empty()
-            }
-            
-            return tryAgain
-        }
-        
-        return self.observableRetrySingle
-            .retry(source: { source() },
-                   trigger: { trigger(error: $0) })
+        profileManager
+            .obtainTestMode(forceUpdate: false)
             .asDriver(onErrorJustReturn: nil)
     }
 }

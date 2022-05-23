@@ -32,6 +32,11 @@
 		96D38AED25B3017D00EADC9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96D38AEB25B3017D00EADC9A /* LaunchScreen.storyboard */; };
 		96D38B2825B3073900EADC9A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96D38B2A25B3073900EADC9A /* Localizable.strings */; };
 		96F4560426579AE800B63D53 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96F4560326579AE800B63D53 /* GoogleService-Info.plist */; };
+		DE275BCA283B8B950024D62E /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BC9283B8B950024D62E /* Profile.swift */; };
+		DE275BCC283B963C0024D62E /* Observable+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BCB283B963C0024D62E /* Observable+Utils.swift */; };
+		DE275BCE283B96520024D62E /* Single+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BCD283B96520024D62E /* Single+Utils.swift */; };
+		DE275BD1283B97C50024D62E /* GetProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BD0283B97C50024D62E /* GetProfileRequest.swift */; };
+		DE275BD3283B97CA0024D62E /* GetProfileResponseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BD2283B97CA0024D62E /* GetProfileResponseMapper.swift */; };
 		DE2B10E127DF6B41005280DB /* DefaultRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B10E027DF6B41005280DB /* DefaultRequestWrapper.swift */; };
 		DE2B10E427DF79E8005280DB /* XORRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B10E327DF79E8005280DB /* XORRequestWrapper.swift */; };
 		DE4EA4E327FF0B9C00DCEB92 /* TestBottomSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4EA4E227FF0B9C00DCEB92 /* TestBottomSpinner.swift */; };
@@ -159,14 +164,10 @@
 		DE9376FF27ACE9880073F27C /* CoursesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375C827ACE9880073F27C /* CoursesManager.swift */; };
 		DE93770027ACE9880073F27C /* CoursesManagerMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375CA27ACE9880073F27C /* CoursesManagerMediator.swift */; };
 		DE93770127ACE9880073F27C /* TestMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375CD27ACE9880073F27C /* TestMode.swift */; };
-		DE93770227ACE9880073F27C /* ProfileManagerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375CF27ACE9880073F27C /* ProfileManagerCore.swift */; };
 		DE93770327ACE9880073F27C /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375D027ACE9880073F27C /* ProfileManager.swift */; };
 		DE93770427ACE9880073F27C /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375D227ACE9880073F27C /* LoginRequest.swift */; };
 		DE93770527ACE9880073F27C /* SyncTokensRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375D327ACE9880073F27C /* SyncTokensRequest.swift */; };
-		DE93770627ACE9880073F27C /* GetTestModeResponseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375D527ACE9880073F27C /* GetTestModeResponseMapper.swift */; };
-		DE93770727ACE9880073F27C /* GetTestModeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375D627ACE9880073F27C /* GetTestModeRequest.swift */; };
 		DE93770827ACE9880073F27C /* SetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375D727ACE9880073F27C /* SetRequest.swift */; };
-		DE93770927ACE9880073F27C /* ProfileMediatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375D927ACE9880073F27C /* ProfileMediatorDelegate.swift */; };
 		DE93770A27ACE9880073F27C /* ProfileMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375DA27ACE9880073F27C /* ProfileMediator.swift */; };
 		DE93770B27ACE9880073F27C /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375DC27ACE9880073F27C /* IAPManager.swift */; };
 		DE93770C27ACE9880073F27C /* PurchaseValidationObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375DD27ACE9880073F27C /* PurchaseValidationObserver.swift */; };
@@ -184,8 +185,7 @@
 		DE93771827ACE9880073F27C /* StatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375EF27ACE9880073F27C /* StatsManager.swift */; };
 		DE93771927ACE9880073F27C /* StatsShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375F127ACE9880073F27C /* StatsShareManager.swift */; };
 		DE93771A27ACE9880073F27C /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375F427ACE9880073F27C /* Session.swift */; };
-		DE93771B27ACE9880073F27C /* SessionManagerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375F627ACE9880073F27C /* SessionManagerCore.swift */; };
-		DE93771C27ACE9880073F27C /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375F727ACE9880073F27C /* SessionManager.swift */; };
+		DE93771B27ACE9880073F27C /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375F627ACE9880073F27C /* SessionManager.swift */; };
 		DE93771D27ACE9880073F27C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375FA27ACE9880073F27C /* SettingsView.swift */; };
 		DE93771E27ACE9880073F27C /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375FB27ACE9880073F27C /* SettingsViewModel.swift */; };
 		DE93771F27ACE9880073F27C /* RateUs.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375FD27ACE9880073F27C /* RateUs.swift */; };
@@ -358,6 +358,11 @@
 		96D38B2925B3073900EADC9A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		96E686DC5654A1E4706B4192 /* Pods-Nursing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nursing.release.xcconfig"; path = "Target Support Files/Pods-Nursing/Pods-Nursing.release.xcconfig"; sourceTree = "<group>"; };
 		96F4560326579AE800B63D53 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DE275BC9283B8B950024D62E /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		DE275BCB283B963C0024D62E /* Observable+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Utils.swift"; sourceTree = "<group>"; };
+		DE275BCD283B96520024D62E /* Single+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Single+Utils.swift"; sourceTree = "<group>"; };
+		DE275BD0283B97C50024D62E /* GetProfileRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetProfileRequest.swift; sourceTree = "<group>"; };
+		DE275BD2283B97CA0024D62E /* GetProfileResponseMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetProfileResponseMapper.swift; sourceTree = "<group>"; };
 		DE2B10E027DF6B41005280DB /* DefaultRequestWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRequestWrapper.swift; sourceTree = "<group>"; };
 		DE2B10E327DF79E8005280DB /* XORRequestWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XORRequestWrapper.swift; sourceTree = "<group>"; };
 		DE4EA4E227FF0B9C00DCEB92 /* TestBottomSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestBottomSpinner.swift; sourceTree = "<group>"; };
@@ -485,14 +490,10 @@
 		DE9375C827ACE9880073F27C /* CoursesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesManager.swift; sourceTree = "<group>"; };
 		DE9375CA27ACE9880073F27C /* CoursesManagerMediator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesManagerMediator.swift; sourceTree = "<group>"; };
 		DE9375CD27ACE9880073F27C /* TestMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestMode.swift; sourceTree = "<group>"; };
-		DE9375CF27ACE9880073F27C /* ProfileManagerCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileManagerCore.swift; sourceTree = "<group>"; };
 		DE9375D027ACE9880073F27C /* ProfileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
 		DE9375D227ACE9880073F27C /* LoginRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		DE9375D327ACE9880073F27C /* SyncTokensRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncTokensRequest.swift; sourceTree = "<group>"; };
-		DE9375D527ACE9880073F27C /* GetTestModeResponseMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetTestModeResponseMapper.swift; sourceTree = "<group>"; };
-		DE9375D627ACE9880073F27C /* GetTestModeRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetTestModeRequest.swift; sourceTree = "<group>"; };
 		DE9375D727ACE9880073F27C /* SetRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetRequest.swift; sourceTree = "<group>"; };
-		DE9375D927ACE9880073F27C /* ProfileMediatorDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMediatorDelegate.swift; sourceTree = "<group>"; };
 		DE9375DA27ACE9880073F27C /* ProfileMediator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMediator.swift; sourceTree = "<group>"; };
 		DE9375DC27ACE9880073F27C /* IAPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
 		DE9375DD27ACE9880073F27C /* PurchaseValidationObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseValidationObserver.swift; sourceTree = "<group>"; };
@@ -510,8 +511,7 @@
 		DE9375EF27ACE9880073F27C /* StatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsManager.swift; sourceTree = "<group>"; };
 		DE9375F127ACE9880073F27C /* StatsShareManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsShareManager.swift; sourceTree = "<group>"; };
 		DE9375F427ACE9880073F27C /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
-		DE9375F627ACE9880073F27C /* SessionManagerCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManagerCore.swift; sourceTree = "<group>"; };
-		DE9375F727ACE9880073F27C /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		DE9375F627ACE9880073F27C /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		DE9375FA27ACE9880073F27C /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		DE9375FB27ACE9880073F27C /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		DE9375FD27ACE9880073F27C /* RateUs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateUs.swift; sourceTree = "<group>"; };
@@ -788,6 +788,15 @@
 			path = Strings;
 			sourceTree = "<group>";
 		};
+		DE275BCF283B97B70024D62E /* GetProfile */ = {
+			isa = PBXGroup;
+			children = (
+				DE275BD0283B97C50024D62E /* GetProfileRequest.swift */,
+				DE275BD2283B97CA0024D62E /* GetProfileResponseMapper.swift */,
+			);
+			path = GetProfile;
+			sourceTree = "<group>";
+		};
 		DE2B10E227DF79C3005280DB /* RequestWrapper */ = {
 			isa = PBXGroup;
 			children = (
@@ -940,6 +949,8 @@
 				DE93756027ACE9880073F27C /* UIEdgeInsets+Extension.swift */,
 				DE93756127ACE9880073F27C /* StringExtension.swift */,
 				DE93757D27ACE9880073F27C /* UIViewRxExtension.swift */,
+				DE275BCB283B963C0024D62E /* Observable+Utils.swift */,
+				DE275BCD283B96520024D62E /* Single+Utils.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1246,9 +1257,9 @@
 			isa = PBXGroup;
 			children = (
 				DE9375CC27ACE9880073F27C /* Models */,
-				DE9375CE27ACE9880073F27C /* Manager */,
 				DE9375D127ACE9880073F27C /* Request */,
-				DE9375D827ACE9880073F27C /* Mediator */,
+				DE9375DA27ACE9880073F27C /* ProfileMediator.swift */,
+				DE9375D027ACE9880073F27C /* ProfileManager.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1257,46 +1268,20 @@
 			isa = PBXGroup;
 			children = (
 				DE9375CD27ACE9880073F27C /* TestMode.swift */,
+				DE275BC9283B8B950024D62E /* Profile.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		DE9375CE27ACE9880073F27C /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				DE9375CF27ACE9880073F27C /* ProfileManagerCore.swift */,
-				DE9375D027ACE9880073F27C /* ProfileManager.swift */,
-			);
-			path = Manager;
 			sourceTree = "<group>";
 		};
 		DE9375D127ACE9880073F27C /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				DE275BCF283B97B70024D62E /* GetProfile */,
+				DE9375D727ACE9880073F27C /* SetRequest.swift */,
 				DE9375D227ACE9880073F27C /* LoginRequest.swift */,
 				DE9375D327ACE9880073F27C /* SyncTokensRequest.swift */,
-				DE9375D427ACE9880073F27C /* GetTestMode */,
-				DE9375D727ACE9880073F27C /* SetRequest.swift */,
 			);
 			path = Request;
-			sourceTree = "<group>";
-		};
-		DE9375D427ACE9880073F27C /* GetTestMode */ = {
-			isa = PBXGroup;
-			children = (
-				DE9375D527ACE9880073F27C /* GetTestModeResponseMapper.swift */,
-				DE9375D627ACE9880073F27C /* GetTestModeRequest.swift */,
-			);
-			path = GetTestMode;
-			sourceTree = "<group>";
-		};
-		DE9375D827ACE9880073F27C /* Mediator */ = {
-			isa = PBXGroup;
-			children = (
-				DE9375D927ACE9880073F27C /* ProfileMediatorDelegate.swift */,
-				DE9375DA27ACE9880073F27C /* ProfileMediator.swift */,
-			);
-			path = Mediator;
 			sourceTree = "<group>";
 		};
 		DE9375DB27ACE9880073F27C /* Purchase */ = {
@@ -1380,7 +1365,7 @@
 			isa = PBXGroup;
 			children = (
 				DE9375F327ACE9880073F27C /* Models */,
-				DE9375F527ACE9880073F27C /* Manager */,
+				DE9375F627ACE9880073F27C /* SessionManager.swift */,
 			);
 			path = Session;
 			sourceTree = "<group>";
@@ -1391,15 +1376,6 @@
 				DE9375F427ACE9880073F27C /* Session.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		DE9375F527ACE9880073F27C /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				DE9375F627ACE9880073F27C /* SessionManagerCore.swift */,
-				DE9375F727ACE9880073F27C /* SessionManager.swift */,
-			);
-			path = Manager;
 			sourceTree = "<group>";
 		};
 		DE9375F827ACE9880073F27C /* Presentation */ = {
@@ -2038,7 +2014,6 @@
 				DE9376B627ACE9880073F27C /* Scalable.swift in Sources */,
 				DE93777127ACE9880073F27C /* CoursesView.swift in Sources */,
 				DE93770C27ACE9880073F27C /* PurchaseValidationObserver.swift in Sources */,
-				DE93770927ACE9880073F27C /* ProfileMediatorDelegate.swift in Sources */,
 				DE8030FB27F5DC1300F69A8E /* TryAgainView.swift in Sources */,
 				DE9376EB27ACE9880073F27C /* GetFailedSetRequest.swift in Sources */,
 				DE9376C927ACE9880073F27C /* RxActivityIndicator.swift in Sources */,
@@ -2066,7 +2041,6 @@
 				DE4EB19328047AED00DCEB92 /* OModeCell.swift in Sources */,
 				DE93777227ACE9880073F27C /* CoursesViewModel.swift in Sources */,
 				DE93770827ACE9880073F27C /* SetRequest.swift in Sources */,
-				DE93770627ACE9880073F27C /* GetTestModeResponseMapper.swift in Sources */,
 				DE93774E27ACE9880073F27C /* TestAnalytics.swift in Sources */,
 				DE93771627ACE9880073F27C /* GetStatsRequest.swift in Sources */,
 				DE93770E27ACE9880073F27C /* IAPProduct.swift in Sources */,
@@ -2128,7 +2102,7 @@
 				DE9376DE27ACE9880073F27C /* MonetizationManager.swift in Sources */,
 				DE93770027ACE9880073F27C /* CoursesManagerMediator.swift in Sources */,
 				DE93776127ACE9880073F27C /* TestStatsViewController.swift in Sources */,
-				DE93771B27ACE9880073F27C /* SessionManagerCore.swift in Sources */,
+				DE93771B27ACE9880073F27C /* SessionManager.swift in Sources */,
 				DE93770127ACE9880073F27C /* TestMode.swift in Sources */,
 				DE93770B27ACE9880073F27C /* IAPManager.swift in Sources */,
 				DE9376F527ACE9880073F27C /* Reference.swift in Sources */,
@@ -2160,10 +2134,10 @@
 				DE80311027FC852E00F69A8E /* ObservableRetrySingle.swift in Sources */,
 				DE93775027ACE9880073F27C /* TestElement.swift in Sources */,
 				DE9376CE27ACE9880073F27C /* FirebaseManager.swift in Sources */,
-				DE93770227ACE9880073F27C /* ProfileManagerCore.swift in Sources */,
 				DE93778427ACE9880073F27C /* MainProgressView.swift in Sources */,
 				DE93772F27ACE9880073F27C /* StudyViewController.swift in Sources */,
 				DE9376CA27ACE9880073F27C /* UIViewRxExtension.swift in Sources */,
+				DE275BD3283B97CA0024D62E /* GetProfileResponseMapper.swift in Sources */,
 				DE9376D127ACE9880073F27C /* RateManager.swift in Sources */,
 				DE9376D627ACE9880073F27C /* PaygateOption.swift in Sources */,
 				DE93775627ACE9880073F27C /* BottomView.swift in Sources */,
@@ -2172,7 +2146,7 @@
 				DE4EB1A928047AED00DCEB92 /* OSlideModesView.swift in Sources */,
 				DE93771427ACE9880073F27C /* GetBriefResponseMapper.swift in Sources */,
 				DE4EB19528047AED00DCEB92 /* ReferencesTableCell.swift in Sources */,
-				DE93770727ACE9880073F27C /* GetTestModeRequest.swift in Sources */,
+				DE275BD1283B97C50024D62E /* GetProfileRequest.swift in Sources */,
 				DE93771F27ACE9880073F27C /* RateUs.swift in Sources */,
 				DE93776627ACE9880073F27C /* TestStatsProgressElement.swift in Sources */,
 				DE93777B27ACE9880073F27C /* StatsCellType.swift in Sources */,
@@ -2187,6 +2161,7 @@
 				DE9376B027ACE9880073F27C /* RestApiTransportExtension.swift in Sources */,
 				DE9376FC27ACE9880073F27C /* GetSelectedCourseRequest.swift in Sources */,
 				DE93775A27ACE9880073F27C /* PaygateInteractor.swift in Sources */,
+				DE275BCC283B963C0024D62E /* Observable+Utils.swift in Sources */,
 				DE9376B727ACE9880073F27C /* NumberLaunches.swift in Sources */,
 				DE9376BC27ACE9880073F27C /* SignError.swift in Sources */,
 				DE4EB1AD28047AED00DCEB92 /* OnboardingView.swift in Sources */,
@@ -2195,6 +2170,7 @@
 				DE4EB1AE28047AED00DCEB92 /* OnboardingViewModel.swift in Sources */,
 				DE4EB1A328047AED00DCEB92 /* OSlideView.swift in Sources */,
 				DE9376E927ACE9880073F27C /* SendAnswerResponseMapper.swift in Sources */,
+				DE275BCA283B8B950024D62E /* Profile.swift in Sources */,
 				DE93774F27ACE9880073F27C /* QuestionContentType.swift in Sources */,
 				DE9376B827ACE9880073F27C /* TextAttributes.swift in Sources */,
 				DE93773527ACE9880073F27C /* SCBriefDayView.swift in Sources */,
@@ -2219,6 +2195,7 @@
 				DE4EB19B28047AED00DCEB92 /* WelcomeSlide3View.swift in Sources */,
 				DE4EB19828047AED00DCEB92 /* OWhenStudyCell.swift in Sources */,
 				DE9376C127ACE9880073F27C /* NursingNavigationControllerSettings.swift in Sources */,
+				DE275BCE283B96520024D62E /* Single+Utils.swift in Sources */,
 				DE9376C827ACE9880073F27C /* AppDelegate.swift in Sources */,
 				DE9376E427ACE9880073F27C /* TestStatsManager.swift in Sources */,
 				DE4EB1A128047AED00DCEB92 /* OPushView.swift in Sources */,
@@ -2246,7 +2223,6 @@
 				DE4EB19C28047AED00DCEB92 /* WelcomeSlide2View.swift in Sources */,
 				DE9376E227ACE9880073F27C /* GetTestStatsResponseMapper.swift in Sources */,
 				DE93772D27ACE9880073F27C /* SplashView.swift in Sources */,
-				DE93771C27ACE9880073F27C /* SessionManager.swift in Sources */,
 				DE93776227ACE9880073F27C /* TestStatsDescriptioCell.swift in Sources */,
 				DE4EB1AB28047AED00DCEB92 /* OSlideWidgetsView.swift in Sources */,
 				DE93775227ACE9880073F27C /* TestViewController.swift in Sources */,

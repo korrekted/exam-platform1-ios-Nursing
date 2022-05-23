@@ -19,7 +19,7 @@ final class QuestionManagerCore: QuestionManager {
 // MARK: Public
 extension QuestionManagerCore {
     func retrieve(courseId: Int, testId: Int?, activeSubscription: Bool) -> Single<Test?> {
-        guard let userToken = SessionManagerCore().getSession()?.userToken else {
+        guard let userToken = SessionManager().getSession()?.userToken else {
             return .deferred { .just(nil) }
         }
         
@@ -36,7 +36,7 @@ extension QuestionManagerCore {
     }
     
     func retrieveTenSet(courseId: Int, activeSubscription: Bool) -> Single<Test?> {
-        guard let userToken = SessionManagerCore().getSession()?.userToken else {
+        guard let userToken = SessionManager().getSession()?.userToken else {
             return .deferred { .just(nil) }
         }
         
@@ -50,7 +50,7 @@ extension QuestionManagerCore {
     }
     
     func retrieveFailedSet(courseId: Int, activeSubscription: Bool) -> Single<Test?> {
-        guard let userToken = SessionManagerCore().getSession()?.userToken else {
+        guard let userToken = SessionManager().getSession()?.userToken else {
             return .deferred { .just(nil) }
         }
         
@@ -64,7 +64,7 @@ extension QuestionManagerCore {
     }
     
     func retrieveQotd(courseId: Int, activeSubscription: Bool) -> Single<Test?> {
-        guard let userToken = SessionManagerCore().getSession()?.userToken else {
+        guard let userToken = SessionManager().getSession()?.userToken else {
             return .deferred { .just(nil) }
         }
         
@@ -78,7 +78,7 @@ extension QuestionManagerCore {
     }
     
     func retrieveRandomSet(courseId: Int, activeSubscription: Bool) -> Single<Test?> {
-        guard let userToken = SessionManagerCore().getSession()?.userToken else {
+        guard let userToken = SessionManager ().getSession()?.userToken else {
             return .deferred { .just(nil) }
         }
         
@@ -96,7 +96,7 @@ extension QuestionManagerCore {
     }
     
     func sendAnswer(questionId: Int, userTestId: Int, answerIds: [Int]) -> Single<Bool?> {
-        guard let userToken = SessionManagerCore().getSession()?.userToken else {
+        guard let userToken = SessionManager().getSession()?.userToken else {
             return .deferred { .just(nil) }
         }
         
@@ -119,7 +119,7 @@ extension QuestionManagerCore {
     }
     
     func retrieveConfig(courseId: Int) -> Single<[TestConfig]> {
-        guard let userToken = SessionManagerCore().getSession()?.userToken else {
+        guard let userToken = SessionManager().getSession()?.userToken else {
             return .error(SignError.tokenNotFound)
         }
         
@@ -135,7 +135,7 @@ extension QuestionManagerCore {
 // MARK: Private
 private extension QuestionManagerCore {
     func downloadAndCacheOnboardingSet() -> Single<Test?> {
-        guard let userToken = SessionManagerCore().getSession()?.userToken else {
+        guard let userToken = SessionManager().getSession()?.userToken else {
             return .error(SignError.tokenNotFound)
         }
         

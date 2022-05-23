@@ -37,7 +37,7 @@ extension CoursesManagerCore {
     }
     
     func rxSelect(course: Course) -> Single<Void> {
-        guard let userToken = SessionManagerCore().getSession()?.userToken else {
+        guard let userToken = SessionManager().getSession()?.userToken else {
             return .error(SignError.tokenNotFound)
         }
         
@@ -68,7 +68,7 @@ extension CoursesManagerCore {
             }
         }
         
-        guard let userToken = SessionManagerCore().getSession()?.userToken else {
+        guard let userToken = SessionManager().getSession()?.userToken else {
             return .error(SignError.tokenNotFound)
         }
         
@@ -146,7 +146,7 @@ extension CoursesManagerCore {
 // MARK: Private
 private extension CoursesManagerCore {
     func downloadAndCacheCourses() -> Single<[Course]> {
-        guard let userToken = SessionManagerCore().getSession()?.userToken else {
+        guard let userToken = SessionManager().getSession()?.userToken else {
             return .error(SignError.tokenNotFound)
         }
         

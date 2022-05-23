@@ -10,8 +10,8 @@ import RxCocoa
 
 final class SettingsViewModel {
     private lazy var coursesManager = CoursesManagerCore()
-    private lazy var sessionManager = SessionManagerCore()
-    private lazy var profileManager = ProfileManagerCore()
+    private lazy var sessionManager = SessionManager()
+    private lazy var profileManager = ProfileManager()
     
     lazy var sections = makeSections()
     lazy var activityIndicator = makeActivityIndicator()
@@ -55,7 +55,7 @@ private extension SettingsViewModel {
     func activeSubscription() -> Driver<Bool> {
         let updated = PurchaseValidationObserver.shared
             .didValidatedWithActiveSubscription
-            .map { SessionManagerCore().hasActiveSubscriptions() }
+            .map { SessionManager().hasActiveSubscriptions() }
             .asDriver(onErrorJustReturn: false)
         
         let initial = Driver<Bool>
@@ -83,13 +83,13 @@ private extension SettingsViewModel {
     
     func mode() -> Driver<TestMode> {
         let initial = profileManager
-            .obtainTestMode()
+            .obtainTestMode(forceUpdate: false)
             .trackActivity(modeActivityIndicator)
             .compactMap { $0 }
             .asDriver(onErrorDriveWith: .empty())
         
         let updated = ProfileMediator.shared
-            .rxChangedTestMode
+            .changedTestMode
             .asDriver(onErrorDriveWith: .never())
         
         return Driver

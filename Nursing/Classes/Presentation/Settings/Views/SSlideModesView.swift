@@ -30,7 +30,7 @@ final class SSlideModesView: SSlideView {
     
     private lazy var disposeBag = DisposeBag()
     
-    private lazy var profileManager = ProfileManagerCore()
+    private lazy var profileManager = ProfileManager()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -87,7 +87,7 @@ private extension SSlideModesView {
                 }
                 
                 return self.profileManager
-                    .set(testMode: mode)
+                    .set(testMode: TestMode(code: mode))
                     .trackActivity(self.activityIndicator)
                     .map { true }
                     .catchAndReturn(false)

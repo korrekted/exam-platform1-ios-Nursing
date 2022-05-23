@@ -8,14 +8,20 @@
 import RxCocoa
 import OtterScaleiOS
 
-final class SessionManagerCore: SessionManager {
+protocol SessionManagerProtocol: AnyObject {
+    func store(session: Session)
+    func getSession() -> Session?
+    func hasActiveSubscriptions() -> Bool
+}
+
+final class SessionManager: SessionManagerProtocol {
     struct Constants {
         static let sessionCacheKey = "session_manage_core_session_cache_key"
     }
 }
 
-// MARK: API
-extension SessionManagerCore {
+// MARK: Public
+extension SessionManager {
     func store(session: Session) {
         guard let data = try? JSONEncoder().encode(session) else {
             return

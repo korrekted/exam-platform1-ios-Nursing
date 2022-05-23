@@ -27,8 +27,6 @@ final class OSlideModesView: OSlideView {
     
     private lazy var disposeBag = DisposeBag()
     
-    private lazy var profileManager = ProfileManagerCore()
-    
     override init(step: OnboardingView.Step, scope: OnboardingScope) {
         super.init(step: step, scope: scope)
         
@@ -83,7 +81,7 @@ private extension OSlideModesView {
                     return
                 }
                 
-                self.scope.testMode = mode
+                self.scope.testMode = TestMode(code: mode)
                 
                 self.onNext()
             })

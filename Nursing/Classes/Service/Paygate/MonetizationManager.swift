@@ -52,7 +52,7 @@ extension MonetizationManager {
 // MARK: Private
 private extension MonetizationManager {
     func loadConfig() -> Single<MonetizationConfig?> {
-        let request = GetMonetizationConfigRequest(userToken: SessionManagerCore().getSession()?.userToken,
+        let request = GetMonetizationConfigRequest(userToken: SessionManager().getSession()?.userToken,
                                                    version: UIDevice.appVersion ?? "1",
                                                    appAnonymousId: SDKStorage.shared.applicationAnonymousID)
         

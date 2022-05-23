@@ -38,12 +38,7 @@ private extension OSlideWhenTakingView {
     func buttonTapped() {
         let date = self.datePickerView.date
         
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yyyy"
-        
-        let examDate = formatter.string(from: date)
-        
-        scope.examDate = examDate
+        scope.examDate = date
         
         onNext()
     }

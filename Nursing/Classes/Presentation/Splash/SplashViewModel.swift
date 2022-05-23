@@ -21,8 +21,8 @@ final class SplashViewModel {
     
     private lazy var coursesManager = CoursesManagerCore()
     private lazy var monetizationManager = MonetizationManager()
-    private lazy var sessionManager = SessionManagerCore()
-    private lazy var profileManager = ProfileManagerCore()
+    private lazy var sessionManager = SessionManager()
+    private lazy var profileManager = ProfileManager()
     private lazy var paygateManager = PaygateManager()
     private lazy var questionManager = QuestionManagerCore()
     
@@ -115,7 +115,10 @@ private extension SplashViewModel {
                         .retrieveCourses(forceUpdate: true),
                     
                     paygateManager
-                        .retrievePaygate(forceUpdate: true)
+                        .retrievePaygate(forceUpdate: true),
+                    
+                    profileManager
+                        .obtainProfile(forceUpdate: true)
                 )
                 .map { _ in Void() }
         }

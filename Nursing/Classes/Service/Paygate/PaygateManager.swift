@@ -42,7 +42,7 @@ extension PaygateManager {
 private extension PaygateManager {
     func downloadAndCachePaygate() -> Single<PaygateMapper.PaygateResponse?> {
         defaultRequestWrapper
-            .callServerApi(requestBody: GetPaygateRequest(userToken: SessionManagerCore().getSession()?.userToken,
+            .callServerApi(requestBody: GetPaygateRequest(userToken: SessionManager().getSession()?.userToken,
                                                           version: UIDevice.appVersion ?? "1"))
             .map { try PaygateMapper.parse(response: $0, productsPrices: nil) }
             .do(onSuccess: { data in

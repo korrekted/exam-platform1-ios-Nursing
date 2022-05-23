@@ -1,13 +1,13 @@
 //
-//  GetTestModeRequest.swift
-//  FNP
+//  GetProfileRequest.swift
+//  Nursing
 //
-//  Created by Andrey Chernyshev on 09.07.2021.
+//  Created by Андрей Чернышев on 23.05.2022.
 //
 
 import Alamofire
 
-struct GetTestModeRequest: APIRequestBody {
+struct GetProfileRequest: APIRequestBody {
     let userToken: String
     
     var url: String {

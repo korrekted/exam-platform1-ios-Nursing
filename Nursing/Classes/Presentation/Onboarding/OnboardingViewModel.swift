@@ -16,7 +16,7 @@ final class OnboardingViewModel {
     }
     
     private lazy var coursesManager = CoursesManagerCore()
-    private lazy var sessionManager = SessionManagerCore()
+    private lazy var sessionManager = SessionManager()
     private lazy var monetizationManager = MonetizationManager()
     
     var hasSelectedCourse: Bool {
