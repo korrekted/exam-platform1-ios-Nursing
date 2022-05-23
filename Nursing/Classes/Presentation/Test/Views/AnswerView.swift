@@ -7,11 +7,14 @@
 
 import UIKit
 import RxCocoa
+import Kingfisher
 
 final class AnswerView: UIView {
     private lazy var iconView = makeIconView()
     private lazy var answerLabel = makeAnswerLabel()
     private lazy var imageView = makeImageView()
+    private lazy var preloader = makePreloader()
+    
     private let tapGesture = UITapGestureRecognizer()
     
     private var labelBottomConstraint: NSLayoutConstraint?
@@ -47,13 +50,18 @@ extension AnswerView {
             .textColor(.black)
             .lineHeight(20.scale)
         
+        imageView.image = nil
+        imageView.kf.cancelDownloadTask()
+        preloader.stopAnimating()
+        
         if let imageUrl = image {
-            do {
-                try imageView.image = UIImage(data: Data(contentsOf: imageUrl))
-                needUpdateConstraints()
-            } catch {
-                
-            }
+            preloader.startAnimating()
+        
+            imageView.kf.setImage(with: imageUrl, completionHandler: { [weak self] _ in
+                self?.preloader.stopAnimating()
+            })
+            
+            needUpdateConstraints()
         }
         
         answerLabel.attributedText = answer.attributed(with: attrs)
@@ -62,13 +70,18 @@ extension AnswerView {
     func setAnswer(answerHtml: String, image: URL?) {
         answerLabel.attributedText = attributedString(for: answerHtml)
         
+        imageView.image = nil
+        imageView.kf.cancelDownloadTask()
+        preloader.stopAnimating()
+        
         if let imageUrl = image {
-            do {
-                try imageView.image = UIImage(data: Data(contentsOf: imageUrl))
-                needUpdateConstraints()
-            } catch {
-                
-            }
+            preloader.startAnimating()
+        
+            imageView.kf.setImage(with: imageUrl, completionHandler: { [weak self] _ in
+                self?.preloader.stopAnimating()
+            })
+            
+            needUpdateConstraints()
         }
     }
     
@@ -172,6 +185,11 @@ private extension AnswerView {
             imageView.trailingAnchor.constraint(equalTo: iconView.leadingAnchor)
         ])
         
+        NSLayoutConstraint.activate([
+            preloader.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
+            preloader.centerYAnchor.constraint(equalTo: imageView.centerYAnchor)
+        ])
+        
         labelBottomConstraint = imageView.topAnchor.constraint(equalTo: answerLabel.bottomAnchor, constant: 10.scale)
         labelBottomConstraint?.isActive = true
     }
@@ -208,6 +226,13 @@ private extension AnswerView {
     func makeImageView() -> UIImageView {
         let view = UIImageView()
         view.contentMode = .scaleAspectFit
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
+    func makePreloader() -> Spinner {
+        let view = Spinner(size: CGSize(width: 24.scale, height: 24.scale))
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view
