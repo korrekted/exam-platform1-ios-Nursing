@@ -62,12 +62,11 @@ extension SettingsViewController: SettingsTableDelegate {
         AmplitudeManager.shared
             .logEvent(name: "Settings Tap", parameters: ["what": "select exam"])
         
-        guard let window = UIApplication.shared.windows.filter({$0.isKeyWindow}).first else {
+        guard let rootViewController = UIApplication.shared.windows.filter({$0.isKeyWindow}).first?.rootViewController else {
             return
         }
         
-        // TODO: презентовать
-        window.rootViewController = CoursesViewController.make(howOpen: .root)
+        rootViewController.present(CoursesViewController.make(), animated: true)
     }
     
     func settingsTableDidTappedExamDate() {

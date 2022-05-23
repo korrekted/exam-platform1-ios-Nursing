@@ -123,7 +123,7 @@ private extension SplashViewController {
             vc.delegate = self
             present(vc, animated: true)
         case .courses:
-            let vc = CoursesViewController.make(howOpen: .present)
+            let vc = CoursesViewController.make()
             vc.delegate = self
             present(vc, animated: true)
         }

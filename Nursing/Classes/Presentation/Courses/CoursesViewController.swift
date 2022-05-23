@@ -12,12 +12,7 @@ protocol CoursesViewControllerDelegate: AnyObject {
     func coursesViewControllerDismissed()
 }
 
-// TODO: сделать начальное выделение текущего
 final class CoursesViewController: UIViewController {
-    enum HowOpen {
-        case root, present
-    }
-    
     weak var delegate: CoursesViewControllerDelegate?
     
     lazy var mainView = CoursesView()
@@ -25,18 +20,6 @@ final class CoursesViewController: UIViewController {
     private lazy var disposeBag = DisposeBag()
     
     private lazy var viewModel = CoursesViewModel()
-    
-    private let howOpen: HowOpen
-    
-    private init(howOpen: HowOpen) {
-        self.howOpen = howOpen
-        
-        super.init(nibName: nil, bundle: .main)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func loadView() {
         view = mainView
@@ -48,38 +31,40 @@ final class CoursesViewController: UIViewController {
         AmplitudeManager.shared
             .logEvent(name: "Exam Screen", parameters: [:])
         
-        mainView
-            .collectionView.selected
+        viewModel.tryAgain = { [weak self] error -> Observable<Void> in
+            guard let self = self else {
+                return .never()
+            }
+            
+            return self.openError()
+        }
+        
+        mainView.collectionView.selected
             .subscribe(onNext: { [weak self] element in
                 self?.viewModel.selected.accept(element)
                 self?.logAnalytics(selected: element)
             })
             .disposed(by: disposeBag)
 
-        viewModel
-            .elements
-            .drive(onNext: mainView.collectionView.setup(elements:))
+        viewModel.elements
+            .drive(onNext: { [weak self] elements in
+                self?.mainView.collectionView.setup(elements: elements)
+            })
             .disposed(by: disposeBag)
         
-        mainView
-            .button.rx.tap
+        mainView.button.rx.tap
             .bind(to: viewModel.store)
             .disposed(by: disposeBag)
         
-        viewModel
-            .stored
+        viewModel.stored
             .drive(onNext: { [weak self] in
-                self?.goToNext()
+                self?.dismiss()
             })
             .disposed(by: disposeBag)
         
         viewModel.activity
             .drive(onNext: { [weak self] activity in
-                guard let self = self else {
-                    return
-                }
-                
-                self.activity(activity)
+                self?.activity(activity)
             })
             .disposed(by: disposeBag)
     }
@@ -87,8 +72,8 @@ final class CoursesViewController: UIViewController {
 
 // MARK: Make
 extension CoursesViewController {
-    static func make(howOpen: HowOpen) -> CoursesViewController {
-        let vc = CoursesViewController(howOpen: howOpen)
+    static func make() -> CoursesViewController {
+        let vc = CoursesViewController()
         vc.modalPresentationStyle = .fullScreen
         return vc
     }
@@ -96,18 +81,25 @@ extension CoursesViewController {
 
 // MARK: Private
 private extension CoursesViewController {
-    func goToNext() {
-        switch howOpen {
-        case .root:
-            UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController = CourseViewController.make()
-        case .present:
-            dismiss(animated: true) { [weak self] in
+    func openError() -> Observable<Void> {
+        Observable<Void>
+            .create { [weak self] observe in
                 guard let self = self else {
-                    return
+                    return Disposables.create()
                 }
                 
-                self.delegate?.coursesViewControllerDismissed()
+                let vc = TryAgainViewController.make {
+                    observe.onNext(())
+                }
+                self.present(vc, animated: true)
+                
+                return Disposables.create()
             }
+    }
+    
+    func dismiss() {
+        dismiss(animated: true) { [weak self] in
+            self?.delegate?.coursesViewControllerDismissed()
         }
     }
     

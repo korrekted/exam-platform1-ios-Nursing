@@ -72,7 +72,6 @@ private extension SettingsViewModel {
         }
     }
     
-    // TODO: не обвноляется после изменения
     func makeCourse() -> Driver<Course?> {
         let initial = profileManager
             .obtainSelectedCourse(forceUpdate: false)

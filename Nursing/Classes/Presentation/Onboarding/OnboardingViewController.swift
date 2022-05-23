@@ -106,7 +106,7 @@ private extension OnboardingViewController {
     }
     
     func goToCourses() {
-        let vc = CoursesViewController.make(howOpen: .present)
+        let vc = CoursesViewController.make()
         present(vc, animated: true)
     }
     
