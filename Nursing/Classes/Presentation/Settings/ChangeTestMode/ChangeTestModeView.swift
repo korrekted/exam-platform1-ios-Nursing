@@ -1,15 +1,13 @@
 //
-//  SSlideModesView.swift
+//  ChangeTestModeView.swift
 //  Nursing
 //
-//  Created by Андрей Чернышев on 31.03.2022.
+//  Created by Андрей Чернышев on 23.05.2022.
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
 
-final class SSlideModesView: SSlideView {
+final class ChangeTestModeView: UIView {
     lazy var titleLabel = makeTitleLabel()
     lazy var fullSupportCell = makeCell(image: "Onboarding.Modes.Cell1",
                                         title: "Onboarding.Modes.Cell1.Title",
@@ -26,12 +24,6 @@ final class SSlideModesView: SSlideView {
     lazy var button = makeButton()
     lazy var preloader = makePreloader()
     
-    private lazy var activityIndicator = RxActivityIndicator()
-    
-    private lazy var disposeBag = DisposeBag()
-    
-    private lazy var profileManager = ProfileManager()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -44,17 +36,10 @@ final class SSlideModesView: SSlideView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    override func moveToThis() {
-        super.moveToThis()
-        
-        AmplitudeManager.shared
-            .logEvent(name: "Exam Mode Screen", parameters: [:])
-    }
 }
 
 // MARK: Public
-extension SSlideModesView {
+extension ChangeTestModeView {
     func setup(mode: TestMode) {
         switch mode {
         case .fullComplect:
@@ -65,83 +50,19 @@ extension SSlideModesView {
             changeSelected(selectedCell: examStyleCell)
         }
     }
+    
+    func activity(_ activity: Bool) {
+        let title = activity ? "" : "Continue".localized
+        setup(buttonTitle: title)
+        
+        activity ? preloader.startAnimating() : preloader.stopAnimating()
+    }
 }
 
 // MARK: Private
-private extension SSlideModesView {
+private extension ChangeTestModeView {
     func initialize() {
-        button.rx.tap
-            .flatMapLatest { [weak self] _ -> Observable<Bool> in
-                guard let self = self else {
-                    return .never()
-                }
-
-                guard let mode = [
-                    self.fullSupportCell,
-                    self.withoutExplanationsCell,
-                    self.examStyleCell
-                ]
-                .first(where: { $0.isSelected })?
-                .tag else {
-                    return .never()
-                }
-                
-                return self.profileManager
-                    .set(testMode: TestMode(code: mode))
-                    .trackActivity(self.activityIndicator)
-                    .map { true }
-                    .catchAndReturn(false)
-            }
-            .asDriver(onErrorDriveWith: .never())
-            .drive(onNext: { [weak self] success in
-                guard success else {
-                    Toast.notify(with: "Onboarding.FailedToSave".localized, style: .danger)
-                    return
-                }
-
-                self?.onNext()
-            })
-            .disposed(by: disposeBag)
-        
-        button.rx.tap
-            .subscribe(onNext: { [weak self] in
-                guard let self = self else {
-                    return
-                }
-                
-                let mode = [
-                    self.fullSupportCell,
-                    self.withoutExplanationsCell,
-                    self.examStyleCell
-                ]
-                .first(where: { $0.isSelected })?
-                .tag
-                
-                switch mode {
-                case 0:
-                    AmplitudeManager.shared
-                        .logEvent(name: "Exam Mode Tap", parameters: ["what": "full support"])
-                case 1:
-                    AmplitudeManager.shared
-                        .logEvent(name: "Exam Mode Tap", parameters: ["what": "without explanations"])
-                case 2:
-                    AmplitudeManager.shared
-                        .logEvent(name: "Exam Mode Tap", parameters: ["what": "exam style"])
-                default:
-                    break
-                }
-            })
-            .disposed(by: disposeBag)
-        
-        activityIndicator
-            .drive(onNext: { [weak self] activity in
-                guard let self = self else {
-                    return
-                }
-                
-                self.activity(activity)
-            })
-            .disposed(by: disposeBag)
+        backgroundColor = Appearance.backgroundColor
     }
     
     @objc
@@ -178,13 +99,6 @@ private extension SSlideModesView {
         button.alpha = isEmpty ? 0.4 : 1
     }
     
-    func activity(_ activity: Bool) {
-        let title = activity ? "" : "Continue".localized
-        setup(buttonTitle: title)
-        
-        activity ? preloader.startAnimating() : preloader.stopAnimating()
-    }
-    
     func setup(buttonTitle: String) {
         let attrs = TextAttributes()
             .textColor(UIColor.white)
@@ -195,12 +109,12 @@ private extension SSlideModesView {
 }
 
 // MARK: Make constraints
-private extension SSlideModesView {
+private extension ChangeTestModeView {
     func makeConstraints() {
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 17.scale),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -17.scale),
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 117.scale : 70.scale)
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 40.scale)
         ])
         
         NSLayoutConstraint.activate([
@@ -238,7 +152,7 @@ private extension SSlideModesView {
 }
 
 // MARK: Lazy initialization
-private extension SSlideModesView {
+private extension ChangeTestModeView {
     func makeTitleLabel() -> UILabel {
         let attrs = TextAttributes()
             .textColor(Appearance.blackColor)

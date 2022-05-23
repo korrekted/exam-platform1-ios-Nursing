@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import StoreKit
 
 final class SettingsViewController: UIViewController {
     lazy var mainView = SettingsView()
@@ -14,7 +15,6 @@ final class SettingsViewController: UIViewController {
     private lazy var disposeBag = DisposeBag()
     
     private lazy var viewModel = SettingsViewModel()
-    private lazy var screenOpener = SettingsOpener()
     
     override func loadView() {
         view = mainView
@@ -74,8 +74,10 @@ private extension SettingsViewController {
             AmplitudeManager.shared
                 .logEvent(name: "Settings Tap", parameters: ["what": "select exam"])
         case .rateUs:
-            RateUs.requestReview()
+            SKStoreReviewController.requestReview()
             
+            AmplitudeManager.shared
+                .logEvent(name: "Rating Request ", parameters: [:])
             AmplitudeManager.shared
                 .logEvent(name: "Settings Tap", parameters: ["what": "rate us"])
         case .contactUs:
@@ -93,8 +95,9 @@ private extension SettingsViewController {
             
             AmplitudeManager.shared
                 .logEvent(name: "Settings Tap", parameters: ["what": "privacy policy"])
-        case .mode(let testMode):
-            screenOpener.open(screen: .mode(testMode), from: self)
+        case .mode:
+            let vc = ChangeTestModeViewController.make()
+            present(vc, animated: true)
         case .references:
 //            screenOpener.open(screen: .references, from: self)
             break
