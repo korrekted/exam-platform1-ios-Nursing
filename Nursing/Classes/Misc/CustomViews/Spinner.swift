@@ -49,6 +49,10 @@ final class Spinner: UIView {
             startAnimating()
         }
     }
+    
+    override var intrinsicContentSize: CGSize {
+        size
+    }
 }
 
 // MARK: Public

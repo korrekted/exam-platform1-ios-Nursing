@@ -70,7 +70,11 @@ extension SettingsViewController: SettingsTableDelegate {
     }
     
     func settingsTableDidTappedExamDate() {
+        guard let rootViewController = UIApplication.shared.windows.filter({$0.isKeyWindow}).first?.rootViewController else {
+            return
+        }
         
+        rootViewController.present(ChangeExamDateViewController.make(), animated: true)
     }
     
     func settingsTableDidTappedResetProgress() {

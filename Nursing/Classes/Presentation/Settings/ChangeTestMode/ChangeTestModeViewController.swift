@@ -40,8 +40,6 @@ final class ChangeTestModeViewController: UIViewController {
                 }
                 
                 self.mainView.setup(mode: testMode)
-                
-                self.mainView.setup(mode: testMode)
             })
             .disposed(by: disposeBag)
         
