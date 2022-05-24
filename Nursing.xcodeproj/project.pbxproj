@@ -53,6 +53,10 @@
 		DE275BF4283CA2600024D62E /* ChangeExamDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BF3283CA2600024D62E /* ChangeExamDateViewController.swift */; };
 		DE275BF6283CA2730024D62E /* ChangeExamDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BF5283CA2730024D62E /* ChangeExamDateViewModel.swift */; };
 		DE275BF8283CA27D0024D62E /* ChangeExamDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BF7283CA27D0024D62E /* ChangeExamDateView.swift */; };
+		DE275BFA283D5CE20024D62E /* ConfirmResetProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BF9283D5CE20024D62E /* ConfirmResetProgressView.swift */; };
+		DE275BFD283D68A40024D62E /* ConfirmResetProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BFC283D68A40024D62E /* ConfirmResetProgressViewController.swift */; };
+		DE275BFF283D77EF0024D62E /* ResetStatsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BFE283D77EF0024D62E /* ResetStatsRequest.swift */; };
+		DE275C03283D78290024D62E /* StatsMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275C02283D78290024D62E /* StatsMediator.swift */; };
 		DE2B10E127DF6B41005280DB /* DefaultRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B10E027DF6B41005280DB /* DefaultRequestWrapper.swift */; };
 		DE2B10E427DF79E8005280DB /* XORRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B10E327DF79E8005280DB /* XORRequestWrapper.swift */; };
 		DE4EA4E327FF0B9C00DCEB92 /* TestBottomSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4EA4E227FF0B9C00DCEB92 /* TestBottomSpinner.swift */; };
@@ -192,7 +196,6 @@
 		DE93771427ACE9880073F27C /* GetBriefResponseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375EA27ACE9880073F27C /* GetBriefResponseMapper.swift */; };
 		DE93771527ACE9880073F27C /* GetStatsResponseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375EB27ACE9880073F27C /* GetStatsResponseMapper.swift */; };
 		DE93771627ACE9880073F27C /* GetStatsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375EC27ACE9880073F27C /* GetStatsRequest.swift */; };
-		DE93771727ACE9880073F27C /* StatsManagerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375EE27ACE9880073F27C /* StatsManagerCore.swift */; };
 		DE93771827ACE9880073F27C /* StatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375EF27ACE9880073F27C /* StatsManager.swift */; };
 		DE93771927ACE9880073F27C /* StatsShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375F127ACE9880073F27C /* StatsShareManager.swift */; };
 		DE93771A27ACE9880073F27C /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375F427ACE9880073F27C /* Session.swift */; };
@@ -382,6 +385,10 @@
 		DE275BF3283CA2600024D62E /* ChangeExamDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeExamDateViewController.swift; sourceTree = "<group>"; };
 		DE275BF5283CA2730024D62E /* ChangeExamDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeExamDateViewModel.swift; sourceTree = "<group>"; };
 		DE275BF7283CA27D0024D62E /* ChangeExamDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeExamDateView.swift; sourceTree = "<group>"; };
+		DE275BF9283D5CE20024D62E /* ConfirmResetProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmResetProgressView.swift; sourceTree = "<group>"; };
+		DE275BFC283D68A40024D62E /* ConfirmResetProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmResetProgressViewController.swift; sourceTree = "<group>"; };
+		DE275BFE283D77EF0024D62E /* ResetStatsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetStatsRequest.swift; sourceTree = "<group>"; };
+		DE275C02283D78290024D62E /* StatsMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsMediator.swift; sourceTree = "<group>"; };
 		DE2B10E027DF6B41005280DB /* DefaultRequestWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRequestWrapper.swift; sourceTree = "<group>"; };
 		DE2B10E327DF79E8005280DB /* XORRequestWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XORRequestWrapper.swift; sourceTree = "<group>"; };
 		DE4EA4E227FF0B9C00DCEB92 /* TestBottomSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestBottomSpinner.swift; sourceTree = "<group>"; };
@@ -521,7 +528,6 @@
 		DE9375EA27ACE9880073F27C /* GetBriefResponseMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetBriefResponseMapper.swift; sourceTree = "<group>"; };
 		DE9375EB27ACE9880073F27C /* GetStatsResponseMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetStatsResponseMapper.swift; sourceTree = "<group>"; };
 		DE9375EC27ACE9880073F27C /* GetStatsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetStatsRequest.swift; sourceTree = "<group>"; };
-		DE9375EE27ACE9880073F27C /* StatsManagerCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsManagerCore.swift; sourceTree = "<group>"; };
 		DE9375EF27ACE9880073F27C /* StatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsManager.swift; sourceTree = "<group>"; };
 		DE9375F127ACE9880073F27C /* StatsShareManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsShareManager.swift; sourceTree = "<group>"; };
 		DE9375F427ACE9880073F27C /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
@@ -842,6 +848,33 @@
 				DE275BF7283CA27D0024D62E /* ChangeExamDateView.swift */,
 			);
 			path = ChangeExamDate;
+			sourceTree = "<group>";
+		};
+		DE275BFB283D688F0024D62E /* ConfirmResetProgress */ = {
+			isa = PBXGroup;
+			children = (
+				DE275BFC283D68A40024D62E /* ConfirmResetProgressViewController.swift */,
+				DE275BF9283D5CE20024D62E /* ConfirmResetProgressView.swift */,
+			);
+			path = ConfirmResetProgress;
+			sourceTree = "<group>";
+		};
+		DE275C00283D77FE0024D62E /* GetBriefRequest */ = {
+			isa = PBXGroup;
+			children = (
+				DE9375E927ACE9880073F27C /* GetBriefRequest.swift */,
+				DE9375EA27ACE9880073F27C /* GetBriefResponseMapper.swift */,
+			);
+			path = GetBriefRequest;
+			sourceTree = "<group>";
+		};
+		DE275C01283D78140024D62E /* GetStatsRequest */ = {
+			isa = PBXGroup;
+			children = (
+				DE9375EC27ACE9880073F27C /* GetStatsRequest.swift */,
+				DE9375EB27ACE9880073F27C /* GetStatsResponseMapper.swift */,
+			);
+			path = GetStatsRequest;
 			sourceTree = "<group>";
 		};
 		DE2B10E227DF79C3005280DB /* RequestWrapper */ = {
@@ -1345,10 +1378,11 @@
 		DE9375E427ACE9880073F27C /* Stats */ = {
 			isa = PBXGroup;
 			children = (
+				DE9375F027ACE9880073F27C /* Share */,
 				DE9375E527ACE9880073F27C /* Models */,
 				DE9375E827ACE9880073F27C /* Requests */,
-				DE9375ED27ACE9880073F27C /* Manager */,
-				DE9375F027ACE9880073F27C /* Share */,
+				DE9375EF27ACE9880073F27C /* StatsManager.swift */,
+				DE275C02283D78290024D62E /* StatsMediator.swift */,
 			);
 			path = Stats;
 			sourceTree = "<group>";
@@ -1365,21 +1399,11 @@
 		DE9375E827ACE9880073F27C /* Requests */ = {
 			isa = PBXGroup;
 			children = (
-				DE9375E927ACE9880073F27C /* GetBriefRequest.swift */,
-				DE9375EA27ACE9880073F27C /* GetBriefResponseMapper.swift */,
-				DE9375EB27ACE9880073F27C /* GetStatsResponseMapper.swift */,
-				DE9375EC27ACE9880073F27C /* GetStatsRequest.swift */,
+				DE275C01283D78140024D62E /* GetStatsRequest */,
+				DE275C00283D77FE0024D62E /* GetBriefRequest */,
+				DE275BFE283D77EF0024D62E /* ResetStatsRequest.swift */,
 			);
 			path = Requests;
-			sourceTree = "<group>";
-		};
-		DE9375ED27ACE9880073F27C /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				DE9375EE27ACE9880073F27C /* StatsManagerCore.swift */,
-				DE9375EF27ACE9880073F27C /* StatsManager.swift */,
-			);
-			path = Manager;
 			sourceTree = "<group>";
 		};
 		DE9375F027ACE9880073F27C /* Share */ = {
@@ -1429,6 +1453,7 @@
 		DE9375F927ACE9880073F27C /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				DE275BFB283D688F0024D62E /* ConfirmResetProgress */,
 				DE275BF2283CA2530024D62E /* ChangeExamDate */,
 				DE275BD5283BB68D0024D62E /* ChangeTestMode */,
 				DE275BD4283BB6030024D62E /* Settings */,
@@ -2077,6 +2102,7 @@
 				DE4EB1A228047AED00DCEB92 /* OSlideImproveView.swift in Sources */,
 				DE93775427ACE9880073F27C /* QuestionContentCollectionView.swift in Sources */,
 				DE275BEF283C100A0024D62E /* SettingsCommunityButton.swift in Sources */,
+				DE275BFD283D68A40024D62E /* ConfirmResetProgressViewController.swift in Sources */,
 				DE9376ED27ACE9880073F27C /* GetQotdRequest.swift in Sources */,
 				DE9376D527ACE9880073F27C /* GetMonetizationResponseMapper.swift in Sources */,
 				DE93771E27ACE9880073F27C /* SettingsViewModel.swift in Sources */,
@@ -2196,7 +2222,6 @@
 				DE275BDB283BB70A0024D62E /* ChangeTestModeViewModel.swift in Sources */,
 				DE80310C27FC56F700F69A8E /* SplashOnboardingNavigate.swift in Sources */,
 				DE93776727ACE9880073F27C /* TestStatsAnswer.swift in Sources */,
-				DE93771727ACE9880073F27C /* StatsManagerCore.swift in Sources */,
 				DE9376E127ACE9880073F27C /* GetTestStatsRequest.swift in Sources */,
 				DE9376DD27ACE9880073F27C /* GetMonetizationConfigRequest.swift in Sources */,
 				DE9376C227ACE9880073F27C /* TapAreaButton.swift in Sources */,
@@ -2226,15 +2251,18 @@
 				DE93776827ACE9880073F27C /* TestStatsCellType.swift in Sources */,
 				DE93777527ACE9880073F27C /* CoursesCollectionView.swift in Sources */,
 				DE275BEA283BE5A80024D62E /* SettingsArrowButton.swift in Sources */,
+				DE275BFA283D5CE20024D62E /* ConfirmResetProgressView.swift in Sources */,
 				DE93776F27ACE9880073F27C /* TestStatsFilterView.swift in Sources */,
 				DE9376EF27ACE9880073F27C /* GetTestRequest.swift in Sources */,
 				DE93772C27ACE9880073F27C /* SplashViewModel.swift in Sources */,
 				DE93771927ACE9880073F27C /* StatsShareManager.swift in Sources */,
 				DE2B10E127DF6B41005280DB /* DefaultRequestWrapper.swift in Sources */,
 				DE9376B127ACE9880073F27C /* UITapGestureRecognizerExtension.swift in Sources */,
+				DE275C03283D78290024D62E /* StatsMediator.swift in Sources */,
 				DE93775327ACE9880073F27C /* QuestionTableView.swift in Sources */,
 				DE93773227ACE9880073F27C /* SCTakeTestCell.swift in Sources */,
 				DE93770F27ACE9880073F27C /* IAPError.swift in Sources */,
+				DE275BFF283D77EF0024D62E /* ResetStatsRequest.swift in Sources */,
 				DE275BD9283BB6AC0024D62E /* ChangeTestModeView.swift in Sources */,
 				DE9376CB27ACE9880073F27C /* Appearance.swift in Sources */,
 				DE93770527ACE9880073F27C /* SyncTokensRequest.swift in Sources */,

@@ -10,12 +10,20 @@ import RxCocoa
 import OtterScaleiOS
 
 final class SettingsViewModel {
+    var tryAgain: ((Error) -> (Observable<Void>))?
+    
+    lazy var resetProgress = PublishRelay<Void>()
+    
     lazy var elements = makeElements()
     
+    private lazy var course = makeCourse()
     private lazy var activeSubscription = makeActiveSubscription()
     
     private lazy var coursesManager = CoursesManager()
     private lazy var profileManager = ProfileManager()
+    private lazy var statsManager = StatsManager()
+    
+    private lazy var observableRetrySingle = ObservableRetrySingle()
 }
 
 // MARK: Private
@@ -61,14 +69,16 @@ private extension SettingsViewModel {
     }
     
     func makeExamElement() -> Driver<SettingsTableElement> {
-        let course = makeCourse()
         let examDate = makeExamDate()
+        let resetedProgress = makeResetProgress()
         
-        return Driver.combineLatest(course, examDate) { course, examDate -> SettingsTableElement in
-            let element = SettingsExam(course: course,
-                                       examDate: examDate)
-            return .exam(element)
-        }
+        return Driver
+            .combineLatest(course, examDate, resetedProgress) { course, examDate, resetedProgress -> SettingsTableElement in
+                let element = SettingsExam(course: course,
+                                           examDate: examDate,
+                                           resetProgressActivity: resetedProgress)
+                return .exam(element)
+            }
     }
     
     func makeCourse() -> Driver<Course?> {
@@ -99,6 +109,42 @@ private extension SettingsViewModel {
             .asDriver(onErrorJustReturn: nil)
         
         return Driver.merge(initial, updated)
+    }
+    
+    func makeResetProgress() -> Driver<Bool> {
+        let start = resetProgress.map { true }
+        
+        let action = resetProgress
+            .withLatestFrom(course)
+            .flatMapLatest { [weak self] course -> Observable<Bool> in
+                guard let self = self, let course = course else {
+                    return .never()
+                }
+
+                func source() -> Single<Void> {
+                    self.statsManager
+                        .resetStats(for: course.id)
+                }
+
+                func trigger(error: Error) -> Observable<Void> {
+                    guard let tryAgain = self.tryAgain?(error) else {
+                        return .empty()
+                    }
+
+                    return tryAgain
+                }
+
+                return self.observableRetrySingle
+                    .retry(source: { source() },
+                           trigger: { trigger(error: $0) })
+                    .asObservable()
+                    .map { false }
+            }
+        
+        return Observable
+            .merge(start, action)
+            .asDriver(onErrorJustReturn: false)
+            .startWith(false)
     }
     
     func makeStudyElement() -> Driver<SettingsTableElement> {

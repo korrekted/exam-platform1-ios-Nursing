@@ -15,6 +15,7 @@ final class SettingsExamCell: UITableViewCell {
     lazy var courseButton = makeCourseButton()
     lazy var examDateButton = makeExamDateButton()
     lazy var resetProgressButton = makeResetProgressButton()
+    lazy var resetProgressPreloader = makePreloader()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -44,6 +45,9 @@ extension SettingsExamCell {
                         .textColor(Appearance.mainColor)
                         .font(Fonts.SFProRounded.semiBold(size: 17.scale))
                         .lineHeight(20.scale))
+        
+        element.resetProgressActivity ? resetProgressPreloader.startAnimating() : resetProgressPreloader.stopAnimating()
+        resetProgressButton.isHidden = element.resetProgressActivity
     }
 }
 
@@ -119,6 +123,11 @@ private extension SettingsExamCell {
             resetProgressButton.topAnchor.constraint(equalTo: examDateButton.bottomAnchor),
             resetProgressButton.heightAnchor.constraint(equalToConstant: 50.scale)
         ])
+        
+        NSLayoutConstraint.activate([
+            resetProgressPreloader.centerXAnchor.constraint(equalTo: resetProgressButton.centerXAnchor),
+            resetProgressPreloader.centerYAnchor.constraint(equalTo: resetProgressButton.centerYAnchor)
+        ])
     }
 }
 
@@ -193,6 +202,13 @@ private extension SettingsExamCell {
         view.backgroundColor = UIColor.clear
         view.translatesAutoresizingMaskIntoConstraints = false
         view.addTarget(self, action: #selector(resetProgressTapped), for: .touchUpInside)
+        contentView.addSubview(view)
+        return view
+    }
+    
+    func makePreloader() -> Spinner {
+        let view = Spinner(size: CGSize(width: 24.scale, height: 24.scale))
+        view.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(view)
         return view
     }

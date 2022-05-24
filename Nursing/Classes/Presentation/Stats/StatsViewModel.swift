@@ -18,7 +18,7 @@ final class StatsViewModel {
     
     private lazy var course = makeCourse()
     
-    private lazy var statsManager = StatsManagerCore()
+    private lazy var statsManager = StatsManager()
     private lazy var profileManager = ProfileManager()
     
     private lazy var observableRetrySingle = ObservableRetrySingle()

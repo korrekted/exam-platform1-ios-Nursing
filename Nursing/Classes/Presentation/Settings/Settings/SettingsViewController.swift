@@ -26,6 +26,14 @@ final class SettingsViewController: UIViewController {
         AmplitudeManager.shared
             .logEvent(name: "Settings Screen", parameters: [:])
         
+        viewModel.tryAgain = { [weak self] error -> Observable<Void> in
+            guard let self = self else {
+                return .never()
+            }
+            
+            return self.openError()
+        }
+        
         viewModel.elements
             .drive(onNext: { [weak self] elements in
                 self?.mainView.tableView.setup(elements: elements)
@@ -78,7 +86,12 @@ extension SettingsViewController: SettingsTableDelegate {
     }
     
     func settingsTableDidTappedResetProgress() {
-        
+        let vc = ConfirmResetProgressViewController.make { [weak self] confirmed in
+            if confirmed {
+                self?.viewModel.resetProgress.accept(Void())
+            }
+        }
+        present(vc, animated: false)
     }
     
     func settingsTableDidTappedTestMode() {
@@ -139,6 +152,22 @@ extension SettingsViewController: SettingsTableDelegate {
 
 // MARK: Private
 private extension SettingsViewController {
+    func openError() -> Observable<Void> {
+        Observable<Void>
+            .create { [weak self] observe in
+                guard let self = self else {
+                    return Disposables.create()
+                }
+                
+                let vc = TryAgainViewController.make {
+                    observe.onNext(())
+                }
+                self.present(vc, animated: true)
+                
+                return Disposables.create()
+            }
+    }
+    
     func open(path: String) {
         guard let url = URL(string: path) else {
             return

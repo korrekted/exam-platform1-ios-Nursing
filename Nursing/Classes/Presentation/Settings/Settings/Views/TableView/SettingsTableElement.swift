@@ -26,6 +26,7 @@ struct SettingsPremium {
 struct SettingsExam {
     let course: Course?
     let examDate: Date?
+    let resetProgressActivity: Bool
 }
 
 struct SettingsStudy {

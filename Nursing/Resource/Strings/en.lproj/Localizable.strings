@@ -145,6 +145,9 @@
 "Settings.Support.ContactUs" = "Contact us";
 "Settings.Support.TermsOfUse" = "Terms of use";
 "Settings.Support.PrivacyPolicy" = "Privacy Policy";
+"Settings.ResetProgress.Title" = "Reset Progress?";
+"Settings.ResetProgress.SubTitle" = "This will remove your entire history. Are you\nsure you want to reset?";
+"Settings.ResetProgress.ResetButton" = "Reset";
 
 // MARK: Stats
 "Stats.PassRate.Title" = " Current pass rate";
