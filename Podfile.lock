@@ -1,9 +1,9 @@
 PODS:
   - Alamofire (5.6.1)
   - Amplitude-iOS (4.10.0)
-  - AppsFlyerFramework (6.6.0):
-    - AppsFlyerFramework/Main (= 6.6.0)
-  - AppsFlyerFramework/Main (6.6.0)
+  - AppsFlyerFramework (6.6.1):
+    - AppsFlyerFramework/Main (= 6.6.1)
+  - AppsFlyerFramework/Main (6.6.1)
   - Branch (1.41.0)
   - FBAEMKit (13.2.0):
     - FBSDKCoreKit_Basics (= 13.2.0)
@@ -129,9 +129,9 @@ PODS:
   - NotificationBannerSwift (3.1.0):
     - MarqueeLabel (~> 4.0.5)
     - SnapKit (~> 5.0.1)
-  - OtterScaleiOS (1.14)
+  - OtterScaleiOS (1.15)
   - PromisesObjC (2.1.0)
-  - RushSDK (2.11.3):
+  - RushSDK (2.11.4):
     - Alamofire
     - Amplitude-iOS
     - AppsFlyerFramework
@@ -199,16 +199,16 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   OtterScaleiOS:
-    :commit: 1bfbbac488adde1c1525c8c6ca0d8d96ad9f197b
+    :commit: f0282ca4c0733a2507bd0bbb2c33137ae2e71646
     :git: https://github.com/AgentChe/OtterScaleiOS.git
   RushSDK:
-    :commit: b0a09714d3a9947b2944364638aa988033f889da
+    :commit: d38fba713d12d6972786e91a480529fbac6e103e
     :git: https://github.com/AgentChe/RushSDK.git
 
 SPEC CHECKSUMS:
   Alamofire: 87bd8c952f9a4454320fce00d9cc3de57bcadaf5
   Amplitude-iOS: 7d8cdc3408ba35c2e68368fc7c692cd104606b94
-  AppsFlyerFramework: 55821f40c687dc7a683835eeb821994cef437807
+  AppsFlyerFramework: 5e4b385a27dc6179e132b1617f76809412eb2f88
   Branch: bd6c472d6cab03206877ac86c1241327a3f217d1
   FBAEMKit: c2b2895363b7e57192013d1dc49fdf498b28624c
   FBSDKCoreKit: 58139803d861e72c7661dc875611a759352a55ac
@@ -229,9 +229,9 @@ SPEC CHECKSUMS:
   MarqueeLabel: 00cc0bcd087111dca575878b3531af980559707d
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   NotificationBannerSwift: 49912a48b37e2f55d1cef4e8a38f15394f66a70a
-  OtterScaleiOS: 9c3813aac9f831ab7253da3c60f3513479ed7564
+  OtterScaleiOS: 0a8f77eb3ded615e1c8a9b7355dc762f7e18aa93
   PromisesObjC: 99b6f43f9e1044bd87a95a60beff28c2c44ddb72
-  RushSDK: b7414c469507f6cf2cf2c51fab4fce5c4c3b7a21
+  RushSDK: 2fae01e4aec3a65d856f94a859b00dad1435df8c
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
