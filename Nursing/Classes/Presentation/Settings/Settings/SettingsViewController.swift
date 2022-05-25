@@ -130,7 +130,15 @@ extension SettingsViewController: SettingsTableDelegate {
     }
     
     func settingsTableDidTappedShareWithFriend() {
+        guard
+            let url = URL(string: GlobalDefinitions.appStoreUrl),
+            let rootViewController = UIApplication.shared.windows.filter({$0.isKeyWindow}).first?.rootViewController
+        else {
+            return
+        }
         
+        let vc = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        rootViewController.present(vc, animated: true)
     }
     
     func settingsTableDidTappedContactUs() {

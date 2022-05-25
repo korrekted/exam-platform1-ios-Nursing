@@ -20,6 +20,7 @@ final class GlobalDefinitions {
     static let otterScaleHost = "https://api.korrekted.com"
     static let otterScaleApiKey = "oCrVwRgejQISV560"
 
+    static let appStoreUrl = "https://apps.apple.com/ru/app/nursing-exams-mobile-prep-2022/id1550433302"
     static let appleAppID = "1550433302"
 
     static let termsOfServiceUrl = "https://quantresear.ch/terms.html"
