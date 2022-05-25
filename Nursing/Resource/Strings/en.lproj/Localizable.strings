@@ -210,3 +210,12 @@
 "TryAgain.SubTitle" = "If there’s a connection issue on your side please try one more time. If the connection is fine and the error keeps on repeating please get in touch with the support";
 "TryAgain.Button" = "Try again";
 "TryAgain.Contact" = "Contact the support";
+
+// MARK: TextSize
+"TextSize.Title" = "Question 1/10";
+"TextSize.Question" = "What should the nurse’s immediate repose to manage an anxious client?";
+"TextSize.Answer1" = "Reduce environmental stimulation";
+"TextSize.Answer2" = "Use relaxation techniques";
+"TextSize.Answer3" = "Allow client to share his feelings";
+"TextSize.Answer4" = "Actively listen to the client";
+"TextSize.Percent" = "Text size - %i%%";

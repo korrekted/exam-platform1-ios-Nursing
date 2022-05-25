@@ -108,7 +108,12 @@ extension SettingsViewController: SettingsTableDelegate {
     }
     
     func settingsTableDidTappedTextSize() {
+        guard let rootViewController = UIApplication.shared.windows.filter({$0.isKeyWindow}).first?.rootViewController else {
+            return
+        }
         
+        let vc = TextSizeViewController.make()
+        rootViewController.present(vc, animated: true)
     }
     
     func settingsTableDidTappedRateUs() {

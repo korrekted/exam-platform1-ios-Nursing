@@ -17,6 +17,7 @@ protocol ProfileManagerProtocol {
              testWhen: [Int]?,
              notificationKey: String?) -> Single<Void>
     func set(vibration: Bool) -> Single<Void>
+    func set(selectedTextSize: TextSize) -> Single<Void>
     func obtainStudySettings() -> Single<StudySettings>
     func obtainProfile(forceUpdate: Bool) -> Single<Profile?>
     func obtainDateOfExam(forceUpdate: Bool) -> Single<Date?>
@@ -90,6 +91,29 @@ extension ProfileManager {
             }
             
             studySettings.set(vibration: vibration)
+            
+            if let data = try? JSONEncoder().encode(studySettings) {
+                UserDefaults.standard.set(data, forKey: Constants.studySettingsKey)
+            }
+            
+            event(.success(Void()))
+            
+            return Disposables.create()
+        }
+    }
+    
+    func set(selectedTextSize: TextSize) -> Single<Void> {
+        Single<Void>.create { event in
+            var studySettings: StudySettings
+            
+            if let data = UserDefaults.standard.data(forKey: Constants.studySettingsKey),
+               let cached = try? JSONDecoder().decode(StudySettings.self, from: data) {
+                studySettings = cached
+            } else {
+                studySettings = StudySettings.default
+            }
+            
+            studySettings.set(textSize: selectedTextSize)
             
             if let data = try? JSONEncoder().encode(studySettings) {
                 UserDefaults.standard.set(data, forKey: Constants.studySettingsKey)

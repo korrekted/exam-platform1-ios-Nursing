@@ -7,15 +7,21 @@
 
 struct StudySettings: Codable, Hashable {
     private(set) var vibration: Bool
+    private(set) var textSize: TextSize
 }
 
 // MARK: Public
 extension StudySettings {
     static var `default`: StudySettings {
-        StudySettings(vibration: false)
+        StudySettings(vibration: false,
+                      textSize: TextSize(percent: 100))
     }
     
     mutating func set(vibration: Bool) {
         self.vibration = vibration
+    }
+    
+    mutating func set(textSize: TextSize) {
+        self.textSize = textSize
     }
 }

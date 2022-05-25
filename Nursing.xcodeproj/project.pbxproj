@@ -58,6 +58,11 @@
 		DE275BFF283D77EF0024D62E /* ResetStatsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BFE283D77EF0024D62E /* ResetStatsRequest.swift */; };
 		DE275C03283D78290024D62E /* StatsMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275C02283D78290024D62E /* StatsMediator.swift */; };
 		DE275C07283E266D0024D62E /* StudySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275C06283E266D0024D62E /* StudySettings.swift */; };
+		DE275C09283E30F40024D62E /* TextSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275C08283E30F40024D62E /* TextSize.swift */; };
+		DE275C0C283E6C090024D62E /* TextSizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275C0B283E6C090024D62E /* TextSizeViewController.swift */; };
+		DE275C0E283E6C120024D62E /* TextSizeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275C0D283E6C120024D62E /* TextSizeViewModel.swift */; };
+		DE275C10283E6C1B0024D62E /* TextSizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275C0F283E6C1B0024D62E /* TextSizeView.swift */; };
+		DE275C13283E743E0024D62E /* TextSizeAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275C12283E743E0024D62E /* TextSizeAnswerView.swift */; };
 		DE2B10E127DF6B41005280DB /* DefaultRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B10E027DF6B41005280DB /* DefaultRequestWrapper.swift */; };
 		DE2B10E427DF79E8005280DB /* XORRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B10E327DF79E8005280DB /* XORRequestWrapper.swift */; };
 		DE4EA4E327FF0B9C00DCEB92 /* TestBottomSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4EA4E227FF0B9C00DCEB92 /* TestBottomSpinner.swift */; };
@@ -391,6 +396,11 @@
 		DE275BFE283D77EF0024D62E /* ResetStatsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetStatsRequest.swift; sourceTree = "<group>"; };
 		DE275C02283D78290024D62E /* StatsMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsMediator.swift; sourceTree = "<group>"; };
 		DE275C06283E266D0024D62E /* StudySettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudySettings.swift; sourceTree = "<group>"; };
+		DE275C08283E30F40024D62E /* TextSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSize.swift; sourceTree = "<group>"; };
+		DE275C0B283E6C090024D62E /* TextSizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSizeViewController.swift; sourceTree = "<group>"; };
+		DE275C0D283E6C120024D62E /* TextSizeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSizeViewModel.swift; sourceTree = "<group>"; };
+		DE275C0F283E6C1B0024D62E /* TextSizeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSizeView.swift; sourceTree = "<group>"; };
+		DE275C12283E743E0024D62E /* TextSizeAnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSizeAnswerView.swift; sourceTree = "<group>"; };
 		DE2B10E027DF6B41005280DB /* DefaultRequestWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRequestWrapper.swift; sourceTree = "<group>"; };
 		DE2B10E327DF79E8005280DB /* XORRequestWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XORRequestWrapper.swift; sourceTree = "<group>"; };
 		DE4EA4E227FF0B9C00DCEB92 /* TestBottomSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestBottomSpinner.swift; sourceTree = "<group>"; };
@@ -879,6 +889,25 @@
 			path = GetStatsRequest;
 			sourceTree = "<group>";
 		};
+		DE275C0A283E6BF10024D62E /* TextSize */ = {
+			isa = PBXGroup;
+			children = (
+				DE275C11283E74260024D62E /* Atoms */,
+				DE275C0B283E6C090024D62E /* TextSizeViewController.swift */,
+				DE275C0D283E6C120024D62E /* TextSizeViewModel.swift */,
+				DE275C0F283E6C1B0024D62E /* TextSizeView.swift */,
+			);
+			path = TextSize;
+			sourceTree = "<group>";
+		};
+		DE275C11283E74260024D62E /* Atoms */ = {
+			isa = PBXGroup;
+			children = (
+				DE275C12283E743E0024D62E /* TextSizeAnswerView.swift */,
+			);
+			path = Atoms;
+			sourceTree = "<group>";
+		};
 		DE2B10E227DF79C3005280DB /* RequestWrapper */ = {
 			isa = PBXGroup;
 			children = (
@@ -1334,6 +1363,7 @@
 				DE9375CD27ACE9880073F27C /* TestMode.swift */,
 				DE275BC9283B8B950024D62E /* Profile.swift */,
 				DE275C06283E266D0024D62E /* StudySettings.swift */,
+				DE275C08283E30F40024D62E /* TextSize.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1456,6 +1486,7 @@
 		DE9375F927ACE9880073F27C /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				DE275C0A283E6BF10024D62E /* TextSize */,
 				DE275BFB283D688F0024D62E /* ConfirmResetProgress */,
 				DE275BF2283CA2530024D62E /* ChangeExamDate */,
 				DE275BD5283BB68D0024D62E /* ChangeTestMode */,
@@ -2082,6 +2113,7 @@
 				DE4EB19328047AED00DCEB92 /* OModeCell.swift in Sources */,
 				DE275BF6283CA2730024D62E /* ChangeExamDateViewModel.swift in Sources */,
 				DE93777227ACE9880073F27C /* CoursesViewModel.swift in Sources */,
+				DE275C0E283E6C120024D62E /* TextSizeViewModel.swift in Sources */,
 				DE93770827ACE9880073F27C /* SetRequest.swift in Sources */,
 				DE93774E27ACE9880073F27C /* TestAnalytics.swift in Sources */,
 				DE93771627ACE9880073F27C /* GetStatsRequest.swift in Sources */,
@@ -2112,6 +2144,7 @@
 				DE93776E27ACE9880073F27C /* TestStatsDescriptionView.swift in Sources */,
 				DE93774427ACE9880073F27C /* QuestionCell.swift in Sources */,
 				DE93774127ACE9880073F27C /* ExplanationTextCell.swift in Sources */,
+				DE275C0C283E6C090024D62E /* TextSizeViewController.swift in Sources */,
 				DE9376B227ACE9880073F27C /* UIDeviceExtension.swift in Sources */,
 				DE93776327ACE9880073F27C /* TestStatsProgressCell.swift in Sources */,
 				DE93773D27ACE9880073F27C /* TabItemView.swift in Sources */,
@@ -2227,6 +2260,7 @@
 				DE93776727ACE9880073F27C /* TestStatsAnswer.swift in Sources */,
 				DE9376E127ACE9880073F27C /* GetTestStatsRequest.swift in Sources */,
 				DE9376DD27ACE9880073F27C /* GetMonetizationConfigRequest.swift in Sources */,
+				DE275C09283E30F40024D62E /* TextSize.swift in Sources */,
 				DE9376C227ACE9880073F27C /* TapAreaButton.swift in Sources */,
 				DE93772727ACE9880073F27C /* SettingsTableView.swift in Sources */,
 				DE93775127ACE9880073F27C /* TestView.swift in Sources */,
@@ -2244,6 +2278,7 @@
 				DE9376C127ACE9880073F27C /* NursingNavigationControllerSettings.swift in Sources */,
 				DE275BCE283B96520024D62E /* Single+Utils.swift in Sources */,
 				DE9376C827ACE9880073F27C /* AppDelegate.swift in Sources */,
+				DE275C10283E6C1B0024D62E /* TextSizeView.swift in Sources */,
 				DE9376E427ACE9880073F27C /* TestStatsManager.swift in Sources */,
 				DE4EB1A128047AED00DCEB92 /* OPushView.swift in Sources */,
 				DE93778727ACE9880073F27C /* MainStatsView.swift in Sources */,
@@ -2288,6 +2323,7 @@
 				DE9376EE27ACE9880073F27C /* SendAnswerRequest.swift in Sources */,
 				DE9376BD27ACE9880073F27C /* Weak.swift in Sources */,
 				DE93771D27ACE9880073F27C /* SettingsView.swift in Sources */,
+				DE275C13283E743E0024D62E /* TextSizeAnswerView.swift in Sources */,
 				DE9376F627ACE9880073F27C /* Course.swift in Sources */,
 				DE4EB19928047AED00DCEB92 /* WelcomeSlide1View.swift in Sources */,
 				DE93774527ACE9880073F27C /* AnswersCell.swift in Sources */,
