@@ -57,7 +57,11 @@ private extension StudyViewModel {
     }
     
     func makeBrief() -> Driver<StudyCollectionSection> {
-        let trigger = QuestionManagerMediator.shared.rxTestPassed
+        let trigger = Signal
+            .merge(
+                QuestionManagerMediator.shared.rxTestPassed,
+                StatsMediator.shared.resetedStats
+            )
             .asDriver(onErrorDriveWith: .never())
             .startWith(())
         
