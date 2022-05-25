@@ -13,7 +13,7 @@ enum SettingsTableElement {
     case premium(SettingsPremium)
     case exam(SettingsExam)
     case study(SettingsStudy)
-    case community
+    case community(SettingsCommunity)
     case support
 }
 
@@ -32,4 +32,8 @@ struct SettingsExam {
 struct SettingsStudy {
     let testMode: TestMode?
     let vibration: Bool
+}
+
+struct SettingsCommunity {
+    let communityUrl: String?
 }

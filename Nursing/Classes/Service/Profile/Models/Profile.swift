@@ -12,4 +12,5 @@ struct Profile: Codable, Hashable {
     let testMinutes: Int?
     let examDate: Date?
     let selectedCourse: Course?
+    let communityUrl: String?
 }

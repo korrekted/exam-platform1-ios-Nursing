@@ -23,6 +23,10 @@ final class SettingsCommunityButton: UIButton {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override var intrinsicContentSize: CGSize {
+        CGSize(width: CGFloat.greatestFiniteMagnitude, height: 74.scale)
+    }
 }
 
 // MARK: Make constraints

@@ -35,6 +35,7 @@ final class ProfileManager: ProfileManagerProtocol {
         static let courseKey = "profile_manager_course_key"
         static let testModeKey = "profile_manager_test_mode_key"
         static let testMinutesKey = "profile_manager_test_minutes_key"
+        static let communityUrlKey = "profile_manager_community_url_key"
     }
     
     private lazy var defaultRequestWrapper = DefaultRequestWrapper()
@@ -183,18 +184,21 @@ private extension ProfileManager {
         let testMinutes = cachedTestMinutes()
         let examDate = cachedDateOfExam()
         let selectedCourse = cachedSelectedCourse()
+        let communityUrl = cachedCommunityUrl()
         
         return Single
             .zip(
                 testMode,
                 testMinutes,
                 examDate,
-                selectedCourse
-            ) { testMode, testMinutes, examDate, selectedCourse -> Profile in
+                selectedCourse,
+                communityUrl
+            ) { testMode, testMinutes, examDate, selectedCourse, communityUrl -> Profile in
                 Profile(testMode: testMode,
                         testMinutes: testMinutes,
                         examDate: examDate,
-                        selectedCourse: selectedCourse)
+                        selectedCourse: selectedCourse,
+                        communityUrl: communityUrl)
             }
     }
     
@@ -217,6 +221,7 @@ private extension ProfileManager {
                 self.store(testMinutes: profile.testMinutes)
                 self.store(dateOfExam: profile.examDate)
                 self.store(course: profile.selectedCourse)
+                self.store(communityUrl: profile.communityUrl)
             })
     }
     
@@ -367,6 +372,20 @@ private extension ProfileManager {
                 
                 self.store(testMinutes: testMinutes)
             })
+    }
+    
+    func store(communityUrl: String?) {
+        UserDefaults.standard.set(communityUrl, forKey: Constants.communityUrlKey)
+    }
+    
+    func cachedCommunityUrl() -> Single<String?> {
+        Single<String?>.create { event in
+            let communityUrl = UserDefaults.standard.string(forKey: Constants.communityUrlKey)
+            
+            event(.success(communityUrl))
+            
+            return Disposables.create()
+        }
     }
     
     func examDateStringFormatted(_ date: Date?) -> String? {

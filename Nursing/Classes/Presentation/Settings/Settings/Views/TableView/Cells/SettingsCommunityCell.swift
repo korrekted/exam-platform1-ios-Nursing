@@ -16,6 +16,10 @@ final class SettingsCommunityCell: UITableViewCell {
     lazy var joinTheCommunityButton = makeJoinTheCommunityButton()
     lazy var shareWithFriendButton = makeShareWithFriendButton()
     
+    private lazy var shareWithFriendButtonTopConstraint = NSLayoutConstraint()
+    
+    private var element: SettingsCommunity?
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -28,6 +32,15 @@ final class SettingsCommunityCell: UITableViewCell {
     }
 }
 
+// MARK: Public
+extension SettingsCommunityCell {
+    func setup(element: SettingsCommunity) {
+        self.element = element
+        
+        update()
+    }
+}
+
 // MARK: Private
 private extension SettingsCommunityCell {
     func initialize() {
@@ -37,6 +50,24 @@ private extension SettingsCommunityCell {
         selectionStyle = .none
     }
     
+    func update() {
+        guard let element = element else {
+            return
+        }
+        
+        joinTheCommunityButton.isHidden = element.communityUrl == nil
+        
+        shareWithFriendButtonTopConstraint.isActive = false
+        
+        if element.communityUrl == nil {
+            shareWithFriendButtonTopConstraint = shareWithFriendButton.topAnchor.constraint(equalTo: rateUsButton.bottomAnchor)
+        } else {
+            shareWithFriendButtonTopConstraint = shareWithFriendButton.topAnchor.constraint(equalTo: joinTheCommunityButton.bottomAnchor)
+        }
+        
+        shareWithFriendButtonTopConstraint.isActive = true
+    }
+    
     @objc
     func rateUsTapped() {
         tableDelegate?.settingsTableDidTappedRateUs()
@@ -44,7 +75,11 @@ private extension SettingsCommunityCell {
     
     @objc
     func joinTheCommunityTapped() {
-        tableDelegate?.settingsTableDidTappedJoinTheCommunity()
+        guard let url = element?.communityUrl else {
+            return
+        }
+        
+        tableDelegate?.settingsTableDidTappedJoinTheCommunity(url: url)
     }
     
     @objc
@@ -69,24 +104,23 @@ private extension SettingsCommunityCell {
         ])
         
         NSLayoutConstraint.activate([
-            rateUsButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
-            rateUsButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
-            rateUsButton.topAnchor.constraint(equalTo: container.topAnchor),
-            rateUsButton.heightAnchor.constraint(equalToConstant: 74.scale)
+            rateUsButton.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            rateUsButton.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+            rateUsButton.topAnchor.constraint(equalTo: container.topAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            joinTheCommunityButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
-            joinTheCommunityButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
-            joinTheCommunityButton.topAnchor.constraint(equalTo: rateUsButton.bottomAnchor),
-            joinTheCommunityButton.heightAnchor.constraint(equalToConstant: 74.scale)
+            joinTheCommunityButton.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            joinTheCommunityButton.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+            joinTheCommunityButton.topAnchor.constraint(equalTo: rateUsButton.bottomAnchor)
         ])
         
+        shareWithFriendButtonTopConstraint = shareWithFriendButton.topAnchor.constraint(equalTo: joinTheCommunityButton.bottomAnchor)
         NSLayoutConstraint.activate([
-            shareWithFriendButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
-            shareWithFriendButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
-            shareWithFriendButton.topAnchor.constraint(equalTo: joinTheCommunityButton.bottomAnchor),
-            shareWithFriendButton.heightAnchor.constraint(equalToConstant: 74.scale)
+            shareWithFriendButton.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            shareWithFriendButton.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+            shareWithFriendButtonTopConstraint,
+            shareWithFriendButton.bottomAnchor.constraint(equalTo: container.bottomAnchor)
         ])
     }
 }
@@ -141,7 +175,7 @@ private extension SettingsCommunityCell {
         view.backgroundColor = UIColor.clear
         view.translatesAutoresizingMaskIntoConstraints = false
         view.addTarget(self, action: #selector(rateUsTapped), for: .touchUpInside)
-        contentView.addSubview(view)
+        container.addSubview(view)
         return view
     }
     
@@ -164,7 +198,7 @@ private extension SettingsCommunityCell {
         view.backgroundColor = UIColor.clear
         view.translatesAutoresizingMaskIntoConstraints = false
         view.addTarget(self, action: #selector(joinTheCommunityTapped), for: .touchUpInside)
-        contentView.addSubview(view)
+        container.addSubview(view)
         return view
     }
     
@@ -191,7 +225,7 @@ private extension SettingsCommunityCell {
         view.backgroundColor = UIColor.clear
         view.translatesAutoresizingMaskIntoConstraints = false
         view.addTarget(self, action: #selector(shareWithFriedTapped), for: .touchUpInside)
-        contentView.addSubview(view)
+        container.addSubview(view)
         return view
     }
 }

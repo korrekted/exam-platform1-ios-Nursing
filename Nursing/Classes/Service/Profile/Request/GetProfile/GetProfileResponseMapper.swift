@@ -20,11 +20,13 @@ final class GetProfileResponseMapper {
         let testMinutes = data["daily_goal"] as? Int
         let examDate = examDate(data)
         let course = course(data)
+        let communityUrl = data["community_url"] as? String
         
         return Profile(testMode: testMode,
                        testMinutes: testMinutes,
                        examDate: examDate,
-                       selectedCourse: course)
+                       selectedCourse: course,
+                       communityUrl: communityUrl)
     }
 }
 

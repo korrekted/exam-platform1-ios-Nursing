@@ -33,9 +33,10 @@ private extension SettingsViewModel {
         let subscription = makeSubscriptionElement()
         let exam = makeExamElement()
         let study = makeStudyElement()
+        let community = makeCommunity()
         
         return Driver
-            .combineLatest(subscription, exam, study) { subscription, exam, study -> [SettingsTableElement] in
+            .combineLatest(subscription, exam, study, community) { subscription, exam, study, community -> [SettingsTableElement] in
                 var elements = [SettingsTableElement]()
                 
                 elements.append(contentsOf: [
@@ -45,7 +46,7 @@ private extension SettingsViewModel {
                     .offset(30.scale),
                     study,
                     .offset(30.scale),
-                    .community,
+                    community,
                     .offset(30.scale),
                     .support,
                     .offset(30.scale)
@@ -193,6 +194,16 @@ private extension SettingsViewModel {
             .asDriver(onErrorJustReturn: false)
         
         return Driver.merge(initial, action)
+    }
+    
+    func makeCommunity() -> Driver<SettingsTableElement> {
+        profileManager
+            .obtainProfile(forceUpdate: false)
+            .map { profile -> SettingsTableElement in
+                let element = SettingsCommunity(communityUrl: profile?.communityUrl)
+                return .community(element)
+            }
+            .asDriver(onErrorJustReturn: .community(SettingsCommunity(communityUrl: nil)))
     }
     
     func makeActiveSubscription() -> Driver<Bool> {

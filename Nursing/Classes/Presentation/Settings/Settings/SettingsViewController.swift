@@ -125,8 +125,8 @@ extension SettingsViewController: SettingsTableDelegate {
         SKStoreReviewController.requestReview()
     }
     
-    func settingsTableDidTappedJoinTheCommunity() {
-        
+    func settingsTableDidTappedJoinTheCommunity(url: String) {
+        open(path: url)
     }
     
     func settingsTableDidTappedShareWithFriend() {

@@ -16,7 +16,7 @@ protocol SettingsTableDelegate: AnyObject {
     func settingsTableDidChanged(vibration: Bool)
     func settingsTableDidTappedTextSize()
     func settingsTableDidTappedRateUs()
-    func settingsTableDidTappedJoinTheCommunity()
+    func settingsTableDidTappedJoinTheCommunity(url: String)
     func settingsTableDidTappedShareWithFriend()
     func settingsTableDidTappedContactUs()
     func settingsTableDidTappedTermsOfUse()
@@ -80,9 +80,10 @@ extension SettingsTableView: UITableViewDataSource {
             cell.tableDelegate = mainDelegate
             cell.setup(element: element)
             return cell
-        case .community:
+        case .community(let element):
             let cell = dequeueReusableCell(withIdentifier: String(describing: SettingsCommunityCell.self)) as! SettingsCommunityCell
             cell.tableDelegate = mainDelegate
+            cell.setup(element: element)
             return cell
         case .support:
             let cell = dequeueReusableCell(withIdentifier: String(describing: SettingsSupportCell.self)) as! SettingsSupportCell
@@ -111,7 +112,7 @@ extension SettingsTableView: UITableViewDelegate {
         case .exam, .study, .support:
             return 185.scale
         case .community:
-            return 257.scale
+            return UITableView.automaticDimension
         }
     }
 }
