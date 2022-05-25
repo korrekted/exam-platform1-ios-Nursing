@@ -16,6 +16,8 @@ protocol ProfileManagerProtocol {
              testNumber: Int?,
              testWhen: [Int]?,
              notificationKey: String?) -> Single<Void>
+    func set(vibration: Bool) -> Single<Void>
+    func obtainStudySettings() -> Single<StudySettings>
     func obtainProfile(forceUpdate: Bool) -> Single<Profile?>
     func obtainDateOfExam(forceUpdate: Bool) -> Single<Date?>
     func obtainSelectedCourse(forceUpdate: Bool) -> Single<Course?>
@@ -27,6 +29,7 @@ protocol ProfileManagerProtocol {
 
 final class ProfileManager: ProfileManagerProtocol {
     enum Constants {
+        static let studySettingsKey = "profile_manager_study_settings"
         static let dateOfExamKey = "profile_manager_date_of_exam_key"
         static let courseKey = "profile_manager_course_key"
         static let testModeKey = "profile_manager_test_mode_key"
@@ -73,6 +76,45 @@ extension ProfileManager {
                 self.store(testMode: testMode)
                 self.store(testMinutes: testMinutes)
             })
+    }
+    
+    func set(vibration: Bool) -> Single<Void> {
+        Single<Void>.create { event in
+            var studySettings: StudySettings
+            
+            if let data = UserDefaults.standard.data(forKey: Constants.studySettingsKey),
+               let cached = try? JSONDecoder().decode(StudySettings.self, from: data) {
+                studySettings = cached
+            } else {
+                studySettings = StudySettings.default
+            }
+            
+            studySettings.set(vibration: vibration)
+            
+            if let data = try? JSONEncoder().encode(studySettings) {
+                UserDefaults.standard.set(data, forKey: Constants.studySettingsKey)
+            }
+            
+            event(.success(Void()))
+            
+            return Disposables.create()
+        }
+    }
+    
+    func obtainStudySettings() -> Single<StudySettings> {
+        Single<StudySettings>.create { event in
+            guard
+                let data = UserDefaults.standard.data(forKey: Constants.studySettingsKey),
+                let studySettings = try? JSONDecoder().decode(StudySettings.self, from: data)
+            else {
+                event(.success(StudySettings.default))
+                return Disposables.create()
+            }
+            
+            event(.success(studySettings))
+            
+            return Disposables.create()
+        }
     }
     
     func obtainProfile(forceUpdate: Bool) -> Single<Profile?> {

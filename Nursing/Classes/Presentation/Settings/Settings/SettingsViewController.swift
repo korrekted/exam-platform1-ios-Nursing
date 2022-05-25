@@ -104,7 +104,7 @@ extension SettingsViewController: SettingsTableDelegate {
     }
     
     func settingsTableDidChanged(vibration: Bool) {
-        
+        viewModel.newVibration.accept(vibration)
     }
     
     func settingsTableDidTappedTextSize() {

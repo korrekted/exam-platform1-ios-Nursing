@@ -13,6 +13,7 @@ final class SettingsViewModel {
     var tryAgain: ((Error) -> (Observable<Void>))?
     
     lazy var resetProgress = PublishRelay<Void>()
+    lazy var newVibration = PublishRelay<Bool>()
     
     lazy var elements = makeElements()
     
@@ -174,9 +175,24 @@ private extension SettingsViewModel {
     }
     
     func makeVibration() -> Driver<Bool> {
-        // TODO: реализовать
+        let initial = profileManager
+            .obtainStudySettings()
+            .map { $0.vibration }
+            .asDriver(onErrorJustReturn: false)
         
-        return .deferred { .just(true) }
+        let action = newVibration
+            .flatMapFirst { [weak self] vibration -> Single<Bool> in
+                guard let self = self else {
+                    return .never()
+                }
+                
+                return self.profileManager
+                    .set(vibration: vibration)
+                    .map { vibration }
+            }
+            .asDriver(onErrorJustReturn: false)
+        
+        return Driver.merge(initial, action)
     }
     
     func makeActiveSubscription() -> Driver<Bool> {

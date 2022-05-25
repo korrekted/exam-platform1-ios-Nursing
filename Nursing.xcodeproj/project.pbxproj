@@ -57,6 +57,7 @@
 		DE275BFD283D68A40024D62E /* ConfirmResetProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BFC283D68A40024D62E /* ConfirmResetProgressViewController.swift */; };
 		DE275BFF283D77EF0024D62E /* ResetStatsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BFE283D77EF0024D62E /* ResetStatsRequest.swift */; };
 		DE275C03283D78290024D62E /* StatsMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275C02283D78290024D62E /* StatsMediator.swift */; };
+		DE275C07283E266D0024D62E /* StudySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275C06283E266D0024D62E /* StudySettings.swift */; };
 		DE2B10E127DF6B41005280DB /* DefaultRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B10E027DF6B41005280DB /* DefaultRequestWrapper.swift */; };
 		DE2B10E427DF79E8005280DB /* XORRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B10E327DF79E8005280DB /* XORRequestWrapper.swift */; };
 		DE4EA4E327FF0B9C00DCEB92 /* TestBottomSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4EA4E227FF0B9C00DCEB92 /* TestBottomSpinner.swift */; };
@@ -389,6 +390,7 @@
 		DE275BFC283D68A40024D62E /* ConfirmResetProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmResetProgressViewController.swift; sourceTree = "<group>"; };
 		DE275BFE283D77EF0024D62E /* ResetStatsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetStatsRequest.swift; sourceTree = "<group>"; };
 		DE275C02283D78290024D62E /* StatsMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsMediator.swift; sourceTree = "<group>"; };
+		DE275C06283E266D0024D62E /* StudySettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudySettings.swift; sourceTree = "<group>"; };
 		DE2B10E027DF6B41005280DB /* DefaultRequestWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRequestWrapper.swift; sourceTree = "<group>"; };
 		DE2B10E327DF79E8005280DB /* XORRequestWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XORRequestWrapper.swift; sourceTree = "<group>"; };
 		DE4EA4E227FF0B9C00DCEB92 /* TestBottomSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestBottomSpinner.swift; sourceTree = "<group>"; };
@@ -1331,6 +1333,7 @@
 			children = (
 				DE9375CD27ACE9880073F27C /* TestMode.swift */,
 				DE275BC9283B8B950024D62E /* Profile.swift */,
+				DE275C06283E266D0024D62E /* StudySettings.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2245,6 +2248,7 @@
 				DE4EB1A128047AED00DCEB92 /* OPushView.swift in Sources */,
 				DE93778727ACE9880073F27C /* MainStatsView.swift in Sources */,
 				DE93773127ACE9880073F27C /* SCModeCell.swift in Sources */,
+				DE275C07283E266D0024D62E /* StudySettings.swift in Sources */,
 				DE93777A27ACE9880073F27C /* StatsViewController.swift in Sources */,
 				DE93777827ACE9880073F27C /* ImageScrollView.swift in Sources */,
 				DE4EB18F28047AED00DCEB92 /* OnboardingViewController.swift in Sources */,
