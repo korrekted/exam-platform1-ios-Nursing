@@ -145,29 +145,12 @@ final class TestViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        let nextOffset = isHiddenNext
-            .map { $0.0 }
-            .map { isHidden -> CGFloat in
-                return isHidden ? 90.scale : 140.scale
-            }
-        
         let bottomViewData = viewModel.bottomViewState
             .startWith(.hidden)
-        
-        let bottomButtonOffset = bottomViewData
-            .map { $0 == .hidden ? 90 : 90.scale }
         
         bottomViewData
             .drive(Binder(mainView.bottomView) {
                 $0.setup(state: $1)
-            })
-            .disposed(by: disposeBag)
-        
-        Driver
-            .combineLatest(nextOffset, bottomButtonOffset) { max($0, $1) }
-            .distinctUntilChanged()
-            .drive(Binder(mainView.tableView) {
-                $0.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: $1, right: 0)
             })
             .disposed(by: disposeBag)
         

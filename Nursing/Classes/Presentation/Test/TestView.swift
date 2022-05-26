@@ -129,6 +129,7 @@ private extension TestView {
         if #available(iOS 15.0, *) {
             view.sectionHeaderTopPadding = 0.0
         }
+        view.contentInset = UIEdgeInsets(top: 15.scale, left: 0, bottom: 90.scale, right: 0)
         view.backgroundColor = .clear
         view.separatorStyle = .none
         view.contentInsetAdjustmentBehavior = .never
