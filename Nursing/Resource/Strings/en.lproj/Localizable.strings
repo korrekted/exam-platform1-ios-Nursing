@@ -181,6 +181,7 @@
 "Question.BackToStudying" = "Back to studying";
 "Question.QuestionProgress" = "Question %u/%u";
 "Question.NextQuestion" = "Next question";
+"Question.TodayTitle" = "Today’s question";
 
 // MARK: Test Stats
 "TestStats.Title" = "";

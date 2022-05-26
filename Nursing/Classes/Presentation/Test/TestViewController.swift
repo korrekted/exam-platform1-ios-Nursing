@@ -12,13 +12,25 @@ import AVFoundation
 import AVKit
 
 final class TestViewController: UIViewController {
-    lazy var mainView = TestView()
+    lazy var mainView = TestView(testType: testType)
     
     private lazy var disposeBag = DisposeBag()
     
     private lazy var viewModel = TestViewModel()
     
     var didTapSubmit: ((Int) -> Void)?
+    
+    private let testType: TestType
+    
+    private init(testType: TestType) {
+        self.testType = testType
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         view = mainView
@@ -107,14 +119,8 @@ final class TestViewController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.question
-            .map { $0.questionsCount == 1 }
-            .distinctUntilChanged()
-            .drive(mainView.progressView.rx.isHidden)
-            .disposed(by: disposeBag)
-        
-        viewModel.question
-            .drive(Binder(mainView) { view, element in
-                view.progressView.setProgress(Float(element.index) / Float(element.questionsCount), animated: true)
+            .drive(onNext: { [weak self] element in
+                self?.updateProgress(questionElement: element)
             })
             .disposed(by: disposeBag)
         
@@ -241,7 +247,7 @@ final class TestViewController: UIViewController {
 // MARK: Make
 extension TestViewController {
     static func make(testType: TestType, activeSubscription: Bool) -> TestViewController {
-        let controller = TestViewController()
+        let controller = TestViewController(testType: testType)
         controller.modalPresentationStyle = .fullScreen
         controller.viewModel.activeSubscription = activeSubscription
         controller.viewModel.testType.accept(testType)
@@ -251,6 +257,25 @@ extension TestViewController {
 
 // MARK: Private
 private extension TestViewController {
+    func updateProgress(questionElement: QuestionElement) {
+        let attrs = TextAttributes()
+            .textColor(Appearance.blackColor.withAlphaComponent(0.5))
+            .font(Fonts.SFProRounded.semiBold(size: 17.scale))
+            .lineHeight(20.scale)
+            .textAlignment(.center)
+        
+        if testType.isQotd() {
+            mainView.titleLabel.attributedText = "Question.TodayTitle".localized.attributed(with: attrs)
+        } else {
+            let title = String(format: "Question.QuestionProgress".localized,
+                               questionElement.index,
+                               questionElement.questionsCount)
+            mainView.titleLabel.attributedText = title.attributed(with: attrs)
+            
+            mainView.progressView.setProgress(Float(questionElement.index) / Float(questionElement.questionsCount), animated: true)
+        }
+    }
+    
     func logAnalytics(courseName: String) {
         guard let type = viewModel.testType.value else {
             return

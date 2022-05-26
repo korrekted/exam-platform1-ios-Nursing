@@ -12,3 +12,14 @@ enum TestType {
     case qotd
     case randomSet
 }
+
+// MARK: Public
+extension TestType {
+    func isQotd() -> Bool {
+        guard case .qotd = self else {
+            return false
+        }
+        
+        return true
+    }
+}

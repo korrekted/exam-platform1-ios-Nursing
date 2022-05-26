@@ -4,12 +4,19 @@
 //
 //  Created by Vitaliy Zagorodnov on 31.01.2021.
 //
+
 import UIKit
 import RxSwift
 import RxCocoa
 
 final class QuestionTableView: UITableView {
+    let selectedAnswersRelay = PublishRelay<AnswerElement>()
+    let expandContent = PublishRelay<QuestionContentType>()
+    
     private lazy var elements = [TestingCellType]()
+    
+    private var selectedIds: (([Int]) -> Void)?
+    private var isMultiple = false
     
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
@@ -20,14 +27,9 @@ final class QuestionTableView: UITableView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    private var selectedIds: (([Int]) -> Void)?
-    private var isMultiple = false
-    let selectedAnswersRelay = PublishRelay<AnswerElement>()
-    let expandContent = PublishRelay<QuestionContentType>()
 }
 
-// MARK: API
+// MARK: Public
 extension QuestionTableView {
     func setup(question: QuestionElement) {
         selectedIds = { [weak self] elements in
@@ -38,6 +40,7 @@ extension QuestionTableView {
         isMultiple = question.isMultiple
         
         reloadData()
+        
         let isBottomScroll = question.elements.contains(where: {
             guard case .result = $0 else { return false }
             return true
@@ -57,16 +60,12 @@ extension QuestionTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let element = elements[indexPath.row]
         switch element {
-        case let .questionsProgress(progress):
-            let cell = dequeueReusableCell(withIdentifier: String(describing: QuestionsProgressCell.self), for: indexPath) as! QuestionsProgressCell
-            cell.configure(title: progress)
-            return cell
         case let .content(content):
             let cell = dequeueReusableCell(withIdentifier: String(describing: QuestionContentCell.self), for: indexPath) as! QuestionContentCell
             cell.configure(content: content) { [weak self] in
                 self?.expandContent.accept($0)
             }
-             return cell
+            return cell
         case let .question(question, html):
             let cell = dequeueReusableCell(withIdentifier: String(describing: QuestionCell.self), for: indexPath) as! QuestionCell
             cell.configure(question: question, questionHtml: html)
@@ -111,7 +110,6 @@ extension QuestionTableView: UITableViewDelegate {
 // MARK: Private
 private extension QuestionTableView {
     func initialize() {
-        register(QuestionsProgressCell.self, forCellReuseIdentifier: String(describing: QuestionsProgressCell.self))
         register(QuestionContentCell.self, forCellReuseIdentifier: String(describing: QuestionContentCell.self))
         register(AnswersCell.self, forCellReuseIdentifier: String(describing: AnswersCell.self))
         register(QuestionCell.self, forCellReuseIdentifier: String(describing: QuestionCell.self))

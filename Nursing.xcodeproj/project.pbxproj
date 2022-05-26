@@ -236,7 +236,6 @@
 		DE93773F27ACE9880073F27C /* QuestionContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93762B27ACE9880073F27C /* QuestionContentCell.swift */; };
 		DE93774027ACE9880073F27C /* QuestionReferenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93762C27ACE9880073F27C /* QuestionReferenceCell.swift */; };
 		DE93774127ACE9880073F27C /* ExplanationTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93762D27ACE9880073F27C /* ExplanationTextCell.swift */; };
-		DE93774227ACE9880073F27C /* QuestionsProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93762E27ACE9880073F27C /* QuestionsProgressCell.swift */; };
 		DE93774327ACE9880073F27C /* QuestionCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93762F27ACE9880073F27C /* QuestionCollectionCell.swift */; };
 		DE93774427ACE9880073F27C /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93763027ACE9880073F27C /* QuestionCell.swift */; };
 		DE93774527ACE9880073F27C /* AnswersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93763127ACE9880073F27C /* AnswersCell.swift */; };
@@ -572,7 +571,6 @@
 		DE93762B27ACE9880073F27C /* QuestionContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionContentCell.swift; sourceTree = "<group>"; };
 		DE93762C27ACE9880073F27C /* QuestionReferenceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionReferenceCell.swift; sourceTree = "<group>"; };
 		DE93762D27ACE9880073F27C /* ExplanationTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExplanationTextCell.swift; sourceTree = "<group>"; };
-		DE93762E27ACE9880073F27C /* QuestionsProgressCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionsProgressCell.swift; sourceTree = "<group>"; };
 		DE93762F27ACE9880073F27C /* QuestionCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionCollectionCell.swift; sourceTree = "<group>"; };
 		DE93763027ACE9880073F27C /* QuestionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
 		DE93763127ACE9880073F27C /* AnswersCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswersCell.swift; sourceTree = "<group>"; };
@@ -918,7 +916,6 @@
 		DE275C17283F64670024D62E /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				DE93762E27ACE9880073F27C /* QuestionsProgressCell.swift */,
 				DE93762B27ACE9880073F27C /* QuestionContentCell.swift */,
 				DE93763127ACE9880073F27C /* AnswersCell.swift */,
 				DE93763027ACE9880073F27C /* QuestionCell.swift */,
@@ -2150,7 +2147,6 @@
 				DE93778327ACE9880073F27C /* MainStatsDescriptionLineView.swift in Sources */,
 				DE93776427ACE9880073F27C /* TestStatsAnswerCell.swift in Sources */,
 				DE93772827ACE9880073F27C /* SettingsTableElement.swift in Sources */,
-				DE93774227ACE9880073F27C /* QuestionsProgressCell.swift in Sources */,
 				DE9376B427ACE9880073F27C /* StringExtension.swift in Sources */,
 				DE9376C027ACE9880073F27C /* NursingNavigationController.swift in Sources */,
 				DE93773827ACE9880073F27C /* StudyCollectionView.swift in Sources */,

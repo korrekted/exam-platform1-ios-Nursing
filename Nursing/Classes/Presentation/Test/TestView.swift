@@ -17,8 +17,12 @@ final class TestView: UIView {
     lazy var tabView = makeTabView()
     lazy var activityView = makeActivityView()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    private let testType: TestType
+    
+    init(testType: TestType) {
+        self.testType = testType
+        
+        super.init(frame: .zero)
         
         makeConstraints()
         initialize()
@@ -135,6 +139,7 @@ private extension TestView {
     
     func makeProgressView() -> UIProgressView {
         let view = UIProgressView()
+        view.isHidden = testType.isQotd()
         view.trackTintColor = Appearance.mainColor.withAlphaComponent(0.3)
         view.progressTintColor = Appearance.mainColor
         view.translatesAutoresizingMaskIntoConstraints = false

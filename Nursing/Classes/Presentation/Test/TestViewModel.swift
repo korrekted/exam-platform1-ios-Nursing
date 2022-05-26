@@ -9,6 +9,7 @@ import RxSwift
 import RxCocoa
 
 final class TestViewModel {
+    var tryAgain: ((Error) -> (Observable<Void>))?
     
     var activeSubscription = false
     
@@ -29,8 +30,6 @@ final class TestViewModel {
     
     lazy var loadTestActivityIndicator = RxActivityIndicator()
     lazy var sendAnswerActivityIndicator = RxActivityIndicator()
-    
-    var tryAgain: ((Error) -> (Observable<Void>))?
     
     private lazy var observableRetrySingle = ObservableRetrySingle()
     
@@ -54,14 +53,14 @@ private extension TestViewModel {
         Observable<Action>
             .merge(
                 didTapNext.debounce(.microseconds(500), scheduler: MainScheduler.instance).map { _ in .next },
-                makeQestions().map { .elements($0) }
+                makeQuestions().map { .elements($0) }
             )
             .scan((nil, []), accumulator: currentQuestionAccumulator)
             .compactMap { $0.0 }
             .asDriver(onErrorDriveWith: .empty())
     }
     
-    func makeQestions() -> Observable<[QuestionElement]> {
+    func makeQuestions() -> Observable<[QuestionElement]> {
         let questions = testElement
             .compactMap { $0.element?.questions }
         
@@ -273,7 +272,6 @@ private extension TestViewModel {
                     ].compactMap { $0 }
                     
                     let elements: [TestingCellType] = [
-                        questions.count > 1 ? .questionsProgress(String(format: "Question.QuestionProgress".localized, index + 1, questions.count)) : nil,
                         !content.isEmpty ? .content(content) : nil,
                         .question(question.question, html: question.questionHtml),
                         .answers(answers)
