@@ -120,8 +120,6 @@ private extension QuestionTableView {
         register(ExplanationTitleCell.self, forCellReuseIdentifier: String(describing: ExplanationTitleCell.self))
         register(QuestionReferenceCell.self, forCellReuseIdentifier: String(describing: QuestionReferenceCell.self))
         
-        separatorStyle = .none
-        
         dataSource = self
         delegate = self
     }

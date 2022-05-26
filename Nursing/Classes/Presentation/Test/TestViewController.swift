@@ -10,7 +10,6 @@ import RxSwift
 import RxCocoa
 import AVFoundation
 import AVKit
-import RushSDK
 
 final class TestViewController: UIViewController {
     lazy var mainView = TestView()
@@ -194,13 +193,6 @@ final class TestViewController: UIViewController {
                 }
             })
             .disposed(by: disposeBag)
-        
-        viewModel.errorMessage
-            .emit { [weak self] message in
-                Toast.notify(with: message, style: .danger)
-                self?.dismiss(animated: true)
-            }
-            .disposed(by: disposeBag)
 
         viewModel.needPayment
             .filter { $0 }
@@ -298,6 +290,5 @@ private extension TestViewController {
                 
                 return Disposables.create()
             }
-        
     }
 }

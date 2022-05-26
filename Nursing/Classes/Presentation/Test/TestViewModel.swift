@@ -25,7 +25,6 @@ final class TestViewModel {
     lazy var bottomViewState = makeBottomState()
     lazy var testMode = makeTestMode()
     lazy var course = makeCourse()
-    lazy var errorMessage = makeErrorMessage()
     lazy var needPayment = makeNeedPayment()
     
     lazy var loadTestActivityIndicator = RxActivityIndicator()
@@ -143,12 +142,6 @@ private extension TestViewModel {
             }
     }
     
-    func makeErrorMessage() -> Signal<String> {
-        testElement
-            .compactMap { $0.error?.localizedDescription }
-            .asSignal(onErrorSignalWith: .empty())
-    }
-    
     func makeNeedPayment() -> Signal<Bool> {
         testElement
             .map { [weak self] event in
@@ -212,9 +205,9 @@ private extension TestViewModel {
             .asDriver(onErrorJustReturn: false)
     }
     
-    func makeBottomState() -> Driver<TestBottomButtonState> {
+    func makeBottomState() -> Driver<BottomView.State> {
         Driver.combineLatest(isEndOfTest, question, currentAnswers.asDriver(onErrorJustReturn: nil))
-            .map { isEndOfTest, question, answers -> TestBottomButtonState in
+            .map { isEndOfTest, question, answers -> BottomView.State in
                 let isResult = question.elements.contains(where: {
                     guard case .result = $0 else { return false }
                     return true

@@ -8,6 +8,13 @@
 import UIKit
 
 final class BottomView: UIView {
+    enum State {
+        case confirm
+        case submit
+        case back
+        case hidden
+    }
+    
     lazy var bottomButton = makeBottomButton()
     lazy var nextButton = makeNextButton()
     lazy var preloader = makePreloader()
@@ -34,7 +41,7 @@ final class BottomView: UIView {
 
 // MARK: Public
 extension BottomView {
-    func setup(state: TestBottomButtonState) {
+    func setup(state: BottomView.State) {
         switch state {
         case .confirm:
             bottomButton.setAttributedTitle("Question.Continue".localized.attributed(with: Self.buttonAttr), for: .normal)

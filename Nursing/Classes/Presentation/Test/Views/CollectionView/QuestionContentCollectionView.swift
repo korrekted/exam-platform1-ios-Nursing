@@ -63,8 +63,8 @@ extension QuestionContentCollectionView: UICollectionViewDelegateFlowLayout {
 // MARK: Private
 private extension QuestionContentCollectionView {
     func initialize() {
-        backgroundColor = .clear
         register(QuestionCollectionCell.self, forCellWithReuseIdentifier: String(describing: QuestionCollectionCell.self))
+        
         dataSource = self
         delegate = self
     }

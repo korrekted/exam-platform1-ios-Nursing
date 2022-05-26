@@ -59,7 +59,9 @@ private extension QuestionContentCell {
         layout.minimumLineSpacing = 15.scale
         layout.minimumInteritemSpacing = 0.scale
         layout.sectionInset = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
+        
         let view = QuestionContentCollectionView(frame: .zero, collectionViewLayout: layout)
+        view.backgroundColor = UIColor.clear
         view.showsHorizontalScrollIndicator = false
         view.isPagingEnabled = true
         view.translatesAutoresizingMaskIntoConstraints = false
