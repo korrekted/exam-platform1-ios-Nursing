@@ -4,17 +4,22 @@
 //
 //  Created by Vitaliy Zagorodnov on 30.01.2021.
 //
+
 import UIKit
 
 final class TestView: UIView {
-    lazy var progressView = makeProgressView()
     lazy var closeButton = makeCloseButton()
+    lazy var titleLabel = makeTitleLabel()
+    lazy var menuButton = makeMenuButton()
+    lazy var progressView = makeProgressView()
     lazy var tableView = makeTableView()
     lazy var bottomView = makeBottomView()
+    lazy var tabView = makeTabView()
     lazy var activityView = makeActivityView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         makeConstraints()
         initialize()
     }
@@ -35,29 +40,49 @@ private extension TestView {
 private extension TestView {
     func makeConstraints() {
         NSLayoutConstraint.activate([
-            closeButton.heightAnchor.constraint(equalToConstant: 30.scale),
-            closeButton.widthAnchor.constraint(equalTo: closeButton.heightAnchor),
-            closeButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -10.scale),
-            closeButton.centerYAnchor.constraint(equalTo: progressView.centerYAnchor)
+            closeButton.heightAnchor.constraint(equalToConstant: 24.scale),
+            closeButton.widthAnchor.constraint(equalToConstant: 24.scale),
+            closeButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
+            closeButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            progressView.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 61.scale : 33.scale),
-            progressView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16.scale),
-            progressView.rightAnchor.constraint(equalTo: closeButton.leftAnchor),
-            progressView.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -20.scale)
+            titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 56.scale)
         ])
         
         NSLayoutConstraint.activate([
-            tableView.leftAnchor.constraint(equalTo: leftAnchor),
-            tableView.rightAnchor.constraint(equalTo: rightAnchor),
-            tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            menuButton.heightAnchor.constraint(equalToConstant: 24.scale),
+            menuButton.widthAnchor.constraint(equalToConstant: 24.scale),
+            menuButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
+            menuButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8.scale),
+            tableView.bottomAnchor.constraint(equalTo: progressView.topAnchor)
         ])
         
         NSLayoutConstraint.activate([
             bottomView.leadingAnchor.constraint(equalTo: leadingAnchor),
             bottomView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            bottomView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            bottomView.bottomAnchor.constraint(equalTo: progressView.topAnchor, constant: -12.scale),
+            bottomView.heightAnchor.constraint(equalToConstant: 60.scale)
+        ])
+        
+        NSLayoutConstraint.activate([
+            progressView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            progressView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            progressView.bottomAnchor.constraint(equalTo: tabView.topAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            tabView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            tabView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            tabView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            tabView.heightAnchor.constraint(equalToConstant: 100.scale)
         ])
         
         NSLayoutConstraint.activate([
@@ -71,37 +96,62 @@ private extension TestView {
 
 // MARK: Lazy initialization
 private extension TestView {
+    func makeCloseButton() -> TapAreaButton {
+        let view = TapAreaButton()
+        view.setImage(UIImage(named: "Question.Close"), for: .normal)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
+    func makeTitleLabel() -> UILabel {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
+    func makeMenuButton() -> TapAreaButton {
+        let view = TapAreaButton()
+        view.setImage(UIImage(named: "Question.Menu"), for: .normal)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
     func makeTableView() -> QuestionTableView {
         let view = QuestionTableView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.showsVerticalScrollIndicator = false
+        if #available(iOS 15.0, *) {
+            view.sectionHeaderTopPadding = 0.0
+        }
         view.backgroundColor = .clear
+        view.separatorStyle = .none
         view.contentInsetAdjustmentBehavior = .never
+        view.showsVerticalScrollIndicator = false
+        view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view
     }
     
     func makeProgressView() -> UIProgressView {
         let view = UIProgressView()
-        let color = Appearance.mainColor
-        view.trackTintColor = color.withAlphaComponent(0.3)
-        view.progressTintColor = color
+        view.trackTintColor = Appearance.mainColor.withAlphaComponent(0.3)
+        view.progressTintColor = Appearance.mainColor
         view.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(view)
-        return view
-    }
-    
-    func makeCloseButton() -> UIButton {
-        let view = UIButton()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.setImage(UIImage(named: "Question.Close"), for: .normal)
-        view.tintColor = .black
         addSubview(view)
         return view
     }
     
     func makeBottomView() -> BottomView {
         let view = BottomView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
+    func makeTabView() -> QuestionTabView {
+        let view = QuestionTabView()
+        view.backgroundColor = UIColor.clear
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

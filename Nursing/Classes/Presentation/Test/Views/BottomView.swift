@@ -7,13 +7,10 @@
 
 import UIKit
 
-class BottomView: UIView {
+final class BottomView: UIView {
     lazy var bottomButton = makeBottomButton()
     lazy var nextButton = makeNextButton()
-    lazy var gradientView = makeGradientView()
     lazy var preloader = makePreloader()
-    
-    private let gradientLayer = CAGradientLayer()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,14 +23,12 @@ class BottomView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        gradientLayer.frame = bounds
-    }
-    
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        bottomButton.frame.contains(point)
+        if bottomButton.isHidden && nextButton.isHidden {
+            return false
+        }
+        
+        return bounds.contains(point)
     }
 }
 
@@ -72,32 +67,24 @@ private extension BottomView {
 private extension BottomView {
     func makeConstraints() {
         NSLayoutConstraint.activate([
-            gradientView.topAnchor.constraint(equalTo: topAnchor),
-            gradientView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            gradientView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            gradientView.trailingAnchor.constraint(equalTo: trailingAnchor)
-        ])
-        
-        NSLayoutConstraint.activate([
-            bottomButton.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 71.scale : 30.scale),
             bottomButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 26.scale),
             bottomButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -26.scale),
-            bottomButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -36.scale),
-            bottomButton.heightAnchor.constraint(equalToConstant: 60.scale)
+            bottomButton.topAnchor.constraint(equalTo: topAnchor),
+            bottomButton.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            nextButton.leadingAnchor.constraint(equalTo: bottomButton.leadingAnchor),
-            nextButton.trailingAnchor.constraint(equalTo: bottomButton.trailingAnchor),
-            nextButton.topAnchor.constraint(equalTo: bottomButton.topAnchor),
-            nextButton.bottomAnchor.constraint(equalTo: bottomButton.bottomAnchor)
+            nextButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 26.scale),
+            nextButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -26.scale),
+            nextButton.topAnchor.constraint(equalTo: topAnchor),
+            nextButton.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            preloader.leadingAnchor.constraint(equalTo: bottomButton.leadingAnchor),
-            preloader.trailingAnchor.constraint(equalTo: bottomButton.trailingAnchor),
-            preloader.topAnchor.constraint(equalTo: bottomButton.topAnchor),
-            preloader.bottomAnchor.constraint(equalTo: bottomButton.bottomAnchor)
+            preloader.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 26.scale),
+            preloader.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -26.scale),
+            preloader.topAnchor.constraint(equalTo: topAnchor),
+            preloader.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }
@@ -118,22 +105,6 @@ private extension BottomView {
         view.setAttributedTitle("Question.NextQuestion".localized.attributed(with: Self.buttonAttr), for: .normal)
         view.layer.cornerRadius = 30.scale
         view.backgroundColor = Appearance.mainColor
-        view.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(view)
-        return view
-    }
-    
-    func makeGradientView() -> UIView {
-        let view = UIView()
-        
-        gradientLayer.colors = [UIColor.clear.cgColor, UIColor(integralRed: 241, green: 244, blue: 251).cgColor]
-        gradientLayer.locations = [0, 0.65]
-        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0)
-        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
-        
-        view.layer.mask = gradientLayer
-        view.isUserInteractionEnabled = false
-        view.backgroundColor = .white
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view
