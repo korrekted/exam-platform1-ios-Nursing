@@ -4,17 +4,18 @@
 //
 //  Created by Vitaliy Zagorodnov on 05.12.2021.
 //
+
 import UIKit
 import Kingfisher
 
 final class ExplanationImageCell: UITableViewCell {
-    
-    private lazy var explanationImage = makeImageView()
+    lazy var explanationImage = makeImageView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        initialize()
+        
         makeConstraints()
+        initialize()
     }
     
     required init?(coder: NSCoder) {
@@ -43,10 +44,10 @@ private extension ExplanationImageCell {
         let bottomConstraint = explanationImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         bottomConstraint.priority = .init(rawValue: 999)
         NSLayoutConstraint.activate([
-            explanationImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10.scale),
+            explanationImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8.scale),
             bottomConstraint,
-            explanationImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.scale),
-            explanationImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16.scale),
+            explanationImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24.scale),
+            explanationImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24.scale),
             explanationImage.heightAnchor.constraint(equalTo: explanationImage.widthAnchor, multiplier: 0.39)
         ])
     }

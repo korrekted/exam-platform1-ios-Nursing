@@ -52,7 +52,7 @@ private extension TestView {
         
         NSLayoutConstraint.activate([
             titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 56.scale)
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 56.scale : 30.scale)
         ])
         
         NSLayoutConstraint.activate([
@@ -117,6 +117,7 @@ private extension TestView {
     
     func makeMenuButton() -> TapAreaButton {
         let view = TapAreaButton()
+        view.isHidden = testType.isQotd()
         view.setImage(UIImage(named: "Question.Menu"), for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)

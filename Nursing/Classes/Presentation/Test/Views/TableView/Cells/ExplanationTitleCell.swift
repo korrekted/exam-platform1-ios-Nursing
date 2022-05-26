@@ -4,11 +4,11 @@
 //
 //  Created by Vitaliy Zagorodnov on 05.12.2021.
 //
+
 import UIKit
 
 final class ExplanationTitleCell: UITableViewCell {
-    
-    private lazy var titleLabel = makeTitleLabel()
+    lazy var titleLabel = makeTitleLabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -33,9 +33,9 @@ private extension ExplanationTitleCell {
 private extension ExplanationTitleCell {
     func makeConstraints() {
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20.scale),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.scale),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16.scale),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10.scale),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24.scale),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24.scale),
             titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
@@ -48,7 +48,7 @@ private extension ExplanationTitleCell {
         let attr = TextAttributes()
             .font(Fonts.SFProRounded.bold(size: 17.scale))
             .textColor(Appearance.mainColor)
-            .lineHeight(20.scale)
+            .lineHeight(22.scale)
         
         view.attributedText = "Question.Explanation".localized.attributed(with: attr)
         view.translatesAutoresizingMaskIntoConstraints = false

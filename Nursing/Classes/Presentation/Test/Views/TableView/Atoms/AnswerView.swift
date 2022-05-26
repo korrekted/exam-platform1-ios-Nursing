@@ -44,11 +44,11 @@ extension AnswerView {
         case initial, correct, error, warning, selected
     }
     
-    func setAnswer(answer: String, image: URL?) {
+    func setAnswer(answer: String, image: URL?, textSize: TextSize) {
         let attrs = TextAttributes()
-            .font(Fonts.SFProRounded.regular(size: 17.scale))
-            .textColor(.black)
-            .lineHeight(20.scale)
+            .font(Fonts.SFProRounded.regular(size: textSize.answerFontSize))
+            .textColor(UIColor.black)
+            .lineHeight(textSize.answerLineHeight)
         
         imageView.image = nil
         imageView.kf.cancelDownloadTask()
@@ -67,8 +67,8 @@ extension AnswerView {
         answerLabel.attributedText = answer.attributed(with: attrs)
     }
     
-    func setAnswer(answerHtml: String, image: URL?) {
-        answerLabel.attributedText = attributedString(for: answerHtml)
+    func setAnswer(answerHtml: String, image: URL?, textSize: TextSize) {
+        answerLabel.attributedText = attributedString(for: answerHtml, textSize: textSize)
         
         imageView.image = nil
         imageView.kf.cancelDownloadTask()
@@ -138,11 +138,11 @@ private extension AnswerView {
         needUpdateLabelConstraints()
     }
     
-    func attributedString(for htmlString: String) -> NSAttributedString? {
+    func attributedString(for htmlString: String, textSize: TextSize) -> NSAttributedString? {
         guard !htmlString.isEmpty else { return nil }
         
-        let font = Fonts.SFProRounded.regular(size: 17.scale)
-        let htmlWithStyle = "<span style=\"font-family: \(font.fontName); font-style: regular; font-size: \(font.pointSize); line-height: 20px;\">\(htmlString)</span>"
+        let font = Fonts.SFProRounded.regular(size: textSize.answerFontSize)
+        let htmlWithStyle = "<span style=\"font-family: \(font.fontName); font-style: regular; font-size: \(font.pointSize); line-height: \(textSize.answerLineHeight)px;\">\(htmlString)</span>"
         let data = Data(htmlWithStyle.utf8)
         
         let attributedString = try? NSAttributedString(
@@ -160,10 +160,10 @@ private extension AnswerView {
     func makeConstraints() {
         NSLayoutConstraint.activate([
             answerLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15.scale),
-            answerLabel.topAnchor.constraint(equalTo: topAnchor, constant: 19.scale)
+            answerLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16.scale)
         ])
         
-        labelBottomConstraint = answerLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -19.scale)
+        labelBottomConstraint = answerLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16.scale)
         labelBottomConstraint?.isActive = true
         
         needUpdateLabelConstraints()

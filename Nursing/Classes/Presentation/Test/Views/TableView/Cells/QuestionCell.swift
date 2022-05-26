@@ -7,14 +7,14 @@
 
 import UIKit
 
-class QuestionCell: UITableViewCell {
-    
-    private lazy var questionLabel = makeQuestionLabel()
+final class QuestionCell: UITableViewCell {
+    lazy var questionLabel = makeQuestionLabel()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        initialize()
+        
         makeConstraints()
+        initialize()
     }
     
     required init?(coder: NSCoder) {
@@ -24,20 +24,30 @@ class QuestionCell: UITableViewCell {
 
 // MARK: Public
 extension QuestionCell {
-    func configure(question: String, questionHtml: String) {
+    func configure(question: String, questionHtml: String, textSize: TextSize) {
         let attr = TextAttributes()
-            .font(Fonts.SFProRounded.regular(size: 25.scale))
-            .textColor(.black)
-            .lineHeight(30.scale)
+            .font(Fonts.SFProRounded.semiBold(size: textSize.questionFontSize))
+            .textColor(UIColor.black)
+            .lineHeight(textSize.questionLineHeight)
         
-        questionLabel.attributedText = attributedString(for: questionHtml) ?? question.attributed(with: attr)
+        questionLabel.attributedText = attributedString(for: questionHtml, textSize: textSize) ?? question.attributed(with: attr)
+    }
+}
+
+// MARK: Private
+private extension QuestionCell {
+    func initialize() {
+        backgroundColor = .clear
+        selectionStyle = .none
     }
     
-    func attributedString(for htmlString: String) -> NSAttributedString? {
-        guard !htmlString.isEmpty else { return nil }
+    func attributedString(for htmlString: String, textSize: TextSize) -> NSAttributedString? {
+        guard !htmlString.isEmpty else {
+            return nil
+        }
         
-        let font = Fonts.SFProRounded.regular(size: 25.scale)
-        let htmlWithStyle = "<span style=\"font-family: \(font.fontName); font-style: regular; font-size: \(font.pointSize); line-height: 30px;\">\(htmlString)</span>"
+        let font = Fonts.SFProRounded.semiBold(size: textSize.questionFontSize)
+        let htmlWithStyle = "<span style=\"font-family: \(font.fontName); font-style: semiBold; font-size: \(font.pointSize); line-height: \(textSize.questionLineHeight);\">\(htmlString)</span>"
         let data = Data(htmlWithStyle.utf8)
         
         let attributedString = try? NSAttributedString(
@@ -50,22 +60,14 @@ extension QuestionCell {
     }
 }
 
-// MARK: Private
-private extension QuestionCell {
-    func initialize() {
-        backgroundColor = .clear
-        selectionStyle = .none
-    }
-}
-
 // MARK: Make constraints
 private extension QuestionCell {
     func makeConstraints() {
         NSLayoutConstraint.activate([
             questionLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-            questionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -30.scale),
-            questionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.scale),
-            questionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16.scale)
+            questionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20.scale),
+            questionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24.scale),
+            questionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24.scale)
         ])
     }
 }

@@ -66,13 +66,13 @@ extension QuestionTableView: UITableViewDataSource {
                 self?.expandContent.accept($0)
             }
             return cell
-        case let .question(question, html):
+        case let .question(question, html, textSize):
             let cell = dequeueReusableCell(withIdentifier: String(describing: QuestionCell.self), for: indexPath) as! QuestionCell
-            cell.configure(question: question, questionHtml: html)
+            cell.configure(question: question, questionHtml: html, textSize: textSize)
             return cell
-        case let .answers(answers):
+        case let .answers(answers, textSize):
             let cell = dequeueReusableCell(withIdentifier: String(describing: AnswersCell.self), for: indexPath) as! AnswersCell
-            cell.configure(answers: answers, isMultiple: isMultiple, didTap: selectedIds)
+            cell.configure(answers: answers, textSize: textSize, isMultiple: isMultiple, didTap: selectedIds)
             return cell
         case .explanationTitle:
             let cell = dequeueReusableCell(withIdentifier: String(describing: ExplanationTitleCell.self), for: indexPath) as! ExplanationTitleCell
@@ -85,9 +85,9 @@ extension QuestionTableView: UITableViewDataSource {
             let cell = dequeueReusableCell(withIdentifier: String(describing: ExplanationTextCell.self), for: indexPath) as! ExplanationTextCell
             cell.confugure(explanation: explanation, html: html)
             return cell
-        case let .result(elements):
+        case let .result(elements, textSize):
             let cell = dequeueReusableCell(withIdentifier: String(describing: AnswersCell.self), for: indexPath) as! AnswersCell
-            cell.configure(result: elements)
+            cell.configure(result: elements, textSize: textSize)
             return cell
         case let .reference(reference):
             let cell = dequeueReusableCell(withIdentifier: String(describing: QuestionReferenceCell.self), for: indexPath) as! QuestionReferenceCell

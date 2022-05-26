@@ -155,7 +155,7 @@ final class TestViewController: UIViewController {
             .startWith(.hidden)
         
         let bottomButtonOffset = bottomViewData
-            .map { $0 == .hidden ? 90 : 140.scale }
+            .map { $0 == .hidden ? 90 : 90.scale }
         
         bottomViewData
             .drive(Binder(mainView.bottomView) {

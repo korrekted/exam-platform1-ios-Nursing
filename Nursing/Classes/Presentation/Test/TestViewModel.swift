@@ -33,12 +33,13 @@ final class TestViewModel {
     
     private lazy var observableRetrySingle = ObservableRetrySingle()
     
-    private lazy var questionManager = QuestionManagerCore()
-    private lazy var profileManager = ProfileManager()
-    
     private lazy var testElement = loadTest().share(replay: 1, scope: .forever)
     private lazy var selectedAnswers = makeSelectedAnswers().share(replay: 1, scope: .forever)
     private lazy var currentAnswers = makeCurrentAnswers().share(replay: 1, scope: .forever)
+    private lazy var studySettings = makeStudySettings()
+    
+    private lazy var questionManager = QuestionManagerCore()
+    private lazy var profileManager = ProfileManager()
 }
 
 // MARK: Private
@@ -66,9 +67,10 @@ private extension TestViewModel {
         
         let mode = testMode.asObservable()
         let courseName = courseName.asObservable()
+        let studySettings = studySettings.asObservable()
         
         let dataSource = Observable
-            .combineLatest(questions, selectedAnswers, mode, courseName) { ($0, $1, $2, $3) }
+            .combineLatest(questions, selectedAnswers, mode, courseName, studySettings) { ($0, $1, $2, $3, $4) }
             .scan([], accumulator: questionAccumulator)
         
         return dataSource
@@ -246,6 +248,12 @@ private extension TestViewModel {
         
         return Driver.merge(initial, updated)
     }
+    
+    func makeStudySettings() -> Driver<StudySettings> {
+        profileManager
+            .obtainStudySettings()
+            .asDriver(onErrorDriveWith: .never())
+    }
 }
 
 // MARK: Additional
@@ -256,9 +264,9 @@ private extension TestViewModel {
         case elements([QuestionElement])
     }
     
-    var questionAccumulator: ([QuestionElement], ([Question], AnswerElement?, TestMode?, String)) -> [QuestionElement] {
+    var questionAccumulator: ([QuestionElement], ([Question], AnswerElement?, TestMode?, String, StudySettings)) -> [QuestionElement] {
         return { [weak self] (old, args) -> [QuestionElement] in
-            let (questions, answers, testMode, courseName) = args
+            let (questions, answers, testMode, courseName, studySettings) = args
             guard !old.isEmpty else {
                 return questions.enumerated().map { index, question in
                     let answers = question.answers.map { PossibleAnswerElement(id: $0.id,
@@ -273,8 +281,8 @@ private extension TestViewModel {
                     
                     let elements: [TestingCellType] = [
                         !content.isEmpty ? .content(content) : nil,
-                        .question(question.question, html: question.questionHtml),
-                        .answers(answers)
+                        .question(question.question, html: question.questionHtml, studySettings.textSize),
+                        .answers(answers, studySettings.textSize)
                     ].compactMap { $0 }
                     
                     var referenceCellType = [TestingCellType]()
@@ -333,7 +341,7 @@ private extension TestViewModel {
                     self?.logAnswerAnalitycs(isCorrect: isCorrect, courseName: courseName)
                 }
                 
-                return .result(result)
+                return .result(result, studySettings.textSize)
             }
             
             let explanation: [TestingCellType]
@@ -402,7 +410,6 @@ private extension TestViewModel {
 }
 
 private extension TestViewModel {
-    
     func logAnswerAnalitycs(isCorrect: Bool, courseName: String) {
         guard let type = testType.value else {
             return

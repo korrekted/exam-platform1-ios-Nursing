@@ -4,16 +4,18 @@
 //
 //  Created by Vitaliy Zagorodnov on 31.01.2021.
 //
+
 import UIKit
 import RxSwift
 
 final class AnswersCell: UITableViewCell {
-    private lazy var stackView = makeStackView()
+    lazy var stackView = makeStackView()
     
     private var disposeBag = DisposeBag()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         makeConstraints()
         initialize()
     }
@@ -24,20 +26,22 @@ final class AnswersCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        
         disposeBag = DisposeBag()
     }
 }
 
 // MARK: Public
 extension AnswersCell {
-    func configure(answers: [PossibleAnswerElement], isMultiple: Bool, didTap: (([Int]) -> Void)?) {
+    func configure(answers: [PossibleAnswerElement], textSize: TextSize, isMultiple: Bool, didTap: (([Int]) -> Void)?) {
         stackView.arrangedSubviews.forEach {
             stackView.removeArrangedSubview($0)
             $0.removeFromSuperview()
         }
         let answersElements = answers.map { (makeAnswerView(answer: $0.answer,
                                                             answerHtml: $0.answerHtml,
-                                                            image: $0.image), $0) }
+                                                            image: $0.image,
+                                                            textSize: textSize), $0) }
         answersElements.map { $0.0 }.forEach(stackView.addArrangedSubview)
         setNeedsLayout()
         
@@ -83,7 +87,7 @@ extension AnswersCell {
             .disposed(by: disposeBag)
     }
     
-    func configure(result: [AnswerResultElement]) {
+    func configure(result: [AnswerResultElement], textSize: TextSize) {
         stackView.arrangedSubviews.forEach {
             stackView.removeArrangedSubview($0)
             $0.removeFromSuperview()
@@ -92,7 +96,8 @@ extension AnswersCell {
         let views = result.map { element -> AnswerView in
             let view = makeAnswerView(answer: element.answer,
                                       answerHtml: element.answerHtml,
-                                      image: element.image)
+                                      image: element.image,
+                                      textSize: textSize)
             view.isUserInteractionEnabled = false
             switch element.state {
             case .initial:
@@ -125,11 +130,10 @@ private extension AnswersCell {
 private extension AnswersCell {
     func makeConstraints() {
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10.scale),
+            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.scale),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16.scale)
         ])
-        
         
         let anchor = stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10.scale)
         anchor.priority = .init(999)
@@ -141,19 +145,19 @@ private extension AnswersCell {
 private extension AnswersCell {
     func makeStackView() -> UIStackView {
         let view = UIStackView()
-        view.spacing = 15.scale
+        view.spacing = 12.scale
         view.axis = .vertical
         view.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(view)
         return view
     }
     
-    func makeAnswerView(answer: String?, answerHtml: String?, image: URL?) -> AnswerView {
+    func makeAnswerView(answer: String?, answerHtml: String?, image: URL?, textSize: TextSize) -> AnswerView {
         let view = AnswerView()
         if let answerHtml = answerHtml {
-            view.setAnswer(answerHtml: answerHtml, image: image)
+            view.setAnswer(answerHtml: answerHtml, image: image, textSize: textSize)
         } else if let answer = answer {
-            view.setAnswer(answer: answer, image: image)
+            view.setAnswer(answer: answer, image: image, textSize: textSize)
         }
         return view
     }
