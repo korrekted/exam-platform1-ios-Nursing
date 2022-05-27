@@ -157,7 +157,7 @@ private extension TestView {
     }
     
     func makeTabView() -> QuestionTabView {
-        let view = QuestionTabView()
+        let view = QuestionTabView(testType: testType)
         view.backgroundColor = UIColor.clear
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
