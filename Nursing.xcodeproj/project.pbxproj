@@ -64,6 +64,9 @@
 		DE275C10283E6C1B0024D62E /* TextSizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275C0F283E6C1B0024D62E /* TextSizeView.swift */; };
 		DE275C13283E743E0024D62E /* TextSizeAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275C12283E743E0024D62E /* TextSizeAnswerView.swift */; };
 		DE275C15283F53E10024D62E /* QuestionTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275C14283F53E10024D62E /* QuestionTabView.swift */; };
+		DE275C202840AAE00024D62E /* TestOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275C1F2840AAE00024D62E /* TestOptionsViewController.swift */; };
+		DE275C222840AAE80024D62E /* TestOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275C212840AAE80024D62E /* TestOptionsView.swift */; };
+		DE275C252840AC1B0024D62E /* TestOptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275C242840AC1B0024D62E /* TestOptionButton.swift */; };
 		DE2B10E127DF6B41005280DB /* DefaultRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B10E027DF6B41005280DB /* DefaultRequestWrapper.swift */; };
 		DE2B10E427DF79E8005280DB /* XORRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B10E327DF79E8005280DB /* XORRequestWrapper.swift */; };
 		DE4EA4E327FF0B9C00DCEB92 /* TestBottomSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4EA4E227FF0B9C00DCEB92 /* TestBottomSpinner.swift */; };
@@ -399,6 +402,9 @@
 		DE275C0F283E6C1B0024D62E /* TextSizeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSizeView.swift; sourceTree = "<group>"; };
 		DE275C12283E743E0024D62E /* TextSizeAnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSizeAnswerView.swift; sourceTree = "<group>"; };
 		DE275C14283F53E10024D62E /* QuestionTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTabView.swift; sourceTree = "<group>"; };
+		DE275C1F2840AAE00024D62E /* TestOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestOptionsViewController.swift; sourceTree = "<group>"; };
+		DE275C212840AAE80024D62E /* TestOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestOptionsView.swift; sourceTree = "<group>"; };
+		DE275C242840AC1B0024D62E /* TestOptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestOptionButton.swift; sourceTree = "<group>"; };
 		DE2B10E027DF6B41005280DB /* DefaultRequestWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRequestWrapper.swift; sourceTree = "<group>"; };
 		DE2B10E327DF79E8005280DB /* XORRequestWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XORRequestWrapper.swift; sourceTree = "<group>"; };
 		DE4EA4E227FF0B9C00DCEB92 /* TestBottomSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestBottomSpinner.swift; sourceTree = "<group>"; };
@@ -961,6 +967,36 @@
 				DE93763A27ACE9880073F27C /* TestingCellType.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		DE275C1D2840AAA40024D62E /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				DE93763827ACE9880073F27C /* Models */,
+				DE93764127ACE9880073F27C /* Views */,
+				DE93764027ACE9880073F27C /* TestViewController.swift */,
+				DE93763727ACE9880073F27C /* TestViewModel.swift */,
+				DE93763F27ACE9880073F27C /* TestView.swift */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
+		DE275C1E2840AACC0024D62E /* Options */ = {
+			isa = PBXGroup;
+			children = (
+				DE275C232840AC0E0024D62E /* Atoms */,
+				DE275C1F2840AAE00024D62E /* TestOptionsViewController.swift */,
+				DE275C212840AAE80024D62E /* TestOptionsView.swift */,
+			);
+			path = Options;
+			sourceTree = "<group>";
+		};
+		DE275C232840AC0E0024D62E /* Atoms */ = {
+			isa = PBXGroup;
+			children = (
+				DE275C242840AC1B0024D62E /* TestOptionButton.swift */,
+			);
+			path = Atoms;
 			sourceTree = "<group>";
 		};
 		DE2B10E227DF79C3005280DB /* RequestWrapper */ = {
@@ -1676,11 +1712,8 @@
 		DE93762927ACE9880073F27C /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				DE93764127ACE9880073F27C /* Views */,
-				DE93763827ACE9880073F27C /* Models */,
-				DE93764027ACE9880073F27C /* TestViewController.swift */,
-				DE93763727ACE9880073F27C /* TestViewModel.swift */,
-				DE93763F27ACE9880073F27C /* TestView.swift */,
+				DE275C1E2840AACC0024D62E /* Options */,
+				DE275C1D2840AAA40024D62E /* Test */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -2143,12 +2176,14 @@
 				DE93773C27ACE9880073F27C /* CourseViewCoordinator.swift in Sources */,
 				DE93776027ACE9880073F27C /* PaygateSpecialOfferView.swift in Sources */,
 				DE4EB18E28047AED00DCEB92 /* OnboardingScope.swift in Sources */,
+				DE275C202840AAE00024D62E /* TestOptionsViewController.swift in Sources */,
 				DE93777927ACE9880073F27C /* StatsViewModel.swift in Sources */,
 				DE93778327ACE9880073F27C /* MainStatsDescriptionLineView.swift in Sources */,
 				DE93776427ACE9880073F27C /* TestStatsAnswerCell.swift in Sources */,
 				DE93772827ACE9880073F27C /* SettingsTableElement.swift in Sources */,
 				DE9376B427ACE9880073F27C /* StringExtension.swift in Sources */,
 				DE9376C027ACE9880073F27C /* NursingNavigationController.swift in Sources */,
+				DE275C252840AC1B0024D62E /* TestOptionButton.swift in Sources */,
 				DE93773827ACE9880073F27C /* StudyCollectionView.swift in Sources */,
 				DE9376F127ACE9880073F27C /* QuestionManager.swift in Sources */,
 				DE275BE1283BD20F0024D62E /* SettingsStudyCell.swift in Sources */,
@@ -2218,6 +2253,7 @@
 				DE9376DA27ACE9880073F27C /* PaygateMainOffer.swift in Sources */,
 				DE4EB1AC28047AED00DCEB92 /* OSlideTimeView.swift in Sources */,
 				DE93773F27ACE9880073F27C /* QuestionContentCell.swift in Sources */,
+				DE275C222840AAE80024D62E /* TestOptionsView.swift in Sources */,
 				DE9376FB27ACE9880073F27C /* GetSelectedCourseResponse.swift in Sources */,
 				DE93778027ACE9880073F27C /* CourseProgressCell.swift in Sources */,
 				DE93774C27ACE9880073F27C /* TestingCellType.swift in Sources */,

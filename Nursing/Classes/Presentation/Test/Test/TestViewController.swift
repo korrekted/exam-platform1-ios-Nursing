@@ -41,6 +41,14 @@ final class TestViewController: UIViewController {
         
         let courseName = viewModel.courseName
         
+        viewModel.tryAgain = { [weak self] error -> Observable<Void> in
+            guard let self = self else {
+                return .never()
+            }
+            
+            return self.openError()
+        }
+        
         viewModel.loadTestActivityIndicator
             .drive(onNext: { [weak self] activity in
                 guard let self = self else {
@@ -217,13 +225,13 @@ final class TestViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        viewModel.tryAgain = { [weak self] error -> Observable<Void> in
-            guard let self = self else {
-                return .never()
-            }
-            
-            return self.openError()
-        }
+        mainView.menuButton.rx.tap
+            .bind(to: Binder(self) { base, void in
+                let vc = TestOptionsViewController.make()
+                vc.delegate = base
+                base.present(vc, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -235,6 +243,17 @@ extension TestViewController {
         controller.viewModel.activeSubscription = activeSubscription
         controller.viewModel.testType.accept(testType)
         return controller
+    }
+}
+
+// MARK: TestOptionsViewControllerDelegate
+extension TestViewController: TestOptionsViewControllerDelegate {
+    func testOptionsDidTappedReport() {
+        
+    }
+    
+    func testOptionsDidTappedRestart() {
+        
     }
 }
 

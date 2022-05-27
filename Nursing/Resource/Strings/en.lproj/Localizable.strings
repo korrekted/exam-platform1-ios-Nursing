@@ -220,3 +220,7 @@
 "TextSize.Answer3" = "Allow client to share his feelings";
 "TextSize.Answer4" = "Actively listen to the client";
 "TextSize.Percent" = "Text size - %i%%";
+
+"Test.Options.Title" = "Options";
+"Test.Options.Report" = "Report question";
+"Test.Options.Restart" = "Restart quiz";
