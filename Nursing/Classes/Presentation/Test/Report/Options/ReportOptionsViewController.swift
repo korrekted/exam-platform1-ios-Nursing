@@ -1,5 +1,5 @@
 //
-//  TestOptionsViewController.swift
+//  ReportOptionsViewController.swift
 //  Nursing
 //
 //  Created by Андрей Чернышев on 27.05.2022.
@@ -8,15 +8,15 @@
 import UIKit
 import RxSwift
 
-protocol TestOptionsViewControllerDelegate: AnyObject {
-    func testOptionsDidTappedReport()
-    func testOptionsDidTappedRestart()
+protocol ReportOptionsViewControllerDelegate: AnyObject {
+    func reportOptionsDidTappedReport()
+    func reportOptionsDidTappedRestart()
 }
 
-final class TestOptionsViewController: UIViewController {
-    weak var delegate: TestOptionsViewControllerDelegate?
+final class ReportOptionsViewController: UIViewController {
+    weak var delegate: ReportOptionsViewControllerDelegate?
     
-    lazy var mainView = TestOptionsView()
+    lazy var mainView = ReportOptionsView()
     
     private lazy var disposeBag = DisposeBag()
     
@@ -40,7 +40,7 @@ final class TestOptionsViewController: UIViewController {
                 }
                 
                 self.dismiss(animated: true) {
-                    self.delegate?.testOptionsDidTappedReport()
+                    self.delegate?.reportOptionsDidTappedReport()
                 }
             })
             .disposed(by: disposeBag)
@@ -52,7 +52,7 @@ final class TestOptionsViewController: UIViewController {
                 }
                 
                 self.dismiss(animated: true) {
-                    self.delegate?.testOptionsDidTappedRestart()
+                    self.delegate?.reportOptionsDidTappedRestart()
                 }
             })
             .disposed(by: disposeBag)
@@ -60,9 +60,9 @@ final class TestOptionsViewController: UIViewController {
 }
 
 // MARK: Make
-extension TestOptionsViewController {
-    static func make() -> TestOptionsViewController {
-        let vc = TestOptionsViewController()
+extension ReportOptionsViewController {
+    static func make() -> ReportOptionsViewController {
+        let vc = ReportOptionsViewController()
         vc.modalPresentationStyle = .popover
         return vc
     }

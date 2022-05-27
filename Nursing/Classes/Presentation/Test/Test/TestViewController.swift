@@ -227,7 +227,7 @@ final class TestViewController: UIViewController {
         
         mainView.menuButton.rx.tap
             .bind(to: Binder(self) { base, void in
-                let vc = TestOptionsViewController.make()
+                let vc = ReportOptionsViewController.make()
                 vc.delegate = base
                 base.present(vc, animated: true)
             })
@@ -246,13 +246,28 @@ extension TestViewController {
     }
 }
 
-// MARK: TestOptionsViewControllerDelegate
-extension TestViewController: TestOptionsViewControllerDelegate {
-    func testOptionsDidTappedReport() {
-        
+// MARK: ReportOptionsViewControllerDelegate
+extension TestViewController: ReportOptionsViewControllerDelegate {
+    func reportOptionsDidTappedReport() {
+        let vc = ReportReasonsViewController.make(reason: nil)
+        vc.delegate = self
+        present(vc, animated: true)
     }
     
-    func testOptionsDidTappedRestart() {
+    func reportOptionsDidTappedRestart() {
+        // TODO
+    }
+}
+
+// MARK: ReportReasonsViewControllerDelegate
+extension TestViewController: ReportReasonsViewControllerDelegate {
+    func reportReasonDidTappedBack() {
+        let vc = ReportOptionsViewController.make()
+        vc.delegate = self
+        present(vc, animated: true)
+    }
+    
+    func reportReasonDidSelected(reason: ReportReason) {
         
     }
 }

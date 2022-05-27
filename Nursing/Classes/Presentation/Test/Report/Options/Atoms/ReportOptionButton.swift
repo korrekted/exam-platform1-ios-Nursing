@@ -1,5 +1,5 @@
 //
-//  TestOptionButton.swift
+//  ReportOptionButton.swift
 //  Nursing
 //
 //  Created by Андрей Чернышев on 27.05.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class TestOptionButton: UIButton {
+final class ReportOptionButton: UIButton {
     lazy var iconView = makeIconView()
     lazy var label = makeLabel()
     
@@ -29,7 +29,7 @@ final class TestOptionButton: UIButton {
 }
 
 // MARK: Make constraints
-private extension TestOptionButton {
+private extension ReportOptionButton {
     func makeConstraints() {
         NSLayoutConstraint.activate([
             iconView.widthAnchor.constraint(equalToConstant: 24.scale),
@@ -46,7 +46,7 @@ private extension TestOptionButton {
 }
 
 // MARK: Lazy initialization
-private extension TestOptionButton {
+private extension ReportOptionButton {
     func makeIconView() -> UIImageView {
         let view = UIImageView()
         view.image = UIImage(named: icon)

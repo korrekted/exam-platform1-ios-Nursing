@@ -1,5 +1,5 @@
 //
-//  TestOptionsView.swift
+//  ReportOptionsView.swift
 //  Nursing
 //
 //  Created by Андрей Чернышев on 27.05.2022.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-final class TestOptionsView: UIView {
+final class ReportOptionsView: UIView {
     lazy var titleLabel = makeTitleLabel()
     lazy var closeButton = makeCloseButton()
-    lazy var reportButton = makeOptionButton(icon: "TestOptions.Report", text: "Test.Options.Report".localized)
-    lazy var restartButton = makeOptionButton(icon: "TestOptions.Restart", text: "Test.Options.Restart".localized)
+    lazy var reportButton = makeOptionButton(icon: "ReportOptions.Report", text: "ReportOptions.Report".localized)
+    lazy var restartButton = makeOptionButton(icon: "ReportOptions.Restart", text: "ReportOptions.Restart".localized)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,14 +26,14 @@ final class TestOptionsView: UIView {
 }
 
 // MARK: Private
-private extension TestOptionsView {
+private extension ReportOptionsView {
     func initialize() {
         backgroundColor = Appearance.backgroundColor
     }
 }
 
 // MARK: Make constraints
-private extension TestOptionsView {
+private extension ReportOptionsView {
     func makeConstraints() {
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 26.scale),
@@ -64,7 +64,7 @@ private extension TestOptionsView {
 }
 
 // MARK: Lazy initialization
-private extension TestOptionsView {
+private extension ReportOptionsView {
     func makeTitleLabel() -> UILabel {
         let attrs = TextAttributes()
             .textColor(Appearance.blackColor)
@@ -73,7 +73,7 @@ private extension TestOptionsView {
             .letterSpacing(-0.41.scale)
         
         let view = UILabel()
-        view.attributedText = "Test.Options.Title".localized.attributed(with: attrs)
+        view.attributedText = "ReportOptions.Title".localized.attributed(with: attrs)
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view
@@ -87,8 +87,8 @@ private extension TestOptionsView {
         return view
     }
     
-    func makeOptionButton(icon: String, text: String) -> TestOptionButton {
-        let view = TestOptionButton(icon: icon, text: text)
+    func makeOptionButton(icon: String, text: String) -> ReportOptionButton {
+        let view = ReportOptionButton(icon: icon, text: text)
         view.backgroundColor = UIColor.white
         view.layer.cornerRadius = 20.scale
         view.layer.shadowColor = UIColor.black.cgColor

@@ -221,6 +221,14 @@
 "TextSize.Answer4" = "Actively listen to the client";
 "TextSize.Percent" = "Text size - %i%%";
 
-"Test.Options.Title" = "Options";
-"Test.Options.Report" = "Report question";
-"Test.Options.Restart" = "Restart quiz";
+// MARK: ReportOptions
+"ReportOptionsTitle" = "Options";
+"ReportOptions.Report" = "Report question";
+"ReportOptions.Restart" = "Restart quiz";
+
+// MARK: ReportReason
+"ReportReason.Title" = "Report";
+"ReportReason.Reason1" = "The answer is wrong";
+"ReportReason.Reason2" = "I caught a typo.";
+"ReportReason.Reason3" = "The question or hints are confusing";
+"ReportReason.Reason4" = "Something isn’t working or seems broken";
