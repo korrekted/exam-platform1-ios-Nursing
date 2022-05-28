@@ -1,5 +1,5 @@
 //
-//  QuestionManagerMediator.swift
+//  QuestionMediator.swift
 //  Nursing
 //
 //  Created by Vitaliy Zagorodnov on 27.02.2021.
@@ -7,22 +7,26 @@
 
 import RxCocoa
 
-final class QuestionManagerMediator {
-    static let shared = QuestionManagerMediator()
+protocol QuestionMediatorDelegate: AnyObject {
+    func questionMediatorDidTestPassed()
+}
+
+final class QuestionMediator {
+    static let shared = QuestionMediator()
     
     private let testPassedTrigger = PublishRelay<Void>()
     
-    private var delegates = [Weak<QuestionManagerDelegate>]()
+    private var delegates = [Weak<QuestionMediatorDelegate>]()
     
     private init() {}
 }
 
-// MARK: API
-extension QuestionManagerMediator {
+// MARK: Public
+extension QuestionMediator {
     func testPassed() {
         DispatchQueue.main.async { [weak self] in
             self?.delegates.forEach {
-                $0.weak?.didTestPassed()
+                $0.weak?.questionMediatorDidTestPassed()
             }
             
             self?.testPassedTrigger.accept(())
@@ -31,21 +35,21 @@ extension QuestionManagerMediator {
 }
 
 // MARK: Triggers(Rx)
-extension QuestionManagerMediator {
+extension QuestionMediator {
     var rxTestPassed: Signal<Void> {
         testPassedTrigger.asSignal()
     }
 }
 
 // MARK: Observer
-extension QuestionManagerMediator {
-    func add(delegate: QuestionManagerDelegate) {
+extension QuestionMediator {
+    func add(delegate: QuestionMediatorDelegate) {
         let weakly = delegate as AnyObject
-        delegates.append(Weak<QuestionManagerDelegate>(weakly))
+        delegates.append(Weak<QuestionMediatorDelegate>(weakly))
         delegates = delegates.filter { $0.weak != nil }
     }
 
-    func remove(delegate: QuestionManagerMediator) {
+    func remove(delegate: QuestionMediatorDelegate) {
         if let index = delegates.firstIndex(where: { $0.weak === delegate }) {
             delegates.remove(at: index)
         }

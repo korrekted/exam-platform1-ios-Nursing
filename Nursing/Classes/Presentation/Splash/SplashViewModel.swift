@@ -24,7 +24,7 @@ final class SplashViewModel {
     private lazy var sessionManager = SessionManager()
     private lazy var profileManager = ProfileManager()
     private lazy var paygateManager = PaygateManager()
-    private lazy var questionManager = QuestionManagerCore()
+    private lazy var questionManager = QuestionManager()
     
     private lazy var observableRetrySingle = ObservableRetrySingle()
     
@@ -61,7 +61,7 @@ final class SplashViewModel {
     
     func obtainOnboardingSet() -> Driver<Test?> {
         questionManager
-            .retrieveOnboardingSet(forceUpdate: true)
+            .obtainOnboardingSet(forceUpdate: true)
             .asDriver(onErrorJustReturn: nil)
     }
 }

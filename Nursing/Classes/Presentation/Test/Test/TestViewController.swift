@@ -226,8 +226,9 @@ final class TestViewController: UIViewController {
             .disposed(by: disposeBag)
         
         mainView.menuButton.rx.tap
-            .bind(to: Binder(self) { base, void in
-                let vc = ReportOptionsViewController.make()
+            .withLatestFrom(viewModel.question)
+            .bind(to: Binder(self) { base, question in
+                let vc = ReportOptionsViewController.make(questionId: question.id)
                 vc.delegate = base
                 base.present(vc, animated: true)
             })
@@ -248,8 +249,8 @@ extension TestViewController {
 
 // MARK: ReportOptionsViewControllerDelegate
 extension TestViewController: ReportOptionsViewControllerDelegate {
-    func reportOptionsDidTappedReport() {
-        let vc = ReportReasonsViewController.make(reason: nil)
+    func reportOptionsDidTappedReport(questionId: Int) {
+        let vc = ReportReasonsViewController.make(questionId: questionId, reason: nil)
         vc.delegate = self
         present(vc, animated: true)
     }
@@ -261,14 +262,29 @@ extension TestViewController: ReportOptionsViewControllerDelegate {
 
 // MARK: ReportReasonsViewControllerDelegate
 extension TestViewController: ReportReasonsViewControllerDelegate {
-    func reportReasonDidTappedBack() {
-        let vc = ReportOptionsViewController.make()
+    func reportReasonDidTappedBack(questionId: Int) {
+        let vc = ReportOptionsViewController.make(questionId: questionId)
         vc.delegate = self
         present(vc, animated: true)
     }
     
-    func reportReasonDidSelected(reason: ReportReason) {
-        
+    func reportReasonDidSelected(questionId: Int, reason: ReportReason) {
+        let vc = ReportViewController.make(questionId: questionId, reason: reason)
+        vc.delegate = self
+        present(vc, animated: true)
+    }
+}
+
+// MARK: ReportViewControllerDelegate
+extension TestViewController: ReportViewControllerDelegate {
+    func reportViewControllerDidTappedBack(questionId: Int, reason: ReportReason) {
+        let vc = ReportReasonsViewController.make(questionId: questionId, reason: reason)
+        vc.delegate = self
+        present(vc, animated: true)
+    }
+    
+    func reportViewControllerDidReported() {
+        Toast.notify(with: "Report.Success".localized, style: .success)
     }
 }
 

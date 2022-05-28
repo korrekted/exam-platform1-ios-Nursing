@@ -7,19 +7,33 @@
 
 import RxSwift
 
-final class QuestionManagerCore: QuestionManager {
+protocol QuestionManagerProtocol: AnyObject {
+    func obtain(courseId: Int, testId: Int?, activeSubscription: Bool) -> Single<Test?>
+    func obtainTenSet(courseId: Int, activeSubscription: Bool) -> Single<Test?>
+    func obtainFailedSet(courseId: Int, activeSubscription: Bool) -> Single<Test?>
+    func obtainQotd(courseId: Int, activeSubscription: Bool) -> Single<Test?>
+    func obtainRandomSet(courseId: Int, activeSubscription: Bool) -> Single<Test?>
+    func obtainOnboardingSet(forceUpdate: Bool) -> Single<Test?>
+    func sendAnswer(questionId: Int, userTestId: Int, answerIds: [Int]) -> Single<Bool?>
+    func retrieveConfig(courseId: Int) -> Single<[TestConfig]>
+    func report(questionId: Int, reason: Int, email: String, comment: String) -> Single<Void>
+}
+
+final class QuestionManager: QuestionManagerProtocol {
     enum Constants {
-        static let onboardingSetKey = "question_manager_core_onboarding_set_key"
+        static let onboardingSetKey = "question_manager_onboarding_set_key"
     }
+    
+    private lazy var sessionManager = SessionManager()
     
     private let xorRequestWrapper = XORRequestWrapper()
     private let defaultRequestWrapper = DefaultRequestWrapper()
 }
 
 // MARK: Public
-extension QuestionManagerCore {
-    func retrieve(courseId: Int, testId: Int?, activeSubscription: Bool) -> Single<Test?> {
-        guard let userToken = SessionManager().getSession()?.userToken else {
+extension QuestionManager {
+    func obtain(courseId: Int, testId: Int?, activeSubscription: Bool) -> Single<Test?> {
+        guard let userToken = sessionManager.getSession()?.userToken else {
             return .deferred { .just(nil) }
         }
         
@@ -32,11 +46,11 @@ extension QuestionManagerCore {
         
         return xorRequestWrapper
             .callServerStringApi(requestBody: request)
-            .map(GetTestResponseMapper.map(from:))
+            .map { try GetTestResponseMapper.map(from: $0) }
     }
     
-    func retrieveTenSet(courseId: Int, activeSubscription: Bool) -> Single<Test?> {
-        guard let userToken = SessionManager().getSession()?.userToken else {
+    func obtainTenSet(courseId: Int, activeSubscription: Bool) -> Single<Test?> {
+        guard let userToken = sessionManager.getSession()?.userToken else {
             return .deferred { .just(nil) }
         }
         
@@ -46,11 +60,11 @@ extension QuestionManagerCore {
         
         return xorRequestWrapper
             .callServerStringApi(requestBody: request)
-            .map(GetTestResponseMapper.map(from:))
+            .map { try GetTestResponseMapper.map(from: $0) }
     }
     
-    func retrieveFailedSet(courseId: Int, activeSubscription: Bool) -> Single<Test?> {
-        guard let userToken = SessionManager().getSession()?.userToken else {
+    func obtainFailedSet(courseId: Int, activeSubscription: Bool) -> Single<Test?> {
+        guard let userToken = sessionManager.getSession()?.userToken else {
             return .deferred { .just(nil) }
         }
         
@@ -60,11 +74,11 @@ extension QuestionManagerCore {
         
         return xorRequestWrapper
             .callServerStringApi(requestBody: request)
-            .map(GetTestResponseMapper.map(from:))
+            .map { try GetTestResponseMapper.map(from: $0) }
     }
     
-    func retrieveQotd(courseId: Int, activeSubscription: Bool) -> Single<Test?> {
-        guard let userToken = SessionManager().getSession()?.userToken else {
+    func obtainQotd(courseId: Int, activeSubscription: Bool) -> Single<Test?> {
+        guard let userToken = sessionManager.getSession()?.userToken else {
             return .deferred { .just(nil) }
         }
         
@@ -74,11 +88,11 @@ extension QuestionManagerCore {
         
         return xorRequestWrapper
             .callServerStringApi(requestBody: request)
-            .map(GetTestResponseMapper.map(from:))
+            .map { try GetTestResponseMapper.map(from: $0) }
     }
     
-    func retrieveRandomSet(courseId: Int, activeSubscription: Bool) -> Single<Test?> {
-        guard let userToken = SessionManager ().getSession()?.userToken else {
+    func obtainRandomSet(courseId: Int, activeSubscription: Bool) -> Single<Test?> {
+        guard let userToken = sessionManager.getSession()?.userToken else {
             return .deferred { .just(nil) }
         }
         
@@ -88,15 +102,15 @@ extension QuestionManagerCore {
         
         return xorRequestWrapper
             .callServerStringApi(requestBody: request)
-            .map(GetTestResponseMapper.map(from:))
+            .map { try GetTestResponseMapper.map(from: $0) }
     }
     
-    func retrieveOnboardingSet(forceUpdate: Bool) -> Single<Test?> {
-        forceUpdate ? downloadAndCacheOnboardingSet() : cachedOnboardingSet()
+    func obtainOnboardingSet(forceUpdate: Bool) -> Single<Test?> {
+        forceUpdate ? loadOnboardingSet() : cachedOnboardingSet()
     }
     
     func sendAnswer(questionId: Int, userTestId: Int, answerIds: [Int]) -> Single<Bool?> {
-        guard let userToken = SessionManager().getSession()?.userToken else {
+        guard let userToken = sessionManager.getSession()?.userToken else {
             return .deferred { .just(nil) }
         }
         
@@ -109,17 +123,16 @@ extension QuestionManagerCore {
         
         return defaultRequestWrapper
             .callServerApi(requestBody: request)
-            .map(SendAnswerResponseMapper.map(from:))
+            .map { try SendAnswerResponseMapper.map(from: $0) }
             .do(onSuccess: { isEndOfTest in
                 if isEndOfTest == true {
-                    QuestionManagerMediator.shared.testPassed()
+                    QuestionMediator.shared.testPassed()
                 }
             })
-
     }
     
     func retrieveConfig(courseId: Int) -> Single<[TestConfig]> {
-        guard let userToken = SessionManager().getSession()?.userToken else {
+        guard let userToken = sessionManager.getSession()?.userToken else {
             return .error(SignError.tokenNotFound)
         }
         
@@ -128,14 +141,30 @@ extension QuestionManagerCore {
         
         return xorRequestWrapper
             .callServerStringApi(requestBody: request)
-            .map(GetTestConfigResponseMapper.from(response:))
+            .map { GetTestConfigResponseMapper.from(response: $0) }
+    }
+    
+    func report(questionId: Int, reason: Int, email: String, comment: String) -> Single<Void> {
+        guard let userToken = sessionManager.getSession()?.userToken else {
+            return .error(SignError.tokenNotFound)
+        }
+        
+        let request = ReportRequest(userToken: userToken,
+                                    questionId: questionId,
+                                    reason: reason,
+                                    email: email,
+                                    comment: comment)
+        
+        return defaultRequestWrapper
+            .callServerApi(requestBody: request)
+            .mapToVoid()
     }
 }
 
 // MARK: Private
-private extension QuestionManagerCore {
-    func downloadAndCacheOnboardingSet() -> Single<Test?> {
-        guard let userToken = SessionManager().getSession()?.userToken else {
+private extension QuestionManager {
+    func loadOnboardingSet() -> Single<Test?> {
+        guard let userToken = sessionManager.getSession()?.userToken else {
             return .error(SignError.tokenNotFound)
         }
         

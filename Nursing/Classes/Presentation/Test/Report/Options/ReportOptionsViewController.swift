@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 
 protocol ReportOptionsViewControllerDelegate: AnyObject {
-    func reportOptionsDidTappedReport()
+    func reportOptionsDidTappedReport(questionId: Int)
     func reportOptionsDidTappedRestart()
 }
 
@@ -20,6 +20,18 @@ final class ReportOptionsViewController: UIViewController {
     
     private lazy var disposeBag = DisposeBag()
     
+    private let questionId: Int
+    
+    private init(questionId: Int) {
+        self.questionId = questionId
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func loadView() {
         view = mainView
     }
@@ -28,31 +40,23 @@ final class ReportOptionsViewController: UIViewController {
         super.viewDidLoad()
         
         mainView.closeButton.rx.tap
-            .subscribe(onNext: { [weak self] in
-                self?.dismiss(animated: true)
+            .bind(to: Binder(self) { base, void in
+                base.dismiss(animated: true)
             })
             .disposed(by: disposeBag)
         
         mainView.reportButton.rx.tap
-            .subscribe(onNext: { [weak self] in
-                guard let self = self else {
-                    return
-                }
-                
-                self.dismiss(animated: true) {
-                    self.delegate?.reportOptionsDidTappedReport()
+            .bind(to: Binder(self) { base, void in
+                base.dismiss(animated: true) {
+                    base.delegate?.reportOptionsDidTappedReport(questionId: base.questionId)
                 }
             })
             .disposed(by: disposeBag)
         
         mainView.restartButton.rx.tap
-            .subscribe(onNext: { [weak self] in
-                guard let self = self else {
-                    return
-                }
-                
-                self.dismiss(animated: true) {
-                    self.delegate?.reportOptionsDidTappedRestart()
+            .bind(to: Binder(self) { base, void in
+                base.dismiss(animated: true) {
+                    base.delegate?.reportOptionsDidTappedRestart()
                 }
             })
             .disposed(by: disposeBag)
@@ -61,8 +65,8 @@ final class ReportOptionsViewController: UIViewController {
 
 // MARK: Make
 extension ReportOptionsViewController {
-    static func make() -> ReportOptionsViewController {
-        let vc = ReportOptionsViewController()
+    static func make(questionId: Int) -> ReportOptionsViewController {
+        let vc = ReportOptionsViewController(questionId: questionId)
         vc.modalPresentationStyle = .popover
         return vc
     }

@@ -222,7 +222,7 @@
 "TextSize.Percent" = "Text size - %i%%";
 
 // MARK: ReportOptions
-"ReportOptionsTitle" = "Options";
+"ReportOptions.Title" = "Options";
 "ReportOptions.Report" = "Report question";
 "ReportOptions.Restart" = "Restart quiz";
 
@@ -232,3 +232,13 @@
 "ReportReason.Reason2" = "I caught a typo.";
 "ReportReason.Reason3" = "The question or hints are confusing";
 "ReportReason.Reason4" = "Something isn’t working or seems broken";
+
+// MARK: Report
+"Report.Title" = "Report";
+"Report.Email" = "Email";
+"Report.Email.Confirm" = "Confirm Email";
+"Report.Email.Hint" = "Please enter your email so that we can give you quick feedback to the specified address";
+"Report.Message.Title" = "How can we help";
+"Report.Message.Placeholder" = "Please explain your issue in a little bit more detail";
+"Report.Button" = "Report";
+"Report.Success" = "We’ve submitted your feedback. Thanks for improving us for everyone.";

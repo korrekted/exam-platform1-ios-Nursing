@@ -38,7 +38,7 @@ final class TestViewModel {
     private lazy var currentAnswers = makeCurrentAnswers().share(replay: 1, scope: .forever)
     private lazy var studySettings = makeStudySettings()
     
-    private lazy var questionManager = QuestionManagerCore()
+    private lazy var questionManager = QuestionManager()
     private lazy var profileManager = ProfileManager()
 }
 
@@ -109,21 +109,21 @@ private extension TestViewModel {
                 
                 switch type {
                 case let .get(testId):
-                    test = self.questionManager.retrieve(courseId: courseId,
-                                                         testId: testId,
-                                                         activeSubscription: self.activeSubscription)
+                    test = self.questionManager.obtain(courseId: courseId,
+                                                       testId: testId,
+                                                       activeSubscription: self.activeSubscription)
                 case .tenSet:
-                    test = self.questionManager.retrieveTenSet(courseId: courseId,
-                                                               activeSubscription: self.activeSubscription)
-                case .failedSet:
-                    test = self.questionManager.retrieveFailedSet(courseId: courseId,
-                                                                  activeSubscription: self.activeSubscription)
-                case .qotd:
-                    test = self.questionManager.retrieveQotd(courseId: courseId,
+                    test = self.questionManager.obtainTenSet(courseId: courseId,
                                                              activeSubscription: self.activeSubscription)
+                case .failedSet:
+                    test = self.questionManager.obtainFailedSet(courseId: courseId,
+                                                                activeSubscription: self.activeSubscription)
+                case .qotd:
+                    test = self.questionManager.obtainQotd(courseId: courseId,
+                                                           activeSubscription: self.activeSubscription)
                 case .randomSet:
-                    test = self.questionManager.retrieveRandomSet(courseId: courseId,
-                                                                  activeSubscription: self.activeSubscription)
+                    test = self.questionManager.obtainRandomSet(courseId: courseId,
+                                                                activeSubscription: self.activeSubscription)
                 }
                 
                 return test
