@@ -82,6 +82,8 @@
 		DE275C4C284209E80024D62E /* ReportScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275C4B284209E80024D62E /* ReportScope.swift */; };
 		DE275C4F28420CFA0024D62E /* ReportEditingOverseer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275C4E28420CFA0024D62E /* ReportEditingOverseer.swift */; };
 		DE275C51284213530024D62E /* ReportValidationOverseer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275C50284213530024D62E /* ReportValidationOverseer.swift */; };
+		DE275C5328435B570024D62E /* SaveQuestionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275C5228435B570024D62E /* SaveQuestionRequest.swift */; };
+		DE275C5528435B690024D62E /* RemoveSavedQuestionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275C5428435B690024D62E /* RemoveSavedQuestionRequest.swift */; };
 		DE2B10E127DF6B41005280DB /* DefaultRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B10E027DF6B41005280DB /* DefaultRequestWrapper.swift */; };
 		DE2B10E427DF79E8005280DB /* XORRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B10E327DF79E8005280DB /* XORRequestWrapper.swift */; };
 		DE4EA4E327FF0B9C00DCEB92 /* TestBottomSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4EA4E227FF0B9C00DCEB92 /* TestBottomSpinner.swift */; };
@@ -433,6 +435,8 @@
 		DE275C4B284209E80024D62E /* ReportScope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportScope.swift; sourceTree = "<group>"; };
 		DE275C4E28420CFA0024D62E /* ReportEditingOverseer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportEditingOverseer.swift; sourceTree = "<group>"; };
 		DE275C50284213530024D62E /* ReportValidationOverseer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportValidationOverseer.swift; sourceTree = "<group>"; };
+		DE275C5228435B570024D62E /* SaveQuestionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveQuestionRequest.swift; sourceTree = "<group>"; };
+		DE275C5428435B690024D62E /* RemoveSavedQuestionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveSavedQuestionRequest.swift; sourceTree = "<group>"; };
 		DE2B10E027DF6B41005280DB /* DefaultRequestWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRequestWrapper.swift; sourceTree = "<group>"; };
 		DE2B10E327DF79E8005280DB /* XORRequestWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XORRequestWrapper.swift; sourceTree = "<group>"; };
 		DE4EA4E227FF0B9C00DCEB92 /* TestBottomSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestBottomSpinner.swift; sourceTree = "<group>"; };
@@ -1503,6 +1507,8 @@
 				DE275C33284114340024D62E /* GetConfig */,
 				DE275C32284113EE0024D62E /* GetTest */,
 				DE275C36284118500024D62E /* ReportRequest.swift */,
+				DE275C5228435B570024D62E /* SaveQuestionRequest.swift */,
+				DE275C5428435B690024D62E /* RemoveSavedQuestionRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -2414,6 +2420,7 @@
 				DE9376D627ACE9880073F27C /* PaygateOption.swift in Sources */,
 				DE93775627ACE9880073F27C /* BottomView.swift in Sources */,
 				DE80310A27FC41D200F69A8E /* SplashActivity.swift in Sources */,
+				DE275C5328435B570024D62E /* SaveQuestionRequest.swift in Sources */,
 				DE93771027ACE9880073F27C /* IAPErrorHelper.swift in Sources */,
 				DE4EB1A928047AED00DCEB92 /* OSlideModesView.swift in Sources */,
 				DE93771427ACE9880073F27C /* GetBriefResponseMapper.swift in Sources */,
@@ -2520,6 +2527,7 @@
 				DE9376BD27ACE9880073F27C /* Weak.swift in Sources */,
 				DE93771D27ACE9880073F27C /* SettingsView.swift in Sources */,
 				DE275C13283E743E0024D62E /* TextSizeAnswerView.swift in Sources */,
+				DE275C5528435B690024D62E /* RemoveSavedQuestionRequest.swift in Sources */,
 				DE9376F627ACE9880073F27C /* Course.swift in Sources */,
 				DE4EB19928047AED00DCEB92 /* WelcomeSlide1View.swift in Sources */,
 				DE93774527ACE9880073F27C /* AnswersCell.swift in Sources */,

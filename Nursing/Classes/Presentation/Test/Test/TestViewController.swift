@@ -70,6 +70,17 @@ final class TestViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        mainView.tabView.favoriteButton.rx.tap
+            .withLatestFrom(viewModel.isSavedQuestion)
+            .bind(to: viewModel.didTapMark)
+            .disposed(by: disposeBag)
+        
+        viewModel.isSavedQuestion
+            .drive(Binder(self) { base, isSaved in
+                base.updateFavorite(isSaved)
+            })
+            .disposed(by: disposeBag)
+        
         viewModel.question
             .drive(Binder(self) { base, element in
                 base.mainView.tableView.setup(question: element)
@@ -233,6 +244,15 @@ final class TestViewController: UIViewController {
                 base.present(vc, animated: true)
             })
             .disposed(by: disposeBag)
+        
+        mainView.tabView.reportButton.rx.tap
+            .withLatestFrom(viewModel.question)
+            .bind(to: Binder(self) { base, question in
+                let vc = ReportReasonsViewController.make(questionId: question.id, reason: nil)
+                vc.delegate = base
+                base.present(vc, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -290,6 +310,11 @@ extension TestViewController: ReportViewControllerDelegate {
 
 // MARK: Private
 private extension TestViewController {
+    func updateFavorite(_ saved: Bool) {
+        let image = UIImage(named: saved ? "Question.Favorite.Check" : "Question.Favorite.Uncheck")
+        mainView.tabView.favoriteButton.setImage(image, for: .normal)
+    }
+    
     func updateProgress(questionElement: QuestionElement) {
         let attrs = TextAttributes()
             .textColor(Appearance.blackColor.withAlphaComponent(0.5))

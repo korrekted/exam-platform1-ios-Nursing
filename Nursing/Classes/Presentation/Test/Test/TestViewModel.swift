@@ -14,12 +14,14 @@ final class TestViewModel {
     var activeSubscription = false
     
     let testType = BehaviorRelay<TestType?>(value: nil)
+    let didTapMark = PublishRelay<Bool>()
     let didTapNext = PublishRelay<Void>()
     let didTapConfirm = PublishRelay<Void>()
     let didTapSubmit = PublishRelay<Void>()
     let answers = BehaviorRelay<AnswerElement?>(value: nil)
     
     lazy var courseName = makeCourseName()
+    lazy var isSavedQuestion = makeIsSavedQuestion()
     lazy var question = makeQuestion()
     lazy var isEndOfTest = endOfTest()
     lazy var userTestId = makeUserTestId()
@@ -48,6 +50,45 @@ private extension TestViewModel {
         course
             .map { $0?.name ?? "" }
             .asDriver(onErrorDriveWith: .empty())
+    }
+    
+    func makeIsSavedQuestion() -> Driver<Bool> {
+        let initial = question
+            .asObservable()
+            .map { $0.isSaved }
+        
+        let isSavedQuestion = didTapMark
+            .withLatestFrom(question) { ($0, $1.id) }
+            .flatMapFirst { [weak self] isSaved, questionId -> Observable<Bool> in
+                guard let self = self else {
+                    return .empty()
+                }
+                
+                func source() -> Single<Bool> {
+                    let request = isSaved
+                        ? self.questionManager.removeSavedQuestion(questionId: questionId)
+                        : self.questionManager.saveQuestion(questionId: questionId)
+
+                    return request
+                        .map { !isSaved }
+                }
+                
+                func trigger(error: Error) -> Observable<Void> {
+                    guard let tryAgain = self.tryAgain?(error) else {
+                        return .empty()
+                    }
+                    
+                    return tryAgain
+                }
+
+                return self.observableRetrySingle
+                    .retry(source: { source() },
+                           trigger: { trigger(error: $0) })
+            }
+        
+        return Observable
+            .merge(initial, isSavedQuestion)
+            .asDriver(onErrorJustReturn: false)
     }
     
     func makeQuestion() -> Driver<QuestionElement> {
@@ -296,7 +337,8 @@ private extension TestViewModel {
                         isMultiple: question.multiple,
                         index: index + 1,
                         isAnswered: question.isAnswered,
-                        questionsCount: questions.count
+                        questionsCount: questions.count,
+                        isSaved: question.isSaved
                     )
                 }
             }
@@ -377,7 +419,8 @@ private extension TestViewModel {
                 isMultiple: currentElement.isMultiple,
                 index: currentElement.index,
                 isAnswered: currentElement.isAnswered,
-                questionsCount: currentElement.questionsCount
+                questionsCount: currentElement.questionsCount,
+                isSaved: currentElement.isSaved
             )
             var result = old
             result[index] = newElement

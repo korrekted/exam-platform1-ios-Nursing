@@ -32,6 +32,7 @@ struct QuestionElement {
     let index: Int
     let isAnswered: Bool
     let questionsCount: Int
+    let isSaved: Bool
 }
 
 struct AnswerElement {

@@ -69,6 +69,8 @@ private extension GetTestResponseMapper {
             let media = restJSON["explanation_media"] as? [String] ?? []
             let mediaURLs = media.compactMap { URL(string: $0)}
             
+            let isSaved = restJSON["saved"] as? Bool ?? false
+            
             return Question(
                 id: id,
                 image: URL(string: image),
@@ -81,7 +83,8 @@ private extension GetTestResponseMapper {
                 explanationHtml: explanationHtml,
                 media: mediaURLs,
                 isAnswered: isAnswered,
-                reference: reference
+                reference: reference,
+                isSaved: isSaved
             )
         }
     }

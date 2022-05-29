@@ -15,6 +15,8 @@ protocol QuestionManagerProtocol: AnyObject {
     func obtainRandomSet(courseId: Int, activeSubscription: Bool) -> Single<Test?>
     func obtainOnboardingSet(forceUpdate: Bool) -> Single<Test?>
     func sendAnswer(questionId: Int, userTestId: Int, answerIds: [Int]) -> Single<Bool?>
+    func saveQuestion(questionId: Int) -> Single<Void>
+    func removeSavedQuestion(questionId: Int) -> Single<Void>
     func retrieveConfig(courseId: Int) -> Single<[TestConfig]>
     func report(questionId: Int, reason: Int, email: String, comment: String) -> Single<Void>
 }
@@ -129,6 +131,32 @@ extension QuestionManager {
                     QuestionMediator.shared.testPassed()
                 }
             })
+    }
+    
+    func saveQuestion(questionId: Int) -> Single<Void> {
+        guard let userToken = sessionManager.getSession()?.userToken else {
+            return .error(SignError.tokenNotFound)
+        }
+        
+        let request = SaveQuestionRequest(userToken: userToken,
+                                          questionId: questionId)
+        
+        return defaultRequestWrapper
+            .callServerApi(requestBody: request)
+            .mapToVoid()
+    }
+    
+    func removeSavedQuestion(questionId: Int) -> Single<Void> {
+        guard let userToken = sessionManager.getSession()?.userToken else {
+            return .error(SignError.tokenNotFound)
+        }
+        
+        let request = RemoveSavedQuestionRequest(userToken: userToken,
+                                                 questionId: questionId)
+        
+        return defaultRequestWrapper
+            .callServerApi(requestBody: request)
+            .mapToVoid()
     }
     
     func retrieveConfig(courseId: Int) -> Single<[TestConfig]> {

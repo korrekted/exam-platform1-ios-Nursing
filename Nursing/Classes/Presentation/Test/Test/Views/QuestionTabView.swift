@@ -35,20 +35,20 @@ private extension QuestionTabView {
             previousButton.widthAnchor.constraint(equalToConstant: 40.scale),
             previousButton.heightAnchor.constraint(equalToConstant: 40.scale),
             previousButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
-            previousButton.topAnchor.constraint(equalTo: topAnchor, constant: 22.scale)
+            previousButton.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 22.scale : 12.scale)
         ])
         
         NSLayoutConstraint.activate([
             nextButton.widthAnchor.constraint(equalToConstant: 40.scale),
             nextButton.heightAnchor.constraint(equalToConstant: 40.scale),
             nextButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
-            nextButton.topAnchor.constraint(equalTo: topAnchor, constant: 22.scale)
+            nextButton.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 22.scale : 12.scale)
         ])
         
         NSLayoutConstraint.activate([
             favoriteButton.widthAnchor.constraint(equalToConstant: 24.scale),
             favoriteButton.heightAnchor.constraint(equalToConstant: 24.scale),
-            favoriteButton.topAnchor.constraint(equalTo: topAnchor, constant: 30.scale)
+            favoriteButton.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 30.scale : 20.scale)
         ])
         
         if testType.isQotd() {
@@ -60,7 +60,7 @@ private extension QuestionTabView {
         NSLayoutConstraint.activate([
             reportButton.widthAnchor.constraint(equalToConstant: 24.scale),
             reportButton.heightAnchor.constraint(equalToConstant: 24.scale),
-            reportButton.topAnchor.constraint(equalTo: topAnchor, constant: 30.scale),
+            reportButton.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 30.scale : 20.scale),
             reportButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 227.scale)
         ])
     }

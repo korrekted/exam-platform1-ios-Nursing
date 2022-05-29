@@ -26,6 +26,7 @@ struct Question: Codable, Hashable {
     let media: [URL]
     let isAnswered: Bool
     let reference: String?
+    let isSaved: Bool
 }
 
 struct Answer: Codable, Hashable {
