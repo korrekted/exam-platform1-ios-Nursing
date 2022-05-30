@@ -76,7 +76,7 @@ private extension StudyViewModel {
                 
                 func source() -> Single<(Course, Brief?)> {
                     self.statsManager
-                        .retrieveBrief(courseId: course.id)
+                        .obtainBrief(courseId: course.id)
                         .map { (course, $0) }
                 }
                 

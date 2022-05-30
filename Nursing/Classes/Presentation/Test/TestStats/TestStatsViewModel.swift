@@ -17,7 +17,7 @@ final class TestStatsViewModel {
     lazy var elements = makeElements()
     lazy var testName = makeTestName()
     
-    private lazy var testStatsManager = TestStatsManagerCore()
+    private lazy var statsManager = StatsManager()
     private lazy var profileManager = ProfileManager()
 }
 
@@ -36,8 +36,8 @@ private extension TestStatsViewModel {
             .flatMapLatest { [weak self] userTestId -> Observable<TestStats?> in
                 guard let self = self else { return .empty() }
                 
-                return self.testStatsManager
-                    .retrieve(userTestId: userTestId)
+                return self.statsManager
+                    .obtainTestStats(userTestId: userTestId, peek: true)
                     .asObservable()
                     .catchAndReturn(nil)
             }

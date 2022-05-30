@@ -84,6 +84,8 @@
 		DE275C51284213530024D62E /* ReportValidationOverseer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275C50284213530024D62E /* ReportValidationOverseer.swift */; };
 		DE275C5328435B570024D62E /* SaveQuestionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275C5228435B570024D62E /* SaveQuestionRequest.swift */; };
 		DE275C5528435B690024D62E /* RemoveSavedQuestionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275C5428435B690024D62E /* RemoveSavedQuestionRequest.swift */; };
+		DE275C5A2844B8200024D62E /* QuitQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275C592844B8200024D62E /* QuitQuizViewController.swift */; };
+		DE275C5C2844B8290024D62E /* QuitQuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275C5B2844B8290024D62E /* QuitQuizView.swift */; };
 		DE2B10E127DF6B41005280DB /* DefaultRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B10E027DF6B41005280DB /* DefaultRequestWrapper.swift */; };
 		DE2B10E427DF79E8005280DB /* XORRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B10E327DF79E8005280DB /* XORRequestWrapper.swift */; };
 		DE4EA4E327FF0B9C00DCEB92 /* TestBottomSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4EA4E227FF0B9C00DCEB92 /* TestBottomSpinner.swift */; };
@@ -178,8 +180,6 @@
 		DE9376E027ACE9880073F27C /* TestStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93759C27ACE9880073F27C /* TestStats.swift */; };
 		DE9376E127ACE9880073F27C /* GetTestStatsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93759E27ACE9880073F27C /* GetTestStatsRequest.swift */; };
 		DE9376E227ACE9880073F27C /* GetTestStatsResponseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93759F27ACE9880073F27C /* GetTestStatsResponseMapper.swift */; };
-		DE9376E327ACE9880073F27C /* TestStatsManagerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375A127ACE9880073F27C /* TestStatsManagerCore.swift */; };
-		DE9376E427ACE9880073F27C /* TestStatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375A227ACE9880073F27C /* TestStatsManager.swift */; };
 		DE9376E527ACE9880073F27C /* TestConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375A527ACE9880073F27C /* TestConfig.swift */; };
 		DE9376E627ACE9880073F27C /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375A627ACE9880073F27C /* Test.swift */; };
 		DE9376E727ACE9880073F27C /* GetTestResponseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375A827ACE9880073F27C /* GetTestResponseMapper.swift */; };
@@ -437,6 +437,8 @@
 		DE275C50284213530024D62E /* ReportValidationOverseer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportValidationOverseer.swift; sourceTree = "<group>"; };
 		DE275C5228435B570024D62E /* SaveQuestionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveQuestionRequest.swift; sourceTree = "<group>"; };
 		DE275C5428435B690024D62E /* RemoveSavedQuestionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveSavedQuestionRequest.swift; sourceTree = "<group>"; };
+		DE275C592844B8200024D62E /* QuitQuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitQuizViewController.swift; sourceTree = "<group>"; };
+		DE275C5B2844B8290024D62E /* QuitQuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitQuizView.swift; sourceTree = "<group>"; };
 		DE2B10E027DF6B41005280DB /* DefaultRequestWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRequestWrapper.swift; sourceTree = "<group>"; };
 		DE2B10E327DF79E8005280DB /* XORRequestWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XORRequestWrapper.swift; sourceTree = "<group>"; };
 		DE4EA4E227FF0B9C00DCEB92 /* TestBottomSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestBottomSpinner.swift; sourceTree = "<group>"; };
@@ -531,8 +533,6 @@
 		DE93759C27ACE9880073F27C /* TestStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestStats.swift; sourceTree = "<group>"; };
 		DE93759E27ACE9880073F27C /* GetTestStatsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetTestStatsRequest.swift; sourceTree = "<group>"; };
 		DE93759F27ACE9880073F27C /* GetTestStatsResponseMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetTestStatsResponseMapper.swift; sourceTree = "<group>"; };
-		DE9375A127ACE9880073F27C /* TestStatsManagerCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestStatsManagerCore.swift; sourceTree = "<group>"; };
-		DE9375A227ACE9880073F27C /* TestStatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestStatsManager.swift; sourceTree = "<group>"; };
 		DE9375A527ACE9880073F27C /* TestConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConfig.swift; sourceTree = "<group>"; };
 		DE9375A627ACE9880073F27C /* Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		DE9375A827ACE9880073F27C /* GetTestResponseMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetTestResponseMapper.swift; sourceTree = "<group>"; };
@@ -1145,6 +1145,24 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		DE275C562844B8030024D62E /* QuitQuiz */ = {
+			isa = PBXGroup;
+			children = (
+				DE275C592844B8200024D62E /* QuitQuizViewController.swift */,
+				DE275C5B2844B8290024D62E /* QuitQuizView.swift */,
+			);
+			path = QuitQuiz;
+			sourceTree = "<group>";
+		};
+		DE275C5D28451FF60024D62E /* GetTestStats */ = {
+			isa = PBXGroup;
+			children = (
+				DE93759F27ACE9880073F27C /* GetTestStatsResponseMapper.swift */,
+				DE93759E27ACE9880073F27C /* GetTestStatsRequest.swift */,
+			);
+			path = GetTestStats;
+			sourceTree = "<group>";
+		};
 		DE2B10E227DF79C3005280DB /* RequestWrapper */ = {
 			isa = PBXGroup;
 			children = (
@@ -1381,7 +1399,6 @@
 			children = (
 				DE93758527ACE9880073F27C /* Rate */,
 				DE93758827ACE9880073F27C /* Paygate */,
-				DE93759A27ACE9880073F27C /* TestStats */,
 				DE9375A327ACE9880073F27C /* Questions */,
 				DE9375B727ACE9880073F27C /* Courses */,
 				DE9375CB27ACE9880073F27C /* Profile */,
@@ -1442,42 +1459,6 @@
 				DE93759727ACE9880073F27C /* GetMonetizationConfigRequest.swift */,
 			);
 			path = Requests;
-			sourceTree = "<group>";
-		};
-		DE93759A27ACE9880073F27C /* TestStats */ = {
-			isa = PBXGroup;
-			children = (
-				DE93759B27ACE9880073F27C /* Models */,
-				DE93759D27ACE9880073F27C /* Requests */,
-				DE9375A027ACE9880073F27C /* Manager */,
-			);
-			path = TestStats;
-			sourceTree = "<group>";
-		};
-		DE93759B27ACE9880073F27C /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				DE93759C27ACE9880073F27C /* TestStats.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		DE93759D27ACE9880073F27C /* Requests */ = {
-			isa = PBXGroup;
-			children = (
-				DE93759E27ACE9880073F27C /* GetTestStatsRequest.swift */,
-				DE93759F27ACE9880073F27C /* GetTestStatsResponseMapper.swift */,
-			);
-			path = Requests;
-			sourceTree = "<group>";
-		};
-		DE9375A027ACE9880073F27C /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				DE9375A127ACE9880073F27C /* TestStatsManagerCore.swift */,
-				DE9375A227ACE9880073F27C /* TestStatsManager.swift */,
-			);
-			path = Manager;
 			sourceTree = "<group>";
 		};
 		DE9375A327ACE9880073F27C /* Questions */ = {
@@ -1647,6 +1628,7 @@
 		DE9375E527ACE9880073F27C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				DE93759C27ACE9880073F27C /* TestStats.swift */,
 				DE9375E627ACE9880073F27C /* Brief.swift */,
 				DE9375E727ACE9880073F27C /* Stats.swift */,
 			);
@@ -1656,6 +1638,7 @@
 		DE9375E827ACE9880073F27C /* Requests */ = {
 			isa = PBXGroup;
 			children = (
+				DE275C5D28451FF60024D62E /* GetTestStats */,
 				DE275C01283D78140024D62E /* GetStatsRequest */,
 				DE275C00283D77FE0024D62E /* GetBriefRequest */,
 				DE275BFE283D77EF0024D62E /* ResetStatsRequest.swift */,
@@ -1698,7 +1681,6 @@
 				DE93762227ACE9880073F27C /* Course */,
 				DE93762927ACE9880073F27C /* Test */,
 				DE93764727ACE9880073F27C /* Paygate */,
-				DE93765227ACE9880073F27C /* TestStats */,
 				DE93766627ACE9880073F27C /* Courses */,
 				DE93766F27ACE9880073F27C /* Photo */,
 				DE93767327ACE9880073F27C /* Stats */,
@@ -1767,8 +1749,8 @@
 			isa = PBXGroup;
 			children = (
 				DE93761327ACE9880073F27C /* Views */,
-				DE93761127ACE9880073F27C /* StudyViewModel.swift */,
 				DE93761227ACE9880073F27C /* StudyViewController.swift */,
+				DE93761127ACE9880073F27C /* StudyViewModel.swift */,
 				DE93762127ACE9880073F27C /* StudyView.swift */,
 			);
 			path = Study;
@@ -1845,6 +1827,8 @@
 		DE93762927ACE9880073F27C /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				DE275C562844B8030024D62E /* QuitQuiz */,
+				DE93765227ACE9880073F27C /* TestStats */,
 				DE275C262840B7300024D62E /* Report */,
 				DE275C1D2840AAA40024D62E /* Test */,
 			);
@@ -2283,6 +2267,7 @@
 				DE8030FB27F5DC1300F69A8E /* TryAgainView.swift in Sources */,
 				DE275BF4283CA2600024D62E /* ChangeExamDateViewController.swift in Sources */,
 				DE9376EB27ACE9880073F27C /* GetFailedSetRequest.swift in Sources */,
+				DE275C5C2844B8290024D62E /* QuitQuizView.swift in Sources */,
 				DE9376C927ACE9880073F27C /* RxActivityIndicator.swift in Sources */,
 				DE93771127ACE9880073F27C /* Brief.swift in Sources */,
 				DE275C3C28411F750024D62E /* ReportViewModel.swift in Sources */,
@@ -2342,7 +2327,6 @@
 				DE93776327ACE9880073F27C /* TestStatsProgressCell.swift in Sources */,
 				DE93773D27ACE9880073F27C /* TabItemView.swift in Sources */,
 				DE4EB19128047AED00DCEB92 /* OStepView.swift in Sources */,
-				DE9376E327ACE9880073F27C /* TestStatsManagerCore.swift in Sources */,
 				DE4EB1A828047AED00DCEB92 /* OSlideCountView.swift in Sources */,
 				DE9376FE27ACE9880073F27C /* CoursesManager.swift in Sources */,
 				DE9376AE27ACE9880073F27C /* UIColorExtension.swift in Sources */,
@@ -2370,6 +2354,7 @@
 				DE4EB19A28047AED00DCEB92 /* WelcomeSlideIndicatorView.swift in Sources */,
 				DE93776927ACE9880073F27C /* TestStatsDescriptionElement.swift in Sources */,
 				DE9376E627ACE9880073F27C /* Test.swift in Sources */,
+				DE275C5A2844B8200024D62E /* QuitQuizViewController.swift in Sources */,
 				DE93775E27ACE9880073F27C /* PaygateMainInfoCell.swift in Sources */,
 				DE93772927ACE9880073F27C /* SettingsViewController.swift in Sources */,
 				DE9376DE27ACE9880073F27C /* MonetizationManager.swift in Sources */,
@@ -2483,7 +2468,6 @@
 				DE275BCE283B96520024D62E /* Single+Utils.swift in Sources */,
 				DE9376C827ACE9880073F27C /* AppDelegate.swift in Sources */,
 				DE275C10283E6C1B0024D62E /* TextSizeView.swift in Sources */,
-				DE9376E427ACE9880073F27C /* TestStatsManager.swift in Sources */,
 				DE4EB1A128047AED00DCEB92 /* OPushView.swift in Sources */,
 				DE93778727ACE9880073F27C /* MainStatsView.swift in Sources */,
 				DE93773127ACE9880073F27C /* SCModeCell.swift in Sources */,

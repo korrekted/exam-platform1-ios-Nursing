@@ -8,8 +8,9 @@
 import RxSwift
 
 protocol StatsManagerProtocol: AnyObject {
-    func retrieveStats(courseId: Int) -> Single<Stats?>
-    func retrieveBrief(courseId: Int) -> Single<Brief?>
+    func obtainStats(courseId: Int) -> Single<Stats?>
+    func obtainTestStats(userTestId: Int, peek: Bool) -> Single<TestStats?>
+    func obtainBrief(courseId: Int) -> Single<Brief?>
     func resetStats(for courseId: Int) -> Single<Void>
 }
 
@@ -21,9 +22,9 @@ final class StatsManager: StatsManagerProtocol {
 
 // MARK: Public
 extension StatsManager {
-    func retrieveStats(courseId: Int) -> Single<Stats?> {
+    func obtainStats(courseId: Int) -> Single<Stats?> {
         guard let userToken = sessionManager.getSession()?.userToken else {
-            return .deferred { .just(nil) }
+            return .error(SignError.tokenNotFound)
         }
         
         let request = GetStatsRequest(userToken: userToken, courseId: courseId)
@@ -36,9 +37,23 @@ extension StatsManager {
             })
     }
     
-    func retrieveBrief(courseId: Int) -> Single<Brief?> {
+    func obtainTestStats(userTestId: Int, peek: Bool) -> Single<TestStats?> {
         guard let userToken = sessionManager.getSession()?.userToken else {
-            return .deferred { .just(nil) }
+            return .error(SignError.tokenNotFound)
+        }
+        
+        let request = GetTestStatsRequest(userToken: userToken,
+                                          userTestId: userTestId,
+                                          peek: peek)
+        
+        return defaultRequestWrapper
+            .callServerApi(requestBody: request)
+            .map { GetTestStatsResponseMapper.map(from: $0) }
+    }
+    
+    func obtainBrief(courseId: Int) -> Single<Brief?> {
+        guard let userToken = sessionManager.getSession()?.userToken else {
+            return .error(SignError.tokenNotFound)
         }
         
         let request = GetBriefRequest(userToken: userToken, courseId: courseId)

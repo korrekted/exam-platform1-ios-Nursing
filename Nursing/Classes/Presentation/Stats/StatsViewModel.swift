@@ -52,7 +52,7 @@ private extension StatsViewModel {
                 
                 func source() -> Single<Stats?> {
                     self.statsManager
-                        .retrieveStats(courseId: course.id)
+                        .obtainStats(courseId: course.id)
                 }
                 
                 func trigger(error: Error) -> Observable<Void> {

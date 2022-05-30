@@ -17,11 +17,11 @@ final class TestViewModel {
     let didTapMark = PublishRelay<Bool>()
     let didTapNext = PublishRelay<Void>()
     let didTapConfirm = PublishRelay<Void>()
-    let didTapSubmit = PublishRelay<Void>()
     let answers = BehaviorRelay<AnswerElement?>(value: nil)
     
     lazy var courseName = makeCourseName()
     lazy var isSavedQuestion = makeIsSavedQuestion()
+    lazy var questions = makeQuestions()
     lazy var question = makeQuestion()
     lazy var isEndOfTest = endOfTest()
     lazy var userTestId = makeUserTestId()
@@ -95,7 +95,7 @@ private extension TestViewModel {
         Observable<Action>
             .merge(
                 didTapNext.debounce(.microseconds(500), scheduler: MainScheduler.instance).map { _ in .next },
-                makeQuestions().map { .elements($0) }
+                questions.map { .elements($0) }
             )
             .scan((nil, []), accumulator: currentQuestionAccumulator)
             .compactMap { $0.0 }
@@ -194,8 +194,7 @@ private extension TestViewModel {
     }
 
     func makeUserTestId() -> Observable<Int> {
-        didTapSubmit
-            .withLatestFrom(testElement)
+        testElement
             .compactMap { $0.element?.userTestId }
     }
     

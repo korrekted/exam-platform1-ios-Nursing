@@ -109,7 +109,13 @@ final class TestViewController: UIViewController {
         
         currentButtonState
             .compactMap { $0 == .submit ? () : nil }
-            .bind(to: viewModel.didTapSubmit)
+            .withLatestFrom(viewModel.userTestId)
+            .withLatestFrom(courseName) { ($0, $1) }
+            .bind(to: Binder(self) { base, stub in
+                let (id, name) = stub
+
+                base.finishTest(id: id, name: name)
+            })
             .disposed(by: disposeBag)
         
         currentButtonState
@@ -129,11 +135,38 @@ final class TestViewController: UIViewController {
             .disposed(by: disposeBag)
         
         mainView.closeButton.rx.tap
-            .withLatestFrom(courseName)
-            .bind(to: Binder(self) { base, name in
-                base.logTapAnalytics(courseName: name, what: "close")
-                
+            .withLatestFrom(viewModel.testType)
+            .compactMap { $0 }
+            .filter { $0.isQotd() }
+            .withLatestFrom(viewModel.courseName)
+            .bind(to: Binder(self) { base, courseName in
+                base.logTapAnalytics(courseName: courseName, what: "close")
                 base.dismiss(animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        mainView.closeButton.rx.tap
+            .withLatestFrom(viewModel.testType)
+            .compactMap { $0 }
+            .filter { !$0.isQotd() }
+            .withLatestFrom(courseName)
+            .withLatestFrom(viewModel.questions) { ($0, $1) }
+            .withLatestFrom(viewModel.userTestId) { ($0.0, $0.1, $1) }
+            .bind(to: Binder(self) { base, args in
+                let (courseName, questions, userTestId) = args
+                
+                // TODO: answeredQuestionsCount
+                let vc = QuitQuizViewController.make(allQuestionsCount: questions.count,
+                                                     answeredQuestionsCount: questions.filter { $0.isAnswered }.count) { result in
+                    switch result {
+                    case .quit:
+                        base.logTapAnalytics(courseName: courseName, what: "close")
+                        base.dismiss(animated: true)
+                    case .submit:
+                        base.finishTest(id: userTestId, name: courseName)
+                    }
+                }
+                base.present(vc, animated: false)
             })
             .disposed(by: disposeBag)
         
@@ -170,16 +203,6 @@ final class TestViewController: UIViewController {
         bottomViewData
             .drive(Binder(mainView.bottomView) {
                 $0.setup(state: $1)
-            })
-            .disposed(by: disposeBag)
-        
-        viewModel.userTestId
-            .withLatestFrom(courseName) { ($0, $1) }
-            .bind(to: Binder(self) { base, stub in
-                let (id, name) = stub
-                
-                base.didTapSubmit?(id)
-                base.logTapAnalytics(courseName: name, what: "finish test")
             })
             .disposed(by: disposeBag)
         
@@ -332,6 +355,11 @@ private extension TestViewController {
             
             mainView.progressView.setProgress(Float(questionElement.index) / Float(questionElement.questionsCount), animated: true)
         }
+    }
+    
+    func finishTest(id: Int, name: String) {
+        didTapSubmit?(id)
+        logTapAnalytics(courseName: name, what: "finish test")
     }
     
     func logAnalytics(courseName: String) {

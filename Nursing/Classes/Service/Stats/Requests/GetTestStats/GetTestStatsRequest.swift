@@ -8,13 +8,9 @@
 import Alamofire
 
 struct GetTestStatsRequest: APIRequestBody {
-    private let userToken: String
-    private let userTestId: Int
-    
-    init(userToken: String, userTestId: Int) {
-        self.userToken = userToken
-        self.userTestId = userTestId
-    }
+    let userToken: String
+    let userTestId: Int
+    let peek: Bool
     
     var url: String {
         GlobalDefinitions.domainUrl + "/api/tests/stats"
@@ -29,6 +25,7 @@ struct GetTestStatsRequest: APIRequestBody {
             "_api_key": GlobalDefinitions.apiKey,
             "_user_token": userToken,
             "user_test_id": userTestId,
+            "peek": peek
         ]
     }
 }
