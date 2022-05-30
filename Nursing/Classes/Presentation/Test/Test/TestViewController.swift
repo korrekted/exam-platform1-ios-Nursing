@@ -98,6 +98,13 @@ final class TestViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        viewModel.bottomViewState
+            .startWith(.hidden)
+            .drive(Binder(mainView.bottomView) {
+                $0.setup(state: $1)
+            })
+            .disposed(by: disposeBag)
+        
         let currentButtonState = mainView.bottomView.bottomButton.rx.tap
             .withLatestFrom(viewModel.bottomViewState)
             .share()
@@ -175,34 +182,20 @@ final class TestViewController: UIViewController {
                 self?.updateProgress(questionElement: element)
             })
             .disposed(by: disposeBag)
-        
-        let testMode = viewModel.testMode
-            .startWith(nil)
-        
-        let isHiddenNext = Driver
+    
+        Driver
             .merge(
-                viewModel.isEndOfTest.withLatestFrom(testMode) { ($0, $1) },
+                viewModel.isEndOfTest.withLatestFrom(viewModel.testMode) { ($0, $1) },
                 mainView.bottomView.nextButton.rx.tap.asDriver().map { _ in (true, nil) }
             )
-        
-        isHiddenNext
-            .drive(onNext: { [weak self] stub in
-                let (isHidden, testMode) = stub
-                
+            .drive(Binder(self) { base, args in
+                let (isEndOfTest, testMode) = args
+
                 if testMode == .onAnExam {
-                    self?.viewModel.didTapNext.accept(Void())
-                } else {
-                    self?.mainView.bottomView.nextButton.isHidden = isHidden
+                    base.viewModel.didTapNext.accept(Void())
                 }
-            })
-            .disposed(by: disposeBag)
-        
-        let bottomViewData = viewModel.bottomViewState
-            .startWith(.hidden)
-        
-        bottomViewData
-            .drive(Binder(mainView.bottomView) {
-                $0.setup(state: $1)
+                
+                base.mainView.bottomView.nextButton.isHidden = isEndOfTest || testMode == .onAnExam
             })
             .disposed(by: disposeBag)
         

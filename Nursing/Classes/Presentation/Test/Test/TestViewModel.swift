@@ -207,7 +207,6 @@ private extension TestViewModel {
             .compactMap { $0 }
             .withLatestFrom(testElement) {
                 ($0, $1.element?.userTestId)
-                
             }
             .flatMapLatest { [weak self] element, userTestId -> Observable<Bool> in
                 guard let self = self else {
