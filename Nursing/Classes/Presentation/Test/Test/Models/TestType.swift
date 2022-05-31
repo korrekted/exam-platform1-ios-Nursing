@@ -11,6 +11,7 @@ enum TestType {
     case failedSet
     case qotd
     case randomSet
+    case saved
 }
 
 // MARK: Public

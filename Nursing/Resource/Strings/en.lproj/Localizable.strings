@@ -115,6 +115,7 @@
 "Study.Mode.TenQuestions" = "10 Questions\nQuick Quiz";
 "Study.Mode.MissedQuestions" = "Missed\nQuestions Quiz";
 "Study.Mode.RandomSet" = "Random\nSet Quiz";
+"Study.Mode.Saved" = "Saved\nQuestions Quiz";
 
 // MARK: Settings
 "Settings.Title" = "Settings";

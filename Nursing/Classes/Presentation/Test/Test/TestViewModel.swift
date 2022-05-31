@@ -189,6 +189,9 @@ private extension TestViewModel {
                 case .randomSet:
                     test = self.questionManager.obtainRandomSet(courseId: courseId,
                                                                 activeSubscription: self.activeSubscription)
+                case .saved:
+                    test = self.questionManager.obtainSavedSet(courseId: courseId,
+                                                               activeSubscription: self.activeSubscription)
                 }
                 
                 return test

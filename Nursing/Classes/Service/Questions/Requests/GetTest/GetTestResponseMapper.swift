@@ -8,12 +8,34 @@
 import Foundation
 
 struct GetTestResponseMapper {
-    static func map(from response: Any) throws -> Test? {
+    static func map(from response: Any, isEncryption: Bool) throws -> Test? {
+        isEncryption ? try encryptionMap(from: response) : try defaultMap(from: response)
+    }
+}
+
+// MARK: Private
+private extension GetTestResponseMapper {
+    static func encryptionMap(from response: Any) throws -> Test? {
         guard
             let string = response as? String,
-            let json = XOREncryption.toJSON(string, key: GlobalDefinitions.apiKey),
-            let code = json["_code"] as? Int
+            let json = XOREncryption.toJSON(string, key: GlobalDefinitions.apiKey)
         else {
+            return nil
+        }
+        
+        return try map(json: json)
+    }
+    
+    static func defaultMap(from response: Any) throws -> Test? {
+        guard let json = response as? [String: Any] else {
+            return nil
+        }
+        
+        return try map(json: json)
+    }
+    
+    static func map(json: [String: Any]) throws -> Test? {
+        guard let code = json["_code"] as? Int else {
             return nil
         }
         
@@ -41,10 +63,7 @@ struct GetTestResponseMapper {
             questions: questions
         )
     }
-}
-
-// MARK: Private
-private extension GetTestResponseMapper {
+    
     static func map(from questions: [[String: Any]]) -> [Question] {
         questions.compactMap { restJSON -> Question? in
             guard

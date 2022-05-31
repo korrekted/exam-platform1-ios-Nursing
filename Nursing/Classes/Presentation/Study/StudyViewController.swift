@@ -135,6 +135,11 @@ private extension StudyViewController {
             
             AmplitudeManager.shared
                 .logEvent(name: "Study Tap", parameters: ["what": "question of the day"])
+        case .saved:
+            openTest(type: .saved, activeSubscription: activeSubscription)
+            
+            AmplitudeManager.shared
+                .logEvent(name: "Study Tap", parameters: ["what": "saved questions"])
         }
     }
     

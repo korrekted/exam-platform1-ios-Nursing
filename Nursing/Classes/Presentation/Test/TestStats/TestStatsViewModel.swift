@@ -91,6 +91,8 @@ private extension TestStatsViewModel {
                     return "Study.Mode.TodaysQuestion".localized
                 case .randomSet:
                     return "Study.Mode.RandomSet".localized
+                case .saved:
+                    return "Study.Mode.Saved".localized
                 case .none:
                     return ""
                 }

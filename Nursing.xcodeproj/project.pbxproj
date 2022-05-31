@@ -329,6 +329,7 @@
 		DE9377F627B16C7E0073F27C /* SF-Pro-Rounded-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE9377F527B16C730073F27C /* SF-Pro-Rounded-Black.otf */; };
 		DE93781627BE52930073F27C /* GetOnboardingSetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93781527BE52930073F27C /* GetOnboardingSetRequest.swift */; };
 		DEBCD1562845F956000C08A9 /* URL+Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBCD1552845F956000C08A9 /* URL+Parameters.swift */; };
+		DEBCD15828465A98000C08A9 /* GetSavedSetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBCD15728465A98000C08A9 /* GetSavedSetRequest.swift */; };
 		DEC345ED280D8C7C0069A060 /* Onboarding.Chart.json in Resources */ = {isa = PBXBuildFile; fileRef = DEC345EC280D8C7C0069A060 /* Onboarding.Chart.json */; };
 /* End PBXBuildFile section */
 
@@ -682,6 +683,7 @@
 		DE9377F527B16C730073F27C /* SF-Pro-Rounded-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Black.otf"; sourceTree = "<group>"; };
 		DE93781527BE52930073F27C /* GetOnboardingSetRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOnboardingSetRequest.swift; sourceTree = "<group>"; };
 		DEBCD1552845F956000C08A9 /* URL+Parameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Parameters.swift"; sourceTree = "<group>"; };
+		DEBCD15728465A98000C08A9 /* GetSavedSetRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSavedSetRequest.swift; sourceTree = "<group>"; };
 		DEC345EC280D8C7C0069A060 /* Onboarding.Chart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Onboarding.Chart.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1083,6 +1085,7 @@
 				DE9375AD27ACE9880073F27C /* GetRandomSetRequest.swift */,
 				DE9375AC27ACE9880073F27C /* GetFailedSetRequest.swift */,
 				DE9375A827ACE9880073F27C /* GetTestResponseMapper.swift */,
+				DEBCD15728465A98000C08A9 /* GetSavedSetRequest.swift */,
 			);
 			path = GetTest;
 			sourceTree = "<group>";
@@ -2305,6 +2308,7 @@
 				DE93770E27ACE9880073F27C /* IAPProduct.swift in Sources */,
 				DE93773C27ACE9880073F27C /* CourseViewCoordinator.swift in Sources */,
 				DE93776027ACE9880073F27C /* PaygateSpecialOfferView.swift in Sources */,
+				DEBCD15828465A98000C08A9 /* GetSavedSetRequest.swift in Sources */,
 				DE4EB18E28047AED00DCEB92 /* OnboardingScope.swift in Sources */,
 				DE275C202840AAE00024D62E /* ReportOptionsViewController.swift in Sources */,
 				DE93777927ACE9880073F27C /* StatsViewModel.swift in Sources */,

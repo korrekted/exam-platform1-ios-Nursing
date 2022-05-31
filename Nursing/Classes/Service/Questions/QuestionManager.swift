@@ -13,6 +13,7 @@ protocol QuestionManagerProtocol: AnyObject {
     func obtainFailedSet(courseId: Int, activeSubscription: Bool) -> Single<Test?>
     func obtainQotd(courseId: Int, activeSubscription: Bool) -> Single<Test?>
     func obtainRandomSet(courseId: Int, activeSubscription: Bool) -> Single<Test?>
+    func obtainSavedSet(courseId: Int, activeSubscription: Bool) -> Single<Test?>
     func obtainOnboardingSet(forceUpdate: Bool) -> Single<Test?>
     func obtainAgainTest(userTestId: Int) -> Single<Test?>
     func sendAnswer(questionId: Int, userTestId: Int, answerIds: [Int]) -> Single<Bool?>
@@ -49,7 +50,7 @@ extension QuestionManager {
         
         return xorRequestWrapper
             .callServerStringApi(requestBody: request)
-            .map { try GetTestResponseMapper.map(from: $0) }
+            .map { try GetTestResponseMapper.map(from: $0, isEncryption: true) }
     }
     
     func obtainTenSet(courseId: Int, activeSubscription: Bool) -> Single<Test?> {
@@ -63,7 +64,7 @@ extension QuestionManager {
         
         return xorRequestWrapper
             .callServerStringApi(requestBody: request)
-            .map { try GetTestResponseMapper.map(from: $0) }
+            .map { try GetTestResponseMapper.map(from: $0, isEncryption: true) }
     }
     
     func obtainFailedSet(courseId: Int, activeSubscription: Bool) -> Single<Test?> {
@@ -77,7 +78,7 @@ extension QuestionManager {
         
         return xorRequestWrapper
             .callServerStringApi(requestBody: request)
-            .map { try GetTestResponseMapper.map(from: $0) }
+            .map { try GetTestResponseMapper.map(from: $0, isEncryption: true) }
     }
     
     func obtainQotd(courseId: Int, activeSubscription: Bool) -> Single<Test?> {
@@ -91,7 +92,7 @@ extension QuestionManager {
         
         return xorRequestWrapper
             .callServerStringApi(requestBody: request)
-            .map { try GetTestResponseMapper.map(from: $0) }
+            .map { try GetTestResponseMapper.map(from: $0, isEncryption: true) }
     }
     
     func obtainRandomSet(courseId: Int, activeSubscription: Bool) -> Single<Test?> {
@@ -105,7 +106,21 @@ extension QuestionManager {
         
         return xorRequestWrapper
             .callServerStringApi(requestBody: request)
-            .map { try GetTestResponseMapper.map(from: $0) }
+            .map { try GetTestResponseMapper.map(from: $0, isEncryption: true) }
+    }
+    
+    func obtainSavedSet(courseId: Int, activeSubscription: Bool) -> Single<Test?> {
+        guard let userToken = sessionManager.getSession()?.userToken else {
+            return .deferred { .just(nil) }
+        }
+        
+        let request = GetSavedSetRequest(userToken: userToken,
+                                         courseId: courseId,
+                                         activeSubscription: activeSubscription)
+        
+        return defaultRequestWrapper
+            .callServerApi(requestBody: request)
+            .map { try GetTestResponseMapper.map(from: $0, isEncryption: false) }
     }
     
     func obtainOnboardingSet(forceUpdate: Bool) -> Single<Test?> {
@@ -122,7 +137,7 @@ extension QuestionManager {
         
         return xorRequestWrapper
             .callServerStringApi(requestBody: request)
-            .map { try GetTestResponseMapper.map(from: $0) }
+            .map { try GetTestResponseMapper.map(from: $0, isEncryption: true) }
     }
     
     func sendAnswer(questionId: Int, userTestId: Int, answerIds: [Int]) -> Single<Bool?> {
@@ -214,7 +229,7 @@ private extension QuestionManager {
         
         return xorRequestWrapper
             .callServerStringApi(requestBody: request)
-            .map { try? GetTestResponseMapper.map(from: $0) }
+            .map { try? GetTestResponseMapper.map(from: $0, isEncryption: true) }
             .do(onSuccess: { test in
                 guard let test = test, let data = try? JSONEncoder().encode(test) else {
                     return

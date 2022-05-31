@@ -18,6 +18,8 @@ final class TestAnalytics {
             return "random set"
         case .tenSet:
             return "10 questions"
+        case .saved:
+            return "saved"
         }
     }
 }

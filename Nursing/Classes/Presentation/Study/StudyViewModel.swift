@@ -162,13 +162,18 @@ private extension StudyViewModel {
                                     title: "Study.Mode.MissedQuestions".localized)
                 let missedElement = StudyCollectionElement.mode(missed)
                 
+                let saved = SCEMode(mode: .saved,
+                                    image: "Study.Mode.Saved",
+                                    title: "Study.Mode.Saved".localized)
+                let savedElement = StudyCollectionElement.mode(saved)
+                
                 let random = SCEMode(mode: .random,
                                     image: "Study.Mode.Random",
                                     title: "Study.Mode.RandomSet".localized)
                 let randomElement = StudyCollectionElement.mode(random)
                 
                 let section = StudyCollectionSection(elements: [
-                    todayElement, tenElement, missedElement, randomElement
+                    todayElement, tenElement, missedElement, savedElement, randomElement
                 ])
                 
                 return .just(section)
