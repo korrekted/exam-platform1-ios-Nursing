@@ -328,6 +328,7 @@
 		DE9377AC27ACEA090073F27C /* StatsShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9375F127ACE9880073F27C /* StatsShareManager.swift */; };
 		DE9377F627B16C7E0073F27C /* SF-Pro-Rounded-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE9377F527B16C730073F27C /* SF-Pro-Rounded-Black.otf */; };
 		DE93781627BE52930073F27C /* GetOnboardingSetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93781527BE52930073F27C /* GetOnboardingSetRequest.swift */; };
+		DEBCD1562845F956000C08A9 /* URL+Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBCD1552845F956000C08A9 /* URL+Parameters.swift */; };
 		DEC345ED280D8C7C0069A060 /* Onboarding.Chart.json in Resources */ = {isa = PBXBuildFile; fileRef = DEC345EC280D8C7C0069A060 /* Onboarding.Chart.json */; };
 /* End PBXBuildFile section */
 
@@ -680,6 +681,7 @@
 		DE9377A827ACE9AC0073F27C /* Nursing-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nursing-Bridging-Header.h"; sourceTree = "<group>"; };
 		DE9377F527B16C730073F27C /* SF-Pro-Rounded-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Black.otf"; sourceTree = "<group>"; };
 		DE93781527BE52930073F27C /* GetOnboardingSetRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOnboardingSetRequest.swift; sourceTree = "<group>"; };
+		DEBCD1552845F956000C08A9 /* URL+Parameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Parameters.swift"; sourceTree = "<group>"; };
 		DEC345EC280D8C7C0069A060 /* Onboarding.Chart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Onboarding.Chart.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1322,6 +1324,7 @@
 				DE93757D27ACE9880073F27C /* UIViewRxExtension.swift */,
 				DE275BCB283B963C0024D62E /* Observable+Utils.swift */,
 				DE275BCD283B96520024D62E /* Single+Utils.swift */,
+				DEBCD1552845F956000C08A9 /* URL+Parameters.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -2279,6 +2282,7 @@
 				DE275C3C28411F750024D62E /* ReportViewModel.swift in Sources */,
 				DE4EA4E327FF0B9C00DCEB92 /* TestBottomSpinner.swift in Sources */,
 				DE9376F227ACE9880073F27C /* QuestionMediator.swift in Sources */,
+				DEBCD1562845F956000C08A9 /* URL+Parameters.swift in Sources */,
 				DE9376F727ACE9880073F27C /* GetCourcesRequest.swift in Sources */,
 				DE8030FD27F5FCD000F69A8E /* ContentError.swift in Sources */,
 				DE9376D927ACE9880073F27C /* Paygate.swift in Sources */,

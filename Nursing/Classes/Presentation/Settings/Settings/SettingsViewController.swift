@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import StoreKit
+import OtterScaleiOS
 
 final class SettingsViewController: UIViewController {
     lazy var mainView = SettingsView()
@@ -145,7 +146,12 @@ extension SettingsViewController: SettingsTableDelegate {
         AmplitudeManager.shared
             .logEvent(name: "Settings Tap", parameters: ["what": "contact us"])
         
-        open(path: GlobalDefinitions.contactUsUrl)
+        if let userId = OtterScale.shared.getUserID() {
+            open(path: GlobalDefinitions.contactUsUrl,
+                 parameters: [("user_id", String(userId))])
+        } else {
+            open(path: GlobalDefinitions.contactUsUrl)
+        }
     }
     
     func settingsTableDidTappedTermsOfUse() {
@@ -181,8 +187,8 @@ private extension SettingsViewController {
             }
     }
     
-    func open(path: String) {
-        guard let url = URL(string: path) else {
+    func open(path: String, parameters: [(String, String)] = []) {
+        guard let url = URL(path: path, parameters: parameters) else {
             return
         }
         
