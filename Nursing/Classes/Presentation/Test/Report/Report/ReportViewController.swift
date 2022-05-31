@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 
 protocol ReportViewControllerDelegate: AnyObject {
-    func reportViewControllerDidTappedBack(questionId: Int, reason: ReportReason)
+    func reportViewControllerDidTappedBack(questionId: Int, userTestId: Int, reason: ReportReason)
     func reportViewControllerDidReported()
 }
 
@@ -26,10 +26,12 @@ final class ReportViewController: UIViewController {
     private lazy var editingOverseer = ReportEditingOverseer(mainView: mainView)
     
     private let questionId: Int
+    private let userTestId: Int
     private let reason: ReportReason
     
-    private init(questionId: Int, reason: ReportReason) {
+    private init(questionId: Int, userTestId: Int, reason: ReportReason) {
         self.questionId = questionId
+        self.userTestId = userTestId
         self.reason = reason
         
         super.init(nibName: nil, bundle: nil)
@@ -71,7 +73,9 @@ final class ReportViewController: UIViewController {
         mainView.backButton.rx.tap
             .bind(to: Binder(self) { base, void in
                 base.dismiss(animated: true) {
-                    base.delegate?.reportViewControllerDidTappedBack(questionId: base.questionId, reason: base.reason)
+                    base.delegate?.reportViewControllerDidTappedBack(questionId: base.questionId,
+                                                                     userTestId: base.userTestId,
+                                                                     reason: base.reason)
                 }
             })
             .disposed(by: disposeBag)
@@ -106,8 +110,8 @@ final class ReportViewController: UIViewController {
 
 // MARK: Make
 extension ReportViewController {
-    static func make(questionId: Int, reason: ReportReason) -> ReportViewController {
-        let vc = ReportViewController(questionId: questionId, reason: reason)
+    static func make(questionId: Int, userTestId: Int, reason: ReportReason) -> ReportViewController {
+        let vc = ReportViewController(questionId: questionId, userTestId: userTestId, reason: reason)
         vc.modalPresentationStyle = .popover
         return vc
     }

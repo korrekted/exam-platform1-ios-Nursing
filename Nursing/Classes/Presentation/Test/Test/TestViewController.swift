@@ -43,30 +43,22 @@ final class TestViewController: UIViewController {
         
         viewModel.tryAgain = { [weak self] error -> Observable<Void> in
             guard let self = self else {
-                return .never()
+                return .empty()
             }
             
             return self.openError()
         }
         
         viewModel.loadTestActivityIndicator
-            .drive(onNext: { [weak self] activity in
-                guard let self = self else {
-                    return
-                }
-                
-                self.mainView.tableView.isHidden = activity
-                activity ? self.mainView.activityView.startAnimating() : self.mainView.activityView.stopAnimating()
+            .drive(Binder(self) { base, activity in
+                base.mainView.tableView.isHidden = activity
+                activity ? base.mainView.activityView.startAnimating() : base.mainView.activityView.stopAnimating()
             })
             .disposed(by: disposeBag)
         
         viewModel.sendAnswerActivityIndicator
-            .drive(onNext: { [weak self] activity in
-                guard let self = self else {
-                    return
-                }
-                
-                activity ? self.mainView.bottomView.preloader.start() : self.mainView.bottomView.preloader.stop()
+            .drive(Binder(self) { base, activity in
+                activity ? base.mainView.bottomView.preloader.start() : base.mainView.bottomView.preloader.stop()
             })
             .disposed(by: disposeBag)
         
@@ -84,17 +76,18 @@ final class TestViewController: UIViewController {
         viewModel.question
             .drive(Binder(self) { base, element in
                 base.mainView.tableView.setup(question: element)
+                base.updateProgress(questionElement: element)
             })
             .disposed(by: disposeBag)
         
         mainView.tableView
             .selectedAnswersRelay
             .withLatestFrom(courseName) { ($0, $1) }
-            .subscribe(onNext: { [weak self] stub in
-                let (answers, name) = stub
+            .bind(to: Binder(self) { base, args in
+                let (answers, name) = args
                 
-                self?.viewModel.answers.accept(answers)
-                self?.logTapAnalytics(courseName: name, what: "answer")
+                base.viewModel.answers.accept(answers)
+                base.logTapAnalytics(courseName: name, what: "answer")
             })
             .disposed(by: disposeBag)
         
@@ -135,9 +128,9 @@ final class TestViewController: UIViewController {
         
         mainView.bottomView.nextButton.rx.tap
             .withLatestFrom(courseName)
-            .subscribe(onNext: { [weak self] name in
-                self?.viewModel.didTapNext.accept(Void())
-                self?.logTapAnalytics(courseName: name, what: "continue")
+            .bind(to: Binder(self) { base, name in
+                base.viewModel.didTapNext.accept(Void())
+                base.logTapAnalytics(courseName: name, what: "continue")
             })
             .disposed(by: disposeBag)
         
@@ -176,17 +169,12 @@ final class TestViewController: UIViewController {
                 base.present(vc, animated: false)
             })
             .disposed(by: disposeBag)
-        
-        viewModel.question
-            .drive(onNext: { [weak self] element in
-                self?.updateProgress(questionElement: element)
-            })
-            .disposed(by: disposeBag)
     
         Driver
             .merge(
                 viewModel.isEndOfTest.withLatestFrom(viewModel.testMode) { ($0, $1) },
-                mainView.bottomView.nextButton.rx.tap.asDriver().map { _ in (true, nil) }
+                mainView.bottomView.nextButton.rx.tap.asDriver().map { _ in (true, nil) },
+                viewModel.didTapRestart.asDriver(onErrorDriveWith: .never()).map { _ in (true, nil) }
             )
             .drive(Binder(self) { base, args in
                 let (isEndOfTest, testMode) = args
@@ -254,8 +242,11 @@ final class TestViewController: UIViewController {
         
         mainView.menuButton.rx.tap
             .withLatestFrom(viewModel.question)
-            .bind(to: Binder(self) { base, question in
-                let vc = ReportOptionsViewController.make(questionId: question.id)
+            .withLatestFrom(viewModel.userTestId) { ($0.id, $1) }
+            .bind(to: Binder(self) { base, args in
+                let (questionId, userTestId) = args
+                
+                let vc = ReportOptionsViewController.make(questionId: questionId, userTestId: userTestId)
                 vc.delegate = base
                 base.present(vc, animated: true)
             })
@@ -263,8 +254,13 @@ final class TestViewController: UIViewController {
         
         mainView.tabView.reportButton.rx.tap
             .withLatestFrom(viewModel.question)
-            .bind(to: Binder(self) { base, question in
-                let vc = ReportReasonsViewController.make(questionId: question.id, reason: nil)
+            .withLatestFrom(viewModel.userTestId) { ($0.id, $1) }
+            .bind(to: Binder(self) { base, args in
+                let (questionId, userTestId) = args
+                
+                let vc = ReportReasonsViewController.make(questionId: questionId,
+                                                          userTestId: userTestId,
+                                                          reason: nil)
                 vc.delegate = base
                 base.present(vc, animated: true)
             })
@@ -285,27 +281,27 @@ extension TestViewController {
 
 // MARK: ReportOptionsViewControllerDelegate
 extension TestViewController: ReportOptionsViewControllerDelegate {
-    func reportOptionsDidTappedReport(questionId: Int) {
-        let vc = ReportReasonsViewController.make(questionId: questionId, reason: nil)
+    func reportOptionsDidTappedReport(questionId: Int, userTestId: Int) {
+        let vc = ReportReasonsViewController.make(questionId: questionId, userTestId: userTestId, reason: nil)
         vc.delegate = self
         present(vc, animated: true)
     }
     
-    func reportOptionsDidTappedRestart() {
-        // TODO
+    func reportOptionsDidTappedRestart(userTestId: Int) {
+        viewModel.didTapRestart.accept(userTestId)
     }
 }
 
 // MARK: ReportReasonsViewControllerDelegate
 extension TestViewController: ReportReasonsViewControllerDelegate {
-    func reportReasonDidTappedBack(questionId: Int) {
-        let vc = ReportOptionsViewController.make(questionId: questionId)
+    func reportReasonDidTappedBack(questionId: Int, userTestId: Int) {
+        let vc = ReportOptionsViewController.make(questionId: questionId, userTestId: userTestId)
         vc.delegate = self
         present(vc, animated: true)
     }
     
-    func reportReasonDidSelected(questionId: Int, reason: ReportReason) {
-        let vc = ReportViewController.make(questionId: questionId, reason: reason)
+    func reportReasonDidSelected(questionId: Int, userTestId: Int, reason: ReportReason) {
+        let vc = ReportViewController.make(questionId: questionId, userTestId: userTestId, reason: reason)
         vc.delegate = self
         present(vc, animated: true)
     }
@@ -313,8 +309,8 @@ extension TestViewController: ReportReasonsViewControllerDelegate {
 
 // MARK: ReportViewControllerDelegate
 extension TestViewController: ReportViewControllerDelegate {
-    func reportViewControllerDidTappedBack(questionId: Int, reason: ReportReason) {
-        let vc = ReportReasonsViewController.make(questionId: questionId, reason: reason)
+    func reportViewControllerDidTappedBack(questionId: Int, userTestId: Int, reason: ReportReason) {
+        let vc = ReportReasonsViewController.make(questionId: questionId, userTestId: userTestId, reason: reason)
         vc.delegate = self
         present(vc, animated: true)
     }

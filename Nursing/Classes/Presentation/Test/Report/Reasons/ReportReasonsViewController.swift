@@ -9,8 +9,8 @@ import UIKit
 import RxSwift
 
 protocol ReportReasonsViewControllerDelegate: AnyObject {
-    func reportReasonDidTappedBack(questionId: Int)
-    func reportReasonDidSelected(questionId: Int, reason: ReportReason)
+    func reportReasonDidTappedBack(questionId: Int, userTestId: Int)
+    func reportReasonDidSelected(questionId: Int, userTestId: Int, reason: ReportReason)
 }
 
 final class ReportReasonsViewController: UIViewController {
@@ -21,10 +21,12 @@ final class ReportReasonsViewController: UIViewController {
     private lazy var disposeBag = DisposeBag()
     
     private let questionId: Int
+    private let userTestId: Int
     private let reason: ReportReason?
     
-    private init(questionId: Int, reason: ReportReason?) {
+    private init(questionId: Int, userTestId: Int, reason: ReportReason?) {
         self.questionId = questionId
+        self.userTestId = userTestId
         self.reason = reason
         
         super.init(nibName: nil, bundle: nil)
@@ -44,7 +46,8 @@ final class ReportReasonsViewController: UIViewController {
         mainView.backButton.rx.tap
             .bind(to: Binder(self) { base, void in
                 base.dismiss(animated: true) {
-                    base.delegate?.reportReasonDidTappedBack(questionId: base.questionId)
+                    base.delegate?.reportReasonDidTappedBack(questionId: base.questionId,
+                                                             userTestId: base.userTestId)
                 }
             })
             .disposed(by: disposeBag)
@@ -68,7 +71,9 @@ final class ReportReasonsViewController: UIViewController {
             )
             .bind(to: Binder(self) { base, reason in
                 base.dismiss(animated: true) {
-                    base.delegate?.reportReasonDidSelected(questionId: base.questionId, reason: reason)
+                    base.delegate?.reportReasonDidSelected(questionId: base.questionId,
+                                                           userTestId: base.userTestId,
+                                                           reason: reason)
                 }
             })
             .disposed(by: disposeBag)
@@ -79,8 +84,10 @@ final class ReportReasonsViewController: UIViewController {
 
 // MARK: Make
 extension ReportReasonsViewController {
-    static func make(questionId: Int, reason: ReportReason?) -> ReportReasonsViewController {
-        let vc = ReportReasonsViewController(questionId: questionId, reason: reason)
+    static func make(questionId: Int, userTestId: Int, reason: ReportReason?) -> ReportReasonsViewController {
+        let vc = ReportReasonsViewController(questionId: questionId,
+                                             userTestId: userTestId,
+                                             reason: reason)
         vc.modalPresentationStyle = .popover
         return vc
     }

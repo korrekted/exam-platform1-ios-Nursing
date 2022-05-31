@@ -13,7 +13,9 @@ struct GetTestResponseMapper {
             let string = response as? String,
             let json = XOREncryption.toJSON(string, key: GlobalDefinitions.apiKey),
             let code = json["_code"] as? Int
-        else { return nil }
+        else {
+            return nil
+        }
         
         guard code == 200 else {
             throw NSError(domain: "\(type(of: self))", code: code, userInfo: [NSLocalizedDescriptionKey : (json["_msg"] as? String) ?? ""])
@@ -21,12 +23,13 @@ struct GetTestResponseMapper {
         
         guard
             let data = json["_data"] as? [String: Any],
-            let paid = data["paid"] as? Bool,
             let userTestId = data["user_test_id"] as? Int,
             let questionsJSON = data["questions"] as? [[String: Any]]
         else {
             return nil
         }
+        
+        let paid = data["paid"] as? Bool ?? false
         
         let questions: [Question] = Self.map(from: questionsJSON)
         

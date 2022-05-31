@@ -17,7 +17,7 @@ struct AgainTestRequest: APIRequestBody {
     }
     
     var url: String {
-        GlobalDefinitions.domainUrl + "api/testings/again"
+        GlobalDefinitions.domainUrl + "/api/testings/again"
     }
     
     var method: HTTPMethod {

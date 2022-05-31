@@ -17,6 +17,7 @@ final class TestViewModel {
     let didTapMark = PublishRelay<Bool>()
     let didTapNext = PublishRelay<Void>()
     let didTapConfirm = PublishRelay<Void>()
+    let didTapRestart = PublishRelay<Int>()
     let answers = BehaviorRelay<AnswerElement?>(value: nil)
     
     lazy var courseName = makeCourseName()
@@ -35,9 +36,9 @@ final class TestViewModel {
     
     private lazy var observableRetrySingle = ObservableRetrySingle()
     
-    private lazy var testElement = loadTest().share(replay: 1, scope: .forever)
-    private lazy var selectedAnswers = makeSelectedAnswers().share(replay: 1, scope: .forever)
-    private lazy var currentAnswers = makeCurrentAnswers().share(replay: 1, scope: .forever)
+    private lazy var testElement = makeTest()
+    private lazy var selectedAnswers = makeSelectedAnswers()
+    private lazy var currentAnswers = makeCurrentAnswers()
     private lazy var studySettings = makeStudySettings()
     
     private lazy var questionManager = QuestionManager()
@@ -92,35 +93,58 @@ private extension TestViewModel {
     }
     
     func makeQuestion() -> Driver<QuestionElement> {
-        Observable<Action>
-            .merge(
-                didTapNext.debounce(.microseconds(500), scheduler: MainScheduler.instance).map { _ in .next },
-                questions.map { .elements($0) }
-            )
-            .scan((nil, []), accumulator: currentQuestionAccumulator)
-            .compactMap { $0.0 }
+        didTapRestart
+            .mapToVoid()
+            .startWith(Void())
+            .flatMapLatest { [weak self] void -> Driver<QuestionElement> in
+                guard let self = self else {
+                    return .never()
+                }
+                
+                return Observable<Action>
+                    .merge(
+                        self.didTapNext.debounce(.microseconds(500), scheduler: MainScheduler.instance).map { _ in .next },
+                        self.questions.map { .elements($0) }
+                    )
+                    .scan((nil, []), accumulator: self.currentQuestionAccumulator)
+                    .compactMap { $0.0 }
+                    .asDriver(onErrorDriveWith: .empty())
+            }
             .asDriver(onErrorDriveWith: .empty())
     }
     
     func makeQuestions() -> Observable<[QuestionElement]> {
         let questions = testElement
             .compactMap { $0.questions }
-        
+
         let mode = testMode.asObservable()
         let courseName = courseName.asObservable()
         let studySettings = studySettings.asObservable()
         
-        let dataSource = Observable
-            .combineLatest(questions, selectedAnswers, mode, courseName, studySettings) { ($0, $1, $2, $3, $4) }
-            .scan([], accumulator: questionAccumulator)
-        
-        return dataSource
+        return questions
+            .flatMapLatest { [weak self] questions -> Observable<[QuestionElement]> in
+                guard let self = self else {
+                    return .never()
+                }
+                
+                return Observable
+                    .combineLatest(self.selectedAnswers, mode, courseName, studySettings)
+                    .map { (questions, $0, $1, $2, $3) }
+                    .scan([], accumulator: self.questionAccumulator)
+            }
     }
     
     func makeSelectedAnswers() -> Observable<AnswerElement?> {
         didTapConfirm
             .withLatestFrom(currentAnswers)
             .startWith(nil)
+    }
+    
+    func makeTest() -> Observable<Test> {
+        let load = loadTest()
+        let restart = restartTest()
+        
+        return Observable.merge(load, restart)
     }
     
     func loadTest() -> Observable<Test> {
@@ -179,6 +203,40 @@ private extension TestViewModel {
             }
     }
     
+    func restartTest() -> Observable<Test> {
+        didTapRestart
+            .flatMapLatest { [weak self] userTestId -> Observable<Test> in
+                guard let self = self else {
+                    return .empty()
+                }
+                
+                func source() -> Single<Test> {
+                    self.questionManager
+                        .obtainAgainTest(userTestId: userTestId)
+                        .flatMap { test -> Single<Test> in
+                            guard let test = test else {
+                                return .error(ContentError(.notContent))
+                            }
+                            
+                            return .just(test)
+                        }
+                }
+                
+                func trigger(error: Error) -> Observable<Void> {
+                    guard let tryAgain = self.tryAgain?(error) else {
+                        return .empty()
+                    }
+                    
+                    return tryAgain
+                }
+                
+                return self.observableRetrySingle
+                    .retry(source: { source() },
+                           trigger: { trigger(error: $0) })
+                    .trackActivity(self.loadTestActivityIndicator)
+            }
+    }
+    
     func makeNeedPayment() -> Signal<Bool> {
         testElement
             .map { [weak self] element in
@@ -194,7 +252,11 @@ private extension TestViewModel {
     }
     
     func makeCurrentAnswers() -> Observable<AnswerElement?> {
-        Observable.merge(answers.asObservable(), didTapNext.map { _ in nil })
+        Observable
+            .merge(answers.asObservable(),
+                   didTapNext.map { _ in nil },
+                   didTapRestart.map { _ in nil }
+            )
     }
     
     func endOfTest() -> Driver<Bool> {
@@ -297,6 +359,7 @@ private extension TestViewModel {
     var questionAccumulator: ([QuestionElement], ([Question], AnswerElement?, TestMode?, String, StudySettings)) -> [QuestionElement] {
         return { [weak self] (old, args) -> [QuestionElement] in
             let (questions, answers, testMode, courseName, studySettings) = args
+            
             guard !old.isEmpty else {
                 return questions.enumerated().map { index, question in
                     let answers = question.answers.map { PossibleAnswerElement(id: $0.id,
@@ -420,7 +483,7 @@ private extension TestViewModel {
     var currentQuestionAccumulator: ((QuestionElement?, [QuestionElement]), Action) -> (QuestionElement?, [QuestionElement]) {
         return { old, action -> (QuestionElement?, [QuestionElement]) in
             let (currentElement, elements) = old
-            let withoutAnswered = elements.filter { !$0.isAnswered }
+            
             switch action {
             case let .elements(questions):
                 // Проверка для вопроса дня, чтобы была возможность отобразить вопрос,
@@ -431,9 +494,11 @@ private extension TestViewModel {
                 let index = withoutAnswered.firstIndex(where: { $0.id == currentElement?.id }) ?? 0
                 return (withoutAnswered[safe: index], questions)
             case .next:
+                let withoutAnswered = elements.filter { !$0.isAnswered }
                 let index = withoutAnswered.firstIndex(where: { $0.id == currentElement?.id }).map { $0 + 1 } ?? 0
                 return (withoutAnswered[safe: index] ?? currentElement, elements)
             case .previos:
+                let withoutAnswered = elements.filter { !$0.isAnswered }
                 let index = withoutAnswered.firstIndex(where: { $0.id == currentElement?.id }).map { $0 - 1 } ?? 0
                 return (withoutAnswered[safe: index] ?? currentElement, elements)
             }
