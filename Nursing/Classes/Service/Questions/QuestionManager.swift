@@ -14,6 +14,7 @@ protocol QuestionManagerProtocol: AnyObject {
     func obtainQotd(courseId: Int, activeSubscription: Bool) -> Single<Test?>
     func obtainRandomSet(courseId: Int, activeSubscription: Bool) -> Single<Test?>
     func obtainOnboardingSet(forceUpdate: Bool) -> Single<Test?>
+    func obtainAgainTest(userTestId: Int) -> Single<Test?>
     func sendAnswer(questionId: Int, userTestId: Int, answerIds: [Int]) -> Single<Bool?>
     func saveQuestion(questionId: Int) -> Single<Void>
     func removeSavedQuestion(questionId: Int) -> Single<Void>
@@ -109,6 +110,19 @@ extension QuestionManager {
     
     func obtainOnboardingSet(forceUpdate: Bool) -> Single<Test?> {
         forceUpdate ? loadOnboardingSet() : cachedOnboardingSet()
+    }
+    
+    func obtainAgainTest(userTestId: Int) -> Single<Test?> {
+        guard let userToken = sessionManager.getSession()?.userToken else {
+            return .deferred { .just(nil) }
+        }
+        
+        let request = AgainTestRequest(userToken: userToken,
+                                       userTestId: userTestId)
+        
+        return xorRequestWrapper
+            .callServerStringApi(requestBody: request)
+            .map { try GetTestResponseMapper.map(from: $0) }
     }
     
     func sendAnswer(questionId: Int, userTestId: Int, answerIds: [Int]) -> Single<Bool?> {

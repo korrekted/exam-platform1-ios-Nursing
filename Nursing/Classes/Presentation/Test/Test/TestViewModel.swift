@@ -104,7 +104,7 @@ private extension TestViewModel {
     
     func makeQuestions() -> Observable<[QuestionElement]> {
         let questions = testElement
-            .compactMap { $0.element?.questions }
+            .compactMap { $0.questions }
         
         let mode = testMode.asObservable()
         let courseName = courseName.asObservable()
@@ -123,7 +123,7 @@ private extension TestViewModel {
             .startWith(nil)
     }
     
-    func loadTest() -> Observable<Event<Test>> {
+    func loadTest() -> Observable<Test> {
         func trigger(error: Error) -> Observable<Void> {
             guard let tryAgain = self.tryAgain?(error) else {
                 return .empty()
@@ -141,7 +141,7 @@ private extension TestViewModel {
         
         return Observable
             .combineLatest(courseId, type)
-            .flatMapLatest { [weak self] courseId, type -> Observable<Event<Test>> in
+            .flatMapLatest { [weak self] courseId, type -> Observable<Test> in
                 guard let self = self else {
                     return .empty()
                 }
@@ -176,18 +176,13 @@ private extension TestViewModel {
                             trigger(error: error)
                         }
                     })
-                    .materialize()
-                    .filter {
-                        guard case .completed = $0 else { return true }
-                        return false
-                    }
             }
     }
     
     func makeNeedPayment() -> Signal<Bool> {
         testElement
-            .map { [weak self] event in
-                guard let self = self, let element = event.element else { return false }
+            .map { [weak self] element in
+                guard let self = self else { return false }
                 return self.activeSubscription ? false : element.paid ? true : false
             }
             .asSignal(onErrorSignalWith: .empty())
@@ -195,7 +190,7 @@ private extension TestViewModel {
 
     func makeUserTestId() -> Observable<Int> {
         testElement
-            .compactMap { $0.element?.userTestId }
+            .compactMap { $0.userTestId }
     }
     
     func makeCurrentAnswers() -> Observable<AnswerElement?> {
@@ -206,15 +201,11 @@ private extension TestViewModel {
         selectedAnswers
             .compactMap { $0 }
             .withLatestFrom(testElement) {
-                ($0, $1.element?.userTestId)
+                ($0, $1.userTestId)
             }
             .flatMapLatest { [weak self] element, userTestId -> Observable<Bool> in
                 guard let self = self else {
                     return .never()
-                }
-                
-                guard let userTestId = userTestId else {
-                    return .just(false)
                 }
                 
                 func source() -> Single<Bool?> {

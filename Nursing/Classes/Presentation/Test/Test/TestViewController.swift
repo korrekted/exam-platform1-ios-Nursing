@@ -162,7 +162,7 @@ final class TestViewController: UIViewController {
             .bind(to: Binder(self) { base, args in
                 let (courseName, questions, userTestId) = args
                 
-                // TODO: answeredQuestionsCount
+                // TODO: answeredQuestionsCount (менять флаг у элементов после sendAnswer)
                 let vc = QuitQuizViewController.make(allQuestionsCount: questions.count,
                                                      answeredQuestionsCount: questions.filter { $0.isAnswered }.count) { result in
                     switch result {
