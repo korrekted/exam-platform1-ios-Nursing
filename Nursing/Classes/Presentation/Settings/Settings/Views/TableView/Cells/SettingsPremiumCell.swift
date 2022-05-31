@@ -10,11 +10,11 @@ import UIKit
 final class SettingsPremiumCell: UITableViewCell {
     lazy var titleLabel = makeLabel()
     lazy var container = makeContainer()
-    lazy var memberSincePlaceholderLabel = makePlaceholderLabel(title: "Settings.Premium.MemberSince".localized)
-    lazy var memberSinceValueLabel = makeLabel()
-    lazy var separator = makeSeparator()
-    lazy var validTillPlaceholderLabel = makePlaceholderLabel(title: "Settings.Premium.ValidTill".localized)
-    lazy var validTillValueLabel = makeLabel()
+    lazy var memberSinceView = makeMemberSinceView()
+    lazy var validTillView = makeValidTillView()
+    lazy var userIdView = makeUserIdView()
+    
+    private lazy var validTillViewBottomConstraint = NSLayoutConstraint()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -37,17 +37,41 @@ extension SettingsPremiumCell {
                         .font(Fonts.SFProRounded.semiBold(size: 17.scale))
                         .lineHeight(20.scale))
         
-        memberSinceValueLabel.attributedText = element.memberSince
+        memberSinceView.valueLabel.attributedText = element.memberSince
             .attributed(with: TextAttributes()
                             .textColor(Appearance.blackColor.withAlphaComponent(0.5))
                         .font(Fonts.SFProRounded.regular(size: 17.scale))
                         .lineHeight(20.scale))
         
-        validTillValueLabel.attributedText = element.validTill
+        validTillView.valueLabel.attributedText = element.validTill
             .attributed(with: TextAttributes()
                             .textColor(Appearance.blackColor.withAlphaComponent(0.5))
                         .font(Fonts.SFProRounded.regular(size: 17.scale))
                         .lineHeight(20.scale))
+        
+        if let userId = element.userId {
+            userIdView.valueLabel.attributedText = String(userId)
+                .attributed(with: TextAttributes()
+                                .textColor(Appearance.blackColor.withAlphaComponent(0.5))
+                            .font(Fonts.SFProRounded.regular(size: 17.scale))
+                            .lineHeight(20.scale))
+        }
+        
+        let hasUserId = element.userId != nil
+        
+        validTillView.separator.isHidden = !hasUserId
+        userIdView.isHidden = !hasUserId
+        
+        validTillView.layer.cornerRadius = hasUserId ? 0 : 16.scale
+        validTillView.layer.maskedCorners = hasUserId ? [] : [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        
+        validTillViewBottomConstraint.isActive = false
+        if hasUserId {
+            validTillViewBottomConstraint = validTillView.bottomAnchor.constraint(equalTo: userIdView.topAnchor)
+        } else {
+            validTillViewBottomConstraint = validTillView.bottomAnchor.constraint(equalTo: container.bottomAnchor)
+        }
+        validTillViewBottomConstraint.isActive = true
     }
 }
 
@@ -77,44 +101,31 @@ private extension SettingsPremiumCell {
         ])
         
         NSLayoutConstraint.activate([
-            memberSincePlaceholderLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 31.scale),
-            memberSincePlaceholderLabel.topAnchor.constraint(equalTo: container.topAnchor, constant: 15.scale)
+            memberSinceView.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            memberSinceView.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+            memberSinceView.topAnchor.constraint(equalTo: container.topAnchor)
+        ])
+        
+        validTillViewBottomConstraint = validTillView.bottomAnchor.constraint(equalTo: userIdView.topAnchor)
+        NSLayoutConstraint.activate([
+            validTillView.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            validTillView.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+            validTillView.topAnchor.constraint(equalTo: memberSinceView.bottomAnchor),
+            
         ])
         
         NSLayoutConstraint.activate([
-            memberSinceValueLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -28.scale),
-            memberSinceValueLabel.centerYAnchor.constraint(equalTo: memberSincePlaceholderLabel.centerYAnchor)
-        ])
-        
-        NSLayoutConstraint.activate([
-            separator.heightAnchor.constraint(equalToConstant: 1.scale),
-            separator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 31.scale),
-            separator.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16.scale),
-            separator.topAnchor.constraint(equalTo: container.topAnchor, constant: 49.scale)
-        ])
-        
-        NSLayoutConstraint.activate([
-            validTillPlaceholderLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 31.scale),
-            validTillPlaceholderLabel.topAnchor.constraint(equalTo: container.topAnchor, constant: 65.scale)
-        ])
-        
-        NSLayoutConstraint.activate([
-            validTillValueLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -28.scale),
-            validTillValueLabel.centerYAnchor.constraint(equalTo: validTillPlaceholderLabel.centerYAnchor)
+            userIdView.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            userIdView.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+            userIdView.bottomAnchor.constraint(equalTo: container.bottomAnchor)
         ])
     }
 }
 
 // MARK: Lazy initialization
 private extension SettingsPremiumCell {
-    func makePlaceholderLabel(title: String) -> UILabel {
-        let attrs = TextAttributes()
-            .textColor(Appearance.blackColor)
-            .font(Fonts.SFProRounded.regular(size: 17.scale))
-            .lineHeight(20.scale)
-        
+    func makeLabel() -> UILabel {
         let view = UILabel()
-        view.attributedText = title.attributed(with: attrs)
         view.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(view)
         return view
@@ -133,18 +144,53 @@ private extension SettingsPremiumCell {
         return view
     }
     
-    func makeLabel() -> UILabel {
-        let view = UILabel()
+    func makeMemberSinceView() -> SettingsPremiumView {
+        let attrs = TextAttributes()
+            .textColor(Appearance.blackColor)
+            .font(Fonts.SFProRounded.semiBold(size: 17.scale))
+            .lineHeight(20.scale)
+        
+        let view = SettingsPremiumView()
+        view.backgroundColor = UIColor.clear
+        view.layer.cornerRadius = 16.scale
+        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        view.layer.masksToBounds = true
+        view.placeholderLabel.attributedText = "Settings.Premium.MemberSince".localized.attributed(with: attrs)
         view.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(view)
+        container.addSubview(view)
         return view
     }
     
-    func makeSeparator() -> UIView {
-        let view = UIView()
-        view.backgroundColor = Appearance.blackColor.withAlphaComponent(0.1)
+    func makeValidTillView() -> SettingsPremiumView {
+        let attrs = TextAttributes()
+            .textColor(Appearance.blackColor)
+            .font(Fonts.SFProRounded.semiBold(size: 17.scale))
+            .lineHeight(20.scale)
+        
+        let view = SettingsPremiumView()
+        view.backgroundColor = UIColor.clear
+        view.layer.masksToBounds = true
+        view.placeholderLabel.attributedText = "Settings.Premium.ValidTill".localized.attributed(with: attrs)
         view.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(view)
+        container.addSubview(view)
+        return view
+    }
+    
+    func makeUserIdView() -> SettingsPremiumView {
+        let attrs = TextAttributes()
+            .textColor(Appearance.blackColor)
+            .font(Fonts.SFProRounded.semiBold(size: 17.scale))
+            .lineHeight(20.scale)
+        
+        let view = SettingsPremiumView()
+        view.separator.isHidden = true
+        view.backgroundColor = UIColor.clear
+        view.layer.cornerRadius = 16.scale
+        view.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        view.layer.masksToBounds = true
+        view.placeholderLabel.attributedText = "Settings.Premium.UserId".localized.attributed(with: attrs)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        container.addSubview(view)
         return view
     }
 }

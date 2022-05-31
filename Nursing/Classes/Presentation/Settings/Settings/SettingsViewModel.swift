@@ -60,9 +60,10 @@ private extension SettingsViewModel {
         activeSubscription
             .map { activeSubscription -> SettingsTableElement in
                 if activeSubscription {
-                    let element = SettingsPremium(title: "Settings.Premium.Title1".localized,
+                    let element = SettingsPremium(title: "Settings.Premium.Title".localized,
                                                   memberSince: OtterScale.shared.getUserSince() ?? "",
-                                                  validTill: OtterScale.shared.getAccessValidTill() ?? "")
+                                                  validTill: OtterScale.shared.getAccessValidTill() ?? "",
+                                                  userId: OtterScale.shared.getUserID())
                     return .premium(element)
                 } else {
                     return .unlockPremium

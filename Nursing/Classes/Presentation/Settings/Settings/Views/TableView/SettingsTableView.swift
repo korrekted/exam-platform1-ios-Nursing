@@ -107,11 +107,9 @@ extension SettingsTableView: UITableViewDelegate {
             return offset
         case .unlockPremium:
             return 93.scale
-        case .premium:
-            return 135.scale
         case .exam, .study, .support:
             return 185.scale
-        case .community:
+        case .premium, .community:
             return UITableView.automaticDimension
         }
     }

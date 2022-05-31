@@ -120,10 +120,10 @@
 "Settings.Title" = "Settings";
 "Settings.UnlockPremium.Title" = "Unlock";
 "Settings.UnlockPremium.SubTitle" = "PREMIUM";
-"Settings.Premium.Title1" = "Premium";
-"Settings.Premium.Title2" = "Lifetime";
+"Settings.Premium.Title" = "Premium";
 "Settings.Premium.MemberSince" = "Member since";
 "Settings.Premium.ValidTill" = "Valid till";
+"Settings.Premium.UserId" = "User ID";
 "Settings.Exam" = "Exam";
 "Settings.Exam.ExamDateTitle" = "Exam date";
 "Settings.Exam.ResetProgress" = "Reset progress";
