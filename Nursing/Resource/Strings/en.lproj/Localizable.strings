@@ -116,6 +116,7 @@
 "Study.Mode.MissedQuestions" = "Missed\nQuestions Quiz";
 "Study.Mode.RandomSet" = "Random\nSet Quiz";
 "Study.Mode.Saved" = "Saved\nQuestions Quiz";
+"Study.Mode.Timed" = "Timed Quiz";
 
 // MARK: Settings
 "Settings.Title" = "Settings";
@@ -248,3 +249,8 @@
 "Report.Message.Placeholder" = "Please explain your issue in a little bit more detail";
 "Report.Button" = "Report";
 "Report.Success" = "We’ve submitted your feedback. Thanks for improving us for everyone.";
+
+// MARK: TimedQuizMinutes
+"TimedQuizMinutes.Title" = "Timed Quiz";
+"TimedQuizMinutes.SubTitle" = "How many minutes?";
+"TimedQuizMinutes.StartButton" = "Start Quiz";

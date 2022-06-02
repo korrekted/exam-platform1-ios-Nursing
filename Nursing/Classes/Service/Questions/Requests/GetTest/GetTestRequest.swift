@@ -11,12 +11,14 @@ struct GetTestRequest: APIRequestBody {
     private let userToken: String
     private let courseId: Int
     private let testId: Int?
+    private let time: Int?
     private let activeSubscription: Bool
     
-    init(userToken: String, courseId: Int, testid: Int?, activeSubscription: Bool) {
+    init(userToken: String, courseId: Int, testid: Int?, time: Int?, activeSubscription: Bool) {
         self.userToken = userToken
         self.courseId = courseId
         self.testId = testid
+        self.time = time
         self.activeSubscription = activeSubscription
     }
     
@@ -38,6 +40,10 @@ struct GetTestRequest: APIRequestBody {
         
         if let testId = testId {
             params["test_id"] = testId
+        }
+        
+        if let time = time {
+            params["exam_minutes"] = time
         }
         
         return params

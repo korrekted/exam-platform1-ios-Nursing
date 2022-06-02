@@ -17,11 +17,15 @@ final class TestViewModel {
     let didTapMark = PublishRelay<Bool>()
     let didTapNext = PublishRelay<Void>()
     let didTapConfirm = PublishRelay<Void>()
+    let didTapSubmit = PublishRelay<Void>()
     let didTapRestart = PublishRelay<Int>()
     let answers = BehaviorRelay<AnswerElement?>(value: nil)
     
     lazy var courseName = makeCourseName()
     lazy var isSavedQuestion = makeIsSavedQuestion()
+    lazy var progress = makeProgress()
+    lazy var score = makeScore()
+    lazy var testFinishElement = makeTestFinishElement()
     lazy var questions = makeQuestions()
     lazy var question = makeQuestion()
     lazy var isEndOfTest = endOfTest()
@@ -40,6 +44,7 @@ final class TestViewModel {
     private lazy var selectedAnswers = makeSelectedAnswers()
     private lazy var currentAnswers = makeCurrentAnswers()
     private lazy var studySettings = makeStudySettings()
+    private lazy var timer = makeTimer()
     
     private lazy var questionManager = QuestionManager()
     private lazy var profileManager = ProfileManager()
@@ -90,6 +95,67 @@ private extension TestViewModel {
         return Observable
             .merge(initial, isSavedQuestion)
             .asDriver(onErrorJustReturn: false)
+    }
+    
+    func makeProgress() -> Driver<String> {
+        testType
+            .flatMapLatest { [weak self] type -> Driver<String> in
+                guard let self = self else {
+                    return .just("")
+                }
+                
+                let result: Driver<String>
+                if case .timed = type {
+                    result = self.timer
+                        .map { $0.secondsToString() }
+                        .asDriver(onErrorDriveWith: .never())
+                } else {
+                    result = self.question
+                        .map { String(format: "Question.QuestionProgress".localized, $0.index, $0.questionsCount) }
+                }
+                
+                return result
+            }
+            .asDriver(onErrorDriveWith: .empty())
+    }
+    
+    func makeScore() -> Driver<Float> {
+        question
+            .map { questionElement -> Float in
+                Float(questionElement.index) / Float(questionElement.questionsCount)
+            }
+    }
+    
+    func makeTestFinishElement() -> Driver<TestFinishElement> {
+        let didFinishTest = timer
+            .compactMap { $0 == 0 ? () : nil }
+            .withLatestFrom(userTestId)
+            .flatMap { [weak self] userTestId -> Single<Int> in
+                guard let self = self else {
+                    return .never()
+                }
+                
+                return self.questionManager
+                    .finishTest(userTestId: userTestId)
+                    .map { userTestId }
+            }
+        
+        let submit = didTapSubmit
+            .withLatestFrom(userTestId)
+        
+        return Observable.merge(didFinishTest, submit)
+            .withLatestFrom(courseName) { ($0, $1) }
+            .withLatestFrom(testType) { ($0.0, $0.1, $1) }
+            .compactMap { userTestId, courseName, testType -> TestFinishElement? in
+                guard let testType = testType else {
+                    return nil
+                }
+                
+                return TestFinishElement(userTestId: userTestId,
+                                         courseName: courseName,
+                                         testType: testType)
+            }
+            .asDriver(onErrorDriveWith: .never())
     }
     
     func makeQuestion() -> Driver<QuestionElement> {
@@ -176,6 +242,7 @@ private extension TestViewModel {
                 case let .get(testId):
                     test = self.questionManager.obtain(courseId: courseId,
                                                        testId: testId,
+                                                       time: nil,
                                                        activeSubscription: self.activeSubscription)
                 case .tenSet:
                     test = self.questionManager.obtainTenSet(courseId: courseId,
@@ -192,6 +259,11 @@ private extension TestViewModel {
                 case .saved:
                     test = self.questionManager.obtainSavedSet(courseId: courseId,
                                                                activeSubscription: self.activeSubscription)
+                case .timed(let minutes):
+                    test = self.questionManager.obtain(courseId: courseId,
+                                                       testId: nil,
+                                                       time: minutes,
+                                                       activeSubscription: self.activeSubscription)
                 }
                 
                 return test
@@ -348,6 +420,26 @@ private extension TestViewModel {
         profileManager
             .obtainStudySettings()
             .asDriver(onErrorDriveWith: .never())
+    }
+    
+    func makeTimer() -> Observable<Int> {
+        testElement
+            .withLatestFrom(testType)
+            .flatMapLatest { testType -> Observable<Int> in
+                guard case let .timed(minutes) = testType else {
+                    return .empty()
+                }
+                
+                let startTime = CFAbsoluteTimeGetCurrent()
+                let seconds = minutes * 60
+                
+                return Observable<Int>
+                    .timer(.seconds(0), period: .seconds(1), scheduler: MainScheduler.instance)
+                    .map { _ in Int(CFAbsoluteTimeGetCurrent() - startTime) }
+                    .take(until: { $0 >= seconds }, behavior: .inclusive)
+                    .map { max(0, seconds - $0) }
+                    .distinctUntilChanged()
+            }
     }
 }
 
@@ -519,5 +611,19 @@ private extension TestViewModel {
         
         AmplitudeManager.shared
             .logEvent(name: name, parameters: ["course" : courseName, "mode": mode])
+    }
+}
+
+private extension Int {
+    func secondsToString() -> String {
+        let seconds = self
+        var mins = 0
+        var secs = seconds
+        if seconds >= 60 {
+            mins = Int(seconds / 60)
+            secs = seconds - (mins * 60)
+        }
+        
+        return String(format: "%02d:%02d", mins, secs)
     }
 }

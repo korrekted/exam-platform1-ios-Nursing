@@ -20,6 +20,8 @@ final class TestAnalytics {
             return "10 questions"
         case .saved:
             return "saved"
+        case .timed:
+            return "timed"
         }
     }
 }

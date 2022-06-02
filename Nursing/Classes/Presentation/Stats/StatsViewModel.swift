@@ -35,7 +35,7 @@ private extension StatsViewModel {
     func makeElements() -> Driver<[StatsCellType]> {
         let trigger = Signal
             .merge(
-                QuestionMediator.shared.rxTestPassed,
+                QuestionMediator.shared.testPassed,
                 StatsMediator.shared.resetedStats
             )
             .asDriver(onErrorDriveWith: .never())

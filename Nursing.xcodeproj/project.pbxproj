@@ -330,6 +330,11 @@
 		DE93781627BE52930073F27C /* GetOnboardingSetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93781527BE52930073F27C /* GetOnboardingSetRequest.swift */; };
 		DEBCD1562845F956000C08A9 /* URL+Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBCD1552845F956000C08A9 /* URL+Parameters.swift */; };
 		DEBCD15828465A98000C08A9 /* GetSavedSetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBCD15728465A98000C08A9 /* GetSavedSetRequest.swift */; };
+		DEBCD15E28476480000C08A9 /* TimedQuizMinutesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBCD15D28476480000C08A9 /* TimedQuizMinutesViewController.swift */; };
+		DEBCD1602847648A000C08A9 /* TimedQuizMinutesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBCD15F2847648A000C08A9 /* TimedQuizMinutesView.swift */; };
+		DEBCD1622848ACF2000C08A9 /* FinishTestRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBCD1612848ACF2000C08A9 /* FinishTestRequest.swift */; };
+		DEBCD1642848C0D4000C08A9 /* TestFinishElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBCD1632848C0D4000C08A9 /* TestFinishElement.swift */; };
+		DEBCD1672848D6C1000C08A9 /* TestFinishObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBCD1662848D6C1000C08A9 /* TestFinishObserver.swift */; };
 		DEC345ED280D8C7C0069A060 /* Onboarding.Chart.json in Resources */ = {isa = PBXBuildFile; fileRef = DEC345EC280D8C7C0069A060 /* Onboarding.Chart.json */; };
 /* End PBXBuildFile section */
 
@@ -684,6 +689,11 @@
 		DE93781527BE52930073F27C /* GetOnboardingSetRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOnboardingSetRequest.swift; sourceTree = "<group>"; };
 		DEBCD1552845F956000C08A9 /* URL+Parameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Parameters.swift"; sourceTree = "<group>"; };
 		DEBCD15728465A98000C08A9 /* GetSavedSetRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSavedSetRequest.swift; sourceTree = "<group>"; };
+		DEBCD15D28476480000C08A9 /* TimedQuizMinutesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimedQuizMinutesViewController.swift; sourceTree = "<group>"; };
+		DEBCD15F2847648A000C08A9 /* TimedQuizMinutesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimedQuizMinutesView.swift; sourceTree = "<group>"; };
+		DEBCD1612848ACF2000C08A9 /* FinishTestRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishTestRequest.swift; sourceTree = "<group>"; };
+		DEBCD1632848C0D4000C08A9 /* TestFinishElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFinishElement.swift; sourceTree = "<group>"; };
+		DEBCD1662848D6C1000C08A9 /* TestFinishObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFinishObserver.swift; sourceTree = "<group>"; };
 		DEC345EC280D8C7C0069A060 /* Onboarding.Chart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Onboarding.Chart.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1475,6 +1485,7 @@
 		DE9375A327ACE9880073F27C /* Questions */ = {
 			isa = PBXGroup;
 			children = (
+				DEBCD1652848D6AC000C08A9 /* Observer */,
 				DE9375A427ACE9880073F27C /* Models */,
 				DE9375A727ACE9880073F27C /* Requests */,
 				DE9375B427ACE9880073F27C /* QuestionMediator.swift */,
@@ -1502,6 +1513,7 @@
 				DE275C5228435B570024D62E /* SaveQuestionRequest.swift */,
 				DE275C5428435B690024D62E /* RemoveSavedQuestionRequest.swift */,
 				DE275C5E28455B970024D62E /* AgainTestRequest.swift */,
+				DEBCD1612848ACF2000C08A9 /* FinishTestRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -1760,10 +1772,8 @@
 		DE93761027ACE9880073F27C /* Study */ = {
 			isa = PBXGroup;
 			children = (
-				DE93761327ACE9880073F27C /* Views */,
-				DE93761227ACE9880073F27C /* StudyViewController.swift */,
-				DE93761127ACE9880073F27C /* StudyViewModel.swift */,
-				DE93762127ACE9880073F27C /* StudyView.swift */,
+				DEBCD15C28476474000C08A9 /* TimedQuizMinutes */,
+				DEBCD15B28476466000C08A9 /* Study */,
 			);
 			path = Study;
 			sourceTree = "<group>";
@@ -1852,6 +1862,7 @@
 			children = (
 				DE93763B27ACE9880073F27C /* TestType.swift */,
 				DE93763C27ACE9880073F27C /* TestAnalytics.swift */,
+				DEBCD1632848C0D4000C08A9 /* TestFinishElement.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2045,6 +2056,34 @@
 				DE93768727ACE9880073F27C /* MainStatsView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		DEBCD15B28476466000C08A9 /* Study */ = {
+			isa = PBXGroup;
+			children = (
+				DE93761327ACE9880073F27C /* Views */,
+				DE93761227ACE9880073F27C /* StudyViewController.swift */,
+				DE93761127ACE9880073F27C /* StudyViewModel.swift */,
+				DE93762127ACE9880073F27C /* StudyView.swift */,
+			);
+			path = Study;
+			sourceTree = "<group>";
+		};
+		DEBCD15C28476474000C08A9 /* TimedQuizMinutes */ = {
+			isa = PBXGroup;
+			children = (
+				DEBCD15D28476480000C08A9 /* TimedQuizMinutesViewController.swift */,
+				DEBCD15F2847648A000C08A9 /* TimedQuizMinutesView.swift */,
+			);
+			path = TimedQuizMinutes;
+			sourceTree = "<group>";
+		};
+		DEBCD1652848D6AC000C08A9 /* Observer */ = {
+			isa = PBXGroup;
+			children = (
+				DEBCD1662848D6C1000C08A9 /* TestFinishObserver.swift */,
+			);
+			path = Observer;
 			sourceTree = "<group>";
 		};
 		EB008DA8A37A3DCE06338AE5 /* Frameworks */ = {
@@ -2276,6 +2315,7 @@
 				DE93777127ACE9880073F27C /* CoursesView.swift in Sources */,
 				DE93770C27ACE9880073F27C /* PurchaseValidationObserver.swift in Sources */,
 				DE275C51284213530024D62E /* ReportValidationOverseer.swift in Sources */,
+				DEBCD1672848D6C1000C08A9 /* TestFinishObserver.swift in Sources */,
 				DE8030FB27F5DC1300F69A8E /* TryAgainView.swift in Sources */,
 				DE275BF4283CA2600024D62E /* ChangeExamDateViewController.swift in Sources */,
 				DE9376EB27ACE9880073F27C /* GetFailedSetRequest.swift in Sources */,
@@ -2335,6 +2375,7 @@
 				DE93776E27ACE9880073F27C /* TestStatsDescriptionView.swift in Sources */,
 				DE275C2B2840B89A0024D62E /* ReportReasonsView.swift in Sources */,
 				DE93774427ACE9880073F27C /* QuestionCell.swift in Sources */,
+				DEBCD1642848C0D4000C08A9 /* TestFinishElement.swift in Sources */,
 				DE93774127ACE9880073F27C /* ExplanationTextCell.swift in Sources */,
 				DE275C0C283E6C090024D62E /* TextSizeViewController.swift in Sources */,
 				DE9376B227ACE9880073F27C /* UIDeviceExtension.swift in Sources */,
@@ -2417,6 +2458,7 @@
 				DE275BD3283B97CA0024D62E /* GetProfileResponseMapper.swift in Sources */,
 				DE9376D127ACE9880073F27C /* RateManager.swift in Sources */,
 				DE275BE7283BD2420024D62E /* SettingsPremiumCell.swift in Sources */,
+				DEBCD1602847648A000C08A9 /* TimedQuizMinutesView.swift in Sources */,
 				DE9376D627ACE9880073F27C /* PaygateOption.swift in Sources */,
 				DE93775627ACE9880073F27C /* BottomView.swift in Sources */,
 				DE80310A27FC41D200F69A8E /* SplashActivity.swift in Sources */,
@@ -2519,6 +2561,7 @@
 				DE9376D727ACE9880073F27C /* MonetizationConfig.swift in Sources */,
 				DE93770A27ACE9880073F27C /* ProfileMediator.swift in Sources */,
 				DE9376C627ACE9880073F27C /* CircleView.swift in Sources */,
+				DEBCD1622848ACF2000C08A9 /* FinishTestRequest.swift in Sources */,
 				DE93771A27ACE9880073F27C /* Session.swift in Sources */,
 				DE93773427ACE9880073F27C /* SCBriefCell.swift in Sources */,
 				DE93776C27ACE9880073F27C /* TestStatsProgressView.swift in Sources */,
@@ -2541,6 +2584,7 @@
 				DE9376D227ACE9880073F27C /* PaygateManager.swift in Sources */,
 				DE93773B27ACE9880073F27C /* CourseView.swift in Sources */,
 				DE93778527ACE9880073F27C /* CourseProgressView.swift in Sources */,
+				DEBCD15E28476480000C08A9 /* TimedQuizMinutesViewController.swift in Sources */,
 				DE93777D27ACE9880073F27C /* CourseStatsElement.swift in Sources */,
 				DE9376BA27ACE9880073F27C /* XOREncryption.swift in Sources */,
 				DE4EB1A628047AED00DCEB92 /* OSlideWhenStudyView.swift in Sources */,

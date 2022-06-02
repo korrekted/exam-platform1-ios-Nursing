@@ -59,7 +59,7 @@ private extension StudyViewModel {
     func makeBrief() -> Driver<StudyCollectionSection> {
         let trigger = Signal
             .merge(
-                QuestionMediator.shared.rxTestPassed,
+                QuestionMediator.shared.testPassed,
                 StatsMediator.shared.resetedStats
             )
             .asDriver(onErrorDriveWith: .never())
@@ -167,13 +167,18 @@ private extension StudyViewModel {
                                     title: "Study.Mode.Saved".localized)
                 let savedElement = StudyCollectionElement.mode(saved)
                 
+                let timed = SCEMode(mode: .timed,
+                                    image: "Study.Mode.Timed",
+                                    title: "Study.Mode.Timed".localized)
+                let timedElement = StudyCollectionElement.mode(timed)
+                
                 let random = SCEMode(mode: .random,
                                     image: "Study.Mode.Random",
                                     title: "Study.Mode.RandomSet".localized)
                 let randomElement = StudyCollectionElement.mode(random)
                 
                 let section = StudyCollectionSection(elements: [
-                    todayElement, tenElement, missedElement, savedElement, randomElement
+                    todayElement, tenElement, missedElement, savedElement, timedElement, randomElement
                 ])
                 
                 return .just(section)

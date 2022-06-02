@@ -33,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         OtterScale.shared.initialize(host: GlobalDefinitions.otterScaleHost, apiKey: GlobalDefinitions.otterScaleApiKey)
         
         PurchaseValidationObserver.shared.startObserve()
+        TestFinishObserver.shared.startObserve()
         
         runProvider(on: vc.view)
         

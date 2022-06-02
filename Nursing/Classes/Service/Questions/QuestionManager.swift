@@ -8,7 +8,7 @@
 import RxSwift
 
 protocol QuestionManagerProtocol: AnyObject {
-    func obtain(courseId: Int, testId: Int?, activeSubscription: Bool) -> Single<Test?>
+    func obtain(courseId: Int, testId: Int?, time: Int?, activeSubscription: Bool) -> Single<Test?>
     func obtainTenSet(courseId: Int, activeSubscription: Bool) -> Single<Test?>
     func obtainFailedSet(courseId: Int, activeSubscription: Bool) -> Single<Test?>
     func obtainQotd(courseId: Int, activeSubscription: Bool) -> Single<Test?>
@@ -16,6 +16,7 @@ protocol QuestionManagerProtocol: AnyObject {
     func obtainSavedSet(courseId: Int, activeSubscription: Bool) -> Single<Test?>
     func obtainOnboardingSet(forceUpdate: Bool) -> Single<Test?>
     func obtainAgainTest(userTestId: Int) -> Single<Test?>
+    func finishTest(userTestId: Int) -> Single<Void>
     func sendAnswer(questionId: Int, userTestId: Int, answerIds: [Int]) -> Single<Bool?>
     func saveQuestion(questionId: Int) -> Single<Void>
     func removeSavedQuestion(questionId: Int) -> Single<Void>
@@ -36,7 +37,7 @@ final class QuestionManager: QuestionManagerProtocol {
 
 // MARK: Public
 extension QuestionManager {
-    func obtain(courseId: Int, testId: Int?, activeSubscription: Bool) -> Single<Test?> {
+    func obtain(courseId: Int, testId: Int?, time: Int?, activeSubscription: Bool) -> Single<Test?> {
         guard let userToken = sessionManager.getSession()?.userToken else {
             return .deferred { .just(nil) }
         }
@@ -45,6 +46,7 @@ extension QuestionManager {
             userToken: userToken,
             courseId: courseId,
             testid: testId,
+            time: time,
             activeSubscription: activeSubscription
         )
         
@@ -140,6 +142,19 @@ extension QuestionManager {
             .map { try GetTestResponseMapper.map(from: $0, isEncryption: true) }
     }
     
+    func finishTest(userTestId: Int) -> Single<Void> {
+        guard let userToken = sessionManager.getSession()?.userToken else {
+            return .error(SignError.tokenNotFound)
+        }
+        
+        let request = FinishTestRequest(userToken: userToken,
+                                        userTestId: userTestId)
+        
+        return defaultRequestWrapper
+            .callServerApi(requestBody: request)
+            .mapToVoid()
+    }
+    
     func sendAnswer(questionId: Int, userTestId: Int, answerIds: [Int]) -> Single<Bool?> {
         guard let userToken = sessionManager.getSession()?.userToken else {
             return .deferred { .just(nil) }
@@ -157,7 +172,7 @@ extension QuestionManager {
             .map { try SendAnswerResponseMapper.map(from: $0) }
             .do(onSuccess: { isEndOfTest in
                 if isEndOfTest == true {
-                    QuestionMediator.shared.testPassed()
+                    QuestionMediator.shared.notidyAboutTestPassed()
                 }
             })
     }

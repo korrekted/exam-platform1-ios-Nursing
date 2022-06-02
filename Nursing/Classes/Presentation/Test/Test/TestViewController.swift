@@ -39,8 +39,6 @@ final class TestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let courseName = viewModel.courseName
-        
         viewModel.tryAgain = { [weak self] error -> Observable<Void> in
             guard let self = self else {
                 return .empty()
@@ -69,20 +67,37 @@ final class TestViewController: UIViewController {
         
         viewModel.isSavedQuestion
             .drive(Binder(self) { base, isSaved in
-                base.updateFavorite(isSaved)
+                base.update(favorite: isSaved)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.progress
+            .drive(Binder(self) { base, progress in
+                base.update(progress: progress)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.score
+            .drive(Binder(self) { base, score in
+                base.mainView.progressView.setProgress(score, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.testFinishElement
+            .drive(Binder(self) { base, element in
+                base.finishTest(result: .submit, element: element)
             })
             .disposed(by: disposeBag)
         
         viewModel.question
             .drive(Binder(self) { base, element in
                 base.mainView.tableView.setup(question: element)
-                base.updateProgress(questionElement: element)
             })
             .disposed(by: disposeBag)
         
         mainView.tableView
             .selectedAnswersRelay
-            .withLatestFrom(courseName) { ($0, $1) }
+            .withLatestFrom(viewModel.courseName) { ($0, $1) }
             .bind(to: Binder(self) { base, args in
                 let (answers, name) = args
                 
@@ -109,13 +124,7 @@ final class TestViewController: UIViewController {
         
         currentButtonState
             .compactMap { $0 == .submit ? () : nil }
-            .withLatestFrom(viewModel.userTestId)
-            .withLatestFrom(courseName) { ($0, $1) }
-            .bind(to: Binder(self) { base, stub in
-                let (id, name) = stub
-
-                base.finishTest(id: id, name: name)
-            })
+            .bind(to: viewModel.didTapSubmit)
             .disposed(by: disposeBag)
         
         currentButtonState
@@ -127,7 +136,7 @@ final class TestViewController: UIViewController {
             .disposed(by: disposeBag)
         
         mainView.bottomView.nextButton.rx.tap
-            .withLatestFrom(courseName)
+            .withLatestFrom(viewModel.courseName)
             .bind(to: Binder(self) { base, name in
                 base.viewModel.didTapNext.accept(Void())
                 base.logTapAnalytics(courseName: name, what: "continue")
@@ -149,7 +158,7 @@ final class TestViewController: UIViewController {
             .withLatestFrom(viewModel.testType)
             .compactMap { $0 }
             .filter { !$0.isQotd() }
-            .withLatestFrom(courseName)
+            .withLatestFrom(viewModel.courseName)
             .withLatestFrom(viewModel.questions) { ($0, $1) }
             .withLatestFrom(viewModel.userTestId) { ($0.0, $0.1, $1) }
             .bind(to: Binder(self) { base, args in
@@ -158,13 +167,10 @@ final class TestViewController: UIViewController {
                 // TODO: answeredQuestionsCount (менять флаг у элементов после sendAnswer)
                 let vc = QuitQuizViewController.make(allQuestionsCount: questions.count,
                                                      answeredQuestionsCount: questions.filter { $0.isAnswered }.count) { result in
-                    switch result {
-                    case .quit:
-                        base.logTapAnalytics(courseName: courseName, what: "close")
-                        base.dismiss(animated: true)
-                    case .submit:
-                        base.finishTest(id: userTestId, name: courseName)
-                    }
+                    base.finishTest(result: result,
+                                    element: TestFinishElement(userTestId: userTestId,
+                                                               courseName: courseName,
+                                                               testType: base.testType))
                 }
                 base.present(vc, animated: false)
             })
@@ -217,7 +223,7 @@ final class TestViewController: UIViewController {
             
         viewModel.needPayment
             .filter(!)
-            .withLatestFrom(courseName)
+            .withLatestFrom(viewModel.courseName)
             .emit(onNext: { [weak self] name in
                 self?.logAnalytics(courseName: name)
             })
@@ -225,7 +231,7 @@ final class TestViewController: UIViewController {
         
         mainView.tableView
             .expandContent
-            .withLatestFrom(courseName)
+            .withLatestFrom(viewModel.courseName)
             .subscribe(onNext: { [weak self] name in
                 self?.logTapAnalytics(courseName: name, what: "media")
             })
@@ -322,33 +328,47 @@ extension TestViewController: ReportViewControllerDelegate {
 
 // MARK: Private
 private extension TestViewController {
-    func updateFavorite(_ saved: Bool) {
-        let image = UIImage(named: saved ? "Question.Favorite.Check" : "Question.Favorite.Uncheck")
+    func update(favorite: Bool) {
+        let image = UIImage(named: favorite ? "Question.Favorite.Check" : "Question.Favorite.Uncheck")
         mainView.tabView.favoriteButton.setImage(image, for: .normal)
     }
     
-    func updateProgress(questionElement: QuestionElement) {
+    func update(progress: String) {
         let attrs = TextAttributes()
             .textColor(Appearance.blackColor.withAlphaComponent(0.5))
             .font(Fonts.SFProRounded.semiBold(size: 17.scale))
             .lineHeight(20.scale)
             .textAlignment(.center)
         
-        if testType.isQotd() {
+        let timedAttrs = TextAttributes()
+            .textColor(Appearance.mainColor)
+            .font(Fonts.SFProRounded.semiBold(size: 17.scale))
+            .lineHeight(20.scale)
+            .textAlignment(.center)
+        
+        switch testType {
+        case .qotd:
             mainView.titleLabel.attributedText = "Question.TodayTitle".localized.attributed(with: attrs)
-        } else {
-            let title = String(format: "Question.QuestionProgress".localized,
-                               questionElement.index,
-                               questionElement.questionsCount)
-            mainView.titleLabel.attributedText = title.attributed(with: attrs)
-            
-            mainView.progressView.setProgress(Float(questionElement.index) / Float(questionElement.questionsCount), animated: true)
+        case .timed:
+            mainView.titleLabel.attributedText = progress.attributed(with: timedAttrs)
+        default:
+            mainView.titleLabel.attributedText = progress.attributed(with: attrs)
         }
     }
     
-    func finishTest(id: Int, name: String) {
-        didTapSubmit?(id)
-        logTapAnalytics(courseName: name, what: "finish test")
+    func finishTest(result: QuitQuizViewController.Result, element: TestFinishElement) {
+        switch result {
+        case .quit:
+            logTapAnalytics(courseName: element.courseName, what: "close")
+            
+            QuestionMediator.shared.notifyAboudTestClosed(with: element)
+            
+            dismiss(animated: true)
+        case .submit:
+            logTapAnalytics(courseName: element.courseName, what: "finish test")
+            
+            didTapSubmit?(element.userTestId)
+        }
     }
     
     func logAnalytics(courseName: String) {

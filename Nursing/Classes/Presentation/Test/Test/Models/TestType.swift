@@ -12,6 +12,7 @@ enum TestType {
     case qotd
     case randomSet
     case saved
+    case timed(minutes: Int)
 }
 
 // MARK: Public

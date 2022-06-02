@@ -140,7 +140,19 @@ private extension StudyViewController {
             
             AmplitudeManager.shared
                 .logEvent(name: "Study Tap", parameters: ["what": "saved questions"])
+        case .timed:
+            openTimedTest(activeSubscription: activeSubscription)
+            
+            AmplitudeManager.shared
+                .logEvent(name: "Study Tap", parameters: ["what": "timed questions"])
         }
+    }
+    
+    func openTimedTest(activeSubscription: Bool) {
+        let minutesVC = TimedQuizMinutesViewController.make { [weak self] minutes in
+            self?.openTest(type: .timed(minutes: minutes), activeSubscription: activeSubscription)
+        }
+        present(minutesVC, animated: false)
     }
     
     func openTest(type: TestType, activeSubscription: Bool) {

@@ -9,12 +9,14 @@ import RxCocoa
 
 protocol QuestionMediatorDelegate: AnyObject {
     func questionMediatorDidTestPassed()
+    func questionMediatorDidTestClosed(element: TestFinishElement)
 }
 
 final class QuestionMediator {
     static let shared = QuestionMediator()
     
     private let testPassedTrigger = PublishRelay<Void>()
+    private let testClosedTrigger = PublishRelay<TestFinishElement>()
     
     private var delegates = [Weak<QuestionMediatorDelegate>]()
     
@@ -23,7 +25,7 @@ final class QuestionMediator {
 
 // MARK: Public
 extension QuestionMediator {
-    func testPassed() {
+    func notidyAboutTestPassed() {
         DispatchQueue.main.async { [weak self] in
             self?.delegates.forEach {
                 $0.weak?.questionMediatorDidTestPassed()
@@ -32,12 +34,26 @@ extension QuestionMediator {
             self?.testPassedTrigger.accept(())
         }
     }
+    
+    func notifyAboudTestClosed(with element: TestFinishElement) {
+        DispatchQueue.main.async { [weak self] in
+            self?.delegates.forEach {
+                $0.weak?.questionMediatorDidTestClosed(element: element)
+            }
+            
+            self?.testClosedTrigger.accept(element)
+        }
+    }
 }
 
 // MARK: Triggers(Rx)
 extension QuestionMediator {
-    var rxTestPassed: Signal<Void> {
+    var testPassed: Signal<Void> {
         testPassedTrigger.asSignal()
+    }
+    
+    var testClosed: Signal<TestFinishElement> {
+        testClosedTrigger.asSignal()
     }
 }
 
