@@ -7,7 +7,6 @@
 
 import UIKit
 import RxSwift
-import StoreKit
 import OtterScaleiOS
 
 final class SettingsViewController: UIViewController {
@@ -123,7 +122,7 @@ extension SettingsViewController: SettingsTableDelegate {
         AmplitudeManager.shared
             .logEvent(name: "Settings Tap", parameters: ["what": "rate us"])
         
-        SKStoreReviewController.requestReview()
+        open(path: GlobalDefinitions.appStoreUrl)
     }
     
     func settingsTableDidTappedJoinTheCommunity(url: String) {
