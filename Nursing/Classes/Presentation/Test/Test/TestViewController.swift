@@ -271,6 +271,14 @@ final class TestViewController: UIViewController {
                 base.present(vc, animated: true)
             })
             .disposed(by: disposeBag)
+        
+        mainView.tabView.nextButton.rx.tap
+            .bind(to: viewModel.didTapNextQuestion)
+            .disposed(by: disposeBag)
+        
+        mainView.tabView.previousButton.rx.tap
+            .bind(to: viewModel.didTapPreviousQuestion)
+            .disposed(by: disposeBag)
     }
 }
 
