@@ -124,7 +124,26 @@ final class TestViewController: UIViewController {
         
         currentButtonState
             .compactMap { $0 == .submit ? () : nil }
-            .bind(to: viewModel.didTapSubmit)
+            .withLatestFrom(viewModel.questions)
+            .bind(to: Binder(self) { base, questions in
+                let allQuestionsCount = questions.count
+                let answeredQuestionsCount = questions.filter { $0.isAnswered }.count
+                
+                if allQuestionsCount == answeredQuestionsCount {
+                    base.viewModel.didTapSubmit.accept(Void())
+                    
+                    return
+                }
+                
+                let vc = SubmitQuizViewController.make(allQuestionsCount: allQuestionsCount,
+                                                       answeredQuestionsCount: answeredQuestionsCount) { result in
+                    switch result {
+                    case .submit:
+                        base.viewModel.didTapSubmit.accept(Void())
+                    }
+                }
+                base.present(vc, animated: true)
+            })
             .disposed(by: disposeBag)
         
         currentButtonState
@@ -164,7 +183,6 @@ final class TestViewController: UIViewController {
             .bind(to: Binder(self) { base, args in
                 let (courseName, questions, userTestId) = args
                 
-                // TODO: answeredQuestionsCount (менять флаг у элементов после sendAnswer)
                 let vc = QuitQuizViewController.make(allQuestionsCount: questions.count,
                                                      answeredQuestionsCount: questions.filter { $0.isAnswered }.count) { result in
                     base.finishTest(result: result,

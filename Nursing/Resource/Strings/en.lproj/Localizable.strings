@@ -185,10 +185,14 @@
 "Question.NextQuestion" = "Next question";
 "Question.TodayTitle" = "Today’s question";
 "Question.QuitQuiz.Title" = "Quit Quiz?";
-"Question.QuitQuiz.SubTitle" = "You’ve answered only %i of %i questions. ";
+"Question.QuitQuiz.SubTitle" = "You’ve answered only %i of %i questions.";
 "Question.QuitQuiz.QuitQuiz" = "Quit quiz";
 "Question.QuitQuiz.SubmitQuiz" = "Submit quiz";
 "Question.QuitQuiz.ContinueQuiz" = "Continue quiz";
+"Question.SubmitQuiz.Title" = "Submit quiz?";
+"Question.SubmitQuiz.SubTitle" = "You’ve answered only %i of %i questions.";
+"Question.SubmitQuiz.SubmitQuiz" = "Submit quiz";
+"Question.SubmitQuiz.ContinueQuiz" = "Continue quiz";
 
 // MARK: Test Stats
 "TestStats.Title" = "";

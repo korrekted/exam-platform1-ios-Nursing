@@ -399,7 +399,7 @@ private extension TestViewModel {
                 })
                 
                 if question.index == question.questionsCount, question.questionsCount != 1, isResult {
-                    return isEndOfTest ? .submit : .hidden
+                    return .submit
                 } else {
                     guard isResult && question.questionsCount == 1 else {
                         return isResult ? .hidden : answers?.answerIds.isEmpty == false ? .confirm : .hidden

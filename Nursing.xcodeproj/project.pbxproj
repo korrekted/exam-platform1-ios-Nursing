@@ -123,6 +123,8 @@
 		DE4EB1AC28047AED00DCEB92 /* OSlideTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4EB18B28047AED00DCEB92 /* OSlideTimeView.swift */; };
 		DE4EB1AD28047AED00DCEB92 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4EB18C28047AED00DCEB92 /* OnboardingView.swift */; };
 		DE4EB1AE28047AED00DCEB92 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4EB18D28047AED00DCEB92 /* OnboardingViewModel.swift */; };
+		DE6BFDF9284FA0FE00F5CF20 /* SubmitQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6BFDF8284FA0FE00F5CF20 /* SubmitQuizViewController.swift */; };
+		DE6BFDFB284FA10600F5CF20 /* SubmitQuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6BFDFA284FA10600F5CF20 /* SubmitQuizView.swift */; };
 		DE8030F727F5DBF600F69A8E /* TryAgainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8030F627F5DBF600F69A8E /* TryAgainViewController.swift */; };
 		DE8030FB27F5DC1300F69A8E /* TryAgainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8030FA27F5DC1300F69A8E /* TryAgainView.swift */; };
 		DE8030FD27F5FCD000F69A8E /* ContentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8030FC27F5FCD000F69A8E /* ContentError.swift */; };
@@ -485,6 +487,8 @@
 		DE4EB18B28047AED00DCEB92 /* OSlideTimeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSlideTimeView.swift; sourceTree = "<group>"; };
 		DE4EB18C28047AED00DCEB92 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		DE4EB18D28047AED00DCEB92 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		DE6BFDF8284FA0FE00F5CF20 /* SubmitQuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitQuizViewController.swift; sourceTree = "<group>"; };
+		DE6BFDFA284FA10600F5CF20 /* SubmitQuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitQuizView.swift; sourceTree = "<group>"; };
 		DE8030F627F5DBF600F69A8E /* TryAgainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryAgainViewController.swift; sourceTree = "<group>"; };
 		DE8030FA27F5DC1300F69A8E /* TryAgainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryAgainView.swift; sourceTree = "<group>"; };
 		DE8030FC27F5FCD000F69A8E /* ContentError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentError.swift; sourceTree = "<group>"; };
@@ -1280,6 +1284,15 @@
 			path = Welcome;
 			sourceTree = "<group>";
 		};
+		DE6BFDF7284FA0EC00F5CF20 /* SubmitQuiz */ = {
+			isa = PBXGroup;
+			children = (
+				DE6BFDF8284FA0FE00F5CF20 /* SubmitQuizViewController.swift */,
+				DE6BFDFA284FA10600F5CF20 /* SubmitQuizView.swift */,
+			);
+			path = SubmitQuiz;
+			sourceTree = "<group>";
+		};
 		DE8030F527F5DBE900F69A8E /* TryAgain */ = {
 			isa = PBXGroup;
 			children = (
@@ -1849,6 +1862,7 @@
 		DE93762927ACE9880073F27C /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				DE6BFDF7284FA0EC00F5CF20 /* SubmitQuiz */,
 				DE275C562844B8030024D62E /* QuitQuiz */,
 				DE93765227ACE9880073F27C /* TestStats */,
 				DE275C262840B7300024D62E /* Report */,
@@ -2322,6 +2336,7 @@
 				DE275C5C2844B8290024D62E /* QuitQuizView.swift in Sources */,
 				DE9376C927ACE9880073F27C /* RxActivityIndicator.swift in Sources */,
 				DE93771127ACE9880073F27C /* Brief.swift in Sources */,
+				DE6BFDFB284FA10600F5CF20 /* SubmitQuizView.swift in Sources */,
 				DE275C3C28411F750024D62E /* ReportViewModel.swift in Sources */,
 				DE4EA4E327FF0B9C00DCEB92 /* TestBottomSpinner.swift in Sources */,
 				DE9376F227ACE9880073F27C /* QuestionMediator.swift in Sources */,
@@ -2423,6 +2438,7 @@
 				DE93772E27ACE9880073F27C /* StudyViewModel.swift in Sources */,
 				DE93774727ACE9880073F27C /* ExplanationImageCell.swift in Sources */,
 				DE93771227ACE9880073F27C /* Stats.swift in Sources */,
+				DE6BFDF9284FA0FE00F5CF20 /* SubmitQuizViewController.swift in Sources */,
 				DE93776527ACE9880073F27C /* TestStatsFilterCell.swift in Sources */,
 				DE80310827FB4E5900F69A8E /* Spinner.swift in Sources */,
 				DE4EB1AA28047AED00DCEB92 /* OSlideWhenTakingView.swift in Sources */,
