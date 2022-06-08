@@ -12,11 +12,11 @@ final class BottomView: UIView {
         case confirm
         case submit
         case back
+        case next
         case hidden
     }
     
-    lazy var bottomButton = makeBottomButton()
-    lazy var nextButton = makeNextButton()
+    lazy var button = makeButton()
     lazy var preloader = makePreloader()
     
     override init(frame: CGRect) {
@@ -31,7 +31,7 @@ final class BottomView: UIView {
     }
     
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        if bottomButton.isHidden && nextButton.isHidden {
+        if button.isHidden {
             return false
         }
         
@@ -42,18 +42,8 @@ final class BottomView: UIView {
 // MARK: Public
 extension BottomView {
     func setup(state: BottomView.State) {
-        switch state {
-        case .confirm:
-            bottomButton.setAttributedTitle("Question.Continue".localized.attributed(with: Self.buttonAttr), for: .normal)
-        case .submit:
-            bottomButton.setAttributedTitle("Question.Submit".localized.attributed(with: Self.buttonAttr), for: .normal)
-        case .back:
-            bottomButton.setAttributedTitle("Question.BackToStudying".localized.attributed(with: Self.buttonAttr), for: .normal)
-        case .hidden:
-            break
-        }
-        
-        bottomButton.isHidden = state == .hidden
+        button.setAttributedTitle(state.buttonTitle.attributed(with: .buttonAttr), for: .normal)
+        button.isHidden = state == .hidden
     }
 }
 
@@ -62,29 +52,16 @@ private extension BottomView {
     func initialize() {
         backgroundColor = .clear
     }
-    
-    static let buttonAttr = TextAttributes()
-        .font(Fonts.SFProRounded.regular(size: 20.scale))
-        .lineHeight(23.scale)
-        .textColor(.white)
-        .textAlignment(.center)
 }
 
 // MARK: Make constraints
 private extension BottomView {
     func makeConstraints() {
         NSLayoutConstraint.activate([
-            bottomButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 26.scale),
-            bottomButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -26.scale),
-            bottomButton.topAnchor.constraint(equalTo: topAnchor),
-            bottomButton.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
-        
-        NSLayoutConstraint.activate([
-            nextButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 26.scale),
-            nextButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -26.scale),
-            nextButton.topAnchor.constraint(equalTo: topAnchor),
-            nextButton.bottomAnchor.constraint(equalTo: bottomAnchor)
+            button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 26.scale),
+            button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -26.scale),
+            button.topAnchor.constraint(equalTo: topAnchor),
+            button.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
         
         NSLayoutConstraint.activate([
@@ -98,7 +75,7 @@ private extension BottomView {
 
 // MARK: Lazy initialization
 private extension BottomView {
-    func makeBottomButton() -> UIButton {
+    func makeButton() -> UIButton {
         let view = UIButton()
         view.layer.cornerRadius = 30.scale
         view.backgroundColor = Appearance.mainColor
@@ -109,7 +86,7 @@ private extension BottomView {
     
     func makeNextButton() -> UIButton {
         let view = UIButton()
-        view.setAttributedTitle("Question.NextQuestion".localized.attributed(with: Self.buttonAttr), for: .normal)
+        view.setAttributedTitle("Question.NextQuestion".localized.attributed(with: .buttonAttr), for: .normal)
         view.layer.cornerRadius = 30.scale
         view.backgroundColor = Appearance.mainColor
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -126,4 +103,29 @@ private extension BottomView {
         addSubview(view)
         return view
     }
+}
+
+private extension BottomView.State {
+    var buttonTitle: String {
+        switch self {
+        case .confirm:
+            return "Question.Continue".localized
+        case .submit:
+            return "Question.Submit".localized
+        case .back:
+            return "Question.BackToStudying".localized
+        case .next:
+            return "Question.NextQuestion".localized
+        case .hidden:
+            return ""
+        }
+    }
+}
+
+private extension TextAttributes {
+    static let buttonAttr = TextAttributes()
+        .font(Fonts.SFProRounded.regular(size: 20.scale))
+        .lineHeight(23.scale)
+        .textColor(.white)
+        .textAlignment(.center)
 }

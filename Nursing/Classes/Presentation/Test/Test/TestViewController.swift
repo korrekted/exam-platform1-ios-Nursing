@@ -113,7 +113,7 @@ final class TestViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        let currentButtonState = mainView.bottomView.bottomButton.rx.tap
+        let currentButtonState = mainView.bottomView.button.rx.tap
             .withLatestFrom(viewModel.bottomViewState)
             .share()
         
@@ -154,7 +154,8 @@ final class TestViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        mainView.bottomView.nextButton.rx.tap
+        currentButtonState
+            .filter { $0 == .next }
             .withLatestFrom(viewModel.courseName)
             .bind(to: Binder(self) { base, name in
                 base.viewModel.didTapNext.accept(Void())
@@ -194,20 +195,13 @@ final class TestViewController: UIViewController {
             })
             .disposed(by: disposeBag)
     
-        Driver
-            .merge(
-                viewModel.isEndOfTest.withLatestFrom(viewModel.testMode) { ($0, $1) },
-                mainView.bottomView.nextButton.rx.tap.asDriver().map { _ in (true, nil) },
-                viewModel.didTapRestart.asDriver(onErrorDriveWith: .never()).map { _ in (true, nil) }
-            )
-            .drive(Binder(self) { base, args in
-                let (isEndOfTest, testMode) = args
-
+        viewModel.isEndOfTest
+            .filter(!)
+            .withLatestFrom(viewModel.testMode)
+            .bind(with: self, onNext: { base, testMode in
                 if testMode == .onAnExam {
                     base.viewModel.didTapNext.accept(Void())
                 }
-                
-                base.mainView.bottomView.nextButton.isHidden = isEndOfTest || testMode == .onAnExam
             })
             .disposed(by: disposeBag)
         

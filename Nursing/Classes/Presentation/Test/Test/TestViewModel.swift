@@ -343,14 +343,14 @@ private extension TestViewModel {
     func makeCurrentAnswers() -> Observable<AnswerElement?> {
         Observable
             .merge(answers.asObservable(),
-                   didTapNext.map { _ in nil },
                    didTapRestart.map { _ in nil },
-                   didTapNextQuestion.map { _ in nil },
-                   didTapPreviousQuestion.map { _ in nil }
+                   didTapNext.map { nil },
+                   didTapNextQuestion.map { nil },
+                   didTapPreviousQuestion.map { nil }
             )
     }
     
-    func endOfTest() -> Driver<Bool> {
+    func endOfTest() -> Observable<Bool> {
         selectedAnswers
             .compactMap { $0 }
             .withLatestFrom(testElement) {
@@ -388,26 +388,26 @@ private extension TestViewModel {
                     .compactMap { $0 }
                     .asObservable()
             }
-            .startWith(true)
-            .asDriver(onErrorJustReturn: false)
+            .catchAndReturn(false)
     }
     
     func makeBottomState() -> Driver<BottomView.State> {
-        Driver.combineLatest(isEndOfTest, question, currentAnswers.asDriver(onErrorJustReturn: nil))
-            .map { isEndOfTest, question, answers -> BottomView.State in
-                let isResult = question.elements.contains(where: {
-                    guard case .result = $0 else { return false }
-                    return true
-                })
+        Driver
+            .combineLatest(
+                question,
+                currentAnswers.asDriver(onErrorJustReturn: nil),
+                testMode
+            )
+            .map { question, answers, testMode -> BottomView.State in
                 
-                if question.index == question.questionsCount, question.questionsCount != 1, isResult {
-                    return .submit
-                } else {
-                    guard isResult && question.questionsCount == 1 else {
-                        return isResult ? .hidden : answers?.answerIds.isEmpty == false ? .confirm : .hidden
+                if question.elements.contains(where: { $0.isResult }) {
+                    if question.isLast {
+                        return question.questionsCount == 1 ? .back : .submit
+                    } else {
+                        return testMode == .onAnExam ? .hidden : .next
                     }
-                    
-                    return .back
+                } else {
+                    return answers?.answerIds.isEmpty == false ? .confirm : .hidden
                 }
             }
             .startWith(.hidden)
@@ -678,4 +678,18 @@ private extension Int {
         
         return String(format: "%02d:%02d", mins, secs)
     }
+}
+
+private extension TestingCellType {
+    var isResult: Bool {
+        if case .result = self {
+            return true
+        } else {
+            return false
+        }
+    }
+}
+
+private extension QuestionElement {
+    var isLast: Bool { index == questionsCount }
 }
