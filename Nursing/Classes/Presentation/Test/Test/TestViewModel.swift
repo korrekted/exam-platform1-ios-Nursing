@@ -188,6 +188,7 @@ private extension TestViewModel {
     func makeQuestions() -> Observable<[QuestionElement]> {
         let questions = testElement
             .compactMap { $0.questions }
+            .asObservable()
 
         let mode = testMode.asObservable()
         let courseName = courseName.asObservable()
@@ -218,11 +219,11 @@ private extension TestViewModel {
             .startWith(nil)
     }
     
-    func makeTest() -> Observable<Test> {
-        let load = loadTest()
-        let restart = restartTest()
+    func makeTest() -> Driver<Test> {
+        let load = loadTest().asDriver(onErrorDriveWith: .never())
+        let restart = restartTest().asDriver(onErrorDriveWith: .never())
         
-        return Observable.merge(load, restart)
+        return Driver.merge(load, restart)
     }
     
     func loadTest() -> Observable<Test> {
@@ -336,6 +337,7 @@ private extension TestViewModel {
     func makeUserTestId() -> Observable<Int> {
         testElement
             .compactMap { $0.userTestId }
+            .asObservable()
     }
     
     func makeCurrentAnswers() -> Observable<AnswerElement?> {
@@ -441,6 +443,7 @@ private extension TestViewModel {
     
     func makeTimer() -> Observable<Int> {
         testElement
+            .asObservable()
             .withLatestFrom(testType)
             .flatMapLatest { testType -> Observable<Int> in
                 guard case let .timed(minutes) = testType else {

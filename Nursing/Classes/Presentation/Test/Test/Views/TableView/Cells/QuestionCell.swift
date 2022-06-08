@@ -47,7 +47,7 @@ private extension QuestionCell {
         }
         
         let font = Fonts.SFProRounded.semiBold(size: textSize.questionFontSize)
-        let htmlWithStyle = "<span style=\"font-family: \(font.fontName); font-style: semiBold; font-size: \(font.pointSize); line-height: \(textSize.questionLineHeight);\">\(htmlString)</span>"
+        let htmlWithStyle = "<span style=\"font-family: \(font.fontName); font-style: semiBold; font-size: \(font.pointSize); line-height: \(textSize.questionLineHeight)px;\">\(htmlString)</span>"
         let data = Data(htmlWithStyle.utf8)
         
         let attributedString = try? NSAttributedString(

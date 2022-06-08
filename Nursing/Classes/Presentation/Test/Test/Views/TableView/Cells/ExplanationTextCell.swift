@@ -45,7 +45,7 @@ private extension ExplanationTextCell {
         guard !htmlString.isEmpty else { return nil }
         
         let font = Fonts.SFProRounded.regular(size: 17.scale)
-        let htmlWithStyle = "<span style=\"font-family: \(font.fontName); font-style: regular; font-size: \(font.pointSize); line-height: 20px;\">\(htmlString)</span>"
+        let htmlWithStyle = "<span style=\"font-family: \(font.fontName); font-style: regular; font-size: \(font.pointSize); line-height: \(20.scale)px;\">\(htmlString)</span>"
         let data = Data(htmlWithStyle.utf8)
         
         let attributedString = try? NSAttributedString(
