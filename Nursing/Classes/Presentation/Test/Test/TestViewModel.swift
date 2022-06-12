@@ -163,25 +163,16 @@ private extension TestViewModel {
     }
     
     func makeQuestion() -> Driver<QuestionElement> {
-        didTapRestart
-            .mapToVoid()
-            .startWith(Void())
-            .flatMapLatest { [weak self] void -> Driver<QuestionElement> in
-                guard let self = self else {
-                    return .never()
-                }
-                
-                return Observable<Action>
-                    .merge(
-                        self.didTapNext.debounce(.microseconds(500), scheduler: MainScheduler.instance).map { .continue },
-                        self.didTapNextQuestion.map { .next },
-                        self.didTapPreviousQuestion.map { .previous },
-                        self.questions.map { .elements($0) }
-                    )
-                    .scan((nil, []), accumulator: self.currentQuestionAccumulator)
-                    .compactMap { $0.0 }
-                    .asDriver(onErrorDriveWith: .empty())
-            }
+        Observable<Action>
+            .merge(
+                self.didTapNext.debounce(.microseconds(500), scheduler: MainScheduler.instance).map { .continue },
+                self.didTapNextQuestion.map { .next },
+                self.didTapPreviousQuestion.map { .previous },
+                self.questions.map { .elements($0) },
+                self.didTapRestart.map { _ in .restart }
+            )
+            .scan((nil, []), accumulator: currentQuestionAccumulator)
+            .compactMap { $0.0 }
             .asDriver(onErrorDriveWith: .empty())
     }
     
@@ -189,6 +180,7 @@ private extension TestViewModel {
         let questions = testElement
             .compactMap { $0.questions }
             .asObservable()
+            .share(replay: 1)
 
         let mode = testMode.asObservable()
         let courseName = courseName.asObservable()
@@ -470,6 +462,7 @@ private extension TestViewModel {
         case previous
         case `continue`
         case elements([QuestionElement])
+        case restart
     }
     
     enum QuestionAction {
@@ -623,7 +616,7 @@ private extension TestViewModel {
                 // если юзер уже на него отвечал
                 guard questions.count > 1 else { return (questions.first, questions) }
                 
-                // Флаг isAnswered проставлен в true либо бэком6 либо локально,
+                // Флаг isAnswered проставлен в true либо бэком либо локально,
                 // при успешной отправке ответа, в этом случае игнорм всю логику
                 // и возвращаем предыдущее значение, переключение на следцющий вопрос
                 // вызовет другой кейс
@@ -648,6 +641,8 @@ private extension TestViewModel {
                 let withoutAnswered = elements.suffix(from: currentIndex).filter { !$0.isAnswered }
                 let index = withoutAnswered.firstIndex(where: { $0.id == currentElement?.id }).map { $0 + 1 } ?? 0
                 return (withoutAnswered[safe: index] ?? currentElement, elements)
+            case .restart:
+                return (nil, elements)
             }
         }
     }
