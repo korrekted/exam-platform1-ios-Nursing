@@ -18,6 +18,7 @@
 // MARK: Course
 "Course.Tab.Stats" = "Stats";
 "Course.Tab.Study" = "Study";
+"Course.Tab.Review" = "Review";
 
 // MARK: Splash
 "Splash.Title.Part1" = "Prepared by\n";

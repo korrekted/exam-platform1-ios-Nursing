@@ -12,6 +12,7 @@ final class CourseViewCoordinator {
     
     lazy var studyVC = NursingNavigationController(rootViewController: StudyViewController.make())
     lazy var statsVC = NursingNavigationController(rootViewController: StatsViewController.make())
+    lazy var reviewVC = NursingNavigationController(rootViewController: ReviewViewController.make())
     
     private var previousVC: UIViewController?
     
@@ -35,6 +36,13 @@ final class CourseViewCoordinator {
             
             AmplitudeManager.shared
                 .logEvent(name: "Tab Bar Tap", parameters: ["what": "stats"])
+        case .review:
+            parentVC?.mainView.tabView.selectedTab = tab
+            
+            changeVC(on: reviewVC)
+            
+            AmplitudeManager.shared
+                .logEvent(name: "Tab Bar Tap", parameters: ["what": "review"])
         }
     }
 }
