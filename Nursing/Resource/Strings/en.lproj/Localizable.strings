@@ -259,3 +259,8 @@
 "TimedQuizMinutes.Title" = "Timed Quiz";
 "TimedQuizMinutes.SubTitle" = "How many minutes?";
 "TimedQuizMinutes.StartButton" = "Start Quiz";
+
+// MARK: Review
+"Review.Title" = "Review";
+"Review.Filter.Quizes" = "Quizes";
+"Review.Filter.Questions" = "Questions";

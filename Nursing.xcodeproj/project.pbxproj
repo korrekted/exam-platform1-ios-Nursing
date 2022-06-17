@@ -35,6 +35,9 @@
 		DE1A7CFC285D0A7D003E35BC /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A7CFB285D0A7D003E35BC /* ReviewViewController.swift */; };
 		DE1A7CFE285D0A87003E35BC /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A7CFD285D0A87003E35BC /* ReviewViewModel.swift */; };
 		DE1A7D00285D0A90003E35BC /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A7CFF285D0A90003E35BC /* ReviewView.swift */; };
+		DE1A7D04285D0E86003E35BC /* ReviewFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A7D03285D0E86003E35BC /* ReviewFilterButton.swift */; };
+		DE1A7D06285D0EEB003E35BC /* ReviewFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A7D05285D0EEB003E35BC /* ReviewFilterView.swift */; };
+		DE1A7D08285D1359003E35BC /* ReviewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A7D07285D1359003E35BC /* ReviewCoordinator.swift */; };
 		DE275BCA283B8B950024D62E /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BC9283B8B950024D62E /* Profile.swift */; };
 		DE275BCC283B963C0024D62E /* Observable+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BCB283B963C0024D62E /* Observable+Utils.swift */; };
 		DE275BCE283B96520024D62E /* Single+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BCD283B96520024D62E /* Single+Utils.swift */; };
@@ -402,6 +405,9 @@
 		DE1A7CFB285D0A7D003E35BC /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		DE1A7CFD285D0A87003E35BC /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
 		DE1A7CFF285D0A90003E35BC /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
+		DE1A7D03285D0E86003E35BC /* ReviewFilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewFilterButton.swift; sourceTree = "<group>"; };
+		DE1A7D05285D0EEB003E35BC /* ReviewFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewFilterView.swift; sourceTree = "<group>"; };
+		DE1A7D07285D1359003E35BC /* ReviewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCoordinator.swift; sourceTree = "<group>"; };
 		DE275BC9283B8B950024D62E /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		DE275BCB283B963C0024D62E /* Observable+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Utils.swift"; sourceTree = "<group>"; };
 		DE275BCD283B96520024D62E /* Single+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Single+Utils.swift"; sourceTree = "<group>"; };
@@ -873,11 +879,30 @@
 		DE1A7CFA285D0A70003E35BC /* Review */ = {
 			isa = PBXGroup;
 			children = (
+				DE1A7D01285D0E76003E35BC /* Views */,
+				DE1A7D07285D1359003E35BC /* ReviewCoordinator.swift */,
 				DE1A7CFB285D0A7D003E35BC /* ReviewViewController.swift */,
 				DE1A7CFD285D0A87003E35BC /* ReviewViewModel.swift */,
 				DE1A7CFF285D0A90003E35BC /* ReviewView.swift */,
 			);
 			path = Review;
+			sourceTree = "<group>";
+		};
+		DE1A7D01285D0E76003E35BC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DE1A7D02285D0E7B003E35BC /* Filter */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DE1A7D02285D0E7B003E35BC /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				DE1A7D03285D0E86003E35BC /* ReviewFilterButton.swift */,
+				DE1A7D05285D0EEB003E35BC /* ReviewFilterView.swift */,
+			);
+			path = Filter;
 			sourceTree = "<group>";
 		};
 		DE275BCF283B97B70024D62E /* GetProfile */ = {
@@ -2393,6 +2418,7 @@
 				DE275C252840AC1B0024D62E /* ReportOptionButton.swift in Sources */,
 				DE93773827ACE9880073F27C /* StudyCollectionView.swift in Sources */,
 				DE1A7CFE285D0A87003E35BC /* ReviewViewModel.swift in Sources */,
+				DE1A7D06285D0EEB003E35BC /* ReviewFilterView.swift in Sources */,
 				DE275BE1283BD20F0024D62E /* SettingsStudyCell.swift in Sources */,
 				DE93775727ACE9880073F27C /* AVPlayerView.swift in Sources */,
 				DE93778627ACE9880073F27C /* MainStatsDescriptionView.swift in Sources */,
@@ -2449,6 +2475,7 @@
 				DE93772927ACE9880073F27C /* SettingsViewController.swift in Sources */,
 				DE9376DE27ACE9880073F27C /* MonetizationManager.swift in Sources */,
 				DE93776127ACE9880073F27C /* TestStatsViewController.swift in Sources */,
+				DE1A7D08285D1359003E35BC /* ReviewCoordinator.swift in Sources */,
 				DE93771B27ACE9880073F27C /* SessionManager.swift in Sources */,
 				DE93770127ACE9880073F27C /* TestMode.swift in Sources */,
 				DE93770B27ACE9880073F27C /* IAPManager.swift in Sources */,
@@ -2569,6 +2596,7 @@
 				DE93777827ACE9880073F27C /* ImageScrollView.swift in Sources */,
 				DE4EB18F28047AED00DCEB92 /* OnboardingViewController.swift in Sources */,
 				DE93776827ACE9880073F27C /* TestStatsCellType.swift in Sources */,
+				DE1A7D04285D0E86003E35BC /* ReviewFilterButton.swift in Sources */,
 				DE93777527ACE9880073F27C /* CoursesCollectionView.swift in Sources */,
 				DE275BEA283BE5A80024D62E /* SettingsArrowButton.swift in Sources */,
 				DE275BFA283D5CE20024D62E /* ConfirmResetProgressView.swift in Sources */,

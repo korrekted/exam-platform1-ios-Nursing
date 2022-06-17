@@ -15,14 +15,47 @@ final class ReviewViewController: UIViewController {
     
     private lazy var disposeBag = DisposeBag()
     
+    private lazy var coordinator = ReviewCoordinator(parentVC: self)
+    
     override func loadView() {
         view = mainView
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        addActionsToTabs()
     }
 }
 
 // MARK: Make
 extension ReviewViewController {
     static func make() -> ReviewViewController {
-        ReviewViewController()
+        let vc = ReviewViewController()
+        vc.navigationItem.backButtonTitle = " "
+        return vc
+    }
+}
+
+// MARK: Private
+private extension ReviewViewController {
+    func addActionsToTabs() {
+        Observable
+            .merge([
+                mainView.filterView.quizesButton
+                    .rx.tap.map { ReviewFilterView.Filter.quizes },
+                
+                mainView.filterView.questionsButton
+                    .rx.tap.map { ReviewFilterView.Filter.questions }
+            ])
+            .startWith(.quizes)
+            .subscribe(onNext: { [weak self] tab in
+                self?.update(selectedTab: tab)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func update(selectedTab: ReviewFilterView.Filter) {
+        coordinator.change(filter: selectedTab)
     }
 }
