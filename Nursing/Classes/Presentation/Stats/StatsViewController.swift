@@ -22,6 +22,20 @@ final class StatsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewModel.tryAgain = { [weak self] error -> Observable<Void> in
+            guard let self = self else {
+                return .never()
+            }
+            
+            return self.openError()
+        }
+        
+        viewModel.activityIndicator
+            .drive(Binder(self) { base, activity in
+                base.activity(activity)
+            })
+            .disposed(by: disposeBag)
+        
         viewModel
             .courseName
             .drive(onNext: { name in
@@ -32,26 +46,8 @@ final class StatsViewController: UIViewController {
         
         viewModel
             .elements
-            .drive(onNext: { [mainView] elements in
-                mainView.tableView.setup(elements: elements)
-            })
-            .disposed(by: disposeBag)
-        
-        viewModel.tryAgain = { [weak self] error -> Observable<Void> in
-            guard let self = self else {
-                return .never()
-            }
-            
-            return self.openError()
-        }
-        
-        viewModel.activityIndicator
-            .drive(onNext: { [weak self] activity in
-                guard let self = self else {
-                    return
-                }
-                
-                self.activity(activity)
+            .drive(Binder(self) { base, elements in
+                base.mainView.tableView.setup(elements: elements)
             })
             .disposed(by: disposeBag)
     }
