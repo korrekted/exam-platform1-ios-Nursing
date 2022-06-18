@@ -41,25 +41,23 @@ extension SessionManager {
         return session
     }
     
-    // TODO
     func hasActiveSubscriptions() -> Bool {
-        true
-//        guard let paymentData = OtterScale.shared.getPaymentData() else {
-//            return false
-//        }
-//
-//        let subscriptions = paymentData.subscriptions.appleAppStore
-//            + paymentData.subscriptions.googlePlay
-//            + paymentData.subscriptions.stripe
-//            + paymentData.subscriptions.paypal
-//        let nonConsumables = paymentData.nonConsumables.appleAppStore
-//            + paymentData.nonConsumables.googlePlay
-//            + paymentData.nonConsumables.stripe
-//            + paymentData.nonConsumables.paypal
-//
-//        let hasValidSubscription = subscriptions.contains(where: { $0.valid })
-//        let hasValidNonConsumable = nonConsumables.contains(where: { $0.valid })
-//
-//        return hasValidSubscription || hasValidNonConsumable
+        guard let paymentData = OtterScale.shared.getPaymentData() else {
+            return false
+        }
+
+        let subscriptions = paymentData.subscriptions.appleAppStore
+            + paymentData.subscriptions.googlePlay
+            + paymentData.subscriptions.stripe
+            + paymentData.subscriptions.paypal
+        let nonConsumables = paymentData.nonConsumables.appleAppStore
+            + paymentData.nonConsumables.googlePlay
+            + paymentData.nonConsumables.stripe
+            + paymentData.nonConsumables.paypal
+
+        let hasValidSubscription = subscriptions.contains(where: { $0.valid })
+        let hasValidNonConsumable = nonConsumables.contains(where: { $0.valid })
+
+        return hasValidSubscription || hasValidNonConsumable
     }
 }

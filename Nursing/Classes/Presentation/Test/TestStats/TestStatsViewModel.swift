@@ -9,45 +9,32 @@ import RxSwift
 import RxCocoa
 
 final class TestStatsViewModel {
+    var tryAgain: ((Error) -> (Observable<Void>))?
+    
     lazy var userTestId = BehaviorRelay<Int?>(value: nil)
     lazy var testType = BehaviorRelay<TestType?>(value: nil)
     lazy var filterRelay = PublishRelay<TestStatsFilter>()
     
-    lazy var courseName = makeCourseName()
     lazy var elements = makeElements()
+    lazy var activity = RxActivityIndicator()
+    lazy var courseName = makeCourseName()
     lazy var testName = makeTestName()
+    
+    private lazy var stats = makeStats()
+    private lazy var course = makeCourse()
     
     private lazy var statsManager = StatsManager()
     private lazy var profileManager = ProfileManager()
+    
+    private lazy var observableRetrySingle = ObservableRetrySingle()
 }
 
 // MARK: Private
 private extension TestStatsViewModel {
-    func makeCourseName() -> Driver<String> {
-        profileManager
-            .obtainSelectedCourse(forceUpdate: false)
-            .compactMap { $0?.name }
-            .asDriver(onErrorDriveWith: .empty())
-    }
-    
     func makeElements() -> Driver<[TestStatsCellType]> {
-        let stats = userTestId
-            .compactMap { $0 }
-            .flatMapLatest { [weak self] userTestId -> Observable<TestStats?> in
-                guard let self = self else { return .empty() }
-                
-                return self.statsManager
-                    .obtainTestStats(userTestId: userTestId, peek: true)
-                    .asObservable()
-                    .catchAndReturn(nil)
-            }
-            .asObservable()
-        
-        return Observable
-            .combineLatest(stats, filterRelay.asObservable())
-            .map { element, filter -> [TestStatsCellType] in
-                guard let stats = element else { return [] }
-                
+        Driver
+            .combineLatest(stats, filterRelay.asDriver(onErrorDriveWith: .never()))
+            .map { stats, filter -> [TestStatsCellType] in
                 let initial: [TestStatsCellType] = [
                     .progress(.init(stats: stats)),
                     .description(.init(stats: stats)),
@@ -75,6 +62,60 @@ private extension TestStatsViewModel {
                     }
             }
             .asDriver(onErrorJustReturn: [])
+    }
+    
+    func makeStats() -> Driver<TestStats> {
+        Driver
+            .combineLatest(
+                userTestId
+                    .compactMap { $0 }
+                    .asDriver(onErrorDriveWith: .never()),
+                
+                course
+                    .map { $0.id }
+            )
+            .flatMapLatest { [weak self] userTestId, courseId -> Driver<TestStats> in
+                guard let self = self else {
+                    return .empty()
+                }
+                
+                func source() -> Single<TestStats> {
+                    self.statsManager
+                        .obtainTestStats(userTestId: userTestId, courseId: courseId, peek: true)
+                        .flatMap { stats -> Single<TestStats> in
+                            guard let stats = stats else {
+                                return .error(ContentError(.notContent))
+                            }
+                            
+                            return .just(stats)
+                        }
+                }
+                
+                func trigger(error: Error) -> Observable<Void> {
+                    guard let tryAgain = self.tryAgain?(error) else {
+                        return .empty()
+                    }
+                    
+                    return tryAgain
+                }
+                
+                return self.observableRetrySingle
+                    .retry(source: { source() },
+                           trigger: { trigger(error: $0) })
+                    .trackActivity(self.activity)
+                    .asDriver(onErrorDriveWith: .never())
+            }
+    }
+    
+    func makeCourseName() -> Driver<String> {
+        course.map { $0.name }
+    }
+    
+    func makeCourse() -> Driver<Course> {
+        profileManager
+            .obtainSelectedCourse(forceUpdate: false)
+            .compactMap { $0 }
+            .asDriver(onErrorDriveWith: .empty())
     }
     
     func makeTestName() -> Driver<String> {

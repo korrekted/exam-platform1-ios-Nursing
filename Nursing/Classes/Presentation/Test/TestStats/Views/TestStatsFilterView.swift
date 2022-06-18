@@ -57,6 +57,9 @@ private extension TestStatsFilterView {
         } else {
             selectorView.frame = CGRect(x: sender.frame.minX, y: frame.height - 2.scale, width: sender.frame.width, height: 2.scale)
         }
+        
+        [allButton, incorrectButton, correctButton].forEach { $0.alpha = 0.4 }
+        sender.alpha = 1
     }
 }
 
@@ -88,8 +91,8 @@ private extension TestStatsFilterView {
 private extension TestStatsFilterView {
     func makeFilterButton(title: String) -> UIButton {
         let attr = TextAttributes()
-            .font(Fonts.SFProRounded.regular(size: 17.scale))
-            .textColor(.black)
+            .font(Fonts.SFProRounded.semiBold(size: 17.scale))
+            .textColor(Appearance.mainColor)
             .lineHeight(20.scale)
         
         let view = UIButton()
@@ -104,7 +107,7 @@ private extension TestStatsFilterView {
     func makeSelectorView() -> UIView {
         let view = UIView()
         view.layer.cornerRadius = 1.scale
-        view.backgroundColor = .black
+        view.backgroundColor = Appearance.mainColor
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

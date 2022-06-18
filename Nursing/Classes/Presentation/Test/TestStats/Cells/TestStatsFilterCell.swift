@@ -77,8 +77,8 @@ private extension TestStatsFilterCell {
 private extension TestStatsFilterCell {
     func makeTitleLabel() -> UILabel {
         let attr = TextAttributes()
-            .font(Fonts.SFProRounded.regular(size: 25.scale))
-            .lineHeight(30.scale)
+            .font(Fonts.SFProRounded.semiBold(size: 20.scale))
+            .lineHeight(24.scale)
             .textAlignment(.left)
             .textColor(.black)
         

@@ -11,6 +11,7 @@ class TestStatsView: UIView {
     lazy var tableView = makeTableView()
     lazy var closeButton = makeCloseButton()
     lazy var titleLabel = makeTitleLabel()
+    lazy var preloader = makePreloader()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -54,6 +55,11 @@ private extension TestStatsView {
             tableView.leftAnchor.constraint(equalTo: leftAnchor),
             tableView.rightAnchor.constraint(equalTo: rightAnchor)
         ])
+        
+        NSLayoutConstraint.activate([
+            preloader.centerXAnchor.constraint(equalTo: centerXAnchor),
+            preloader.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
     }
 }
 
@@ -83,6 +89,13 @@ private extension TestStatsView {
         view.font = Fonts.SFProRounded.regular(size: 20.scale)
         view.textAlignment = .center
         view.textColor = UIColor.black
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
+    func makePreloader() -> Spinner {
+        let view = Spinner(size: CGSize(width: 45.scale, height: 45.scale))
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

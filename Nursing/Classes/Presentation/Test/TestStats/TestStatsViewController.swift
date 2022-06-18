@@ -23,6 +23,20 @@ class TestStatsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewModel.tryAgain = { [weak self] error -> Observable<Void> in
+            guard let self = self else {
+                return .never()
+            }
+            
+            return self.openError()
+        }
+        
+        viewModel.activity
+            .drive(Binder(self) { base, activity in
+                base.activity(activity)
+            })
+            .disposed(by: disposeBag)
+        
         viewModel.elements.startWith([])
             .drive(Binder(mainView.tableView) {
                 $0.setup(elements: $1)
@@ -65,6 +79,26 @@ extension TestStatsViewController {
 
 // MARK: Private
 private extension TestStatsViewController {
+    func openError() -> Observable<Void> {
+        Observable<Void>
+            .create { [weak self] observe in
+                guard let self = self else {
+                    return Disposables.create()
+                }
+                
+                let vc = TryAgainViewController.make {
+                    observe.onNext(())
+                }
+                self.present(vc, animated: true)
+                
+                return Disposables.create()
+            }
+    }
+    
+    func activity(_ activity: Bool) {
+        activity ? mainView.preloader.startAnimating() : mainView.preloader.stopAnimating()
+    }
+    
     func logAnalytics(courseName: String) {
         guard let type = viewModel.testType.value else {
             return

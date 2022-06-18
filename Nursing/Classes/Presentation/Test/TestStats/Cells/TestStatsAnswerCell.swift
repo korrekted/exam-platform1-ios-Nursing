@@ -30,7 +30,8 @@ extension TestStatsAnswerCell {
     func setup(element: TestStatsAnswerElement) {
         let attr = TextAttributes()
             .font(Fonts.SFProRounded.regular(size: 17.scale))
-            .lineHeight(20).textColor(.black)
+            .lineHeight(20)
+            .textColor(.black)
         
         answerLabel.attributedText = element.question.attributed(with: attr)
         iconView.image = element.isCorrect
@@ -44,6 +45,7 @@ extension TestStatsAnswerCell {
         iconView.tintColor = color
         
         containerView.backgroundColor = color.withAlphaComponent(0.15)
+        containerView.layer.borderColor = color.cgColor
     }
 }
 
@@ -85,6 +87,7 @@ private extension TestStatsAnswerCell {
 private extension TestStatsAnswerCell {
     func makeContainerView() -> UIView {
         let view = UIView()
+        view.layer.borderWidth = 3.scale
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 20.scale
         contentView.addSubview(view)
