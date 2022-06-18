@@ -38,6 +38,17 @@
 		DE1A7D04285D0E86003E35BC /* ReviewFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A7D03285D0E86003E35BC /* ReviewFilterButton.swift */; };
 		DE1A7D06285D0EEB003E35BC /* ReviewFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A7D05285D0EEB003E35BC /* ReviewFilterView.swift */; };
 		DE1A7D08285D1359003E35BC /* ReviewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A7D07285D1359003E35BC /* ReviewCoordinator.swift */; };
+		DE1A7D0B285DA1AA003E35BC /* ReviewQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A7D0A285DA1AA003E35BC /* ReviewQuiz.swift */; };
+		DE1A7D0D285DA221003E35BC /* ReviewQuizTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A7D0C285DA221003E35BC /* ReviewQuizTimeline.swift */; };
+		DE1A7D10285DA28D003E35BC /* GetQuizesTimelinesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A7D0F285DA28D003E35BC /* GetQuizesTimelinesRequest.swift */; };
+		DE1A7D12285DA296003E35BC /* GetQuizesTimelineResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A7D11285DA296003E35BC /* GetQuizesTimelineResponse.swift */; };
+		DE1A7D16285DA4A4003E35BC /* QuizesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A7D15285DA4A4003E35BC /* QuizesViewController.swift */; };
+		DE1A7D18285DA4AE003E35BC /* QuizesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A7D17285DA4AE003E35BC /* QuizesViewModel.swift */; };
+		DE1A7D1A285DA4B5003E35BC /* QuizesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A7D19285DA4B5003E35BC /* QuizesView.swift */; };
+		DE1A7D1E285DA5A5003E35BC /* QuizesTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A7D1D285DA5A5003E35BC /* QuizesTableView.swift */; };
+		DE1A7D20285DA5AF003E35BC /* QuizesTableElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A7D1F285DA5AF003E35BC /* QuizesTableElement.swift */; };
+		DE1A7D23285DA5BC003E35BC /* QuizesTableQuizCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A7D22285DA5BC003E35BC /* QuizesTableQuizCell.swift */; };
+		DE1A7D25285DA5D9003E35BC /* QuizesTableDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A7D24285DA5D9003E35BC /* QuizesTableDayCell.swift */; };
 		DE275BCA283B8B950024D62E /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BC9283B8B950024D62E /* Profile.swift */; };
 		DE275BCC283B963C0024D62E /* Observable+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BCB283B963C0024D62E /* Observable+Utils.swift */; };
 		DE275BCE283B96520024D62E /* Single+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BCD283B96520024D62E /* Single+Utils.swift */; };
@@ -408,6 +419,17 @@
 		DE1A7D03285D0E86003E35BC /* ReviewFilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewFilterButton.swift; sourceTree = "<group>"; };
 		DE1A7D05285D0EEB003E35BC /* ReviewFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewFilterView.swift; sourceTree = "<group>"; };
 		DE1A7D07285D1359003E35BC /* ReviewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCoordinator.swift; sourceTree = "<group>"; };
+		DE1A7D0A285DA1AA003E35BC /* ReviewQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewQuiz.swift; sourceTree = "<group>"; };
+		DE1A7D0C285DA221003E35BC /* ReviewQuizTimeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewQuizTimeline.swift; sourceTree = "<group>"; };
+		DE1A7D0F285DA28D003E35BC /* GetQuizesTimelinesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetQuizesTimelinesRequest.swift; sourceTree = "<group>"; };
+		DE1A7D11285DA296003E35BC /* GetQuizesTimelineResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetQuizesTimelineResponse.swift; sourceTree = "<group>"; };
+		DE1A7D15285DA4A4003E35BC /* QuizesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizesViewController.swift; sourceTree = "<group>"; };
+		DE1A7D17285DA4AE003E35BC /* QuizesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizesViewModel.swift; sourceTree = "<group>"; };
+		DE1A7D19285DA4B5003E35BC /* QuizesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizesView.swift; sourceTree = "<group>"; };
+		DE1A7D1D285DA5A5003E35BC /* QuizesTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizesTableView.swift; sourceTree = "<group>"; };
+		DE1A7D1F285DA5AF003E35BC /* QuizesTableElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizesTableElement.swift; sourceTree = "<group>"; };
+		DE1A7D22285DA5BC003E35BC /* QuizesTableQuizCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizesTableQuizCell.swift; sourceTree = "<group>"; };
+		DE1A7D24285DA5D9003E35BC /* QuizesTableDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizesTableDayCell.swift; sourceTree = "<group>"; };
 		DE275BC9283B8B950024D62E /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		DE275BCB283B963C0024D62E /* Observable+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Utils.swift"; sourceTree = "<group>"; };
 		DE275BCD283B96520024D62E /* Single+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Single+Utils.swift"; sourceTree = "<group>"; };
@@ -879,11 +901,8 @@
 		DE1A7CFA285D0A70003E35BC /* Review */ = {
 			isa = PBXGroup;
 			children = (
-				DE1A7D01285D0E76003E35BC /* Views */,
-				DE1A7D07285D1359003E35BC /* ReviewCoordinator.swift */,
-				DE1A7CFB285D0A7D003E35BC /* ReviewViewController.swift */,
-				DE1A7CFD285D0A87003E35BC /* ReviewViewModel.swift */,
-				DE1A7CFF285D0A90003E35BC /* ReviewView.swift */,
+				DE1A7D14285DA493003E35BC /* Quizes */,
+				DE1A7D13285DA482003E35BC /* Review */,
 			);
 			path = Review;
 			sourceTree = "<group>";
@@ -903,6 +922,65 @@
 				DE1A7D05285D0EEB003E35BC /* ReviewFilterView.swift */,
 			);
 			path = Filter;
+			sourceTree = "<group>";
+		};
+		DE1A7D0E285DA277003E35BC /* GetQuizesTimelines */ = {
+			isa = PBXGroup;
+			children = (
+				DE1A7D0F285DA28D003E35BC /* GetQuizesTimelinesRequest.swift */,
+				DE1A7D11285DA296003E35BC /* GetQuizesTimelineResponse.swift */,
+			);
+			path = GetQuizesTimelines;
+			sourceTree = "<group>";
+		};
+		DE1A7D13285DA482003E35BC /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				DE1A7D01285D0E76003E35BC /* Views */,
+				DE1A7D07285D1359003E35BC /* ReviewCoordinator.swift */,
+				DE1A7CFB285D0A7D003E35BC /* ReviewViewController.swift */,
+				DE1A7CFD285D0A87003E35BC /* ReviewViewModel.swift */,
+				DE1A7CFF285D0A90003E35BC /* ReviewView.swift */,
+			);
+			path = Review;
+			sourceTree = "<group>";
+		};
+		DE1A7D14285DA493003E35BC /* Quizes */ = {
+			isa = PBXGroup;
+			children = (
+				DE1A7D1B285DA598003E35BC /* Views */,
+				DE1A7D15285DA4A4003E35BC /* QuizesViewController.swift */,
+				DE1A7D17285DA4AE003E35BC /* QuizesViewModel.swift */,
+				DE1A7D19285DA4B5003E35BC /* QuizesView.swift */,
+			);
+			path = Quizes;
+			sourceTree = "<group>";
+		};
+		DE1A7D1B285DA598003E35BC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DE1A7D1C285DA59C003E35BC /* TableView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DE1A7D1C285DA59C003E35BC /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				DE1A7D21285DA5B4003E35BC /* Cells */,
+				DE1A7D1D285DA5A5003E35BC /* QuizesTableView.swift */,
+				DE1A7D1F285DA5AF003E35BC /* QuizesTableElement.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		DE1A7D21285DA5B4003E35BC /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				DE1A7D24285DA5D9003E35BC /* QuizesTableDayCell.swift */,
+				DE1A7D22285DA5BC003E35BC /* QuizesTableQuizCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		DE275BCF283B97B70024D62E /* GetProfile */ = {
@@ -1709,6 +1787,8 @@
 				DE93759C27ACE9880073F27C /* TestStats.swift */,
 				DE9375E627ACE9880073F27C /* Brief.swift */,
 				DE9375E727ACE9880073F27C /* Stats.swift */,
+				DE1A7D0A285DA1AA003E35BC /* ReviewQuiz.swift */,
+				DE1A7D0C285DA221003E35BC /* ReviewQuizTimeline.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1716,6 +1796,7 @@
 		DE9375E827ACE9880073F27C /* Requests */ = {
 			isa = PBXGroup;
 			children = (
+				DE1A7D0E285DA277003E35BC /* GetQuizesTimelines */,
 				DE275C5D28451FF60024D62E /* GetTestStats */,
 				DE275C01283D78140024D62E /* GetStatsRequest */,
 				DE275C00283D77FE0024D62E /* GetBriefRequest */,
@@ -2397,6 +2478,7 @@
 				DE93777327ACE9880073F27C /* CoursesViewController.swift in Sources */,
 				DE4EB19628047AED00DCEB92 /* ReferencesTableView.swift in Sources */,
 				DE4EB19328047AED00DCEB92 /* OModeCell.swift in Sources */,
+				DE1A7D1E285DA5A5003E35BC /* QuizesTableView.swift in Sources */,
 				DE275BF6283CA2730024D62E /* ChangeExamDateViewModel.swift in Sources */,
 				DE93777227ACE9880073F27C /* CoursesViewModel.swift in Sources */,
 				DE275C0E283E6C120024D62E /* TextSizeViewModel.swift in Sources */,
@@ -2416,6 +2498,7 @@
 				DE9376B427ACE9880073F27C /* StringExtension.swift in Sources */,
 				DE9376C027ACE9880073F27C /* NursingNavigationController.swift in Sources */,
 				DE275C252840AC1B0024D62E /* ReportOptionButton.swift in Sources */,
+				DE1A7D16285DA4A4003E35BC /* QuizesViewController.swift in Sources */,
 				DE93773827ACE9880073F27C /* StudyCollectionView.swift in Sources */,
 				DE1A7CFE285D0A87003E35BC /* ReviewViewModel.swift in Sources */,
 				DE1A7D06285D0EEB003E35BC /* ReviewFilterView.swift in Sources */,
@@ -2426,6 +2509,7 @@
 				DE4EB1A228047AED00DCEB92 /* OSlideImproveView.swift in Sources */,
 				DE93775427ACE9880073F27C /* QuestionContentCollectionView.swift in Sources */,
 				DE275BEF283C100A0024D62E /* SettingsCommunityButton.swift in Sources */,
+				DE1A7D12285DA296003E35BC /* GetQuizesTimelineResponse.swift in Sources */,
 				DE275C15283F53E10024D62E /* QuestionTabView.swift in Sources */,
 				DE275BFD283D68A40024D62E /* ConfirmResetProgressViewController.swift in Sources */,
 				DE9376ED27ACE9880073F27C /* GetQotdRequest.swift in Sources */,
@@ -2449,6 +2533,7 @@
 				DE9376EC27ACE9880073F27C /* GetRandomSetRequest.swift in Sources */,
 				DE275C292840B8910024D62E /* ReportReasonsViewController.swift in Sources */,
 				DE93773E27ACE9880073F27C /* TabView.swift in Sources */,
+				DE1A7D1A285DA4B5003E35BC /* QuizesView.swift in Sources */,
 				DE2B10E427DF79E8005280DB /* XORRequestWrapper.swift in Sources */,
 				DE9376BF27ACE9880073F27C /* Toast.swift in Sources */,
 				DE93778227ACE9880073F27C /* StatsTableView.swift in Sources */,
@@ -2496,6 +2581,7 @@
 				DE9376DA27ACE9880073F27C /* PaygateMainOffer.swift in Sources */,
 				DE4EB1AC28047AED00DCEB92 /* OSlideTimeView.swift in Sources */,
 				DE93773F27ACE9880073F27C /* QuestionContentCell.swift in Sources */,
+				DE1A7D0D285DA221003E35BC /* ReviewQuizTimeline.swift in Sources */,
 				DE275C222840AAE80024D62E /* ReportOptionsView.swift in Sources */,
 				DE9376FB27ACE9880073F27C /* GetSelectedCourseResponse.swift in Sources */,
 				DE93778027ACE9880073F27C /* CourseProgressCell.swift in Sources */,
@@ -2511,9 +2597,11 @@
 				DE275C3A28411F6B0024D62E /* ReportViewController.swift in Sources */,
 				DE9376E727ACE9880073F27C /* GetTestResponseMapper.swift in Sources */,
 				DE93778127ACE9880073F27C /* MainRateCell.swift in Sources */,
+				DE1A7D10285DA28D003E35BC /* GetQuizesTimelinesRequest.swift in Sources */,
 				DE80311027FC852E00F69A8E /* ObservableRetrySingle.swift in Sources */,
 				DE93775027ACE9880073F27C /* TestElement.swift in Sources */,
 				DE9376CE27ACE9880073F27C /* FirebaseManager.swift in Sources */,
+				DE1A7D23285DA5BC003E35BC /* QuizesTableQuizCell.swift in Sources */,
 				DE275BE3283BD21F0024D62E /* SettingsCommunityCell.swift in Sources */,
 				DE93778427ACE9880073F27C /* MainProgressView.swift in Sources */,
 				DE93772F27ACE9880073F27C /* StudyViewController.swift in Sources */,
@@ -2528,10 +2616,12 @@
 				DE275C5328435B570024D62E /* SaveQuestionRequest.swift in Sources */,
 				DE93771027ACE9880073F27C /* IAPErrorHelper.swift in Sources */,
 				DE4EB1A928047AED00DCEB92 /* OSlideModesView.swift in Sources */,
+				DE1A7D20285DA5AF003E35BC /* QuizesTableElement.swift in Sources */,
 				DE93771427ACE9880073F27C /* GetBriefResponseMapper.swift in Sources */,
 				DE275C4C284209E80024D62E /* ReportScope.swift in Sources */,
 				DE4EB19528047AED00DCEB92 /* ReferencesTableCell.swift in Sources */,
 				DE275BD1283B97C50024D62E /* GetProfileRequest.swift in Sources */,
+				DE1A7D0B285DA1AA003E35BC /* ReviewQuiz.swift in Sources */,
 				DE275BDD283BD1F50024D62E /* SettingsUnlockPremiumCell.swift in Sources */,
 				DE93776627ACE9880073F27C /* TestStatsProgressElement.swift in Sources */,
 				DE93777B27ACE9880073F27C /* StatsCellType.swift in Sources */,
@@ -2563,6 +2653,7 @@
 				DE9376B827ACE9880073F27C /* TextAttributes.swift in Sources */,
 				DE275C4F28420CFA0024D62E /* ReportEditingOverseer.swift in Sources */,
 				DE93773527ACE9880073F27C /* SCBriefDayView.swift in Sources */,
+				DE1A7D18285DA4AE003E35BC /* QuizesViewModel.swift in Sources */,
 				DE275BDB283BB70A0024D62E /* ChangeTestModeViewModel.swift in Sources */,
 				DE275C41284121390024D62E /* ReportEmailField.swift in Sources */,
 				DE80310C27FC56F700F69A8E /* SplashOnboardingNavigate.swift in Sources */,
@@ -2630,6 +2721,7 @@
 				DE93773427ACE9880073F27C /* SCBriefCell.swift in Sources */,
 				DE93776C27ACE9880073F27C /* TestStatsProgressView.swift in Sources */,
 				DE93775B27ACE9880073F27C /* PaygateView.swift in Sources */,
+				DE1A7D25285DA5D9003E35BC /* QuizesTableDayCell.swift in Sources */,
 				DE9376EE27ACE9880073F27C /* SendAnswerRequest.swift in Sources */,
 				DE9376BD27ACE9880073F27C /* Weak.swift in Sources */,
 				DE93771D27ACE9880073F27C /* SettingsView.swift in Sources */,

@@ -10,7 +10,7 @@ import UIKit
 final class ReviewCoordinator {
     weak var parentVC: ReviewViewController?
     
-    lazy var quizesVC = UIViewController()
+    lazy var quizesVC = QuizesViewController.make()
     lazy var questionsVC = UIViewController()
     
     private var previousVC: UIViewController?

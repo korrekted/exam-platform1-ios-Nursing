@@ -264,3 +264,14 @@
 "Review.Title" = "Review";
 "Review.Filter.Quizes" = "Quizes";
 "Review.Filter.Questions" = "Questions";
+
+// MARK: Quizes
+"Quizes.Mode.Get" = "Questions";
+"Quizes.Mode.TodaysQuestion" = "Today’s Question";
+"Quizes.Mode.TenQuestions" = "10 Questions Quick Quiz";
+"Quizes.Mode.MissedQuestions" = "Missed Questions Quiz";
+"Quizes.Mode.RandomSet" = "Random Set Quiz";
+"Quizes.Mode.Saved" = "Saved Questions Quiz";
+"Quizes.Mode.Timed" = "Timed Quiz";
+"Quizes.YourTime" = "Your time - %@";
+"Quizes.AverageTime" = "Average time - %@";

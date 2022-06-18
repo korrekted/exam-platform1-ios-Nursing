@@ -24,6 +24,13 @@ final class ReviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        rx.methodInvoked(#selector(UIViewController.viewDidLayoutSubviews))
+            .take(1)
+            .bind(to: Binder(self) { base, _ in
+                base.update(selectedTab: .quizes)
+            })
+            .disposed(by: disposeBag)
+        
         addActionsToTabs()
     }
 }
@@ -48,7 +55,6 @@ private extension ReviewViewController {
                 mainView.filterView.questionsButton
                     .rx.tap.map { ReviewFilterView.Filter.questions }
             ])
-            .startWith(.quizes)
             .subscribe(onNext: { [weak self] tab in
                 self?.update(selectedTab: tab)
             })

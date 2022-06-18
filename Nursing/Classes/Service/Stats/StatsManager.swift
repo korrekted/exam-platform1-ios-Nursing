@@ -11,6 +11,7 @@ protocol StatsManagerProtocol: AnyObject {
     func obtainStats(courseId: Int) -> Single<Stats?>
     func obtainTestStats(userTestId: Int, courseId: Int, peek: Bool) -> Single<TestStats?>
     func obtainBrief(courseId: Int) -> Single<Brief?>
+    func obtainReviewQuizesTimelines(courseId: Int) -> Single<[ReviewQuizTimeline]>
     func resetStats(for courseId: Int) -> Single<Void>
 }
 
@@ -63,6 +64,19 @@ extension StatsManager {
         return defaultRequestWrapper
             .callServerApi(requestBody: request)
             .map { try GetBriefResponseMapper.from(response: $0) }
+    }
+    
+    func obtainReviewQuizesTimelines(courseId: Int) -> Single<[ReviewQuizTimeline]> {
+        guard let userToken = sessionManager.getSession()?.userToken else {
+            return .error(SignError.tokenNotFound)
+        }
+        
+        let request = GetQuizesTimelinesRequest(userToken: userToken,
+                                                courseId: courseId)
+        
+        return defaultRequestWrapper
+            .callServerApi(requestBody: request)
+            .map { GetQuizesTimelineResponse.map(from: $0) }
     }
     
     func resetStats(for courseId: Int) -> Single<Void> {
