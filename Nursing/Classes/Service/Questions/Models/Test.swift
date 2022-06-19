@@ -12,27 +12,3 @@ struct Test: Codable, Hashable {
     let userTestId: Int
     let questions: [Question]
 }
-
-struct Question: Codable, Hashable {
-    let id: Int
-    let image: URL?
-    let video: URL?
-    let question: String
-    let questionHtml: String
-    let answers: [Answer]
-    let multiple: Bool
-    let explanation: String?
-    let explanationHtml: String?
-    let media: [URL]
-    let isAnswered: Bool
-    let reference: String?
-    let isSaved: Bool
-}
-
-struct Answer: Codable, Hashable {
-    let id: Int
-    let answer: String?
-    let answerHtml: String?
-    let image: URL?
-    let isCorrect: Bool
-}

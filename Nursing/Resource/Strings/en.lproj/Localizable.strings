@@ -275,3 +275,8 @@
 "Quizes.Mode.Timed" = "Timed Quiz";
 "Quizes.YourTime" = "Your time - %@";
 "Quizes.AverageTime" = "Average time - %@";
+
+// MARK: Review Questions
+"ReviewQuestions.Filter.All" = "All";
+"ReviewQuestions.Filter.Correct" = "Correct";
+"ReviewQuestions.Filter.Incorrect" = "Incorrect";

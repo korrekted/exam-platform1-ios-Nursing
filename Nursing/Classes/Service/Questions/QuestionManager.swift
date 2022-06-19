@@ -16,6 +16,7 @@ protocol QuestionManagerProtocol: AnyObject {
     func obtainSavedSet(courseId: Int, activeSubscription: Bool) -> Single<Test?>
     func obtainOnboardingSet(forceUpdate: Bool) -> Single<Test?>
     func obtainAgainTest(userTestId: Int) -> Single<Test?>
+    func obtainReview(courseId: Int, mode: Int, offset: Int) -> Single<[Review]>
     func finishTest(userTestId: Int) -> Single<Void>
     func sendAnswer(questionId: Int, userTestId: Int, answerIds: [Int]) -> Single<Bool?>
     func saveQuestion(questionId: Int) -> Single<Void>
@@ -140,6 +141,21 @@ extension QuestionManager {
         return xorRequestWrapper
             .callServerStringApi(requestBody: request)
             .map { try GetTestResponseMapper.map(from: $0, isEncryption: true) }
+    }
+    
+    func obtainReview(courseId: Int, mode: Int, offset: Int) -> Single<[Review]> {
+        guard let userToken = sessionManager.getSession()?.userToken else {
+            return .error(SignError.tokenNotFound)
+        }
+        
+        let request = GetReviewRequest(userToken: userToken,
+                                       courseId: courseId,
+                                       mode: mode,
+                                       offset: offset)
+        
+        return xorRequestWrapper
+            .callServerStringApi(requestBody: request)
+            .map { GetReviewResponse.map(from: $0) }
     }
     
     func finishTest(userTestId: Int) -> Single<Void> {

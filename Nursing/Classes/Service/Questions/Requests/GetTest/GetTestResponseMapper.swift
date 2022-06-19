@@ -53,7 +53,7 @@ private extension GetTestResponseMapper {
         
         let paid = data["paid"] as? Bool ?? false
         
-        let questions: [Question] = Self.map(from: questionsJSON)
+        let questions = QuestionMapper.map(from: questionsJSON)
         
         guard !questions.isEmpty else { return nil }
         
@@ -62,74 +62,5 @@ private extension GetTestResponseMapper {
             userTestId: userTestId,
             questions: questions
         )
-    }
-    
-    static func map(from questions: [[String: Any]]) -> [Question] {
-        questions.compactMap { restJSON -> Question? in
-            guard
-                let id = restJSON["id"] as? Int,
-                let multiple = restJSON["multiple"] as? Bool,
-                let isAnswered = restJSON["answered"] as? Bool,
-                let answersJSON = restJSON["answers"] as? [[String: Any]]
-            else {
-                return nil
-            }
-            
-            let explanation = restJSON["explanation"] as? String
-            let explanationHtml = restJSON["explanation_html"] as? String
-            
-            let answers: [Answer] = Self.map(from: answersJSON)
-            guard !answers.isEmpty else { return nil }
-            
-            let image = (restJSON["image"] as? String)?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-            let video = (restJSON["video"] as? String)?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-            
-            let question = restJSON["question"] as? String ?? ""
-            let questionHtml = restJSON["question_html"] as? String ?? ""
-            
-            let reference = restJSON["reference"] as? String
-            let media = restJSON["explanation_media"] as? [String] ?? []
-            let mediaURLs = media.compactMap { URL(string: $0)}
-            
-            let isSaved = restJSON["saved"] as? Bool ?? false
-            
-            return Question(
-                id: id,
-                image: URL(string: image),
-                video: URL(string: video),
-                question: question,
-                questionHtml: questionHtml,
-                answers: answers,
-                multiple: multiple,
-                explanation: explanation,
-                explanationHtml: explanationHtml,
-                media: mediaURLs,
-                isAnswered: isAnswered,
-                reference: reference,
-                isSaved: isSaved
-            )
-        }
-    }
-    
-    static func map(from answers: [[String: Any]]) -> [Answer] {
-        answers.compactMap { restJSON -> Answer? in
-            guard
-                let id = restJSON["id"] as? Int,
-                let correct = restJSON["correct"] as? Bool
-            else {
-                return nil
-            }
-            
-            let answer = restJSON["answer"] as? String
-            let answerHtml = restJSON["answer_html"] as? String
-            
-            let image = (restJSON["image"] as? String)?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-            
-            return Answer(id: id,
-                          answer: answer,
-                          answerHtml: answerHtml,
-                          image: URL(string: image),
-                          isCorrect: correct)
-        }
     }
 }
