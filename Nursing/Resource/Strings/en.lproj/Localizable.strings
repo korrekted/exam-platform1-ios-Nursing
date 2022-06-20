@@ -280,3 +280,6 @@
 "ReviewQuestions.Filter.All" = "All";
 "ReviewQuestions.Filter.Correct" = "Correct";
 "ReviewQuestions.Filter.Incorrect" = "Incorrect";
+
+// MARK: TestViewer
+"TestViewer.Title" = "Question";
