@@ -70,6 +70,7 @@
 		DE1A7D5228602D8D003E35BC /* QuestionViewerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A7D5128602D8D003E35BC /* QuestionViewerViewModel.swift */; };
 		DE1A7D5428602D96003E35BC /* QuestionViewerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A7D5328602D96003E35BC /* QuestionViewerView.swift */; };
 		DE1A7D5728602DA6003E35BC /* QuestionViewerTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A7D5628602DA6003E35BC /* QuestionViewerTableView.swift */; };
+		DE1A7D59286034B1003E35BC /* QuestionViewerTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A7D58286034B1003E35BC /* QuestionViewerTabView.swift */; };
 		DE275BCA283B8B950024D62E /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BC9283B8B950024D62E /* Profile.swift */; };
 		DE275BCC283B963C0024D62E /* Observable+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BCB283B963C0024D62E /* Observable+Utils.swift */; };
 		DE275BCE283B96520024D62E /* Single+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BCD283B96520024D62E /* Single+Utils.swift */; };
@@ -472,6 +473,7 @@
 		DE1A7D5128602D8D003E35BC /* QuestionViewerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewerViewModel.swift; sourceTree = "<group>"; };
 		DE1A7D5328602D96003E35BC /* QuestionViewerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewerView.swift; sourceTree = "<group>"; };
 		DE1A7D5628602DA6003E35BC /* QuestionViewerTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewerTableView.swift; sourceTree = "<group>"; };
+		DE1A7D58286034B1003E35BC /* QuestionViewerTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewerTabView.swift; sourceTree = "<group>"; };
 		DE275BC9283B8B950024D62E /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		DE275BCB283B963C0024D62E /* Observable+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Utils.swift"; sourceTree = "<group>"; };
 		DE275BCD283B96520024D62E /* Single+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Single+Utils.swift"; sourceTree = "<group>"; };
@@ -1098,6 +1100,7 @@
 			isa = PBXGroup;
 			children = (
 				DE1A7D5628602DA6003E35BC /* QuestionViewerTableView.swift */,
+				DE1A7D58286034B1003E35BC /* QuestionViewerTabView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2818,6 +2821,7 @@
 				DE275C45284154D70024D62E /* ReportMessageView.swift in Sources */,
 				DE93777F27ACE9880073F27C /* PassRateCell.swift in Sources */,
 				DE9376D427ACE9880073F27C /* PaygateMapper.swift in Sources */,
+				DE1A7D59286034B1003E35BC /* QuestionViewerTabView.swift in Sources */,
 				DE4EB19B28047AED00DCEB92 /* WelcomeSlide3View.swift in Sources */,
 				DE4EB19828047AED00DCEB92 /* OWhenStudyCell.swift in Sources */,
 				DE9376C127ACE9880073F27C /* NursingNavigationControllerSettings.swift in Sources */,

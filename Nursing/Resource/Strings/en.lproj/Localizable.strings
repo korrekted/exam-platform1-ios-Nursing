@@ -282,4 +282,4 @@
 "ReviewQuestions.Filter.Incorrect" = "Incorrect";
 
 // MARK: TestViewer
-"TestViewer.Title" = "Question";
+"TestViewer.Title" = "Questions";

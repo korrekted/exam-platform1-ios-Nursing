@@ -10,7 +10,9 @@ import UIKit
 final class QuestionViewerView: UIView {
     lazy var closeButton = makeCloseButton()
     lazy var titleLabel = makeTitleLabel()
+    lazy var questionsCountLabel = makeLabel()
     lazy var tableView = makeTableView()
+    lazy var tabView = makeTabView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,10 +49,22 @@ private extension QuestionViewerView {
         ])
         
         NSLayoutConstraint.activate([
+            questionsCountLabel.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
+            questionsCountLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -9.scale)
+        ])
+        
+        NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 98.scale : 70.scale),
-            tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            tableView.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 100.scale : 70.scale),
+            tableView.bottomAnchor.constraint(equalTo: tabView.topAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            tabView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            tabView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            tabView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            tabView.heightAnchor.constraint(equalToConstant: ScreenSize.isIphoneXFamily ? 100.scale : 70.scale)
         ])
     }
 }
@@ -79,6 +93,13 @@ private extension QuestionViewerView {
         return view
     }
     
+    func makeLabel() -> UILabel {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
     func makeTableView() -> QuestionViewerTableView {
         let view = QuestionViewerTableView()
         view.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 32.scale, right: 0)
@@ -86,6 +107,14 @@ private extension QuestionViewerView {
         view.separatorStyle = .none
         view.contentInsetAdjustmentBehavior = .never
         view.showsVerticalScrollIndicator = false
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
+    func makeTabView() -> QuestionViewerTabView {
+        let view = QuestionViewerTabView()
+        view.backgroundColor = UIColor.clear
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

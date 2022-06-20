@@ -17,9 +17,9 @@ final class QuestionViewerViewController: UIViewController {
     
     private let viewModel: QuestionViewerViewModel
     
-    private init(question: Question, answeredIds: [Int]) {
-        viewModel = QuestionViewerViewModel(question: question,
-                                            answeredIds: answeredIds)
+    private init(reviews: [Review], current: Review) {
+        viewModel = QuestionViewerViewModel(reviews: reviews,
+                                            current: current)
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -34,6 +34,41 @@ final class QuestionViewerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewModel.tryAgain = { [weak self] error -> Observable<Void> in
+            guard let self = self else {
+                return .empty()
+            }
+            
+            return self.openError()
+        }
+        
+        mainView.tabView.favoriteButton.rx.tap
+            .withLatestFrom(viewModel.isSavedQuestion)
+            .bind(to: viewModel.didTapMark)
+            .disposed(by: disposeBag)
+        
+        viewModel.isSavedQuestion
+            .drive(Binder(self) { base, isSaved in
+                base.update(favorite: isSaved)
+            })
+            .disposed(by: disposeBag)
+        
+        mainView.tabView.previousButton.rx.tap
+            .withLatestFrom(viewModel.currentIndex) { $1 - 1 }
+            .bind(to: viewModel.didTapPrevious)
+            .disposed(by: disposeBag)
+        
+        mainView.tabView.nextButton.rx.tap
+            .withLatestFrom(viewModel.currentIndex) { $1 + 1 }
+            .bind(to: viewModel.didTapNext)
+            .disposed(by: disposeBag)
+        
+        viewModel.score
+            .drive(Binder(self) { base, score in
+                base.update(score: score)
+            })
+            .disposed(by: disposeBag)
         
         viewModel.elements
             .drive(Binder(self) { base, elements in
@@ -53,8 +88,8 @@ final class QuestionViewerViewController: UIViewController {
 
 // MARK: Make
 extension QuestionViewerViewController {
-    static func make(question: Question, answeredIds: [Int]) -> QuestionViewerViewController {
-        let vc = QuestionViewerViewController(question: question, answeredIds: answeredIds)
+    static func make(reviews: [Review], current: Review) -> QuestionViewerViewController {
+        let vc = QuestionViewerViewController(reviews: reviews, current: current)
         vc.modalPresentationStyle = .fullScreen
         return vc
     }
@@ -95,5 +130,18 @@ private extension QuestionViewerViewController {
                 
                 return Disposables.create()
             }
+    }
+    
+    func update(favorite: Bool) {
+        let image = UIImage(named: favorite ? "Question.Favorite.Check" : "Question.Favorite.Uncheck")
+        mainView.tabView.favoriteButton.setImage(image, for: .normal)
+    }
+
+    func update(score: String) {
+        let attrs = TextAttributes()
+            .textColor(Appearance.blackColor)
+            .font(Fonts.SFProRounded.regular(size: 17.scale))
+            .lineHeight(22.scale)
+        mainView.questionsCountLabel.attributedText = score.attributed(with: attrs)
     }
 }

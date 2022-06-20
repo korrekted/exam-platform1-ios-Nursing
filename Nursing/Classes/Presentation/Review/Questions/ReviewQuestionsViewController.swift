@@ -54,8 +54,18 @@ extension ReviewQuestionsViewController: ReviewQuestionsTableViewDelegate {
     }
     
     func reviewQuestionsTableDidTapped(element: Review) {
-        let vc = QuestionViewerViewController.make(question: element.question,
-                                                   answeredIds: element.userAnswersIds)
+        let reviews = mainView.tableView.elements
+            .compactMap { element -> Review? in
+                guard case let .review(review) = element else {
+                    return nil
+                }
+                
+                return review
+            }
+        
+        
+        let vc = QuestionViewerViewController.make(reviews: reviews,
+                                                   current: element)
         present(vc, animated: true)
     }
 }

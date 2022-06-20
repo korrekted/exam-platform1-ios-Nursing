@@ -15,7 +15,7 @@ protocol ReviewQuestionsTableViewDelegate: AnyObject {
 final class ReviewQuestionsTableView: UITableView {
     weak var mainDelegate: ReviewQuestionsTableViewDelegate?
     
-    private lazy var elements = [ReviewQuestionsTableElement]()
+    private(set) lazy var elements = [ReviewQuestionsTableElement]()
     
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
