@@ -24,7 +24,7 @@ struct GetTestStatsResponseMapper {
             return nil
         }
         
-        let elements = questions.compactMap { elementJSON -> TestStatsAnswer? in
+        let elements = questions.compactMap { elementJSON -> Review? in
             guard
                 let questionJSON = elementJSON["question"] as? [String: Any],
                 let question = QuestionMapper.map(from: questionJSON),
@@ -34,9 +34,9 @@ struct GetTestStatsResponseMapper {
                 return nil
             }
             
-            return TestStatsAnswer(question: question,
-                                   isCorrectly: isCorrectly,
-                                   userAnswersIds: userAnswersIds)
+            return Review(question: question,
+                          isCorrectly: isCorrectly,
+                          userAnswersIds: userAnswersIds)
         }
         
         return TestStats(

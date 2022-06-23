@@ -14,5 +14,5 @@ struct TestStats {
     let userScore: Int
     let communityTime: String
     let communityScore: Int
-    let questions: [TestStatsAnswer]
+    let questions: [Review]
 }

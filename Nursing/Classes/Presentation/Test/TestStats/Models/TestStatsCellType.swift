@@ -11,5 +11,5 @@ enum TestStatsCellType {
     case progress(TestStatsProgressElement)
     case description(TestStatsDescriptionElement)
     case filter(TestStatsFilter)
-    case answer(TestStatsAnswerElement)
+    case answer(Review)
 }

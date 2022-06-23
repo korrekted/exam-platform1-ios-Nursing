@@ -8,9 +8,15 @@
 import UIKit
 import RxCocoa
 
+protocol TestStatsTableViewDelegate: AnyObject {
+    func testStatsTableDidTapped(question: Review)
+}
+
 class TestStatsTableView: UITableView {
+    weak var mainDelegate: TestStatsTableViewDelegate?
+    
     lazy var selectedFilter = BehaviorRelay<TestStatsFilter>(value: .all)
-    private var elements: [TestStatsCellType] = []
+    private(set) var elements: [TestStatsCellType] = []
 
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
@@ -63,6 +69,17 @@ extension TestStatsTableView: UITableViewDataSource {
     }
 }
 
+// MARK: UITableViewDelegate
+extension TestStatsTableView: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard case let .answer(question) = elements[indexPath.row] else {
+            return
+        }
+        
+        mainDelegate?.testStatsTableDidTapped(question: question)
+    }
+}
+
 // MARK: Private
 private extension TestStatsTableView {
     func initialize() {
@@ -72,5 +89,6 @@ private extension TestStatsTableView {
         register(TestStatsAnswerCell.self, forCellReuseIdentifier: String(describing: TestStatsAnswerCell.self))
         
         dataSource = self
+        delegate = self
     }
 }

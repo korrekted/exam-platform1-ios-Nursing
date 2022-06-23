@@ -45,16 +45,16 @@ private extension TestStatsViewModel {
                     .reduce(into: initial) { old, question in
                         switch filter {
                         case .all:
-                            old.append(.answer(.init(answer: question)))
+                            old.append(.answer(question))
                         case .incorrect:
                             if !question.isCorrectly {
-                                old.append(.answer(.init(answer: question)))
+                                old.append(.answer(question))
                             } else {
                                 break
                             }
                         case .correct:
                             if question.isCorrectly {
-                                old.append(.answer(.init(answer: question)))
+                                old.append(.answer(question))
                             } else {
                                 break
                             }

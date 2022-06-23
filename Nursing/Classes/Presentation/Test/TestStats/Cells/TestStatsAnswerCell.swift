@@ -27,18 +27,20 @@ class TestStatsAnswerCell: UITableViewCell {
 
 // MARK: Public
 extension TestStatsAnswerCell {
-    func setup(element: TestStatsAnswerElement) {
+    func setup(element: Review) {
         let attr = TextAttributes()
             .font(Fonts.SFProRounded.regular(size: 17.scale))
             .lineHeight(20)
             .textColor(.black)
         
-        answerLabel.attributedText = element.question.attributed(with: attr)
-        iconView.image = element.isCorrect
+        let question = element.question.questionShort ?? element.question.question
+        
+        answerLabel.attributedText = question.attributed(with: attr)
+        iconView.image = element.isCorrectly
             ? UIImage(named: "Question.Correct")
             : UIImage(named: "Question.Error")
         
-        let color = element.isCorrect
+        let color = element.isCorrectly
             ? Appearance.successColor
             : Appearance.errorColor
         

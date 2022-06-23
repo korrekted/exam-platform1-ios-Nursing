@@ -63,6 +63,8 @@ class TestStatsViewController: UIViewController {
                 self?.logAnalytics(courseName: name)
             })
             .disposed(by: disposeBag)
+        
+        mainView.tableView.mainDelegate = self
     }
 }
 
@@ -74,6 +76,23 @@ extension TestStatsViewController {
         controller.viewModel.userTestId.accept(userTestId)
         controller.viewModel.testType.accept(testType)
         return controller
+    }
+}
+
+// MARK: TestStatsTableViewDelegate
+extension TestStatsViewController: TestStatsTableViewDelegate {
+    func testStatsTableDidTapped(question: Review) {
+        let reviews = mainView.tableView.elements
+            .compactMap { element -> Review? in
+                guard case let .answer(review) = element else {
+                    return nil
+                }
+                
+                return review
+            }
+        
+        let vc = QuestionViewerViewController.make(reviews: reviews, current: question)
+        present(vc, animated: true)
     }
 }
 
