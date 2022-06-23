@@ -666,12 +666,13 @@ private extension TestViewModel {
                 return (elements[safe: index] ?? currentElement, elements)
             case .continue:
                 let currentIndex = elements.firstIndex(where: { $0.id == currentElement?.id }) ?? 0
-                // Из массива элементов получаем подмассив, где первый елемент - текущий, затем фильтруем.
-                // Нужно для кейса, когда юзер пропустил вопрос, а на следующий ответил, чтобы автоперход
-                // на следующий вопрос был на следующий по порядку, а не на первый неотвеченный
                 let withoutAnswered = elements.suffix(from: currentIndex).filter { !$0.isAnswered }
-                let index = withoutAnswered.firstIndex(where: { $0.id == currentElement?.id }).map { $0 + 1 } ?? 0
-                return (withoutAnswered[safe: index] ?? currentElement, elements)
+                
+                // Для случая, когда пользователь ответил на последний вопрос и вернулся обратно. Тогда, массив withoutAnswered будет пустым и ведем пользователя по порядку
+                let array = withoutAnswered.isEmpty ? elements : withoutAnswered
+                
+                let index = array.firstIndex(where: { $0.id == currentElement?.id }).map { $0 + 1 } ?? 0
+                return (array[safe: index] ?? currentElement, elements)
             case .restart:
                 return (nil, elements)
             }
