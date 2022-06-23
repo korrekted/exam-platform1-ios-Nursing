@@ -16,8 +16,3 @@ struct TestStats {
     let communityScore: Int
     let questions: [TestStatsAnswer]
 }
-
-struct TestStatsAnswer {
-    let question: String
-    let correct: Bool
-}

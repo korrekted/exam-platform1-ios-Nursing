@@ -33,6 +33,8 @@ final class QuestionMapper {
         let image = (questionJSON["image"] as? String)?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         let video = (questionJSON["video"] as? String)?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
+        let questionShort = questionJSON["question_short"] as? String
+        
         let question = questionJSON["question"] as? String ?? ""
         let questionHtml = questionJSON["question_html"] as? String ?? ""
         
@@ -46,6 +48,7 @@ final class QuestionMapper {
             id: id,
             image: URL(string: image),
             video: URL(string: video),
+            questionShort: questionShort,
             question: question,
             questionHtml: questionHtml,
             answers: answers,

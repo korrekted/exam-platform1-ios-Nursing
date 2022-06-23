@@ -47,13 +47,13 @@ private extension TestStatsViewModel {
                         case .all:
                             old.append(.answer(.init(answer: question)))
                         case .incorrect:
-                            if !question.correct {
+                            if !question.isCorrectly {
                                 old.append(.answer(.init(answer: question)))
                             } else {
                                 break
                             }
                         case .correct:
-                            if question.correct {
+                            if question.isCorrectly {
                                 old.append(.answer(.init(answer: question)))
                             } else {
                                 break

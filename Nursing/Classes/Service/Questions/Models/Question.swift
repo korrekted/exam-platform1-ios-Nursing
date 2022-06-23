@@ -11,6 +11,7 @@ struct Question: Codable, Hashable {
     let id: Int
     let image: URL?
     let video: URL?
+    let questionShort: String?
     let question: String
     let questionHtml: String
     let answers: [Answer]

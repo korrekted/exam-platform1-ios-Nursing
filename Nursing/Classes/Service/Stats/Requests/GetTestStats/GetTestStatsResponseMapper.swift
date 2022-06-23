@@ -24,18 +24,20 @@ struct GetTestStatsResponseMapper {
             return nil
         }
         
-        let elements = questions
-            .compactMap { elementJSON -> TestStatsAnswer? in
-                guard
-                    let questionJSON = elementJSON["question"] as? [String: Any],
-                    let question = questionJSON["question"] as? String,
-                    let isCorrectly = elementJSON["correctly_answered"] as? Bool
-                else {
-                    return nil
-                }
-                
-                return TestStatsAnswer(question: question, correct: isCorrectly)
+        let elements = questions.compactMap { elementJSON -> TestStatsAnswer? in
+            guard
+                let questionJSON = elementJSON["question"] as? [String: Any],
+                let question = QuestionMapper.map(from: questionJSON),
+                let isCorrectly = elementJSON["correctly_answered"] as? Bool,
+                let userAnswersIds = elementJSON["user_answers"] as? [Int]
+            else {
+                return nil
             }
+            
+            return TestStatsAnswer(question: question,
+                                   isCorrectly: isCorrectly,
+                                   userAnswersIds: userAnswersIds)
+        }
         
         return TestStats(
             correctNumbers: correctNumber,

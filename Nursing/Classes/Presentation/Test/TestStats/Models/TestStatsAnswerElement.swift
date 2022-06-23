@@ -14,7 +14,7 @@ struct TestStatsAnswerElement {
 
 extension TestStatsAnswerElement {
     init(answer: TestStatsAnswer) {
-        question = answer.question
-        isCorrect = answer.correct
+        question = answer.question.questionShort ?? answer.question.question
+        isCorrect = answer.isCorrectly
     }
 }
