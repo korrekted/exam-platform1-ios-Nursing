@@ -29,11 +29,12 @@ extension ReviewQuestionsTableCell {
     func setup(element: Review) {
         iconView.image = UIImage(named: element.isCorrectly ? "Review.Success" : "Review.Failure")
         
+        let question = element.question.questionShort ?? element.question.question
         let attrs = TextAttributes()
             .textColor(Appearance.blackColor)
             .font(Fonts.SFProRounded.regular(size: 17.scale))
             .lineHeight(23.8.scale)
-        label.attributedText = element.question.question.attributed(with: attrs)
+        label.attributedText = question.attributed(with: attrs)
         
         container.layer.borderColor = element.isCorrectly ? Appearance.successColor.cgColor : Appearance.errorColor.cgColor
         
