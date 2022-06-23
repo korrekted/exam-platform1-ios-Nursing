@@ -104,6 +104,9 @@ extension SettingsViewController: SettingsTableDelegate {
     }
     
     func settingsTableDidChanged(vibration: Bool) {
+        AmplitudeManager.shared
+            .logEvent(name: "Settings Tap", parameters: ["what": vibration ? "vibration_on" : "vibration_off"])
+        
         viewModel.newVibration.accept(vibration)
     }
     
@@ -136,6 +139,9 @@ extension SettingsViewController: SettingsTableDelegate {
         else {
             return
         }
+        
+        AmplitudeManager.shared
+            .logEvent(name: "Settings Tap", parameters: ["what": "share"])
         
         let vc = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         rootViewController.present(vc, animated: true)
