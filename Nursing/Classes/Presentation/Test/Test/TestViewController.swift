@@ -61,8 +61,9 @@ final class TestViewController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.vibration
-            .drive(Binder(self) { base, vibration in
-                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+            .drive(Binder(self) { base, isSuccess in
+                let feedbackGenerator = UINotificationFeedbackGenerator()
+                feedbackGenerator.notificationOccurred(isSuccess ? .success : .error)
             })
             .disposed(by: disposeBag)
         
