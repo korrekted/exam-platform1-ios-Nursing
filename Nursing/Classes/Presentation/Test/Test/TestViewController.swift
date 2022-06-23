@@ -60,6 +60,12 @@ final class TestViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        viewModel.vibration
+            .drive(Binder(self) { base, vibration in
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+            })
+            .disposed(by: disposeBag)
+        
         mainView.tabView.favoriteButton.rx.tap
             .withLatestFrom(viewModel.isSavedQuestion)
             .bind(to: viewModel.didTapMark)

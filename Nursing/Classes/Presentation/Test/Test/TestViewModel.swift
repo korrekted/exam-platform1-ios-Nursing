@@ -24,6 +24,7 @@ final class TestViewModel {
     let answers = BehaviorRelay<AnswerElement?>(value: nil)
     
     lazy var courseName = makeCourseName()
+    lazy var vibration = makeVibration()
     lazy var isSavedQuestion = makeIsSavedQuestion()
     lazy var progress = makeProgress()
     lazy var score = makeScore()
@@ -51,6 +52,7 @@ final class TestViewModel {
     private lazy var questionManager = QuestionManager()
     private lazy var profileManager = ProfileManager()
     
+    private let userAnsweredIsCorrect = PublishRelay<Bool>()
     private let answeredQuestionId = PublishRelay<Int>()
     private let savedQuestionRelay = PublishRelay<(Int, Bool)>()
 }
@@ -61,6 +63,14 @@ private extension TestViewModel {
         course
             .map { $0?.name ?? "" }
             .asDriver(onErrorDriveWith: .empty())
+    }
+    
+    func makeVibration() -> Driver<Bool> {
+        userAnsweredIsCorrect
+            .withLatestFrom(studySettings) { ($0, $1) }
+            .filter { $0.1.vibration }
+            .map { $0.0 }
+            .asDriver(onErrorDriveWith: .never())
     }
     
     func makeIsSavedQuestion() -> Driver<Bool> {
@@ -211,6 +221,7 @@ private extension TestViewModel {
                     .merge(elements, answered, saved)
                     .scan([], accumulator: self.questionAccumulator)
             }
+            .share(replay: 1)
     }
     
     func makeSelectedAnswers() -> Observable<AnswerElement?> {
@@ -483,7 +494,6 @@ private extension TestViewModel {
         return { [weak self] old, action in
             switch action {
             case let .elements(questions, answers, testMode, courseName, studySettings):
-                
                 guard !old.isEmpty else {
                     return questions.enumerated().map { index, question in
                         let answers = question.answers.map { PossibleAnswerElement(id: $0.id,
@@ -553,9 +563,11 @@ private extension TestViewModel {
                     
                     if currentQuestion.multiple {
                         let isCorrect = !result.contains(where: { $0.state == .warning || $0.state == .error })
+                        self?.userAnsweredIsCorrect.accept(isCorrect)
                         self?.logAnswerAnalitycs(isCorrect: isCorrect, courseName: courseName)
                     } else {
-                        let isCorrect = result.contains(where: { $0.state == .correct })
+                        let isCorrect = !result.contains(where: { $0.state == .error })
+                        self?.userAnsweredIsCorrect.accept(isCorrect)
                         self?.logAnswerAnalitycs(isCorrect: isCorrect, courseName: courseName)
                     }
                     
