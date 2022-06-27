@@ -240,9 +240,9 @@
 
 // MARK: ReportReason
 "ReportReason.Title" = "Report";
-"ReportReason.Reason1" = "The answer is wrong";
-"ReportReason.Reason2" = "I caught a typo.";
-"ReportReason.Reason3" = "The question or hints are confusing";
+"ReportReason.Reason1" = "Incorrect answer";
+"ReportReason.Reason2" = "I caught a typo";
+"ReportReason.Reason3" = "The question or answers are confusing";
 "ReportReason.Reason4" = "Something isn’t working or seems broken";
 
 // MARK: Report
@@ -251,14 +251,14 @@
 "Report.Email.Confirm" = "Confirm Email";
 "Report.Email.Hint" = "Please enter your email so that we can give you quick feedback to the specified address";
 "Report.Message.Title" = "How can we help";
-"Report.Message.Placeholder" = "Please explain your issue in a little bit more detail";
+"Report.Message.Placeholder" = "Please describe the issue in a little bit of detail";
 "Report.Button" = "Report";
-"Report.Success" = "We’ve submitted your feedback. Thanks for improving us for everyone.";
+"Report.Success" = "Your feedback has been sent. Thanks for improving the app!";
 
 // MARK: TimedQuizMinutes
 "TimedQuizMinutes.Title" = "Timed Quiz";
-"TimedQuizMinutes.SubTitle" = "How many minutes?";
-"TimedQuizMinutes.StartButton" = "Start Quiz";
+"TimedQuizMinutes.SubTitle" = "Set time (in minutes)";
+"TimedQuizMinutes.StartButton" = "Start Test";
 
 // MARK: Review
 "Review.Title" = "Review";
