@@ -190,13 +190,18 @@ final class TestViewController: UIViewController {
             .withLatestFrom(viewModel.userTestId) { ($0.0, $0.1, $1) }
             .bind(to: Binder(self) { base, args in
                 let (courseName, questions, userTestId) = args
-                
+
                 let vc = QuitQuizViewController.make(allQuestionsCount: questions.count,
                                                      answeredQuestionsCount: questions.filter { $0.isAnswered }.count) { result in
-                    base.finishTest(result: result,
-                                    element: TestFinishElement(userTestId: userTestId,
-                                                               courseName: courseName,
-                                                               testType: base.testType))
+                    let element = TestFinishElement(userTestId: userTestId,
+                                                    courseName: courseName,
+                                                    testType: base.testType)
+                    switch result {
+                    case .quit:
+                        base.finishTest(result: .quit, element: element)
+                    case .submit:
+                        base.viewModel.didTapSubmit.accept(Void())
+                    }
                 }
                 base.present(vc, animated: false)
             })
