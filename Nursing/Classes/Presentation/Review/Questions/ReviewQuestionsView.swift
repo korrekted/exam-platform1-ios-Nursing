@@ -10,6 +10,7 @@ import UIKit
 final class ReviewQuestionsView: UIView {
     lazy var filterView = makeFilterView()
     lazy var tableView = makeTableView()
+    lazy var emptyLabel = makeEmptyLabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -46,6 +47,11 @@ private extension ReviewQuestionsView {
             tableView.topAnchor.constraint(equalTo: filterView.bottomAnchor, constant: 2.scale),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+        
+        NSLayoutConstraint.activate([
+            emptyLabel.centerXAnchor.constraint(equalTo: tableView.centerXAnchor),
+            emptyLabel.centerYAnchor.constraint(equalTo: tableView.centerYAnchor)
+        ])
     }
 }
 
@@ -65,6 +71,19 @@ private extension ReviewQuestionsView {
         view.contentInset = UIEdgeInsets(top: 24.scale, left: 0, bottom: 24.scale, right: 0)
         view.showsVerticalScrollIndicator = false
         view.backgroundColor = UIColor.clear
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
+    func makeEmptyLabel() -> UILabel {
+        let attrs = TextAttributes()
+            .textColor(Appearance.blackColor)
+            .font(Fonts.SFProRounded.regular(size: 17.scale))
+            .textAlignment(.center)
+        
+        let view = UILabel()
+        view.attributedText = "ReviewQuestions.Empty".localized.attributed(with: attrs)
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

@@ -275,11 +275,13 @@
 "Quizes.Mode.Timed" = "Timed Quiz";
 "Quizes.YourTime" = "Your time - %@";
 "Quizes.AverageTime" = "Average time - %@";
+"Quizes.Empty" = "No finished tests yet";
 
 // MARK: Review Questions
 "ReviewQuestions.Filter.All" = "All";
 "ReviewQuestions.Filter.Correct" = "Correct";
 "ReviewQuestions.Filter.Incorrect" = "Incorrect";
+"ReviewQuestions.Empty" = "No answered questions yet";
 
 // MARK: TestViewer
 "TestViewer.Title" = "Questions";

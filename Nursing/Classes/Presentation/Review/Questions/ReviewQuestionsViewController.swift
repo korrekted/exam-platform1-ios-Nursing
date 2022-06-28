@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 final class ReviewQuestionsViewController: UIViewController {
     lazy var mainView = ReviewQuestionsView()
@@ -22,15 +23,36 @@ final class ReviewQuestionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.elements
+        viewModel.tryAgain = { [weak self] error -> Observable<Void> in
+            guard let self = self else {
+                return .never()
+            }
+            
+            return self.openError()
+        }
+        
+        let elements = viewModel.elements
+        let activity = viewModel.activity
+        
+        elements
             .drive(Binder(self) { base, elements in
                 base.mainView.tableView.setup(elements: elements)
             })
             .disposed(by: disposeBag)
         
-        viewModel.activity
+        activity
             .drive(Binder(self) { base, activity in
                 base.activity(activity)
+            })
+            .disposed(by: disposeBag)
+        
+        Driver
+            .merge(
+                viewModel.elements.map { !$0.isEmpty },
+                viewModel.activity.filter { $0 }
+            )
+            .drive(Binder(self) { base, isHidden in
+                base.mainView.emptyLabel.isHidden = isHidden
             })
             .disposed(by: disposeBag)
         
@@ -72,6 +94,22 @@ extension ReviewQuestionsViewController: ReviewQuestionsTableViewDelegate {
 
 // MARK: Private
 private extension ReviewQuestionsViewController {
+    func openError() -> Observable<Void> {
+        Observable<Void>
+            .create { [weak self] observe in
+                guard let self = self else {
+                    return Disposables.create()
+                }
+                
+                let vc = TryAgainViewController.make {
+                    observe.onNext(())
+                }
+                self.present(vc, animated: true)
+                
+                return Disposables.create()
+            }
+    }
+    
     func addFilterTappedActions() {
         Observable
             .merge(

@@ -10,6 +10,7 @@ import UIKit
 final class QuizesView: UIView {
     lazy var tableView = makeTableView()
     lazy var preloader = makePreloader()
+    lazy var emptyLabel = makeEmptyLabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,6 +45,11 @@ private extension QuizesView {
             preloader.centerXAnchor.constraint(equalTo: centerXAnchor),
             preloader.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
+        
+        NSLayoutConstraint.activate([
+            emptyLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            emptyLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
     }
 }
 
@@ -65,6 +71,19 @@ private extension QuizesView {
     
     func makePreloader() -> Spinner {
         let view = Spinner(size: CGSize(width: 45.scale, height: 45.scale))
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
+    func makeEmptyLabel() -> UILabel {
+        let attrs = TextAttributes()
+            .textColor(Appearance.blackColor)
+            .font(Fonts.SFProRounded.regular(size: 17.scale))
+            .textAlignment(.center)
+        
+        let view = UILabel()
+        view.attributedText = "Quizes.Empty".localized.attributed(with: attrs)
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

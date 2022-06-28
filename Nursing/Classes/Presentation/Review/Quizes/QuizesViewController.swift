@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 final class QuizesViewController: UIViewController {
     lazy var mainView = QuizesView()
@@ -30,15 +31,28 @@ final class QuizesViewController: UIViewController {
             return self.openError()
         }
         
-        viewModel.activity
+        let elements = viewModel.elements
+        let activity = viewModel.activity
+        
+        elements
+            .drive(Binder(self) { base, elements in
+                base.mainView.tableView.setup(elements: elements)
+            })
+            .disposed(by: disposeBag)
+        
+        activity
             .drive(Binder(self) { base, activity in
                 base.activity(activity)
             })
             .disposed(by: disposeBag)
         
-        viewModel.elements
-            .drive(Binder(self) { base, elements in
-                base.mainView.tableView.setup(elements: elements)
+        Driver
+            .merge(
+                viewModel.elements.map { !$0.isEmpty },
+                viewModel.activity.filter { $0 }
+            )
+            .drive(Binder(self) { base, isHidden in
+                base.mainView.emptyLabel.isHidden = isHidden
             })
             .disposed(by: disposeBag)
         

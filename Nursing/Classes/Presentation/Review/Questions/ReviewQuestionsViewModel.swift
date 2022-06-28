@@ -9,6 +9,8 @@ import RxSwift
 import RxCocoa
 
 final class ReviewQuestionsViewModel {
+    var tryAgain: ((Error) -> (Observable<Void>))?
+    
     lazy var filter = PublishRelay<ReviewQuestionsFilter>()
     lazy var nextPage = PublishRelay<Void>()
     
@@ -22,6 +24,7 @@ final class ReviewQuestionsViewModel {
     private lazy var questionManager = QuestionManager()
     
     private lazy var paginationLoader = ReviewQuestionsLoader(nextPage: nextPage.asObservable())
+    private lazy var observableRetrySingle = ObservableRetrySingle()
 }
 
 // MARK: Private
@@ -64,12 +67,25 @@ private extension ReviewQuestionsViewModel {
             guard let self = self else {
                 return .empty()
             }
-
-            return self.questionManager
-                .obtainReview(courseId: courseId, mode: filter, offset: page * 20)
+            
+            func source() -> Single<Page<Review>> {
+                self.questionManager
+                    .obtainReview(courseId: courseId, mode: filter, offset: page * 20)
+                    .map { Page(page: page, data: $0) }
+            }
+            
+            func trigger(error: Error) -> Observable<Void> {
+                guard let tryAgain = self.tryAgain?(error) else {
+                    return .empty()
+                }
+                
+                return tryAgain
+            }
+            
+            return self.observableRetrySingle
+                .retry(source: { source() },
+                       trigger: { trigger(error: $0) })
                 .trackActivity(self.activity)
-                .map { Page(page: page, data: $0) }
-                .asObservable()
         }
     }
     
