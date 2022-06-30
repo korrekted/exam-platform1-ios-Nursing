@@ -10,8 +10,9 @@ import Alamofire
 struct ReportRequest: APIRequestBody {
     let userToken: String
     let questionId: Int
+    let userId: Int?
     let reason: Int
-    let email: String
+    let email: String?
     let comment: String
     
     var url: String {
@@ -23,13 +24,22 @@ struct ReportRequest: APIRequestBody {
     }
     
     var parameters: Parameters? {
-        [
+        var params: [String: Any] = [
             "_api_key": GlobalDefinitions.apiKey,
             "_user_token": userToken,
             "test_question_id": questionId,
             "reason": reason,
-            "email": email,
             "comment": comment
         ]
+        
+        if let userId = userId {
+            params["user_id"] = userId
+        }
+        
+        if let email = email {
+            params["email"] = email
+        }
+        
+        return params
     }
 }

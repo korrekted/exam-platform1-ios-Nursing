@@ -15,7 +15,7 @@ final class ReportValidationOverseer {
     }
 }
 
-// MARK: 
+// MARK: Public
 extension ReportValidationOverseer {
     func startValidation() {
         mainView.emailField.isValid = { [weak self] in
@@ -23,22 +23,17 @@ extension ReportValidationOverseer {
                 return true
             }
             
-            let email = self.mainView.emailField.textField.text ?? ""
-            return EmailRegex().isValid(email: email)
-        }
-        
-        mainView.confirmEmailField.isValid = { [weak self] in
-            guard let self = self else {
-                return false
+            guard !self.mainView.emailField.isHidden else {
+                return true
             }
             
             let email = self.mainView.emailField.textField.text ?? ""
-            let confirmEmail = self.mainView.confirmEmailField.textField.text ?? ""
             
-            let isValidConfirmEmail = EmailRegex().isValid(email: confirmEmail)
-            let isEqual = email == confirmEmail
+            guard !email.isEmpty else {
+                return true
+            }
             
-            return isValidConfirmEmail && isEqual
+            return EmailRegex().isValid(email: email)
         }
     }
 }

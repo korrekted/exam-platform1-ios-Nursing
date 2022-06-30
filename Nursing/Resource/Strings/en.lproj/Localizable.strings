@@ -247,11 +247,10 @@
 
 // MARK: Report
 "Report.Title" = "Report";
-"Report.Email" = "Email";
-"Report.Email.Confirm" = "Confirm Email";
-"Report.Email.Hint" = "Please enter your email so that we can give you quick feedback to the specified address";
 "Report.Message.Title" = "How can we help";
 "Report.Message.Placeholder" = "Please describe the issue in a little bit of detail";
+"Report.Feedback.Title" = "I need a feedback";
+"Report.Email" = "Email";
 "Report.Button" = "Report";
 "Report.Success" = "Your feedback has been sent. Thanks for improving the app!";
 

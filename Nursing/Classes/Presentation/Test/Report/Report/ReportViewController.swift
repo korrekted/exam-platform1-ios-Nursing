@@ -100,11 +100,11 @@ final class ReportViewController: UIViewController {
             .disposed(by: disposeBag)
         
         addHideKeyboardAction()
-        
         validationOverseer.startValidation()
         editingOverseer.subscribe { [weak self] available in
             self?.update(available: available)
         }
+        mainView.feedbackSwitch.setOn(false, animated: false)
     }
 }
 

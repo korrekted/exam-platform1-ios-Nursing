@@ -28,12 +28,6 @@ extension ReportEditingOverseer {
             }
             
             self.checkAvailable()
-            
-            self.mainView.confirmEmailField.textFieldDidEndEditing(self.mainView.confirmEmailField.textField)
-        }
-        
-        mainView.confirmEmailField.editing = { [weak self] in
-            self?.checkAvailable()
         }
         
         mainView.messageView.editing = { [weak self] in
@@ -48,10 +42,9 @@ extension ReportEditingOverseer {
 private extension ReportEditingOverseer {
     func checkAvailable() {
         let emailValid = mainView.emailField.isValid?() ?? true
-        let confirmEmailmValid = mainView.confirmEmailField.isValid?() ?? true
         let messageValid = !mainView.messageView.textView.text.isEmpty
         
-        let isValid = emailValid && confirmEmailmValid && messageValid
+        let isValid = emailValid && messageValid
         
         handler?(isValid)
     }

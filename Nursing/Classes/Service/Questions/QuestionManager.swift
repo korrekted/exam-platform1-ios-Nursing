@@ -6,6 +6,7 @@
 //
 
 import RxSwift
+import OtterScaleiOS
 
 protocol QuestionManagerProtocol: AnyObject {
     func obtain(courseId: Int, testId: Int?, time: Int?, activeSubscription: Bool) -> Single<Test?>
@@ -22,7 +23,7 @@ protocol QuestionManagerProtocol: AnyObject {
     func saveQuestion(questionId: Int) -> Single<Void>
     func removeSavedQuestion(questionId: Int) -> Single<Void>
     func retrieveConfig(courseId: Int) -> Single<[TestConfig]>
-    func report(questionId: Int, reason: Int, email: String, comment: String) -> Single<Void>
+    func report(questionId: Int, reason: Int, email: String?, comment: String) -> Single<Void>
 }
 
 final class QuestionManager: QuestionManagerProtocol {
@@ -232,13 +233,14 @@ extension QuestionManager {
             .map { GetTestConfigResponseMapper.from(response: $0) }
     }
     
-    func report(questionId: Int, reason: Int, email: String, comment: String) -> Single<Void> {
+    func report(questionId: Int, reason: Int, email: String?, comment: String) -> Single<Void> {
         guard let userToken = sessionManager.getSession()?.userToken else {
             return .error(SignError.tokenNotFound)
         }
         
         let request = ReportRequest(userToken: userToken,
                                     questionId: questionId,
+                                    userId: OtterScale.shared.getUserID(),
                                     reason: reason,
                                     email: email,
                                     comment: comment)

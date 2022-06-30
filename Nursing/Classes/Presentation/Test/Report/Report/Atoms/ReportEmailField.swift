@@ -12,19 +12,22 @@ final class ReportEmailField: UIView {
         case none, error, focus
     }
     
+    enum Constants {
+        static let emailKey = "report_email_key"
+    }
+    
     lazy var iconView = makeIconView()
     lazy var textField = makeTextField()
     
-    var isValid: (() -> Bool)?
-    var editing: (() -> Void)?
+    var isValid: (() -> Bool)? { didSet { reset() } }
+    var editing: (() -> Void)? { didSet { reset() } }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         makeConstraints()
         initialize()
-        color(at: .none)
-        updateIcon()
+        reset()
     }
     
     required init?(coder: NSCoder) {
@@ -56,6 +59,17 @@ extension ReportEmailField {
         let text = textField.text ?? ""
         return text.isEmpty
     }
+    
+    func reset() {
+        textField.text = UserDefaults.standard.string(forKey: Constants.emailKey)
+        
+        let isEmptyOrValid = isEmpty() || (isValid?() ?? true)
+        color(at: isEmptyOrValid ? .none : .error)
+        
+        updateIcon()
+        
+        editing?()
+    }
 }
 
 // MARK: UITextFieldDelegate
@@ -76,6 +90,8 @@ extension ReportEmailField: UITextFieldDelegate {
         
         let isEmptyOrValid = isEmpty() || (isValid?() ?? true)
         color(at: isEmptyOrValid ? .none : .error)
+        
+        saveEmail()
     }
 }
 
@@ -101,6 +117,11 @@ private extension ReportEmailField {
         updateIcon()
         
         editing?()
+    }
+    
+    func saveEmail() {
+        let email = textField.text ?? ""
+        UserDefaults.standard.set(email, forKey: Constants.emailKey)
     }
 }
 

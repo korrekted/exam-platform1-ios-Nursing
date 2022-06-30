@@ -8,6 +8,6 @@
 struct ReportScope {
     let questionId: Int
     let reason: ReportReason
-    let email: String
+    let email: String?
     let message: String
 }

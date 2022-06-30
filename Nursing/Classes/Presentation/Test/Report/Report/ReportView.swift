@@ -12,13 +12,12 @@ final class ReportView: UIView {
     lazy var backButton = makeBackButton()
     lazy var titleLabel = makeTitleLabel()
     lazy var closeButton = makeCloseButton()
-    lazy var emailTitleLabel = makeBlockTitleLabel(text: "Report.Email".localized)
-    lazy var emailField = makeEmailField()
-    lazy var confirmEmailTitleLabel = makeBlockTitleLabel(text: "Report.Email.Confirm".localized)
-    lazy var confirmEmailField = makeConfirmEmailField()
-    lazy var emailHintLabel = makeEmailHintLabel()
     lazy var messageTitleLabel = makeBlockTitleLabel(text: "Report.Message.Title".localized)
     lazy var messageView = makeMessageView()
+    lazy var feedbackLabel = makeBlockTitleLabel(text: "Report.Feedback.Title".localized)
+    lazy var feedbackSwitch = makeFeedbackSwitch()
+    lazy var emailTitleLabel = makeBlockTitleLabel(text: "Report.Email".localized)
+    lazy var emailField = makeEmailField()
     lazy var reportButton = makeReportButton()
     lazy var preloader = makePreloader()
     
@@ -27,6 +26,7 @@ final class ReportView: UIView {
         
         makeConstraints()
         initialize()
+        feedbackChanged()
     }
     
     required init?(coder: NSCoder) {
@@ -38,6 +38,13 @@ final class ReportView: UIView {
 private extension ReportView {
     func initialize() {
         backgroundColor = Appearance.backgroundColor
+    }
+    
+    @objc
+    func feedbackChanged() {
+        emailTitleLabel.isHidden = !feedbackSwitch.isOn
+        emailField.isHidden = !feedbackSwitch.isOn
+        emailField.reset()
     }
 }
 
@@ -71,51 +78,40 @@ private extension ReportView {
         ])
         
         NSLayoutConstraint.activate([
-            emailTitleLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 24.scale),
-            emailTitleLabel.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -24.scale),
-            emailTitleLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ScreenSize.isIphoneXFamily ? 20.scale : 10.scale)
-        ])
-        
-        NSLayoutConstraint.activate([
-            emailField.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16.scale),
-            emailField.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -16.scale),
-            emailField.topAnchor.constraint(equalTo: emailTitleLabel.bottomAnchor, constant: ScreenSize.isIphoneXFamily ? 10.scale : 6.scale),
-            emailField.heightAnchor.constraint(equalToConstant: 60.scale),
-            emailField.widthAnchor.constraint(equalToConstant: 343.scale)
-        ])
-        
-        NSLayoutConstraint.activate([
-            confirmEmailTitleLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 24.scale),
-            confirmEmailTitleLabel.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -24.scale),
-            confirmEmailTitleLabel.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: ScreenSize.isIphoneXFamily ? 20.scale : 10.scale)
-        ])
-        
-        NSLayoutConstraint.activate([
-            confirmEmailField.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16.scale),
-            confirmEmailField.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -16.scale),
-            confirmEmailField.topAnchor.constraint(equalTo: confirmEmailTitleLabel.bottomAnchor, constant: ScreenSize.isIphoneXFamily ? 10.scale : 6.scale),
-            confirmEmailField.heightAnchor.constraint(equalToConstant: 60.scale),
-            confirmEmailField.widthAnchor.constraint(equalToConstant: 343.scale)
-        ])
-        
-        NSLayoutConstraint.activate([
-            emailHintLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 24.scale),
-            emailHintLabel.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -24.scale),
-            emailHintLabel.topAnchor.constraint(equalTo: confirmEmailField.bottomAnchor, constant: ScreenSize.isIphoneXFamily ? 10.scale : 6.scale)
-        ])
-        
-        NSLayoutConstraint.activate([
             messageTitleLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 24.scale),
             messageTitleLabel.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -24.scale),
-            messageTitleLabel.topAnchor.constraint(equalTo: emailHintLabel.bottomAnchor, constant: ScreenSize.isIphoneXFamily ? 30.scale : 20.scale)
+            messageTitleLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: ScreenSize.isIphoneXFamily ? 20.scale : 10.scale)
         ])
         
         NSLayoutConstraint.activate([
             messageView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 24.scale),
             messageView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -24.scale),
             messageView.heightAnchor.constraint(equalToConstant: ScreenSize.isIphoneXFamily ? 217.scale : 170.scale),
-            messageView.topAnchor.constraint(equalTo: messageTitleLabel.bottomAnchor, constant: 10.scale),
-            messageView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: ScreenSize.isIphoneXFamily ? -20.scale : -10.scale)
+            messageView.topAnchor.constraint(equalTo: messageTitleLabel.bottomAnchor, constant: 10.scale)
+        ])
+        
+        NSLayoutConstraint.activate([
+            feedbackLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 24.scale),
+            feedbackLabel.topAnchor.constraint(equalTo: messageView.bottomAnchor, constant: 39.scale)
+        ])
+        
+        NSLayoutConstraint.activate([
+            feedbackSwitch.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -33.scale),
+            feedbackSwitch.centerYAnchor.constraint(equalTo: feedbackLabel.centerYAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            emailTitleLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 24.scale),
+            emailTitleLabel.bottomAnchor.constraint(equalTo: emailField.topAnchor, constant: -10.scale)
+        ])
+        
+        NSLayoutConstraint.activate([
+            emailField.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16.scale),
+            emailField.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -16.scale),
+            emailField.topAnchor.constraint(equalTo: messageView.bottomAnchor, constant: 121.scale),
+            emailField.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            emailField.heightAnchor.constraint(equalToConstant: 60.scale),
+            emailField.widthAnchor.constraint(equalToConstant: 343.scale)
         ])
         
         NSLayoutConstraint.activate([
@@ -188,46 +184,6 @@ private extension ReportView {
         return view
     }
     
-    func makeEmailField() -> ReportEmailField {
-        let view = ReportEmailField()
-        view.backgroundColor = UIColor.white
-        view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOpacity = 0.08
-        view.layer.shadowOffset = .zero
-        view.layer.shadowRadius = 6.scale
-        view.layer.cornerRadius = 20.scale
-        view.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.addSubview(view)
-        return view
-    }
-    
-    func makeConfirmEmailField() -> ReportEmailField {
-        let view = ReportEmailField()
-        view.backgroundColor = UIColor.white
-        view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOpacity = 0.08
-        view.layer.shadowOffset = .zero
-        view.layer.shadowRadius = 6.scale
-        view.layer.cornerRadius = 20.scale
-        view.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.addSubview(view)
-        return view
-    }
-    
-    func makeEmailHintLabel() -> UILabel {
-        let attrs = TextAttributes()
-            .textColor(Appearance.blackColor.withAlphaComponent(0.5))
-            .font(Fonts.SFProRounded.regular(size: 15.scale))
-            .lineHeight(21.scale)
-        
-        let view = UILabel()
-        view.numberOfLines = 0
-        view.attributedText = "Report.Email.Hint".localized.attributed(with: attrs)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.addSubview(view)
-        return view
-    }
-    
     func makeMessageView() -> ReportMessageView {
         let view = ReportMessageView()
         view.backgroundColor = UIColor.white
@@ -237,6 +193,30 @@ private extension ReportView {
         view.layer.shadowOpacity = 0.08
         view.layer.shadowOffset = .zero
         view.layer.shadowRadius = 6.scale
+        view.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(view)
+        return view
+    }
+    
+    func makeFeedbackSwitch() -> UISwitch {
+        let view = UISwitch()
+        view.onTintColor = Appearance.mainColor
+        view.tintColor = Appearance.mainColor.withAlphaComponent(0.7)
+        view.thumbTintColor = UIColor.white
+        view.addTarget(self, action: #selector(feedbackChanged), for: .valueChanged)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(view)
+        return view
+    }
+    
+    func makeEmailField() -> ReportEmailField {
+        let view = ReportEmailField()
+        view.backgroundColor = UIColor.white
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.08
+        view.layer.shadowOffset = .zero
+        view.layer.shadowRadius = 6.scale
+        view.layer.cornerRadius = 20.scale
         view.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(view)
         return view
