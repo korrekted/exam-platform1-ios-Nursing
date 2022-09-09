@@ -71,6 +71,7 @@
 		DE1A7D5428602D96003E35BC /* QuestionViewerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A7D5328602D96003E35BC /* QuestionViewerView.swift */; };
 		DE1A7D5728602DA6003E35BC /* QuestionViewerTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A7D5628602DA6003E35BC /* QuestionViewerTableView.swift */; };
 		DE1A7D59286034B1003E35BC /* QuestionViewerTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A7D58286034B1003E35BC /* QuestionViewerTabView.swift */; };
+		DE1D022428CB15DC003AC1FD /* Onboarding.Chart.json in Resources */ = {isa = PBXBuildFile; fileRef = DE1D022328CB15DC003AC1FD /* Onboarding.Chart.json */; };
 		DE275BCA283B8B950024D62E /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BC9283B8B950024D62E /* Profile.swift */; };
 		DE275BCC283B963C0024D62E /* Observable+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BCB283B963C0024D62E /* Observable+Utils.swift */; };
 		DE275BCE283B96520024D62E /* Single+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE275BCD283B96520024D62E /* Single+Utils.swift */; };
@@ -375,7 +376,6 @@
 		DEBCD1622848ACF2000C08A9 /* FinishTestRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBCD1612848ACF2000C08A9 /* FinishTestRequest.swift */; };
 		DEBCD1642848C0D4000C08A9 /* TestFinishElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBCD1632848C0D4000C08A9 /* TestFinishElement.swift */; };
 		DEBCD1672848D6C1000C08A9 /* TestFinishObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBCD1662848D6C1000C08A9 /* TestFinishObserver.swift */; };
-		DEC345ED280D8C7C0069A060 /* Onboarding.Chart.json in Resources */ = {isa = PBXBuildFile; fileRef = DEC345EC280D8C7C0069A060 /* Onboarding.Chart.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -473,6 +473,7 @@
 		DE1A7D5328602D96003E35BC /* QuestionViewerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewerView.swift; sourceTree = "<group>"; };
 		DE1A7D5628602DA6003E35BC /* QuestionViewerTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewerTableView.swift; sourceTree = "<group>"; };
 		DE1A7D58286034B1003E35BC /* QuestionViewerTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewerTabView.swift; sourceTree = "<group>"; };
+		DE1D022328CB15DC003AC1FD /* Onboarding.Chart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Onboarding.Chart.json; sourceTree = "<group>"; };
 		DE275BC9283B8B950024D62E /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		DE275BCB283B963C0024D62E /* Observable+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Utils.swift"; sourceTree = "<group>"; };
 		DE275BCD283B96520024D62E /* Single+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Single+Utils.swift"; sourceTree = "<group>"; };
@@ -774,7 +775,6 @@
 		DEBCD1612848ACF2000C08A9 /* FinishTestRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishTestRequest.swift; sourceTree = "<group>"; };
 		DEBCD1632848C0D4000C08A9 /* TestFinishElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFinishElement.swift; sourceTree = "<group>"; };
 		DEBCD1662848D6C1000C08A9 /* TestFinishObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFinishObserver.swift; sourceTree = "<group>"; };
-		DEC345EC280D8C7C0069A060 /* Onboarding.Chart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Onboarding.Chart.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1509,7 +1509,7 @@
 		DE4EB17428047AED00DCEB92 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				DEC345EC280D8C7C0069A060 /* Onboarding.Chart.json */,
+				DE1D022328CB15DC003AC1FD /* Onboarding.Chart.json */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -2458,7 +2458,7 @@
 				962AEA7325B4F8090032E7C3 /* SF-Pro-Rounded-Semibold.otf in Resources */,
 				962AEA7225B4F8090032E7C3 /* SF-Pro-Rounded-Regular.otf in Resources */,
 				962AEA7125B4F8090032E7C3 /* SF-Pro-Rounded-Bold.otf in Resources */,
-				DEC345ED280D8C7C0069A060 /* Onboarding.Chart.json in Resources */,
+				DE1D022428CB15DC003AC1FD /* Onboarding.Chart.json in Resources */,
 				96D38AED25B3017D00EADC9A /* LaunchScreen.storyboard in Resources */,
 				96D38AEA25B3017D00EADC9A /* Assets.xcassets in Resources */,
 			);
@@ -2934,7 +2934,7 @@
 				CODE_SIGN_ENTITLEMENTS = StatsManagerExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 55;
+				CURRENT_PROJECT_VERSION = 56;
 				DEVELOPMENT_TEAM = ZY9AXRCYBM;
 				INFOPLIST_FILE = StatsManager/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -2943,7 +2943,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 3.2.0;
+				MARKETING_VERSION = 3.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = exam.nursing.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Nursing Widgets Development";
@@ -2961,7 +2961,7 @@
 				CODE_SIGN_ENTITLEMENTS = StatsManagerExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 55;
+				CURRENT_PROJECT_VERSION = 56;
 				DEVELOPMENT_TEAM = ZY9AXRCYBM;
 				INFOPLIST_FILE = StatsManager/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -2970,7 +2970,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 3.2.0;
+				MARKETING_VERSION = 3.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = exam.nursing.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Nursing Widget Prod";
@@ -3106,7 +3106,7 @@
 				CODE_SIGN_ENTITLEMENTS = Nursing/Nursing.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 55;
+				CURRENT_PROJECT_VERSION = 56;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = ZY9AXRCYBM;
 				INFOPLIST_FILE = "$(SRCROOT)/Nursing/Resource/Info.plist";
@@ -3115,7 +3115,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.2.0;
+				MARKETING_VERSION = 3.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = exam.nursing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Nursing Development";
@@ -3135,7 +3135,7 @@
 				CODE_SIGN_ENTITLEMENTS = Nursing/Nursing.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 55;
+				CURRENT_PROJECT_VERSION = 56;
 				DEVELOPMENT_TEAM = ZY9AXRCYBM;
 				INFOPLIST_FILE = "$(SRCROOT)/Nursing/Resource/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -3143,7 +3143,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.2.0;
+				MARKETING_VERSION = 3.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = exam.nursing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Nursing Prod";

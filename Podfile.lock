@@ -199,7 +199,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   OtterScaleiOS:
-    :commit: 4059d8ecdd71852e810bbcc518e197b1053c6a17
+    :commit: a4a7e626b775df11dccb8d3a68546252eb7335dd
     :git: https://github.com/AgentChe/OtterScaleiOS.git
   RushSDK:
     :commit: 687506667844921a08a5f34c8e7cc1446a75c232
