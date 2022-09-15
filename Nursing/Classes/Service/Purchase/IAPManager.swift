@@ -10,9 +10,7 @@ import SwiftyStoreKit
 import StoreKit
 import RushSDK
 
-final class IAPManager {
-    private let purchaseInteractor = SDKStorage.shared.purchaseInteractor
-}
+final class IAPManager {}
 
 // MARK: Public
 extension IAPManager {
@@ -44,62 +42,45 @@ extension IAPManager {
     }
     
     func buyProduct(with id: String) -> Single<IAPActionResult> {
-        purchaseInteractor
-            .makeActiveSubscriptionByBuy(productId: id)
-            .map { result -> IAPActionResult in
-                switch result {
-                case .completed:
-                    return .completed(id)
-                case .cancelled:
-                    return .cancelled
+        guard SwiftyStoreKit.canMakePayments else {
+            return .error(IAPError(.paymentsDisabled))
+        }
+
+        return Single<IAPActionResult>
+            .create { event in
+                SwiftyStoreKit.purchaseProduct(id, quantity: 1, atomically: true) { result in
+                    switch result {
+                    case .success(let purchase):
+                        if purchase.productId == id {
+                            event(.success(.completed(id)))
+                        }
+                    case .error(let error):
+                        if IAPErrorHelper.treatErrorAsCancellation(error) {
+                            event(.success(.cancelled))
+                        } else if IAPErrorHelper.treatErrorAsSuccess(error) {
+                            event(.success(.completed(id)))
+                        } else {
+                            event(.failure(IAPError(.paymentFailed, underlyingError: error)))
+                        }
+                    }
                 }
+
+                return Disposables.create()
             }
-        
-        // TODO: использовать при полном отказе от RushSDK
-//        guard SwiftyStoreKit.canMakePayments else {
-//            return .error(IAPError(.paymentsDisabled))
-//        }
-//
-//        return Single<IAPActionResult>
-//            .create { event in
-//                SwiftyStoreKit.purchaseProduct(id, quantity: 1, atomically: true) { result in
-//                    switch result {
-//                    case .success(let purchase):
-//                        if purchase.productId == id {
-//                            event(.success(.completed(id)))
-//                        }
-//                    case .error(let error):
-//                        if IAPErrorHelper.treatErrorAsCancellation(error) {
-//                            event(.success(.cancelled))
-//                        } else if IAPErrorHelper.treatErrorAsSuccess(error) {
-//                            event(.success(.completed(id)))
-//                        } else {
-//                            event(.failure(IAPError(.paymentFailed, underlyingError: error)))
-//                        }
-//                    }
-//                }
-//
-//                return Disposables.create()
-//            }
     }
     
     func restorePurchases() -> Single<Void> {
-        purchaseInteractor
-            .makeActiveSubscriptionByRestore()
-            .map { _ in Void() }
-        
-        // TODO: использовать при полном отказе от RushSDK
-//        Single<Void>
-//            .create { event in
-//                SwiftyStoreKit.restorePurchases { result in
-//                    if result.restoredPurchases.isEmpty {
-//                        event(.failure(IAPError(.cannotRestorePurchases)))
-//                    } else {
-//                        event(.success(Void()))
-//                    }
-//                }
-//
-//                return Disposables.create()
-//            }
+        Single<Void>
+            .create { event in
+                SwiftyStoreKit.restorePurchases { result in
+                    if result.restoredPurchases.isEmpty {
+                        event(.failure(IAPError(.cannotRestorePurchases)))
+                    } else {
+                        event(.success(Void()))
+                    }
+                }
+
+                return Disposables.create()
+            }
     }
 }
