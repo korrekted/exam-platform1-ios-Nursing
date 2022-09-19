@@ -8,6 +8,7 @@
 import UIKit
 import RxCocoa
 import OtterScaleiOS
+import RushSDK
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,14 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     lazy var sdkProvider = SDKProvider()
     
-    private lazy var generateStepInSplash = PublishRelay<Bool>()
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         
         NumberLaunches().launch()
         
-        let vc = SplashViewController.make(generateStep: generateStepInSplash.asSignal())
+        let vc = SplashViewController.make()
         window?.rootViewController = vc
         window?.makeKeyAndVisible()
         
@@ -96,8 +95,6 @@ private extension AppDelegate {
                                    featureAppBackendApiKey: GlobalDefinitions.apiKey,
                                    appleAppID: GlobalDefinitions.appleAppID)
         
-        sdkProvider.initialize(settings: settings) { [weak self] success in
-            self?.generateStepInSplash.accept(success)
-        }
+        sdkProvider.initialize(settings: settings)
     }
 }
